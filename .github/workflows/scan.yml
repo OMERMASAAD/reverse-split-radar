@@ -24,6 +24,8 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: تشغيل مصدر التقسيمات
+        env:
+          BUSINESSQUANT_API_KEY: ${{ secrets.BUSINESSQUANT_API_KEY }}
         run: python reverse_split_source.py
 
       - name: تشغيل الرادار
