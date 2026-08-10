@@ -23,5 +23,8 @@ jobs:
       - name: تثبيت المكتبات
         run: pip install -r requirements.txt
 
-      - name: تشغيل الفحص
+      - name: تشغيل مصدر التقسيمات
+        run: python reverse_split_source.py
+
+      - name: تشغيل الرادار
         run: python scanner.py
