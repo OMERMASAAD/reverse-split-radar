@@ -1,16 +1,30 @@
 import yfinance as yf
 import pandas as pd
+import json
 from datetime import datetime
 
 
 # ==========================================
-# الأسهم التي نريد فحصها
+# قراءة الأسهم من ملف Reverse Split Radar
 # ==========================================
 
-TICKERS = [
-    "JZ",
-    "CANF",
-]
+CANDIDATES_FILE = "reverse_split_candidates.json"
+
+try:
+
+    with open(CANDIDATES_FILE, "r", encoding="utf-8") as f:
+        candidates = json.load(f)
+
+    TICKERS = [
+        item["symbol"]
+        for item in candidates
+        if "symbol" in item
+    ]
+
+except Exception as e:
+
+    print(f"❌ فشل تحميل قائمة الأسهم: {e}")
+    TICKERS = []
 
 
 # ==========================================
@@ -40,6 +54,7 @@ def check_stock(ticker):
 
         # إذا لم توجد أي تقسيمات
         if splits is None or splits.empty:
+
             print("❌ لا توجد تقسيمات مسجلة")
             return
 
@@ -68,6 +83,7 @@ def check_stock(ticker):
                     latest_reverse_date is None
                     or split_date > latest_reverse_date
                 ):
+
                     latest_reverse_date = split_date
                     latest_reverse_ratio = ratio
 
@@ -158,17 +174,23 @@ print(
 print("=" * 50)
 
 
-for ticker in TICKERS:
+if not TICKERS:
 
-    try:
+    print("❌ لا توجد أسهم في قائمة المرشحين")
 
-        check_stock(ticker)
+else:
 
-    except Exception as e:
+    for ticker in TICKERS:
 
-        print(
-            f"❌ خطأ أثناء فحص {ticker}: {e}"
-        )
+        try:
+
+            check_stock(ticker)
+
+        except Exception as e:
+
+            print(
+                f"❌ خطأ أثناء فحص {ticker}: {e}"
+            )
 
 
 print("\n")
