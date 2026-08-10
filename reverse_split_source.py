@@ -1,4 +1,5 @@
 import os
+import json
 import requests
 from datetime import datetime, timedelta
 
@@ -12,9 +13,33 @@ MAX_DAYS = 50
 
 API_URL = "https://data.businessquant.com/corporate_actions"
 
+OUTPUT_FILE = "reverse_split_candidates.json"
+
 
 # ==========================================
-# جلب Reverse Splits من BusinessQuant
+# الرموز التي لا نريدها
+# ==========================================
+
+def valid_symbol(symbol):
+
+    symbol = symbol.strip().upper()
+
+    if not symbol:
+        return False
+
+    # استبعاد رموز OTC التي تنتهي بـ F
+    if symbol.endswith("F"):
+        return False
+
+    # نسمح فقط بحروف وأرقام
+    if not symbol.isalnum():
+        return False
+
+    return True
+
+
+# ==========================================
+# جلب Reverse Splits
 # ==========================================
 
 def get_reverse_splits():
@@ -26,7 +51,12 @@ def get_reverse_splits():
     api_key = os.getenv("BUSINESSQUANT_API_KEY")
 
     if not api_key:
-        print("❌ لم يتم العثور على BUSINESSQUANT_API_KEY")
+
+        print(
+            "❌ لم يتم العثور على "
+            "BUSINESSQUANT_API_KEY"
+        )
+
         return []
 
     today = datetime.now().date()
@@ -67,7 +97,7 @@ def get_reverse_splits():
         candidates = []
 
         # ======================================
-        # فحص العمليات
+        # فحص البيانات
         # ======================================
 
         for item in data:
@@ -82,29 +112,36 @@ def get_reverse_splits():
 
             notes = str(
                 item.get("notes", "")
-            ).strip().lower()
+            ).strip()
 
             date_text = str(
                 item.get("date", "")
             ).strip()
 
-            # ==================================
-            # نريد فقط عمليات Split
-            # ==================================
+            # -------------------------------
+            # التأكد من الرمز
+            # -------------------------------
+
+            if not valid_symbol(ticker):
+                continue
+
+            # -------------------------------
+            # نريد Split فقط
+            # -------------------------------
 
             if action != "split":
                 continue
 
-            # ==================================
-            # التمييز بين Reverse Split
-            # ==================================
+            # -------------------------------
+            # نريد Reverse Split فقط
+            # -------------------------------
 
-            if "reverse split" not in notes:
+            if "reverse split" not in notes.lower():
                 continue
 
-            # ==================================
-            # التاريخ
-            # ==================================
+            # -------------------------------
+            # تحويل التاريخ
+            # -------------------------------
 
             try:
 
@@ -117,41 +154,87 @@ def get_reverse_splits():
 
                 continue
 
+            # -------------------------------
+            # حساب عمر التقسيم
+            # -------------------------------
+
             days_passed = (
                 today - split_date
             ).days
 
-            # ==================================
-            # التأكد من شرط 20 - 50 يوم
-            # ==================================
+            if not (
+                MIN_DAYS
+                <= days_passed
+                <= MAX_DAYS
+            ):
+                continue
 
-            if MIN_DAYS <= days_passed <= MAX_DAYS:
+            # -------------------------------
+            # إضافة السهم
+            # -------------------------------
 
-                candidates.append({
-                    "symbol": ticker,
-                    "split_date": str(split_date),
-                    "days": days_passed,
-                    "notes": item.get("notes", ""),
-                    "company": item.get("name", "")
-                })
+            candidates.append({
 
-        # ==========================================
+                "symbol": ticker,
+
+                "split_date": str(
+                    split_date
+                ),
+
+                "days": days_passed,
+
+                "reverse_split": notes,
+
+                "company": str(
+                    item.get("name", "")
+                ),
+
+            })
+
+        # ======================================
         # إزالة التكرار
-        # ==========================================
+        # ======================================
 
         unique = {}
 
         for stock in candidates:
 
-            unique[stock["symbol"]] = stock
+            unique[
+                stock["symbol"]
+            ] = stock
 
         candidates = list(
             unique.values()
         )
 
-        # ==========================================
+        # ترتيب حسب عمر التقسيم
+        candidates.sort(
+            key=lambda x: (
+                x["days"],
+                x["symbol"]
+            )
+        )
+
+        # ======================================
+        # حفظ القائمة
+        # ======================================
+
+        with open(
+            OUTPUT_FILE,
+            "w",
+            encoding="utf-8"
+        ) as file:
+
+            json.dump(
+                candidates,
+                file,
+                ensure_ascii=False,
+                indent=2
+            )
+
+        # ======================================
         # عرض النتائج
-        # ==========================================
+        # ======================================
 
         print()
         print("=" * 60)
@@ -171,17 +254,26 @@ def get_reverse_splits():
 
                 print(
                     f"🟢 {stock['symbol']} | "
-                    f"التقسيم: {stock['split_date']} | "
-                    f"العمر: {stock['days']} يوم | "
-                    f"{stock['notes']}"
+                    f"التقسيم: "
+                    f"{stock['split_date']} | "
+                    f"العمر: "
+                    f"{stock['days']} يوم | "
+                    f"{stock['reverse_split']}"
                 )
 
         print()
         print("=" * 60)
+
         print(
             f"📌 عدد الأسهم المؤهلة: "
             f"{len(candidates)}"
         )
+
+        print(
+            f"💾 تم حفظ القائمة في: "
+            f"{OUTPUT_FILE}"
+        )
+
         print("=" * 60)
 
         return candidates
@@ -189,7 +281,8 @@ def get_reverse_splits():
     except Exception as e:
 
         print(
-            f"❌ حدث خطأ أثناء جلب البيانات: {e}"
+            f"❌ حدث خطأ أثناء جلب البيانات: "
+            f"{e}"
         )
 
         return []
