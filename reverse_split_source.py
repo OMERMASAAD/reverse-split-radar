@@ -1,6 +1,6 @@
 import requests
 import pandas as pd
-from datetime import datetime, timedelta
+from datetime import datetime
 from io import StringIO
 
 
@@ -15,13 +15,13 @@ URL = "https://stockanalysis.com/actions/2026/"
 
 
 # ==========================================
-# جلب عمليات الشركات
+# جلب Reverse Splits
 # ==========================================
 
 def get_reverse_splits():
 
     print("=" * 60)
-    print("🚨 البحث عن Reverse Stock Splits")
+    print("🚨 REVERSE SPLIT RADAR")
     print("=" * 60)
 
     headers = {
@@ -44,78 +44,126 @@ def get_reverse_splits():
 
         response.raise_for_status()
 
-        # قراءة الجداول الموجودة في الصفحة
         tables = pd.read_html(
             StringIO(response.text)
         )
 
         if not tables:
-
             print("❌ لم يتم العثور على جدول")
             return []
 
-        print(f"📊 عدد الجداول الموجودة: {len(tables)}")
+        table = tables[0]
 
-        reverse_splits = []
+        print(
+            f"📊 تم العثور على {len(table)} عملية في المصدر"
+        )
+
+        candidates = []
+
+        today = datetime.now().date()
 
         # ==========================================
-        # البحث داخل الجداول
+        # فحص العمليات
         # ==========================================
 
-        for table in tables:
+        for _, row in table.iterrows():
+
+            symbol = str(row.get("Symbol", "")).strip()
+            action = str(row.get("Action", "")).strip()
+            date_value = row.get("Date", "")
+
+            # نتأكد أنها Reverse Split
+            if "reverse stock split" not in action.lower():
+                continue
+
+            # ======================================
+            # تحويل التاريخ
+            # ======================================
+
+            try:
+
+                split_date = pd.to_datetime(
+                    date_value
+                ).date()
+
+            except Exception:
+
+                continue
+
+            # ======================================
+            # حساب عمر التقسيم
+            # ======================================
+
+            days_passed = (
+                today - split_date
+            ).days
+
+            # ======================================
+            # استخراج النسبة
+            # مثال: 1 for 8
+            # ======================================
+
+            ratio = ""
+
+            if ":" in action:
+                ratio = action.split(":")[-1].strip()
+
+            elif "for" in action.lower():
+
+                parts = action.lower().split("for")
+
+                if len(parts) > 1:
+                    ratio = parts[-1].strip()
+
+            # ======================================
+            # شرط 20 - 50 يوم
+            # ======================================
+
+            if MIN_DAYS <= days_passed <= MAX_DAYS:
+
+                candidates.append({
+                    "symbol": symbol,
+                    "split_date": str(split_date),
+                    "days": days_passed,
+                    "ratio": ratio
+                })
+
+        # ==========================================
+        # عرض الأسهم المؤهلة
+        # ==========================================
+
+        print("\n")
+        print("=" * 60)
+        print("🎯 الأسهم المؤهلة للرادار")
+        print("=" * 60)
+
+        if not candidates:
 
             print(
-                f"🔎 فحص جدول يحتوي على "
-                f"{len(table)} صف"
+                "⚪ لا توجد أسهم حاليًا "
+                "بين 20 و50 يوم"
             )
 
-            # تحويل أسماء الأعمدة إلى نص
-            table.columns = [
-                str(col).strip()
-                for col in table.columns
-            ]
+        else:
 
-            for _, row in table.iterrows():
+            for stock in candidates:
 
-                row_text = " ".join(
-                    str(value)
-                    for value in row.values
-                ).lower()
+                print(
+                    f"🟢 {stock['symbol']} | "
+                    f"التقسيم: {stock['split_date']} | "
+                    f"العمر: {stock['days']} يوم | "
+                    f"النسبة: {stock['ratio']}"
+                )
 
-                # البحث عن Reverse Stock Split
-                if (
-                    "reverse stock split" in row_text
-                    or "reverse split" in row_text
-                ):
+        print("\n")
+        print("=" * 60)
+        print(
+            f"📌 عدد الأسهم المؤهلة: "
+            f"{len(candidates)}"
+        )
+        print("=" * 60)
 
-                    reverse_splits.append(row)
-
-        # ==========================================
-        # لا توجد نتائج
-        # ==========================================
-
-        if not reverse_splits:
-
-            print(
-                "❌ لم يتم العثور على Reverse Stock Split"
-            )
-
-            return []
-
-        # ==========================================
-        # عرض النتائج
-        # ==========================================
-
-        print("\n🟢 Reverse Splits المكتشفة:")
-        print("-" * 60)
-
-        for row in reverse_splits:
-
-            print(row.to_string())
-
-            print("-" * 60)
-
-        return reverse_splits
+        return candidates
 
     except Exception as e:
 
@@ -132,14 +180,4 @@ def get_reverse_splits():
 
 if __name__ == "__main__":
 
-    results = get_reverse_splits()
-
-    print("\n")
-    print("=" * 60)
-    print("✅ انتهى البحث")
-    print("=" * 60)
-
-    print(
-        f"📌 عدد عمليات Reverse Split المكتشفة: "
-        f"{len(results)}"
-    )
+    get_reverse_splits()
