@@ -28,5 +28,13 @@ jobs:
           BUSINESSQUANT_API_KEY: ${{ secrets.BUSINESSQUANT_API_KEY }}
         run: python reverse_split_source.py
 
+      - name: التأكد من قائمة الأسهم
+        run: |
+          echo "📂 فحص ملف المرشحين..."
+          ls -la
+          echo ""
+          echo "📄 محتوى قائمة المرشحين:"
+          cat reverse_split_candidates.json
+
       - name: تشغيل الرادار
         run: python scanner.py
