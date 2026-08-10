@@ -1,7 +1,6 @@
+import os
 import requests
-import pandas as pd
-from datetime import datetime
-from io import StringIO
+from datetime import datetime, timedelta
 
 
 # ==========================================
@@ -11,11 +10,11 @@ from io import StringIO
 MIN_DAYS = 20
 MAX_DAYS = 50
 
-URL = "https://stockanalysis.com/actions/2026/"
+API_URL = "https://data.businessquant.com/corporate_actions"
 
 
 # ==========================================
-# جلب Reverse Splits
+# جلب Reverse Splits من BusinessQuant
 # ==========================================
 
 def get_reverse_splits():
@@ -24,115 +23,137 @@ def get_reverse_splits():
     print("🚨 REVERSE SPLIT RADAR")
     print("=" * 60)
 
-    headers = {
-        "User-Agent": (
-            "Mozilla/5.0 "
-            "(Windows NT 10.0; Win64; x64) "
-            "AppleWebKit/537.36 "
-            "(KHTML, like Gecko) "
-            "Chrome/120 Safari/537.36"
-        )
+    api_key = os.getenv("BUSINESSQUANT_API_KEY")
+
+    if not api_key:
+        print("❌ لم يتم العثور على BUSINESSQUANT_API_KEY")
+        return []
+
+    today = datetime.now().date()
+
+    start_date = today - timedelta(days=MAX_DAYS)
+    end_date = today - timedelta(days=MIN_DAYS)
+
+    print(f"📅 البحث من: {start_date}")
+    print(f"📅 إلى:     {end_date}")
+
+    params = {
+        "action": "split",
+        "from_date": str(start_date),
+        "till_date": str(end_date),
+        "limit": 10000,
+        "api_key": api_key,
     }
 
     try:
 
         response = requests.get(
-            URL,
-            headers=headers,
+            API_URL,
+            params=params,
             timeout=30
         )
 
         response.raise_for_status()
 
-        tables = pd.read_html(
-            StringIO(response.text)
-        )
+        result = response.json()
 
-        if not tables:
-            print("❌ لم يتم العثور على جدول")
-            return []
-
-        table = tables[0]
+        data = result.get("data", [])
 
         print(
-            f"📊 تم العثور على {len(table)} عملية في المصدر"
+            f"📊 عدد عمليات التقسيم التي رجعها المصدر: "
+            f"{len(data)}"
         )
 
         candidates = []
 
-        today = datetime.now().date()
-
-        # ==========================================
+        # ======================================
         # فحص العمليات
-        # ==========================================
+        # ======================================
 
-        for _, row in table.iterrows():
+        for item in data:
 
-            symbol = str(row.get("Symbol", "")).strip()
-            action = str(row.get("Action", "")).strip()
-            date_value = row.get("Date", "")
+            ticker = str(
+                item.get("ticker", "")
+            ).strip().upper()
 
-            # نتأكد أنها Reverse Split
-            if "reverse stock split" not in action.lower():
+            action = str(
+                item.get("action", "")
+            ).strip().lower()
+
+            notes = str(
+                item.get("notes", "")
+            ).strip().lower()
+
+            date_text = str(
+                item.get("date", "")
+            ).strip()
+
+            # ==================================
+            # نريد فقط عمليات Split
+            # ==================================
+
+            if action != "split":
                 continue
 
-            # ======================================
-            # تحويل التاريخ
-            # ======================================
+            # ==================================
+            # التمييز بين Reverse Split
+            # ==================================
+
+            if "reverse split" not in notes:
+                continue
+
+            # ==================================
+            # التاريخ
+            # ==================================
 
             try:
 
-                split_date = pd.to_datetime(
-                    date_value
+                split_date = datetime.strptime(
+                    date_text,
+                    "%Y-%m-%d"
                 ).date()
 
             except Exception:
 
                 continue
 
-            # ======================================
-            # حساب عمر التقسيم
-            # ======================================
-
             days_passed = (
                 today - split_date
             ).days
 
-            # ======================================
-            # استخراج النسبة
-            # مثال: 1 for 8
-            # ======================================
-
-            ratio = ""
-
-            if ":" in action:
-                ratio = action.split(":")[-1].strip()
-
-            elif "for" in action.lower():
-
-                parts = action.lower().split("for")
-
-                if len(parts) > 1:
-                    ratio = parts[-1].strip()
-
-            # ======================================
-            # شرط 20 - 50 يوم
-            # ======================================
+            # ==================================
+            # التأكد من شرط 20 - 50 يوم
+            # ==================================
 
             if MIN_DAYS <= days_passed <= MAX_DAYS:
 
                 candidates.append({
-                    "symbol": symbol,
+                    "symbol": ticker,
                     "split_date": str(split_date),
                     "days": days_passed,
-                    "ratio": ratio
+                    "notes": item.get("notes", ""),
+                    "company": item.get("name", "")
                 })
 
         # ==========================================
-        # عرض الأسهم المؤهلة
+        # إزالة التكرار
         # ==========================================
 
-        print("\n")
+        unique = {}
+
+        for stock in candidates:
+
+            unique[stock["symbol"]] = stock
+
+        candidates = list(
+            unique.values()
+        )
+
+        # ==========================================
+        # عرض النتائج
+        # ==========================================
+
+        print()
         print("=" * 60)
         print("🎯 الأسهم المؤهلة للرادار")
         print("=" * 60)
@@ -152,10 +173,10 @@ def get_reverse_splits():
                     f"🟢 {stock['symbol']} | "
                     f"التقسيم: {stock['split_date']} | "
                     f"العمر: {stock['days']} يوم | "
-                    f"النسبة: {stock['ratio']}"
+                    f"{stock['notes']}"
                 )
 
-        print("\n")
+        print()
         print("=" * 60)
         print(
             f"📌 عدد الأسهم المؤهلة: "
@@ -175,7 +196,7 @@ def get_reverse_splits():
 
 
 # ==========================================
-# تشغيل البرنامج
+# التشغيل
 # ==========================================
 
 if __name__ == "__main__":
