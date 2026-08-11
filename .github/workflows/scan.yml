@@ -38,3 +38,6 @@ jobs:
 
       - name: تشغيل الرادار
         run: python scanner.py
+
+      - name: تشغيل Strategy Scanner
+        run: python strategy_scanner.py
