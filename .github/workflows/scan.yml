@@ -7,6 +7,9 @@ on:
     - cron: "0 17 * * 1-5"
     - cron: "0 20 * * 1-5"
 
+permissions:
+  contents: write
+
 jobs:
   scan:
     runs-on: ubuntu-latest
@@ -41,3 +44,19 @@ jobs:
 
       - name: تشغيل Strategy Scanner
         run: python strategy_scanner.py
+
+      - name: التأكد من بيانات الداشبورد
+        run: |
+          echo "📊 فحص dashboard_data.json..."
+          ls -lh dashboard_data.json
+          echo ""
+          echo "عدد الأسهم:"
+          python -c "import json; d=json.load(open('dashboard_data.json', encoding='utf-8')); print(len(d.get('stocks', [])))"
+
+      - name: حفظ بيانات الداشبورد
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dashboard_data.json
+          git diff --cached --quiet || git commit -m "Update dashboard data"
+          git push
