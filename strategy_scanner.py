@@ -1431,3 +1431,68 @@ print(
     "انتهى Reverse Split Strategy Scanner."
 )
 print("=" * 75)
+# ============================================================
+# DASHBOARD EXPORT
+# ============================================================
+
+dashboard_data = {
+    "updated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+    "stocks": []
+}
+
+for r in priority:
+    dashboard_data["stocks"].append({
+        "t": r["ticker"],
+        "price": r["price"],
+        "half": r["half"]["half_level"],
+        "zone_low": r["half"]["zone_low"],
+        "zone_high": r["half"]["zone_high"],
+        "tests": r["half"]["tests"],
+        "successful_tests": r["half"]["successful_tests"],
+        "rsi": r["rsi"],
+        "previous_rsi": r["previous_rsi"],
+        "rsi_improving": r["rsi_improving"],
+        "macd": r["macd"],
+        "macd_improving": r["macd_improving"],
+        "volume": r["volume"],
+        "volume20": r["volume20"],
+        "volume_ratio": r["volume_ratio"],
+        "ma20": r["ma20"],
+        "ma50": r["ma50"],
+        "score": r["score"],
+        "core": r["core"],
+        "status": r["rating"],
+        "state": r["next_step"],
+        "action": r["next_text"],
+        "split_date": str(r["split_date"]),
+        "split_ratio": r["split_ratio"],
+        "days_since_split": r["days_since_split"],
+        "split_open": r["split_open"],
+        "split_high": r["split_high"],
+        "split_low": r["split_low"],
+        "drawdown": r["drawdown"],
+        "support": r["support"],
+        "support_tests": r["support_tests"],
+        "float_shares": r["float_shares"],
+        "short_shares": r["short_shares"],
+        "catalysts": r["catalysts"],
+        "signals": r["signals"],
+        "warnings": r["warnings"]
+    })
+
+with open("dashboard_data.json", "w", encoding="utf-8") as f:
+    json.dump(
+        dashboard_data,
+        f,
+        ensure_ascii=False,
+        indent=2,
+        default=str
+    )
+
+print()
+print("=" * 75)
+print("DASHBOARD DATA UPDATED")
+print("=" * 75)
+print(
+    f"تم تصدير {len(dashboard_data['stocks'])} سهم إلى dashboard_data.json"
+)
