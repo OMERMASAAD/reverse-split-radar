@@ -10,32 +10,17 @@ from datetime import datetime, timedelta
 # ============================================================
 #
 # الهدف:
-# العثور على سهم هادئ بعد Reverse Split
-# قريب من دعم مع تحسن تدريجي.
-#
-# الشروط المهمة:
-# - Reverse Split حديث
-# - هبوط/تصحيح معقول
-# - قرب من الدعم
-# - اختبارات دعم
-# - RSI منخفض أو يتحسن
-# - MACD يتحسن
-# - Volume هادئ
-# - Float مناسب
-# - Short مناسب
-# - محفز مستقبلي إن وجد
-# - شرط نصف شمعة الانطلاقة
+# العثور على أسهم هادئة بعد Reverse Split
+# هبطت بشكل واضح، اقتربت من دعم، اختبرت الدعم،
+# RSI منخفض ويبدأ بالتحسن، MACD يتحسن،
+# السيولة هادئة، Float و Short مناسبين،
+# مع البحث عن محفز مستقبلي.
 #
 # السهم لا يتم حذفه بسبب التدهور.
 # ============================================================
 
 
 CANDIDATES_FILE = "reverse_split_candidates.json"
-
-
-# ============================================================
-# إعدادات الاستراتيجية
-# ============================================================
 
 MIN_DAYS = 20
 MAX_DAYS = 50
@@ -44,13 +29,13 @@ MIN_HISTORY_DAYS = 20
 
 MAX_SHORT = 50000
 
-# أقصى حركة مطلقة نعتبرها هادئة بعد التقسيم
+# أقصى حركة نعتبرها هادئة بعد التقسيم
 MAX_POST_SPLIT_MOVE = 0.50
 
-# أقصى ارتفاع أولي في أول 5 جلسات
+# أقصى انطلاقة أولية
 MAX_INITIAL_RUN = 0.20
 
-# أقصى Volume Ratio للسهم الهادئ
+# أقصى Volume Ratio نعتبره هادئاً
 QUIET_VOLUME_RATIO = 1.50
 
 # أقصى مسافة عن الدعم
@@ -61,7 +46,7 @@ MIN_SUPPORT_TESTS = 2
 
 
 # ============================================================
-# قراءة قائمة المرشحين
+# قراءة المرشحين
 # ============================================================
 
 try:
@@ -72,13 +57,12 @@ try:
     TICKERS = [
         item["symbol"]
         for item in candidates
-        if "symbol" in item
+        if isinstance(item, dict) and "symbol" in item
     ]
 
 except Exception as e:
 
     print(f"❌ فشل تحميل قائمة المرشحين: {e}")
-
     TICKERS = []
 
 
@@ -100,7 +84,7 @@ def safe_float(value):
 
         return value
 
-    except:
+    except Exception:
 
         return None
 
@@ -177,10 +161,20 @@ def get_reverse_split_info(stock):
             if ratio is None:
                 continue
 
-            # Reverse Split يكون عادةً ratio < 1
+            # Yahoo Finance يسجل Reverse Split كرقم أقل من 1
+            # مثال:
+            # 1:5  = 0.2
+            # 1:10 = 0.1
+
             if ratio < 1:
 
-                split_date = date.to_pydatetime().date()
+                try:
+
+                    split_date = pd.Timestamp(date).date()
+
+                except Exception:
+
+                    continue
 
                 if (
                     latest_date is None
@@ -201,21 +195,21 @@ def get_reverse_split_info(stock):
 
 
 # ============================================================
-# تحويل النسبة
+# تحويل النسبة إلى صيغة مفهومة
 # ============================================================
 
 def reverse_ratio_text(ratio):
 
     try:
 
-        if ratio <= 0:
+        if ratio is None or ratio <= 0:
             return "Unknown"
 
         reverse_number = round(1 / ratio)
 
         return f"{reverse_number}:1 Reverse split"
 
-    except:
+    except Exception:
 
         return "Reverse split"
 
@@ -226,12 +220,12 @@ def reverse_ratio_text(ratio):
 
 def calculate_support(df):
 
-    if len(df) < 10:
+    if df is None or len(df) < 10:
         return None
 
     recent = df.tail(20)
 
-    lows = recent["Low"].values
+    lows = recent["Low"].dropna().values
 
     if len(lows) == 0:
         return None
@@ -244,50 +238,45 @@ def calculate_support(df):
 
 
 # ============================================================
-# حساب اختبارات الدعم
+# عدد اختبارات الدعم
 # ============================================================
 
 def count_support_tests(df, support):
 
-    if support is None:
+    if support is None or support <= 0:
         return 0
 
     tolerance = support * 0.04
 
     tests = 0
 
-    for low in df["Low"].tail(40):
+    recent_lows = df["Low"].tail(40)
 
-        if abs(
-            float(low) - support
-        ) <= tolerance:
+    for low in recent_lows:
 
+        low = safe_float(low)
+
+        if low is None:
+            continue
+
+        if abs(low - support) <= tolerance:
             tests += 1
 
     return tests
 
 
 # ============================================================
-# شرط نصف شمعة الانطلاقة
+# فحص نصف شمعة الانطلاقة
 # ============================================================
 
-def check_half_candle_condition(
-    df,
-    split_date
-):
+def check_half_candle_condition(df, split_date):
 
     result = {
-
         "passed": False,
-
         "initial_run": None,
-
         "half_level": None,
-
         "lowest_after_run": None,
-
         "reason": ""
-
     }
 
     try:
@@ -304,7 +293,7 @@ def check_half_candle_condition(
 
             return result
 
-        # أول 5 جلسات
+        # أول 5 جلسات بعد Reverse Split
         first_days = split_data.head(5)
 
         first_open = safe_float(
@@ -327,7 +316,6 @@ def check_half_candle_condition(
 
             return result
 
-        # نسبة الانطلاقة
         initial_run = (
             (first_high - first_open)
             / first_open
@@ -337,7 +325,9 @@ def check_half_candle_condition(
             initial_run * 100
         )
 
-        # إذا طار أكثر من 20%
+        # إذا ارتفع أكثر من 20%
+        # لا نعتبره ضمن الانطلاقة الهادئة
+
         if initial_run > MAX_INITIAL_RUN:
 
             result["reason"] = (
@@ -347,18 +337,16 @@ def check_half_candle_condition(
 
             return result
 
-        # نصف المسافة
-        half_level = (
-            first_open
-            + (
-                (first_high - first_open)
-                * 0.50
-            )
+        # نصف المسافة بين الافتتاح والقمة
+
+        half_level = first_open + (
+            (first_high - first_open) * 0.50
         )
 
         result["half_level"] = half_level
 
         # البيانات بعد أول 5 جلسات
+
         after_data = split_data.iloc[5:]
 
         if after_data.empty:
@@ -374,6 +362,8 @@ def check_half_candle_condition(
         )
 
         result["lowest_after_run"] = lowest
+
+        # يجب أن يصل السهم إلى نصف منطقة الانطلاقة
 
         if (
             lowest is not None
@@ -402,16 +392,16 @@ def check_half_candle_condition(
 
 
 # ============================================================
-# المحفزات المستقبلية
+# فحص محفزات مستقبلية
 # ============================================================
 
 def check_future_catalyst(stock):
 
     catalysts = []
 
-    # --------------------------------------------
+    # --------------------------------------------------------
     # Earnings Calendar
-    # --------------------------------------------
+    # --------------------------------------------------------
 
     try:
 
@@ -431,17 +421,11 @@ def check_future_catalyst(stock):
                         "📅 موعد نتائج مالية"
                     )
 
-            elif isinstance(
-                calendar,
-                pd.DataFrame
-            ):
+            elif isinstance(calendar, pd.DataFrame):
 
                 if not calendar.empty:
 
-                    if (
-                        "Earnings Date"
-                        in calendar.index
-                    ):
+                    if "Earnings Date" in calendar.index:
 
                         catalysts.append(
                             "📅 موعد نتائج مالية"
@@ -451,14 +435,14 @@ def check_future_catalyst(stock):
 
         pass
 
-    # --------------------------------------------
+    # --------------------------------------------------------
     # Earnings Dates
-    # --------------------------------------------
+    # --------------------------------------------------------
 
     try:
 
         earnings = stock.get_earnings_dates(
-            limit=4
+            limit=8
         )
 
         if (
@@ -476,7 +460,14 @@ def check_future_catalyst(stock):
 
                     date_clean = pd.Timestamp(
                         date
-                    ).tz_localize(None)
+                    )
+
+                    if date_clean.tzinfo is not None:
+
+                        date_clean = (
+                            date_clean
+                            .tz_localize(None)
+                        )
 
                     if date_clean >= now:
 
@@ -486,7 +477,7 @@ def check_future_catalyst(stock):
 
                         break
 
-                except:
+                except Exception:
 
                     continue
 
@@ -495,6 +486,7 @@ def check_future_catalyst(stock):
         pass
 
     # إزالة التكرار
+
     catalysts = list(
         dict.fromkeys(catalysts)
     )
@@ -512,9 +504,9 @@ def analyze_stock(ticker):
 
         stock = yf.Ticker(ticker)
 
-        # --------------------------------------------
+        # ----------------------------------------------------
         # Reverse Split
-        # --------------------------------------------
+        # ----------------------------------------------------
 
         split_info = get_reverse_split_info(
             stock
@@ -531,9 +523,9 @@ def analyze_stock(ticker):
             today - split_date
         ).days
 
-        # --------------------------------------------
-        # فترة الرادار
-        # --------------------------------------------
+        # ----------------------------------------------------
+        # شرط 20 - 50 يوم
+        # ----------------------------------------------------
 
         if not (
             MIN_DAYS
@@ -543,9 +535,9 @@ def analyze_stock(ticker):
 
             return None
 
-        # --------------------------------------------
+        # ----------------------------------------------------
         # تحميل البيانات
-        # --------------------------------------------
+        # ----------------------------------------------------
 
         start_date = (
             split_date
@@ -558,36 +550,34 @@ def analyze_stock(ticker):
             auto_adjust=False
         )
 
-        if (
-            df is None
-            or df.empty
-        ):
-
+        if df is None or df.empty:
             return None
 
         if len(df) < MIN_HISTORY_DAYS:
             return None
 
-        # --------------------------------------------
-        # تنظيف البيانات
-        # --------------------------------------------
+        # ----------------------------------------------------
+        # تنظيف
+        # ----------------------------------------------------
+
+        required_columns = [
+            "Open",
+            "High",
+            "Low",
+            "Close",
+            "Volume"
+        ]
 
         df = df.dropna(
-            subset=[
-                "Open",
-                "High",
-                "Low",
-                "Close",
-                "Volume"
-            ]
+            subset=required_columns
         )
 
         if len(df) < MIN_HISTORY_DAYS:
             return None
 
-        # --------------------------------------------
+        # ----------------------------------------------------
         # المؤشرات
-        # --------------------------------------------
+        # ----------------------------------------------------
 
         df["RSI"] = calculate_rsi(
             df["Close"]
@@ -642,9 +632,9 @@ def analyze_stock(ticker):
         if price is None:
             return None
 
-        # --------------------------------------------
+        # ----------------------------------------------------
         # RSI السابق
-        # --------------------------------------------
+        # ----------------------------------------------------
 
         previous_rsi = None
 
@@ -660,9 +650,9 @@ def analyze_stock(ticker):
             and rsi > previous_rsi
         )
 
-        # --------------------------------------------
+        # ----------------------------------------------------
         # MACD يتحسن
-        # --------------------------------------------
+        # ----------------------------------------------------
 
         macd_improving = False
 
@@ -684,14 +674,12 @@ def analyze_stock(ticker):
 
                 macd_improving = True
 
-        # --------------------------------------------
+        # ----------------------------------------------------
         # Volume
-        # --------------------------------------------
+        # ----------------------------------------------------
 
         volume_20 = safe_float(
-            df["Volume"]
-            .tail(20)
-            .mean()
+            df["Volume"].tail(20).mean()
         )
 
         volume_ratio = None
@@ -709,13 +697,12 @@ def analyze_stock(ticker):
 
         quiet_volume = (
             volume_ratio is not None
-            and volume_ratio
-            <= QUIET_VOLUME_RATIO
+            and volume_ratio <= QUIET_VOLUME_RATIO
         )
 
-        # --------------------------------------------
-        # بيانات التقسيم
-        # --------------------------------------------
+        # ----------------------------------------------------
+        # بيانات ما بعد التقسيم
+        # ----------------------------------------------------
 
         split_data = df[
             df.index.date >= split_date
@@ -735,9 +722,9 @@ def analyze_stock(ticker):
         if split_high is None:
             return None
 
-        # --------------------------------------------
+        # ----------------------------------------------------
         # الحركة منذ التقسيم
-        # --------------------------------------------
+        # ----------------------------------------------------
 
         post_split_change = None
 
@@ -747,30 +734,26 @@ def analyze_stock(ticker):
         ):
 
             post_split_change = (
-                (
-                    price
-                    - split_open
-                )
+                (price - split_open)
                 / split_open
             ) * 100
 
-        # --------------------------------------------
+        # ----------------------------------------------------
         # الهبوط من القمة
-        # --------------------------------------------
+        # ----------------------------------------------------
 
         drawdown = (
-            (
-                price
-                - split_high
-            )
+            (price - split_high)
             / split_high
         ) * 100
 
-        # --------------------------------------------
+        # ----------------------------------------------------
         # الدعم
-        # --------------------------------------------
+        # ----------------------------------------------------
 
-        support = calculate_support(df)
+        support = calculate_support(
+            df
+        )
 
         support_tests = count_support_tests(
             df,
@@ -795,9 +778,9 @@ def analyze_stock(ticker):
             <= SUPPORT_DISTANCE_MAX
         )
 
-        # --------------------------------------------
-        # نصف الشمعة
-        # --------------------------------------------
+        # ----------------------------------------------------
+        # نصف شمعة الانطلاقة
+        # ----------------------------------------------------
 
         half_candle = (
             check_half_candle_condition(
@@ -806,9 +789,9 @@ def analyze_stock(ticker):
             )
         )
 
-        # --------------------------------------------
-        # Float / Short
-        # --------------------------------------------
+        # ----------------------------------------------------
+        # Float و Short
+        # ----------------------------------------------------
 
         float_shares = None
         short_shares = None
@@ -818,18 +801,14 @@ def analyze_stock(ticker):
             info = stock.info
 
             float_shares = safe_float(
-                info.get(
-                    "floatShares"
-                )
+                info.get("floatShares")
             )
 
             short_shares = safe_float(
-                info.get(
-                    "sharesShort"
-                )
+                info.get("sharesShort")
             )
 
-        except:
+        except Exception:
 
             pass
 
@@ -838,28 +817,26 @@ def analyze_stock(ticker):
             and short_shares < MAX_SHORT
         )
 
-        # --------------------------------------------
+        # ----------------------------------------------------
         # MA20
-        # --------------------------------------------
+        # ----------------------------------------------------
 
         ma20_ok = (
             ma20 is not None
             and price <= ma20 * 1.10
         )
 
-        # --------------------------------------------
-        # محفز
-        # --------------------------------------------
+        # ----------------------------------------------------
+        # المحفز
+        # ----------------------------------------------------
 
-        catalysts = (
-            check_future_catalyst(
-                stock
-            )
+        catalysts = check_future_catalyst(
+            stock
         )
 
-        # ====================================================
-        # SCORE
-        # ====================================================
+        # ----------------------------------------------------
+        # النقاط
+        # ----------------------------------------------------
 
         score = 0
 
@@ -867,9 +844,9 @@ def analyze_stock(ticker):
 
         warnings = []
 
-        # --------------------------------------------
+        # ----------------------------------------------------
         # Reverse Split
-        # --------------------------------------------
+        # ----------------------------------------------------
 
         score += 2
 
@@ -877,9 +854,9 @@ def analyze_stock(ticker):
             "✅ Reverse Split حديث"
         )
 
-        # --------------------------------------------
+        # ----------------------------------------------------
         # Half Candle
-        # --------------------------------------------
+        # ----------------------------------------------------
 
         if half_candle["passed"]:
 
@@ -895,9 +872,9 @@ def analyze_stock(ticker):
                 "⚠️ لم يتحقق شرط نصف شمعة الانطلاقة"
             )
 
-        # --------------------------------------------
+        # ----------------------------------------------------
         # RSI
-        # --------------------------------------------
+        # ----------------------------------------------------
 
         if rsi is not None:
 
@@ -936,9 +913,9 @@ def analyze_stock(ticker):
                     f"❌ RSI مرتفع ({rsi:.1f})"
                 )
 
-        # --------------------------------------------
+        # ----------------------------------------------------
         # MACD
-        # --------------------------------------------
+        # ----------------------------------------------------
 
         if macd_improving:
 
@@ -954,9 +931,9 @@ def analyze_stock(ticker):
                 "🟡 MACD لم يظهر تحسنًا كافيًا"
             )
 
-        # --------------------------------------------
+        # ----------------------------------------------------
         # Volume
-        # --------------------------------------------
+        # ----------------------------------------------------
 
         if quiet_volume:
 
@@ -974,14 +951,11 @@ def analyze_stock(ticker):
                 f"({volume_today:,.0f})"
             )
 
-        # --------------------------------------------
+        # ----------------------------------------------------
         # Support Tests
-        # --------------------------------------------
+        # ----------------------------------------------------
 
-        if (
-            support_tests
-            >= MIN_SUPPORT_TESTS
-        ):
+        if support_tests >= MIN_SUPPORT_TESTS:
 
             score += 2
 
@@ -1004,9 +978,9 @@ def analyze_stock(ticker):
                 "⚠️ لا توجد اختبارات دعم كافية"
             )
 
-        # --------------------------------------------
-        # Near Support
-        # --------------------------------------------
+        # ----------------------------------------------------
+        # قرب الدعم
+        # ----------------------------------------------------
 
         if near_support:
 
@@ -1016,28 +990,15 @@ def analyze_stock(ticker):
                 "✅ السعر قريب من الدعم"
             )
 
-        # --------------------------------------------
-        # Post Split Movement
-        # --------------------------------------------
-        #
-        # مهم:
-        # نستخدم abs() حتى لا نعطي نقطة لسهم
-        # تحرك بقوة سواء للأعلى أو للأسفل.
-        #
-        # مثال:
-        # +114.4% -> FAIL
-        # -60%    -> FAIL
-        # +15%    -> PASS
-        # -15%    -> PASS
-        # --------------------------------------------
+        # ----------------------------------------------------
+        # الحركة بعد التقسيم
+        # ----------------------------------------------------
 
-        post_split_quiet = (
+        if (
             post_split_change is not None
             and abs(post_split_change)
             <= MAX_POST_SPLIT_MOVE * 100
-        )
-
-        if post_split_quiet:
+        ):
 
             score += 1
 
@@ -1053,9 +1014,9 @@ def analyze_stock(ticker):
                 f"({post_split_change:.1f}%)"
             )
 
-        # --------------------------------------------
-        # Drawdown
-        # --------------------------------------------
+        # ----------------------------------------------------
+        # الهبوط من القمة
+        # ----------------------------------------------------
 
         if drawdown <= -30:
 
@@ -1082,14 +1043,13 @@ def analyze_stock(ticker):
                 f"({drawdown:.1f}%)"
             )
 
-        # --------------------------------------------
+        # ----------------------------------------------------
         # Float
-        # --------------------------------------------
+        # ----------------------------------------------------
 
         if (
             float_shares is not None
-            and float_shares
-            <= 4_000_000
+            and float_shares <= 4_000_000
         ):
 
             score += 1
@@ -1106,9 +1066,9 @@ def analyze_stock(ticker):
                 f"({float_shares:,.0f})"
             )
 
-        # --------------------------------------------
+        # ----------------------------------------------------
         # Short
-        # --------------------------------------------
+        # ----------------------------------------------------
 
         if short_ok:
 
@@ -1116,4 +1076,748 @@ def analyze_stock(ticker):
 
             signals.append(
                 f"✅ Short منخفض "
-                f"({short_shares:,.0f})
+                f"({short_shares:,.0f})"
+            )
+
+        elif short_shares is not None:
+
+            warnings.append(
+                f"⚠️ Short مرتفع "
+                f"({short_shares:,.0f})"
+            )
+
+        # ----------------------------------------------------
+        # MA20
+        # ----------------------------------------------------
+
+        if ma20_ok:
+
+            score += 1
+
+            signals.append(
+                "✅ قريب من MA20"
+            )
+
+        # ----------------------------------------------------
+        # Catalyst
+        # ----------------------------------------------------
+
+        if catalysts:
+
+            score += 2
+
+            for catalyst in catalysts:
+
+                signals.append(
+                    f"🚀 {catalyst}"
+                )
+
+        else:
+
+            signals.append(
+                "⚪ لا يوجد محفز مستقبلي واضح "
+                "من البيانات المتاحة"
+            )
+
+        # ====================================================
+        # Core Conditions
+        # ====================================================
+
+        core_conditions = 0
+
+        if half_candle["passed"]:
+            core_conditions += 1
+
+        if (
+            rsi is not None
+            and rsi < 30
+        ):
+            core_conditions += 1
+
+        if rsi_improving:
+            core_conditions += 1
+
+        if macd_improving:
+            core_conditions += 1
+
+        if quiet_volume:
+            core_conditions += 1
+
+        if support_tests >= MIN_SUPPORT_TESTS:
+            core_conditions += 1
+
+        if near_support:
+            core_conditions += 1
+
+        if short_ok:
+            core_conditions += 1
+
+        if (
+            post_split_change is not None
+            and post_split_change <= 20
+        ):
+            core_conditions += 1
+
+        # ====================================================
+        # التقييم النهائي
+        # ====================================================
+
+        if (
+            rsi is not None
+            and rsi < 30
+            and rsi_improving
+            and half_candle["passed"]
+            and core_conditions >= 6
+        ):
+
+            rating = (
+                "🔥🔥🔥 MATCH قوي جداً"
+            )
+
+        elif (
+            rsi is not None
+            and rsi < 35
+            and half_candle["passed"]
+            and core_conditions >= 5
+        ):
+
+            rating = (
+                "🔥🔥 WATCHLIST قوية"
+            )
+
+        elif core_conditions >= 4:
+
+            rating = (
+                "🟢 WATCHLIST"
+            )
+
+        else:
+
+            rating = (
+                "🟡 مراقبة"
+            )
+
+        # ====================================================
+        # النتيجة
+        # ====================================================
+
+        return {
+
+            "ticker": ticker,
+
+            "score": score,
+
+            "rating": rating,
+
+            "price": price,
+
+            "split_date": split_date,
+
+            "split_ratio": split_ratio,
+
+            "days_since_split": days_since_split,
+
+            "post_split_change": post_split_change,
+
+            "drawdown": drawdown,
+
+            "support": support,
+
+            "support_tests": support_tests,
+
+            "volume_today": volume_today,
+
+            "volume_20": volume_20,
+
+            "volume_ratio": volume_ratio,
+
+            "rsi": rsi,
+
+            "previous_rsi": previous_rsi,
+
+            "rsi_improving": rsi_improving,
+
+            "macd": macd,
+
+            "macd_improving": macd_improving,
+
+            "ma20": ma20,
+
+            "ma50": ma50,
+
+            "float_shares": float_shares,
+
+            "short_shares": short_shares,
+
+            "half_candle": half_candle,
+
+            "catalysts": catalysts,
+
+            "signals": signals,
+
+            "warnings": warnings,
+
+            "core_conditions": core_conditions
+        }
+
+    except Exception as e:
+
+        print(
+            f"❌ خطأ في تحليل {ticker}: {e}"
+        )
+
+        return None
+
+
+# ============================================================
+# تشغيل Scanner
+# ============================================================
+
+print("\n")
+print("=" * 65)
+
+print(
+    "🎯 REVERSE SPLIT STRATEGY SCANNER"
+)
+
+print("=" * 65)
+
+print(
+    "🎯 الهدف: سهم هادئ بعد Reverse Split "
+    "وقريب من دعم مع تحسن تدريجي"
+)
+
+print(
+    f"📅 الفترة: {MIN_DAYS} إلى {MAX_DAYS} يوم"
+)
+
+print(
+    f"📋 عدد المرشحين: {len(TICKERS)}"
+)
+
+print("=" * 65)
+
+
+results = []
+
+
+if not TICKERS:
+
+    print(
+        "❌ لا توجد أسهم للفحص"
+    )
+
+else:
+
+    for ticker in TICKERS:
+
+        print(
+            f"\n🔎 تحليل الاستراتيجية: {ticker}"
+        )
+
+        result = analyze_stock(
+            ticker
+        )
+
+        if result is None:
+
+            print(
+                "⚪ لا توجد بيانات كافية "
+                "أو خارج فترة الرادار"
+            )
+
+            continue
+
+        results.append(result)
+
+        # ----------------------------------------------------
+        # البيانات
+        # ----------------------------------------------------
+
+        print("\n📊 بيانات السهم")
+        print("-" * 65)
+
+        print(
+            f"💰 السعر الحالي: "
+            f"${result['price']:.4f}"
+        )
+
+        print(
+            f"📅 Reverse Split: "
+            f"{result['split_date']}"
+        )
+
+        print(
+            f"📌 نسبة التقسيم: "
+            f"{reverse_ratio_text(result['split_ratio'])}"
+        )
+
+        print(
+            f"⏱️ الأيام منذ التقسيم: "
+            f"{result['days_since_split']}"
+        )
+
+        if result["post_split_change"] is not None:
+
+            print(
+                f"📈 الحركة منذ التقسيم: "
+                f"{result['post_split_change']:.1f}%"
+            )
+
+        print(
+            f"📉 الهبوط من أعلى سعر: "
+            f"{result['drawdown']:.1f}%"
+        )
+
+        if result["support"] is not None:
+
+            print(
+                f"🟢 الدعم: "
+                f"${result['support']:.4f}"
+            )
+
+        else:
+
+            print(
+                "🟢 الدعم: غير محدد"
+            )
+
+        print(
+            f"🔄 اختبارات الدعم: "
+            f"{result['support_tests']}"
+        )
+
+        print(
+            f"📊 Volume اليوم: "
+            f"{result['volume_today']:,.0f}"
+        )
+
+        if result["volume_20"] is not None:
+
+            print(
+                f"📊 متوسط Volume 20: "
+                f"{result['volume_20']:,.0f}"
+            )
+
+        else:
+
+            print(
+                "📊 متوسط Volume 20: N/A"
+            )
+
+        if result["volume_ratio"] is not None:
+
+            print(
+                f"📊 Volume Ratio: "
+                f"{result['volume_ratio']:.2f}x"
+            )
+
+        if result["rsi"] is not None:
+
+            print(
+                f"📉 RSI: "
+                f"{result['rsi']:.1f}"
+            )
+
+        else:
+
+            print(
+                "📉 RSI: N/A"
+            )
+
+        if result["previous_rsi"] is not None:
+
+            print(
+                f"📈 RSI السابق: "
+                f"{result['previous_rsi']:.1f}"
+            )
+
+        if result["macd"] is not None:
+
+            print(
+                f"📉 MACD: "
+                f"{result['macd']:.5f}"
+            )
+
+        else:
+
+            print(
+                "📉 MACD: N/A"
+            )
+
+        if result["ma20"] is not None:
+
+            print(
+                f"📊 MA20: "
+                f"${result['ma20']:.4f}"
+            )
+
+        else:
+
+            print(
+                "📊 MA20: N/A"
+            )
+
+        if result["ma50"] is not None:
+
+            print(
+                f"📊 MA50: "
+                f"${result['ma50']:.4f}"
+            )
+
+        else:
+
+            print(
+                "📊 MA50: N/A"
+            )
+
+        print(
+            f"📐 Core Conditions: "
+            f"{result['core_conditions']}"
+        )
+
+        # ----------------------------------------------------
+        # نصف الشمعة
+        # ----------------------------------------------------
+
+        print(
+            "\n🕯️ شرط نصف شمعة الانطلاقة"
+        )
+
+        if (
+            result["half_candle"]["initial_run"]
+            is not None
+        ):
+
+            print(
+                f"📈 الانطلاقة الأولى: "
+                f"{result['half_candle']['initial_run']:.1f}%"
+            )
+
+        if (
+            result["half_candle"]["half_level"]
+            is not None
+        ):
+
+            print(
+                f"🎯 مستوى النصف: "
+                f"${result['half_candle']['half_level']:.4f}"
+            )
+
+        if (
+            result["half_candle"]["lowest_after_run"]
+            is not None
+        ):
+
+            print(
+                f"📉 أقل سعر بعد الانطلاقة: "
+                f"${result['half_candle']['lowest_after_run']:.4f}"
+            )
+
+        if result["half_candle"]["passed"]:
+
+            print("🟢 PASS")
+
+        else:
+
+            print("🔴 FAIL")
+
+        # ----------------------------------------------------
+        # الإشارات
+        # ----------------------------------------------------
+
+        print(
+            "\n🔍 إشارات التحليل"
+        )
+
+        print("-" * 65)
+
+        for signal in result["signals"]:
+
+            print(signal)
+
+        for warning in result["warnings"]:
+
+            print(warning)
+
+        print(
+            "\n🚦 التقييم النهائي:"
+        )
+
+        print(
+            result["rating"]
+        )
+
+        print(
+            f"🎯 SCORE: "
+            f"{result['score']}"
+        )
+
+
+# ============================================================
+# ترتيب النتائج
+# ============================================================
+
+def result_sort_key(x):
+
+    rating = x.get(
+        "rating",
+        ""
+    )
+
+    rsi = x.get(
+        "rsi"
+    )
+
+    return (
+
+        rating.startswith(
+            "🔥🔥🔥"
+        ),
+
+        rating.startswith(
+            "🔥🔥"
+        ),
+
+        rsi is not None
+        and rsi < 30,
+
+        x.get(
+            "rsi_improving",
+            False
+        ),
+
+        x.get(
+            "half_candle",
+            {}
+        ).get(
+            "passed",
+            False
+        ),
+
+        x.get(
+            "core_conditions",
+            0
+        ),
+
+        x.get(
+            "score",
+            0
+        )
+    )
+
+
+results = sorted(
+    results,
+    key=result_sort_key,
+    reverse=True
+)
+
+
+# ============================================================
+# أفضل الأسهم
+# ============================================================
+
+print("\n")
+print("=" * 65)
+
+print(
+    "🏆 أفضل الأسهم المطابقة للاستراتيجية"
+)
+
+print("=" * 65)
+
+
+strong_matches = [
+
+    r for r in results
+
+    if r["rating"]
+    == "🔥🔥🔥 MATCH قوي جداً"
+
+]
+
+
+strong_watchlist = [
+
+    r for r in results
+
+    if r["rating"]
+    == "🔥🔥 WATCHLIST قوية"
+
+]
+
+
+# ============================================================
+# MATCH
+# ============================================================
+
+if strong_matches:
+
+    print(
+        "\n🔥🔥🔥 MATCH قوي جداً"
+    )
+
+    for i, r in enumerate(
+        strong_matches[:7],
+        1
+    ):
+
+        support_text = (
+            f"${r['support']:.4f}"
+            if r["support"] is not None
+            else "N/A"
+        )
+
+        rsi_text = (
+            f"{r['rsi']:.1f}"
+            if r["rsi"] is not None
+            else "N/A"
+        )
+
+        print(
+            f"{i}. {r['ticker']} | "
+            f"Score: {r['score']} | "
+            f"RSI: {rsi_text} | "
+            f"Volume: {r['volume_today']:,.0f} | "
+            f"Support: {support_text} | "
+            f"Tests: {r['support_tests']} | "
+            f"{r['rating']}"
+        )
+
+
+# ============================================================
+# WATCHLIST
+# ============================================================
+
+if strong_watchlist:
+
+    print(
+        "\n🔥🔥 WATCHLIST قوية"
+    )
+
+    for i, r in enumerate(
+        strong_watchlist[:10],
+        1
+    ):
+
+        support_text = (
+            f"${r['support']:.4f}"
+            if r["support"] is not None
+            else "N/A"
+        )
+
+        rsi_text = (
+            f"{r['rsi']:.1f}"
+            if r["rsi"] is not None
+            else "N/A"
+        )
+
+        print(
+            f"{i}. {r['ticker']} | "
+            f"Score: {r['score']} | "
+            f"RSI: {rsi_text} | "
+            f"Volume: {r['volume_today']:,.0f} | "
+            f"Support: {support_text} | "
+            f"Tests: {r['support_tests']} | "
+            f"{r['rating']}"
+        )
+
+
+# ============================================================
+# لا توجد نتائج قوية
+# ============================================================
+
+if (
+    not strong_matches
+    and not strong_watchlist
+):
+
+    print(
+        "⚠️ لا يوجد حالياً سهم يحقق "
+        "الشروط القوية بالكامل."
+    )
+
+    print(
+        "هذا طبيعي؛ الرادار سيستمر "
+        "في المتابعة اليومية."
+    )
+
+
+# ============================================================
+# المحفزات القادمة
+# ============================================================
+
+print("\n")
+print("=" * 65)
+
+print(
+    "🚀 المحفزات المستقبلية"
+)
+
+print("=" * 65)
+
+
+found_catalyst = False
+
+
+for r in results:
+
+    if r["catalysts"]:
+
+        found_catalyst = True
+
+        print(
+            f"\n🚀 {r['ticker']}"
+        )
+
+        for catalyst in r["catalysts"]:
+
+            print(
+                f"   {catalyst}"
+            )
+
+
+if not found_catalyst:
+
+    print(
+        "⚪ لم يتم العثور على محفز مستقبلي "
+        "واضح من البيانات المتاحة."
+    )
+
+
+# ============================================================
+# ملاحظة مهمة
+# ============================================================
+
+print("\n")
+print("=" * 65)
+
+print(
+    "ℹ️ ملاحظة"
+)
+
+print("=" * 65)
+
+print(
+    "السهم الذي يتدهور لا يتم حذفه تلقائياً."
+)
+
+print(
+    "قد يبقى في نتائج المراقبة لأن الضغط "
+    "قد يكون تجميعاً أو تخويفاً للمضاربين."
+)
+
+print(
+    "لكن لا يتم اعتباره MATCH قوي إلا بعد "
+    "تحقق الشروط الأساسية."
+)
+
+print("\n")
+print("=" * 65)
+
+print(
+    "✅ انتهى Strategy Scanner"
+)
+
+print("=" * 65)
