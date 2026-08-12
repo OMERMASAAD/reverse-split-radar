@@ -1551,7 +1551,7 @@ def analyze_stock(ticker):
         # النتيجة
         # ====================================================
 
-        return {
+     return {
 
             "ticker": ticker,
 
@@ -1566,8 +1566,9 @@ def analyze_stock(ticker):
             "next_step": next_step,
 
             "next_text": next_text,
-}
-except Exception as e:
+        }
+
+    except Exception as e:
 
         print(
             f"ERROR analyzing {ticker}: {e}"
