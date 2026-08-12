@@ -1567,3 +1567,10 @@ def analyze_stock(ticker):
 
             "next_text": next_text,
 }
+except Exception as e:
+
+        print(
+            f"ERROR analyzing {ticker}: {e}"
+        )
+
+        return None
