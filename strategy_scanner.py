@@ -1566,3 +1566,4 @@ def analyze_stock(ticker):
             "next_step": next_step,
 
             "next_text": next_text,
+}
