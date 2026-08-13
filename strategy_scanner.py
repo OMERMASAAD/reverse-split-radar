@@ -9,6 +9,10 @@ import yfinance as yf
 CANDIDATES_FILE = "reverse_split_candidates.json"
 DASHBOARD_FILE = "reverse_split_dashboard.json"
 
+# ملف بيانات الداشبورد الفعلي الذي يقرأه index.html
+# (تمت إضافته لأن index.html كان يقرأ ملفًا لا يكتبه أي سكربت)
+DASHBOARD_DATA_FILE = "dashboard_data.json"
+
 MIN_DAYS = 20
 MAX_DAYS = 50
 MIN_HISTORY_DAYS = 60
@@ -1243,6 +1247,121 @@ def print_stock_result(result):
     )
 
 
+def to_dashboard_record(r):
+    """
+    يحوّل نتيجة سهم واحدة (كما ينتجها analyze_stock) إلى الصيغة
+    المختصرة التي يقرأها index.html فعليًا من dashboard_data.json.
+
+    لا يغيّر أي قيمة أو حساب - فقط يعيد تسمية/تسطيح الحقول:
+      ticker      -> t
+      rating      -> status
+      next_step   -> state
+      next_text   -> action
+      half (dict) -> half / zone_low / zone_high / tests / successful_tests
+    باقي الحقول (score, score_percent, core, rsi, macd, ...)
+    تُنسخ بنفس الاسم لأنها متطابقة أصلًا مع ما يقرأه Dashboard.
+    """
+
+    half = r.get("half") or {}
+
+    return {
+        "t": r.get("ticker"),
+        "price": r.get("price"),
+
+        "half": half.get("half_level"),
+        "zone_low": half.get("zone_low"),
+        "zone_high": half.get("zone_high"),
+        "tests": half.get("tests"),
+        "successful_tests": half.get("successful_tests"),
+
+        "rsi": r.get("rsi"),
+        "previous_rsi": r.get("previous_rsi"),
+        "rsi_improving": r.get("rsi_improving"),
+
+        "macd": r.get("macd"),
+        "macd_hist": r.get("macd_hist"),
+        "macd_improving": r.get("macd_improving"),
+
+        "volume": r.get("volume"),
+        "volume20": r.get("volume20"),
+        "volume_ratio": r.get("volume_ratio"),
+
+        "ma20": r.get("ma20"),
+        "ma50": r.get("ma50"),
+
+        "score": r.get("score"),
+        "score_percent": r.get("score_percent"),
+        "core": r.get("core"),
+
+        "status": r.get("rating"),
+        "state": r.get("next_step"),
+        "action": r.get("next_text"),
+
+        "split_date": r.get("split_date"),
+        "split_ratio": r.get("split_ratio"),
+        "days_since_split": r.get("days_since_split"),
+        "split_open": r.get("split_open"),
+        "split_high": r.get("split_high"),
+        "split_low": r.get("split_low"),
+
+        "drawdown": r.get("drawdown"),
+        "post_change": r.get("post_change"),
+
+        "support": r.get("support"),
+        "support_tests": r.get("support_tests"),
+
+        "float_shares": r.get("float_shares"),
+        "short_shares": r.get("short_shares"),
+
+        "catalysts": r.get("catalysts") or [],
+        "signals": r.get("signals") or [],
+        "warnings": r.get("warnings") or [],
+    }
+
+
+def save_dashboard_data(results):
+    """
+    يكتب dashboard_data.json - وهو الملف الذي يقرأه index.html
+    فعليًا عبر fetch(). قبل هذا التعديل لم يكن أي سكربت في
+    الـRepository يكتب هذا الملف، لذلك كان Dashboard يعرض بيانات
+    قديمة/ثابتة من مصدر غير معروف.
+    """
+
+    try:
+
+        payload = {
+            "updated_at":
+                datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+
+            "stocks":
+                [to_dashboard_record(r) for r in results],
+        }
+
+        with open(
+            DASHBOARD_DATA_FILE,
+            "w",
+            encoding="utf-8"
+        ) as f:
+
+            json.dump(
+                payload,
+                f,
+                ensure_ascii=False,
+                indent=2,
+            )
+
+        print(
+            f"\nتم حفظ بيانات الداشبورد الفعلية: "
+            f"{DASHBOARD_DATA_FILE}"
+        )
+
+    except Exception as e:
+
+        print(
+            f"\nERROR saving dashboard_data.json: {e}"
+        )
+
+
 def save_dashboard(results):
 
     try:
@@ -1543,6 +1662,10 @@ def main():
         )
 
     save_dashboard(
+        results
+    )
+
+    save_dashboard_data(
         results
     )
 
