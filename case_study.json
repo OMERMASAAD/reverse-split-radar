@@ -1,24 +1,24 @@
 {
-  "generated_at": "2026-08-13T09:38:47.983977",
-  "completed_count": 10,
+  "generated_at": "2026-08-13T22:29:07.485005",
+  "completed_count": 12,
   "avg_days_to_target_70": 0.0,
-  "avg_entry_rsi": 56.64,
-  "avg_entry_score_percent": 45.39,
-  "avg_entry_core": 4.7,
-  "avg_entry_support_tests": 3.8,
-  "avg_max_gain_percent": 4110.12,
+  "avg_entry_rsi": 56.48,
+  "avg_entry_score_percent": 46.79,
+  "avg_entry_core": 4.67,
+  "avg_entry_support_tests": 3.92,
+  "avg_max_gain_percent": 3438.53,
   "top_recurring_signals_at_entry": [
     {
       "signal": "Reverse Split حديث",
-      "count": 10
+      "count": 12
     },
     {
       "signal": "موعد نتائج مالية",
-      "count": 10
+      "count": 12
     },
     {
       "signal": "السعر قريب من MA20",
-      "count": 3
+      "count": 4
     },
     {
       "signal": "نتائج مالية قادمة",
@@ -37,15 +37,15 @@
       "count": 2
     },
     {
+      "signal": "الدعم العام اختُبر 6 مرات",
+      "count": 2
+    },
+    {
+      "signal": "الدعم العام اختُبر 3 مرات",
+      "count": 2
+    },
+    {
       "signal": "دعم نصف الشمعة مؤكد (4 اختبارات)",
-      "count": 1
-    },
-    {
-      "signal": "RSI منخفض (16.6)",
-      "count": 1
-    },
-    {
-      "signal": "Volume هادئ (679,300)",
       "count": 1
     }
   ],
@@ -58,6 +58,8 @@
     "CDT",
     "DFNS",
     "BANL",
+    "NCRA",
+    "YXT",
     "PRPL",
     "TRIB"
   ]
