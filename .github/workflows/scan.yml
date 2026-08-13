@@ -3,9 +3,23 @@ name: Reverse Split Scanner
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 13 * * 1-5"
-    - cron: "0 17 * * 1-5"
-    - cron: "0 20 * * 1-5"
+    # ============================================================
+    # التحليل اليومي الكامل (Score / Core / Rating) - مرة واحدة
+    # فقط بعد إغلاق السوق الأمريكي فعليًا، لضمان أن الشمعة اليومية
+    # اكتملت قبل حساب RSI/MACD/MA وغيرها.
+    #
+    # إغلاق سوق نيويورك 4:00 عصرًا بتوقيت نيويورك:
+    #   = 20:00 UTC تقريبًا (بالتوقيت الصيفي EDT، مثل الآن أغسطس)
+    #   = 21:00 UTC تقريبًا (بالتوقيت الشتوي EST، من نوفمبر تقريبًا)
+    #   = 23:00 / 00:00 بتوقيت السعودية (GMT+3) على التوالي
+    #
+    # التشغيل الأول: 20:30 UTC (بعد الإغلاق بنصف ساعة كهامش أمان)
+    # التشغيل الثاني: نسخة احتياطية بعد ساعة، تحسبًا لتأخير GitHub
+    # المعروف أحيانًا في الجداول المجانية (Scheduled Actions delay).
+    # كلا التشغيلين آمنان: git commit لا يحدث إلا لو تغيّرت البيانات.
+    # ============================================================
+    - cron: "30 20 * * 1-5"
+    - cron: "30 21 * * 1-5"
 
 permissions:
   contents: write
@@ -53,10 +67,18 @@ jobs:
           echo "عدد الأسهم:"
           python -c "import json; d=json.load(open('dashboard_data.json', encoding='utf-8')); print(len(d.get('stocks', [])))"
 
-      - name: حفظ بيانات الداشبورد
+      - name: تشغيل السجل التاريخي ودراسة الحالات
+        run: python history_tracker.py
+
+      - name: التأكد من ملفات السجل التاريخي
+        run: |
+          echo "📚 فحص stock_history.json..."
+          ls -lh stock_history.json case_study.json
+
+      - name: حفظ بيانات الداشبورد والسجل التاريخي
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add dashboard_data.json
-          git diff --cached --quiet || git commit -m "Update dashboard data"
+          git add dashboard_data.json stock_history.json case_study.json
+          git diff --cached --quiet || git commit -m "Update dashboard data and history tracking"
           git push

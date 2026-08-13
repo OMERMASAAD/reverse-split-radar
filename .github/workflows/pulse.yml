@@ -1,0 +1,64 @@
+name: 4-Hour Pulse Monitor
+
+on:
+  workflow_dispatch:
+  schedule:
+    # ============================================================
+    # فحص خفيف عدة مرات أثناء اليوم (يشمل الآن ما قبل الافتتاح
+    # Pre-market، بعد أن لاحظنا أن حركات انفجارية مهمة - مثل نموذج
+    # Hudson Capital - قد تبدأ فعليًا قبل الافتتاح الرسمي).
+    # لا يعيد حساب Score/Core/Rating (هذه حصريًا من scan.yml اليومي
+    # بعد الإغلاق). فقط يراقب: هل السعر دخل منطقة نصف الشمعة، وهل
+    # هناك ارتفاع غير عادي في الحجم خلال آخر 4 ساعات (شاملة ما قبل
+    # الافتتاح الآن).
+    #
+    # جلسة التداول الرسمية 9:30 صباحًا - 4:00 عصرًا بتوقيت نيويورك
+    # ما قبل الافتتاح (Pre-market) يبدأ رسميًا 4:00 صباحًا بتوقيت
+    # نيويورك، لكن أغلب الحركة الفعلية تتركز قبل الافتتاح بساعة أو
+    # ساعتين تقريبًا.
+    #
+    # التوقيتات أدناه مضبوطة على التوقيت الصيفي الحالي (EDT):
+    #   12:00 UTC = 15:00 (3 عصرًا) بتوقيت السعودية - فحص ما قبل
+    #               الافتتاح (Pre-market)
+    #   14:00 UTC = 17:00 (5 عصرًا) بتوقيت السعودية - بداية الجلسة
+    #               الرسمية
+    #   18:00 UTC = 21:00 (9 مساءً) بتوقيت السعودية - ~4 ساعات لاحقًا
+    # ============================================================
+    - cron: "0 12 * * 1-5"
+    - cron: "0 14 * * 1-5"
+    - cron: "0 18 * * 1-5"
+
+permissions:
+  contents: write
+
+jobs:
+  pulse:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: تحميل الملفات
+        uses: actions/checkout@v4
+
+      - name: تجهيز Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: تثبيت المكتبات
+        run: pip install -r requirements.txt
+
+      - name: تشغيل مراقب النبض (4 ساعات)
+        run: python four_hour_monitor.py
+
+      - name: التأكد من ملف النبض
+        run: |
+          echo "📡 فحص four_hour_pulse.json..."
+          ls -lh four_hour_pulse.json
+
+      - name: حفظ بيانات النبض
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add four_hour_pulse.json
+          git diff --cached --quiet || git commit -m "Update 4-hour pulse data"
+          git push
