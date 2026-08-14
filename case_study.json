@@ -1,24 +1,24 @@
 {
-  "generated_at": "2026-08-13T23:28:13.525782",
-  "completed_count": 12,
-  "avg_days_to_target_70": 0.0,
-  "avg_entry_rsi": 56.48,
-  "avg_entry_score_percent": 46.79,
-  "avg_entry_core": 4.67,
-  "avg_entry_support_tests": 3.92,
-  "avg_max_gain_percent": 3438.53,
+  "generated_at": "2026-08-14T21:46:08.418215",
+  "completed_count": 13,
+  "avg_days_to_target_70": 0.08,
+  "avg_entry_rsi": 55.99,
+  "avg_entry_score_percent": 48.52,
+  "avg_entry_core": 4.77,
+  "avg_entry_support_tests": 4.0,
+  "avg_max_gain_percent": 3179.88,
   "top_recurring_signals_at_entry": [
     {
       "signal": "Reverse Split حديث",
-      "count": 12
+      "count": 13
     },
     {
       "signal": "موعد نتائج مالية",
-      "count": 12
+      "count": 13
     },
     {
       "signal": "السعر قريب من MA20",
-      "count": 4
+      "count": 5
     },
     {
       "signal": "نتائج مالية قادمة",
@@ -52,6 +52,7 @@
   "tickers_completed": [
     "FFAI",
     "AMIX",
+    "NIPG",
     "DBGI",
     "CIIT",
     "QNCX",
