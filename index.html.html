@@ -1,0 +1,2656 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>داشبورد متابعة الأسهم</title>
+
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#07101f">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--bg:#07101f;
+--card:#0d1a2d;
+--card2:#101f35;
+--line:#1d304b;
+--text:#eef4ff;
+--muted:#91a4bf;
+--green:#35e28b;
+--purple:#8b5cf6;
+--red:#ff5c70;
+--yellow:#f4c95d;
+--amber:#f2994a;
+--blue:#5aa9ff
+}
+
+*{box-sizing:border-box}
+
+body{
+margin:0;
+background:radial-gradient(circle at 70% 0,#172444 0,#07101f 42%);
+color:var(--text);
+font-family:'Cairo',Arial,Tahoma,sans-serif;
+font-variant-numeric:tabular-nums
+}
+
+button,input{font:inherit}
+
+.app{
+display:flex;
+min-height:100vh
+}
+
+.side{
+width:220px;
+background:#091426;
+border-left:1px solid var(--line);
+padding:24px 14px;
+position:fixed;
+right:0;
+top:0;
+bottom:0
+}
+
+.brand{
+display:flex;
+gap:12px;
+align-items:center;
+padding:8px 12px 30px
+}
+
+.logo{
+width:48px;
+height:48px;
+border-radius:14px;
+background:linear-gradient(135deg,#8b5cf6,#4f46e5);
+display:grid;
+place-items:center;
+font-size:25px
+}
+
+.brand b{font-size:17px}
+
+.nav button{
+width:100%;
+border:0;
+background:transparent;
+color:#b9c8dc;
+text-align:right;
+padding:13px 15px;
+border-radius:12px;
+margin:3px 0;
+cursor:pointer;
+transition:background .15s ease,color .15s ease
+}
+
+.nav button.active,
+.nav button:hover{
+background:#171f45;
+color:#fff
+}
+
+.main{
+margin-right:220px;
+width:calc(100% - 220px);
+padding:25px;
+max-width:1700px
+}
+
+.top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:18px;
+margin-bottom:22px
+}
+
+.title h1{
+margin:0 0 7px;
+font-size:27px;
+font-weight:800
+}
+
+.title p{
+margin:0;
+color:var(--muted)
+}
+
+.tools{
+display:flex;
+gap:10px;
+align-items:center
+}
+
+.search{
+background:#0d1a2d;
+border:1px solid var(--line);
+color:#fff;
+border-radius:12px;
+padding:12px 14px;
+width:230px
+}
+
+.refresh{
+border:1px solid var(--line);
+background:#0d1a2d;
+color:#fff;
+border-radius:12px;
+padding:11px 14px;
+cursor:pointer;
+transition:background .15s ease,border-color .15s ease
+}
+
+.refresh:hover{
+background:#152238;
+border-color:#3a557f
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:14px;
+margin-bottom:20px
+}
+
+.stat{
+background:linear-gradient(145deg,#101e34,#0b1729);
+border:1px solid var(--line);
+border-radius:16px;
+padding:18px;
+border-right:3px solid var(--stat-color,var(--purple));
+position:relative;
+overflow:hidden
+}
+
+.stat span{
+color:var(--muted);
+font-size:14px
+}
+
+.stat strong{
+display:block;
+font-size:30px;
+margin-top:9px
+}
+
+.green{color:var(--green)}
+.purple{color:#a78bfa}
+.yellow{color:var(--yellow)}
+
+.filters{
+background:#0c192c;
+border:1px solid var(--line);
+border-radius:16px;
+padding:12px;
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:18px
+}
+
+.filters button{
+background:#111f35;
+color:#b9c8dc;
+border:1px solid var(--line);
+border-radius:10px;
+padding:9px 13px;
+cursor:pointer;
+transition:background .15s ease,border-color .15s ease,color .15s ease
+}
+
+.filters button.active{
+background:#252052;
+color:#fff;
+border-color:#6d5be7
+}
+
+.section-title{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin:20px 3px 10px
+}
+
+.section-title h2{
+font-size:19px;
+margin:0;
+font-weight:700
+}
+
+.section-title span{
+color:var(--muted);
+font-size:13px
+}
+
+.table{
+display:grid;
+gap:10px
+}
+
+.row{
+background:linear-gradient(145deg,#0e1c30,#0a1628);
+border:1px solid var(--line);
+border-radius:16px;
+padding:15px;
+display:grid;
+grid-template-columns:110px 1.5fr 1fr 1fr 1fr 1.4fr 1.2fr 1.1fr 90px;
+align-items:center;
+gap:12px;
+transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease
+}
+
+.row:hover{
+transform:translateY(-2px);
+border-color:#33517d;
+box-shadow:0 10px 24px -14px #000a
+}
+
+.head{
+background:transparent;
+border:0;
+color:#8194ad;
+font-size:12px;
+padding:4px 15px
+}
+
+.pill{
+display:inline-flex;
+align-items:center;
+gap:6px;
+border-radius:20px;
+padding:6px 11px;
+font-size:11px;
+font-weight:700;
+white-space:nowrap
+}
+
+.pill-ready{background:#0e3a2c;color:var(--green);border:1px solid #1f6b4c}
+.pill-wait-trigger{background:#3a2f0e;color:var(--yellow);border:1px solid #6b5a1f}
+.pill-wait-retest{background:#132a44;color:var(--blue);border:1px solid #1f4a6b}
+.pill-wait-support{background:#241a33;color:#c4b2f0;border:1px solid #3a2a55}
+
+.liq-badge{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+gap:5px;
+border-radius:10px;
+padding:8px 10px;
+font-size:11px;
+font-weight:700;
+text-align:center;
+line-height:1.4;
+width:100%
+}
+
+.liq-normal{background:#101f35;color:#5c6f8c;border:1px solid var(--line)}
+.liq-accum{background:#0e3a2c;color:var(--green);border:1px solid #1f6b4c}
+.liq-pump{background:#3a1a1f;color:var(--red);border:1px solid #6b2530}
+
+.ticker{
+display:flex;
+align-items:center;
+gap:10px
+}
+
+.coin{
+width:42px;
+height:42px;
+border-radius:50%;
+display:grid;
+place-items:center;
+font-weight:bold;
+background:#27315b;
+border:1px solid #5e6ec2;
+font-size:11px
+}
+
+.ticker b{font-size:17px}
+
+.ticker small{
+display:block;
+color:var(--muted);
+margin-top:4px
+}
+
+.cell small{
+display:block;
+color:var(--muted);
+font-size:11px;
+margin-top:5px
+}
+
+.rsi{
+border-radius:10px;
+padding:10px;
+text-align:center;
+border:1px solid var(--rsi-color,#542a36);
+background:#141326
+}
+
+.rsi span.lbl{
+color:var(--muted);
+font-size:11px
+}
+
+.rsi b{
+font-size:19px;
+display:block;
+color:var(--rsi-color,#fff)
+}
+
+.action{
+color:#a7f3d0;
+font-size:12px;
+line-height:1.6
+}
+
+.score-wrap{
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:7px
+}
+
+.score-ring{
+width:60px;
+height:60px;
+border-radius:50%;
+display:grid;
+place-items:center;
+position:relative;
+background:conic-gradient(var(--ring-color,#35e28b) calc(var(--pct,0)*3.6deg),#16233c 0deg)
+}
+
+.score-ring::before{
+content:"";
+position:absolute;
+inset:6px;
+border-radius:50%;
+background:#0b1526
+}
+
+.score-ring b{
+position:relative;
+z-index:1;
+font-size:15px
+}
+
+.score-ring small{
+position:relative;
+z-index:1;
+font-size:8px;
+color:var(--muted);
+margin-top:1px
+}
+
+.detail{
+border:1px solid #273b5b;
+background:#101f35;
+color:#fff;
+border-radius:10px;
+padding:8px 10px;
+cursor:pointer;
+width:100%;
+transition:background .15s ease
+}
+
+.detail:hover{
+background:#1b2d49
+}
+
+.notice{
+margin-top:18px;
+padding:13px 16px;
+background:#0c192c;
+border:1px solid var(--line);
+border-radius:13px;
+color:#9fb1c9;
+font-size:12px;
+line-height:1.8
+}
+
+.modal{
+position:fixed;
+inset:0;
+background:#0009;
+display:none;
+align-items:center;
+justify-content:center;
+padding:20px;
+z-index:10
+}
+
+.modal.open{
+display:flex
+}
+
+.modalbox{
+width:min(850px,100%);
+max-height:90vh;
+overflow:auto;
+background:#0c192c;
+border:1px solid #304766;
+border-radius:18px;
+padding:22px;
+font-size:15.5px
+}
+
+.modalhead{
+display:flex;
+justify-content:space-between;
+align-items:center
+}
+
+.modalhead h2{
+font-size:22px
+}
+
+.close{
+background:transparent;
+border:0;
+color:#fff;
+font-size:24px;
+cursor:pointer
+}
+
+.mhead{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:16px;
+background:linear-gradient(145deg,#101e34,#0b1729);
+border:1px solid var(--line);
+border-radius:16px;
+padding:18px;
+margin-top:16px;
+flex-wrap:wrap
+}
+
+.mhead-price span{
+display:block;
+color:var(--muted);
+font-size:13px;
+margin-bottom:4px
+}
+
+.mhead-price b{
+font-size:28px
+}
+
+.mhead-price small{
+display:block;
+margin-top:4px;
+font-size:13px;
+font-weight:700
+}
+
+.score-ring.big{
+width:84px;
+height:84px
+}
+
+.score-ring.big b{
+font-size:22px
+}
+
+.score-ring.big small{
+font-size:10px
+}
+
+.mhead-tags{
+display:flex;
+flex-direction:column;
+gap:8px;
+align-items:flex-end
+}
+
+.rating-tag{
+background:#151f38;
+border:1px solid var(--line);
+border-radius:10px;
+padding:7px 12px;
+font-size:13px;
+font-weight:700;
+white-space:nowrap
+}
+
+.liq-detail-box{
+margin-top:14px;
+border-radius:14px;
+padding:14px 16px
+}
+
+.liq-detail-box b{
+font-size:15px;
+display:block;
+margin-bottom:4px
+}
+
+.liq-detail-box p{
+margin:0;
+font-size:14px;
+line-height:1.7
+}
+
+.liq-detail-pos{
+background:#0e2a20;
+border:1px solid #1f6b4c;
+color:var(--green)
+}
+
+.liq-detail-info{
+background:#132a44;
+border:1px solid #1f4a6b;
+color:var(--blue)
+}
+
+.liq-detail-warn{
+background:#2a1418;
+border:1px solid #6b2530;
+color:#ff9aa8
+}
+
+.sr-wrap{
+margin-top:16px;
+background:#101f35;
+border:1px solid var(--line);
+border-radius:14px;
+padding:16px
+}
+
+.sr-title{
+font-size:15px;
+font-weight:700;
+margin-bottom:14px
+}
+
+.sr-bar{
+position:relative;
+height:14px;
+background:#1a2c47;
+border-radius:8px;
+margin:26px 4px 10px
+}
+
+.sr-zone{
+position:absolute;
+top:0;
+bottom:0;
+background:#f4c95d55;
+border-right:2px solid var(--yellow);
+border-left:2px solid var(--yellow);
+border-radius:6px
+}
+
+.sr-marker{
+position:absolute;
+top:50%;
+transform:translate(-50%,-50%);
+width:14px;
+height:14px;
+border-radius:50%;
+border:3px solid #0c192c
+}
+
+.sr-marker span{
+position:absolute;
+top:-24px;
+right:50%;
+transform:translateX(50%);
+font-size:10.5px;
+white-space:nowrap;
+color:var(--muted)
+}
+
+.sr-support{background:var(--blue)}
+.sr-price{background:var(--green);box-shadow:0 0 8px var(--green)}
+
+.sr-labels{
+display:flex;
+justify-content:space-between;
+flex-wrap:wrap;
+gap:6px;
+font-size:12px;
+color:var(--muted);
+margin-top:14px
+}
+
+.msection{
+margin-top:18px
+}
+
+.msection-title{
+font-size:16px;
+font-weight:800;
+margin-bottom:10px;
+padding-right:2px
+}
+
+.tgrid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px
+}
+
+.tcard{
+background:#101f35;
+border:1px solid var(--line);
+border-radius:12px;
+padding:13px
+}
+
+.tcard span{
+display:block;
+color:var(--muted);
+font-size:12.5px;
+margin-bottom:6px
+}
+
+.tcard b{
+font-size:18px;
+display:block
+}
+
+.tcard small{
+display:block;
+margin-top:5px;
+color:var(--muted);
+font-size:11.5px
+}
+
+.mnext-text{
+background:#101f35;
+border:1px solid var(--line);
+border-radius:12px;
+padding:14px 16px;
+margin:0;
+font-size:15px;
+line-height:1.8;
+color:#a7f3d0
+}
+
+.chips-wrap{
+display:flex;
+flex-wrap:wrap;
+gap:8px
+}
+
+.chip{
+border-radius:10px;
+padding:8px 12px;
+font-size:13px;
+line-height:1.5
+}
+
+.chip-pos{background:#0e2a20;border:1px solid #1f6b4c;color:var(--green)}
+.chip-warn{background:#2a1418;border:1px solid #6b2530;color:#ff9aa8}
+.chip-info{background:#132a44;border:1px solid #1f4a6b;color:var(--blue)}
+
+.info b.pos{color:var(--green)}
+.info b.neg{color:var(--red)}
+
+@media(max-width:600px){
+
+.tgrid{
+grid-template-columns:repeat(2,1fr)
+}
+
+.mhead{
+flex-direction:column;
+align-items:stretch;
+text-align:center
+}
+
+.mhead-tags{
+align-items:center
+}
+
+}
+
+.filter-row{
+display:flex;
+align-items:center;
+gap:12px;
+padding:10px 0;
+border-bottom:1px solid var(--line)
+}
+
+.filter-row:last-of-type{border-bottom:0}
+
+.filter-row span{
+min-width:170px;
+color:var(--muted);
+font-size:13.5px
+}
+
+.filter-row input[type="range"]{
+flex:1
+}
+
+.filter-row select{
+flex:1;
+background:#0d1a2d;
+border:1px solid var(--line);
+color:#fff;
+border-radius:8px;
+padding:8px
+}
+
+.filter-row b{
+min-width:45px;
+text-align:left
+}
+
+.notif-item{
+display:flex;
+gap:12px;
+align-items:flex-start;
+background:#0e1c30;
+border:1px solid var(--line);
+border-radius:12px;
+padding:13px 15px;
+margin-bottom:8px
+}
+
+.notif-icon{font-size:20px}
+
+.notif-body b{display:block;margin-bottom:3px}
+.notif-body small{color:var(--muted)}
+
+.cmp-card{
+background:#0e1c30;
+border:1px solid var(--line);
+border-radius:14px;
+padding:14px 16px;
+margin-bottom:8px
+}
+
+.cmp-card b{display:block;margin-bottom:6px;font-size:14.5px}
+.cmp-card p{margin:0;font-size:13px;color:var(--muted);line-height:1.7}
+
+.pulse-dot{
+display:inline-block;
+width:9px;
+height:9px;
+border-radius:50%;
+margin-right:5px;
+vertical-align:middle
+}
+
+.pulse-normal{background:#3a4f6e}
+.pulse-in-zone{background:var(--yellow);box-shadow:0 0 6px var(--yellow)}
+.pulse-volume-spike{background:var(--blue);box-shadow:0 0 6px var(--blue)}
+.pulse-zone-volume{background:var(--green);box-shadow:0 0 8px var(--green)}
+
+.loading{
+padding:30px;
+text-align:center;
+color:var(--muted)
+}
+
+.error{
+padding:25px;
+text-align:center;
+color:var(--red)
+}
+
+@media(max-width:1100px){
+
+.row{
+grid-template-columns:90px 1.4fr 1fr 1fr 70px
+}
+
+.row .hide-md{
+display:none
+}
+
+}
+
+@media(max-width:760px){
+
+.side{
+width:64px;
+padding:12px 8px
+}
+
+.brand div:not(.logo),
+.nav button span{
+display:none
+}
+
+.brand{
+padding:8px 0 25px;
+justify-content:center
+}
+
+.main{
+margin-right:64px;
+width:calc(100% - 64px);
+padding:13px
+}
+
+.top{
+display:block
+}
+
+.tools{
+margin-top:14px
+}
+
+.search{
+width:100%
+}
+
+.stats{
+grid-template-columns:1fr 1fr
+}
+
+.row{
+grid-template-columns:1fr 1fr;
+padding:13px
+}
+
+.head{
+display:none
+}
+
+.row>div{
+min-width:0
+}
+
+.score-wrap{
+margin:0
+}
+
+.hide-sm{
+display:none
+}
+
+.grid{
+grid-template-columns:1fr
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<aside class="side">
+
+<div class="brand">
+<div class="logo">↗️</div>
+
+<div>
+<b>متابعة الأسهم</b>
+<small style="display:block;color:#91a4bf;margin-top:4px">
+Reverse Split Radar
+</small>
+</div>
+
+</div>
+
+<nav class="nav">
+
+<button id="nav-home" class="active" onclick="showView('home')">
+⌂ <span>الرئيسية</span>
+</button>
+
+<button id="nav-stocks" onclick="showView('stocks')">
+☷ <span>قائمة الأسهم</span>
+</button>
+
+<button id="nav-filter" onclick="showView('filter')">
+⚙ <span>فلتر النظام</span>
+</button>
+
+<button id="nav-history" onclick="showView('history')">
+◷ <span>السجل التاريخي</span>
+</button>
+
+<button id="nav-notifications" onclick="showView('notifications')">
+♟ <span>الإشعارات</span>
+</button>
+
+<button id="nav-settings" onclick="showView('settings')">
+⚙ <span>الإعدادات</span>
+</button>
+
+</nav>
+
+</aside>
+
+<main class="main">
+
+<div id="homeView">
+
+<div class="top">
+
+<div class="title">
+
+<h1>داشبورد متابعة الأسهم</h1>
+
+<p>
+أسهم التقسيم العكسي الإيجابية — تحديث تلقائي من الماسح
+</p>
+
+</div>
+
+<div class="tools">
+
+<input
+id="search"
+class="search"
+placeholder="ابحث عن سهم..."
+>
+
+<button
+class="refresh"
+onclick="loadData()"
+>
+↻ تحديث
+</button>
+
+</div>
+
+</div>
+
+<div class="stats">
+
+<div class="stat" style="--stat-color:var(--green)">
+
+<span>فرص حالية</span>
+
+<strong
+class="green"
+id="opps"
+>
+0
+</strong>
+
+</div>
+
+<div class="stat" style="--stat-color:var(--purple)">
+
+<span>أسهم تحت المراقبة</span>
+
+<strong
+class="purple"
+id="watch"
+>
+0
+</strong>
+
+</div>
+
+<div class="stat" style="--stat-color:var(--yellow)">
+
+<span>إشارات جاهزة للمحفز</span>
+
+<strong
+class="yellow"
+id="ready"
+>
+0
+</strong>
+
+</div>
+
+</div>
+
+<div
+class="filters"
+id="filters"
+>
+
+<button
+class="active"
+data-filter="all"
+>
+جميع الأسهم المرصودة
+</button>
+
+<button data-filter="ready">
+جاهزة للدخول ⚡
+</button>
+
+<button data-filter="match">
+المرشحة للصعود
+</button>
+
+<button data-filter="watch">
+قائمة المتابعة
+</button>
+
+</div>
+
+<div class="section-title">
+
+<h2>
+الأسهم الإيجابية المتوقعة
+</h2>
+
+<span id="updated">
+جارٍ تحميل البيانات...
+</span>
+
+</div>
+
+<div class="table">
+
+<div class="row head">
+
+<div>الفرصة</div>
+<div>السهم</div>
+<div>السعر</div>
+<div>نصف الشمعة</div>
+<div>الاختبارات</div>
+<div>المؤشرات</div>
+<div>ملخص النظام</div>
+<div class="hide-md">حالة السيولة والقروبات</div>
+<div>التقييم</div>
+
+</div>
+
+<div id="rows">
+<div class="loading">
+جارٍ تحميل البيانات الحقيقية...
+</div>
+</div>
+
+</div>
+
+<div class="notice">
+
+<b>تنبيه:</b>
+هذا النظام أداة تحليل ومتابعة فقط، وليس توصية استثمارية.
+البيانات المعروضة تعتمد على آخر تشغيل للماسح.
+
+</div>
+
+</div>
+
+<div id="historyView" style="display:none">
+
+<div class="top">
+
+<div class="title">
+
+<h1>السجل التاريخي ودراسة الحالات</h1>
+
+<p>
+متابعة الأسهم منذ دخولها الرادار حتى تحقيق هدف +70% من نقطة الدعم
+</p>
+
+</div>
+
+<div class="tools">
+
+<button class="refresh" onclick="loadHistory()">
+↻ تحديث السجل
+</button>
+
+</div>
+
+</div>
+
+<div class="stats" id="caseStudyStats">
+
+<div class="stat" style="--stat-color:var(--green)">
+<span>حالات مكتملة (+70%)</span>
+<strong class="green" id="cs-completed">0</strong>
+</div>
+
+<div class="stat" style="--stat-color:var(--yellow)">
+<span>متوسط الأيام حتى الهدف</span>
+<strong class="yellow" id="cs-days">-</strong>
+</div>
+
+<div class="stat" style="--stat-color:var(--purple)">
+<span>متوسط RSI عند الدخول</span>
+<strong class="purple" id="cs-rsi">-</strong>
+</div>
+
+</div>
+
+<div class="notice" id="cs-signals-box">
+<b>أكثر الإشارات تكرارًا في الحالات الناجحة:</b>
+<div id="cs-signals" style="margin-top:8px">جارٍ التحميل...</div>
+</div>
+
+<div class="section-title">
+<h2>كل الأسهم المتابَعة</h2>
+<span id="historyUpdated">جارٍ تحميل السجل...</span>
+</div>
+
+<div class="table">
+
+<div class="row head" style="grid-template-columns:90px 1fr 1fr 1fr 1fr 1fr 1fr">
+<div>السهم</div>
+<div>تاريخ الدخول</div>
+<div>سعر الدعم (المرجع)</div>
+<div>آخر سعر</div>
+<div>أعلى نسبة صعود</div>
+<div>الحالة</div>
+<div>الأيام حتى +70%</div>
+</div>
+
+<div id="historyRows">
+<div class="loading">جارٍ تحميل السجل التاريخي...</div>
+</div>
+
+</div>
+
+<div class="section-title">
+<h2>🧭 مقارنة الأسهم النشطة بنمط النجاح</h2>
+<span>تحليل تلقائي مبني على متوسطات الحالات المكتملة سابقًا</span>
+</div>
+
+<div id="comparisonRows">
+<div class="loading">جارٍ التحليل...</div>
+</div>
+
+</div>
+
+<div id="stocksView" style="display:none">
+
+<div class="top">
+<div class="title">
+<h1>قائمة الأسهم</h1>
+<p>كل الأسهم التي رصدها الرادار (سواء حققت شروط الترشيح الكاملة الآن أم لا)</p>
+</div>
+</div>
+
+<div class="section-title">
+<h2>السجل الكامل</h2>
+<span id="stocksUpdated">جارٍ التحميل...</span>
+</div>
+
+<div class="table">
+<div class="row head" style="grid-template-columns:90px 1fr 1fr 1fr 1.3fr">
+<div>السهم</div>
+<div>تاريخ التقسيم</div>
+<div>الأيام منذ التقسيم</div>
+<div>الشركة</div>
+<div>هل مؤهل حاليًا للرادار؟</div>
+</div>
+<div id="stocksRows">
+<div class="loading">جارٍ تحميل قائمة الأسهم...</div>
+</div>
+</div>
+
+</div>
+
+<div id="filterView" style="display:none">
+
+<div class="top">
+<div class="title">
+<h1>فلتر النظام</h1>
+<p>فلاتر متقدمة تُطبَّق مباشرة على جدول "الرئيسية"</p>
+</div>
+</div>
+
+<div class="notice" style="margin-top:0">
+
+<div class="filter-row">
+<span>الحد الأدنى لنسبة Score (%)</span>
+<input type="range" id="fltScoreMin" min="0" max="100" value="0" oninput="applyAdvancedFilters()">
+<b id="fltScoreMinVal">0%</b>
+</div>
+
+<div class="filter-row">
+<span>الحد الأقصى لـ RSI</span>
+<input type="range" id="fltRsiMax" min="0" max="100" value="100" oninput="applyAdvancedFilters()">
+<b id="fltRsiMaxVal">100</b>
+</div>
+
+<div class="filter-row">
+<span>حالة السيولة</span>
+<select id="fltLiquidity" onchange="applyAdvancedFilters()">
+<option value="all">الكل</option>
+<option value="silent_accumulation">تجميع صامت فقط 🟢</option>
+<option value="fake_pump">استبعاد الزخم الوهمي ⚠️</option>
+</select>
+</div>
+
+<div class="filter-row">
+<span>نمط Spring</span>
+<select id="fltSpring" onchange="applyAdvancedFilters()">
+<option value="all">الكل</option>
+<option value="confirmed">مؤكد فقط 🎯</option>
+</select>
+</div>
+
+<button class="refresh" style="margin-top:12px" onclick="resetAdvancedFilters()">↻ إعادة تعيين الفلتر</button>
+
+</div>
+
+</div>
+
+<div id="notificationsView" style="display:none">
+
+<div class="top">
+<div class="title">
+<h1>الإشعارات والتطورات</h1>
+<p>آخر التطورات على الأسهم المرشحة (دخول، تحسن، اكتمال هدف، انتهاء متابعة)</p>
+</div>
+</div>
+
+<div id="notifRows">
+<div class="loading">جارٍ تحميل الإشعارات...</div>
+</div>
+
+</div>
+
+<div id="settingsView" style="display:none">
+
+<div class="top">
+<div class="title">
+<h1>الإعدادات</h1>
+<p>معلومات عامة عن النظام والتطبيق</p>
+</div>
+</div>
+
+<div class="notice" style="margin-top:0;font-size:14px;line-height:2">
+
+<b>📱 تثبيت كتطبيق</b><br>
+هذا الداشبورد مُفعَّل كـ PWA (يمكن تثبيته على شاشة الجوال الرئيسية مثل أي تطبيق) عبر ملف manifest.json.
+<br><br>
+
+<b>🔄 مصدر التحديث</b><br>
+البيانات تُحدَّث تلقائيًا عبر GitHub Actions (فحص كامل كل ساعة تقريبًا أثناء التداول + مراقبة نبض كل 4 ساعات).
+<br><br>
+
+<b>⚠️ تنبيه</b><br>
+هذا النظام أداة تحليل ومتابعة فقط، وليس توصية استثمارية.
+
+</div>
+
+</div>
+
+</main>
+
+</div>
+
+<div
+class="modal"
+id="modal"
+>
+
+<div class="modalbox">
+
+<div class="modalhead">
+
+<h2 id="mtitle"></h2>
+
+<button
+class="close"
+onclick="closeModal()"
+>
+×
+</button>
+
+</div>
+
+<div id="mbody"></div>
+
+</div>
+
+</div>
+
+<script>
+
+let data=[];
+let currentFilter="all";
+let pulseData={};
+
+// -------------------------------------------------
+// نبض 4 ساعات (اختياري) - لا يكسر الداشبورد إذا لم
+// يوجد الملف بعد (قبل أول تشغيل لـ four_hour_monitor.py)
+// -------------------------------------------------
+
+async function loadPulse(){
+
+try{
+
+const r=await fetch(
+"four_hour_pulse.json?"+Date.now()
+);
+
+if(!r.ok){
+pulseData={};
+return;
+}
+
+const j=await r.json();
+
+pulseData=(j && j.pulses) ? j.pulses : {};
+
+}catch(e){
+
+pulseData={};
+
+}
+
+}
+
+function pulseDot(ticker){
+
+const p=pulseData[ticker];
+
+if(!p){
+return "";
+}
+
+const map={
+"NORMAL":"pulse-normal",
+"IN_ZONE":"pulse-in-zone",
+"VOLUME_SPIKE":"pulse-volume-spike",
+"ZONE_WITH_VOLUME":"pulse-zone-volume",
+};
+
+const cls=map[p.status] || "pulse-normal";
+
+const title=(p.note||"").replace(/"/g,"");
+
+return `<span class="pulse-dot ${cls}" title="${title}"></span>`;
+
+}
+
+function safeNumber(x){
+
+if(x===null || x===undefined || x===""){
+return null;
+}
+
+const n=Number(x);
+
+return Number.isFinite(n) ? n : null;
+
+}
+
+function fmt(x){
+
+const n=safeNumber(x);
+
+if(n===null){
+return "N/A";
+}
+
+// أسعار أقل من $1 (أسهم السنت) تحتاج دقة أعلى (4 أرقام)
+// أما $1 فأعلى فرقمان كافيان وأوضح للعرض
+const decimals=(Math.abs(n) < 1) ? 4 : 2;
+
+return "$"+n.toFixed(decimals);
+
+}
+
+function fmtPercent(x){
+
+const n=safeNumber(x);
+
+if(n===null){
+return "N/A";
+}
+
+return n.toFixed(1)+"%";
+
+}
+
+function fmtNumber(x){
+
+const n=safeNumber(x);
+
+if(n===null){
+return "N/A";
+}
+
+return n.toLocaleString();
+
+}
+
+// -------------------------------------------------
+// دائرة Score: تستخدم score_percent (0-100) حصريًا
+// -------------------------------------------------
+
+function scoreTier(pct){
+
+if(pct>=80){
+return {color:"var(--green)"};
+}
+
+if(pct>=60){
+return {color:"var(--yellow)"};
+}
+
+if(pct>=40){
+return {color:"var(--amber)"};
+}
+
+return {color:"var(--red)"};
+
+}
+
+function rsiColor(rsi){
+
+if(rsi===null){
+return "#3a4f6e";
+}
+
+if(rsi<30){
+return "var(--green)";
+}
+
+if(rsi<50){
+return "var(--yellow)";
+}
+
+return "var(--red)";
+
+}
+
+function statePill(state){
+
+const map={
+"READY_TRIGGER":["pill-ready","جاهز ⚡"],
+"WAIT_TRIGGER":["pill-wait-trigger","بانتظار المحفز"],
+"WAIT_RETEST":["pill-wait-retest","بانتظار إعادة الاختبار"],
+"WAIT_SUPPORT":["pill-wait-support","بانتظار الدعم"],
+};
+
+const found=map[state];
+
+if(!found){
+return `<span class="pill pill-wait-support">${state||"N/A"}</span>`;
+}
+
+return `<span class="pill ${found[0]}">${found[1]}</span>`;
+
+}
+
+// -------------------------------------------------
+// حالة السيولة والقروبات (تجميع صامت / زخم وهمي)
+// -------------------------------------------------
+
+function liquidityBadge(x){
+
+const type=x.liquidity_type;
+
+if(!type || type==="normal"){
+return `<span class="liq-badge liq-normal">— عادي —</span>`;
+}
+
+if(type==="silent_accumulation"){
+return `<span class="liq-badge liq-accum" title="${x.liquidity_label||""}">🟢 تجميع صامت</span>`;
+}
+
+if(type==="fake_pump"){
+return `<span class="liq-badge liq-pump" title="${x.liquidity_label||""}">⚠️ زخم وهمي (قروبات)</span>`;
+}
+
+return `<span class="liq-badge liq-normal">— عادي —</span>`;
+
+}
+
+function render(){
+
+const q=
+document.getElementById("search")
+.value
+.trim()
+.toUpperCase();
+
+let d=data.filter(x=>{
+
+const matchSearch=
+String(x.t||"")
+.toUpperCase()
+.includes(q);
+
+let matchFilter=true;
+
+if(currentFilter==="ready"){
+
+matchFilter=
+x.state==="READY_TRIGGER";
+
+}
+
+if(currentFilter==="match"){
+
+matchFilter=
+String(x.status||"")
+.includes("MATCH");
+
+}
+
+if(currentFilter==="watch"){
+
+matchFilter=
+String(x.status||"")
+.includes("WATCH");
+
+}
+
+// ---- فلتر النظام المتقدم (من صفحة "فلتر النظام") ----
+
+const scorePct=safeNumber(x.score_percent) ?? 0;
+
+if(scorePct < advancedFilters.scoreMin){
+matchFilter=false;
+}
+
+const rsiVal=safeNumber(x.rsi);
+
+if(rsiVal!=null && rsiVal > advancedFilters.rsiMax){
+matchFilter=false;
+}
+
+if(
+advancedFilters.liquidity==="silent_accumulation"
+&& x.liquidity_type!=="silent_accumulation"
+){
+matchFilter=false;
+}
+
+if(
+advancedFilters.liquidity==="fake_pump"
+&& x.liquidity_type==="fake_pump"
+){
+matchFilter=false;
+}
+
+if(
+advancedFilters.spring==="confirmed"
+&& !x.spring_confirmed
+){
+matchFilter=false;
+}
+
+return matchSearch && matchFilter;
+
+});
+
+// ترتيب افتراضي: الأعلى Score % أولًا (لا يغيّر بيانات المصدر،
+// فقط ترتيب العرض في الواجهة)
+d=d.slice().sort((a,b)=>
+(safeNumber(b.score_percent)||0)
+-
+(safeNumber(a.score_percent)||0)
+);
+
+document.getElementById("opps").textContent=
+data.filter(x=>
+String(x.status||"")
+.includes("MATCH")
+).length;
+
+document.getElementById("watch").textContent=
+data.filter(x=>
+String(x.status||"")
+.includes("WATCH")
+).length;
+
+document.getElementById("ready").textContent=
+data.filter(x=>
+x.state==="READY_TRIGGER"
+).length;
+
+if(!d.length){
+
+document.getElementById("rows").innerHTML=
+`
+<div class="error">
+لا توجد أسهم مطابقة للفلاتر الحالية.
+</div>
+`;
+
+return;
+
+}
+
+document.getElementById("rows").innerHTML=
+
+d.map(x=>{
+
+const rsi=safeNumber(x.rsi);
+
+const rsiText=
+rsi===null
+?"N/A"
+:rsi.toFixed(1);
+
+const rsiStatus=
+rsi!==null && rsi<30
+?"تشبع بيعي"
+:(rsi!==null && rsi<50 ? "محايد" : "مراقبة");
+
+const rc=rsiColor(rsi);
+
+const pct=Math.max(
+0,
+Math.min(
+100,
+safeNumber(x.score_percent) ?? 0
+)
+);
+
+const tier=scoreTier(pct);
+
+return `
+
+<div class="row">
+
+<div>
+${statePill(x.state)}
+</div>
+
+<div class="ticker">
+
+<div class="coin">
+${x.t||"N/A"}
+</div>
+
+<div>
+
+<b>
+${x.t||"N/A"}
+${pulseDot(x.t)}
+</b>
+
+<small>
+${x.status||"N/A"}
+</small>
+
+</div>
+
+</div>
+
+<div class="cell">
+
+<b>
+${fmt(x.price)}
+</b>
+
+<small>
+حجم ${fmtNumber(x.volume)}
+</small>
+
+</div>
+
+<div class="cell">
+
+<b>
+${fmt(x.half)}
+</b>
+
+<small>
+${fmt(x.zone_low)} - ${fmt(x.zone_high)}
+</small>
+
+</div>
+
+<div class="cell">
+
+<b>
+${x.tests ?? "N/A"}
+</b>
+
+<small>
+اختبار دعم
+</small>
+
+</div>
+
+<div>
+
+<div class="rsi" style="--rsi-color:${rc}">
+
+<span class="lbl">RSI</span>
+
+<b>
+${rsiText}
+</b>
+
+<small>
+${rsiStatus}
+</small>
+
+</div>
+
+</div>
+
+<div class="action">
+
+${x.action||"لا توجد ملاحظة"}
+
+</div>
+
+<div class="hide-md">
+${liquidityBadge(x)}
+</div>
+
+<div class="score-wrap">
+
+<div
+class="score-ring"
+style="--pct:${pct};--ring-color:${tier.color}"
+>
+
+<b>
+${pct.toFixed(0)}
+</b>
+
+<small>
+Core ${x.core ?? "-"}
+</small>
+
+</div>
+
+<button
+class="detail"
+onclick="details('${x.t}')"
+>
+تفاصيل
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+function details(t){
+
+const x=data.find(a=>
+String(a.t)===String(t)
+);
+
+if(!x){
+return;
+}
+
+document.getElementById("mtitle").textContent=
+x.t+" — تحليل شامل";
+
+const signals=(x.signals||[])
+.map(s=>`<div class="chip chip-pos">✓ ${s}</div>`)
+.join("");
+
+const warnings=(x.warnings||[])
+.map(w=>`<div class="chip chip-warn">⚠ ${w}</div>`)
+.join("");
+
+const catalysts=(x.catalysts||[])
+.map(c=>`<div class="chip chip-info">📅 ${c}</div>`)
+.join("");
+
+const pct=Math.max(
+0,
+Math.min(
+100,
+safeNumber(x.score_percent) ?? 0
+)
+);
+
+const tier=scoreTier(pct);
+
+const postChangePositive=(safeNumber(x.post_change)||0) >= 0;
+
+// -------- شريط الدعم/المقاومة البصري --------
+
+function rangePct(val, min, max){
+if(val==null || min==null || max==null || max<=min){
+return null;
+}
+return Math.max(0, Math.min(100,
+((val-min)/(max-min))*100
+));
+}
+
+const barMin=Math.min(
+safeNumber(x.split_low) ?? Infinity,
+safeNumber(x.support) ?? Infinity,
+safeNumber(x.zone_low) ?? Infinity
+);
+
+const barMax=Math.max(
+safeNumber(x.split_high) ?? -Infinity,
+safeNumber(x.zone_high) ?? -Infinity,
+safeNumber(x.price) ?? -Infinity
+);
+
+const validBar=
+Number.isFinite(barMin) && Number.isFinite(barMax) && barMax>barMin;
+
+const zoneLowPct=validBar?rangePct(x.zone_low, barMin, barMax):null;
+const zoneHighPct=validBar?rangePct(x.zone_high, barMin, barMax):null;
+const supportPct=validBar?rangePct(x.support, barMin, barMax):null;
+const pricePct=validBar?rangePct(x.price, barMin, barMax):null;
+
+const srBar=validBar?`
+<div class="sr-wrap">
+
+<div class="sr-title">📐 خريطة الدعم والمقاومة</div>
+
+<div class="sr-bar">
+${zoneLowPct!=null && zoneHighPct!=null?
+`<div class="sr-zone" style="left:${zoneLowPct}%;width:${Math.max(1,zoneHighPct-zoneLowPct)}%"></div>`
+:""}
+${supportPct!=null?
+`<div class="sr-marker sr-support" style="left:${supportPct}%"><span>الدعم</span></div>`
+:""}
+${pricePct!=null?
+`<div class="sr-marker sr-price" style="left:${pricePct}%"><span>السعر الآن</span></div>`
+:""}
+</div>
+
+<div class="sr-labels">
+<span>🔻 القاع ${fmt(x.split_low)}</span>
+<span>منطقة نصف الشمعة (مقاومة قريبة): ${fmt(x.zone_low)} - ${fmt(x.zone_high)}</span>
+<span>🔺 القمة ${fmt(x.split_high)}</span>
+</div>
+
+</div>
+`:``;
+
+const liq=liquidityBadge(x);
+
+const liqDetail=(x.liquidity_type && x.liquidity_type!=="normal")?`
+<div class="liq-detail-box ${x.liquidity_type==='fake_pump'?'liq-detail-warn':'liq-detail-pos'}">
+<b>${x.liquidity_type==='fake_pump'?'⚠️ تنبيه سيولة':'🟢 ملاحظة سيولة'}</b>
+<p>${x.liquidity_label||""}</p>
+</div>
+`:``;
+
+const springDetail=(x.spring_stage && x.spring_stage!=="none")?`
+<div class="liq-detail-box ${x.spring_confirmed?'liq-detail-pos':'liq-detail-info'}">
+<b>${x.spring_confirmed?'🎯 نمط Spring مؤكد':'⏳ نمط Spring قيد التكوّن'}</b>
+<p>${x.spring_label||""}</p>
+</div>
+`:``;
+
+document.getElementById("mbody").innerHTML=`
+
+<div class="mhead">
+
+<div class="mhead-price">
+<span>السعر الحالي</span>
+<b>${fmt(x.price)}</b>
+<small class="${postChangePositive?'pos':'neg'}">
+${postChangePositive?"▲":"▼"} ${fmtPercent(x.post_change)} منذ الافتتاح
+</small>
+</div>
+
+<div class="mhead-score">
+<div class="score-ring big" style="--pct:${pct};--ring-color:${tier.color}">
+<b>${pct.toFixed(0)}</b>
+<small>Core ${x.core??"-"}</small>
+</div>
+</div>
+
+<div class="mhead-tags">
+${statePill(x.state)}
+<span class="rating-tag">${x.status||"N/A"}</span>
+</div>
+
+</div>
+
+${liqDetail}
+
+${springDetail}
+
+${srBar}
+
+<div class="msection">
+<div class="msection-title">📊 التحليل الفني</div>
+<div class="tgrid">
+
+<div class="tcard">
+<span>RSI</span>
+<b class="${x.rsi!=null && x.rsi<30?'pos':(x.rsi!=null && x.rsi>=50?'neg':'')}">
+${x.rsi!=null?Number(x.rsi).toFixed(1):"N/A"}
+</b>
+<small>سابق: ${x.previous_rsi!=null?Number(x.previous_rsi).toFixed(1):"N/A"} ${x.rsi_improving?"↗ يتحسن":""}</small>
+</div>
+
+<div class="tcard">
+<span>MACD</span>
+<b class="${x.macd_improving?'pos':''}">
+${x.macd!=null?Number(x.macd).toFixed(4):"N/A"}
+</b>
+<small>${x.macd_improving?"↗ يتحسن":"لا تحسن كافٍ"}</small>
+</div>
+
+<div class="tcard">
+<span>MA20</span>
+<b>${fmt(x.ma20)}</b>
+<small>MA50: ${fmt(x.ma50)}</small>
+</div>
+
+<div class="tcard">
+<span>الحجم</span>
+<b>${fmtNumber(x.volume)}</b>
+<small>Ratio: ${x.volume_ratio!=null?Number(x.volume_ratio).toFixed(2)+"x":"N/A"}</small>
+</div>
+
+<div class="tcard">
+<span>اختبارات المنطقة</span>
+<b>${x.tests??"N/A"}</b>
+<small>ناجحة: ${x.successful_tests??"N/A"}</small>
+</div>
+
+<div class="tcard">
+<span>الدعم العام</span>
+<b>${fmt(x.support)}</b>
+<small>اختُبر ${x.support_tests??"N/A"} مرات</small>
+</div>
+
+</div>
+</div>
+
+<div class="msection">
+<div class="msection-title">🔄 بيانات Reverse Split</div>
+<div class="tgrid">
+
+<div class="tcard">
+<span>تاريخ التقسيم</span>
+<b>${x.split_date||"N/A"}</b>
+<small>منذ ${x.days_since_split??"N/A"} يوم</small>
+</div>
+
+<div class="tcard">
+<span>نسبة التقسيم</span>
+<b>${x.split_ratio??"N/A"}</b>
+</div>
+
+<div class="tcard">
+<span>افتتاح يوم التقسيم</span>
+<b>${fmt(x.split_open)}</b>
+</div>
+
+<div class="tcard">
+<span>الهبوط من القمة</span>
+<b class="neg">${fmtPercent(x.drawdown)}</b>
+</div>
+
+<div class="tcard">
+<span>Float</span>
+<b>${fmtNumber(x.float_shares)}</b>
+</div>
+
+<div class="tcard">
+<span>Short</span>
+<b>${fmtNumber(x.short_shares)}</b>
+</div>
+
+</div>
+</div>
+
+<div class="msection">
+<div class="msection-title">🧭 الخطوة التالية</div>
+<p class="mnext-text">${x.action||"لا توجد ملاحظة"}</p>
+</div>
+
+<div class="msection">
+<div class="msection-title">الإشارات والتحذيرات والمحفزات</div>
+<div class="chips-wrap">
+${signals}
+${warnings}
+${catalysts}
+${(!signals && !warnings && !catalysts)?'<span style="color:var(--muted)">لا توجد بيانات إضافية</span>':''}
+</div>
+</div>
+
+`;
+
+document.getElementById("modal")
+.classList.add("open");
+
+}
+
+function closeModal(){
+
+document.getElementById("modal")
+.classList.remove("open");
+
+}
+
+async function loadData(){
+
+document.getElementById("updated")
+.textContent="جارٍ تحديث البيانات...";
+
+try{
+
+const r=
+await fetch(
+"dashboard_data.json?"+Date.now()
+);
+
+if(!r.ok){
+
+throw new Error(
+"dashboard_data.json غير موجود"
+);
+
+}
+
+const j=await r.json();
+
+data=
+Array.isArray(j)
+?j
+:(j.stocks||[]);
+
+if(!Array.isArray(data)){
+
+data=[];
+
+}
+
+document.getElementById("updated")
+.textContent=
+"آخر تحديث: "+
+(
+j.updated_at ||
+new Date().toLocaleString("ar-SA")
+);
+
+await loadPulse();
+
+render();
+
+}catch(e){
+
+console.error(e);
+
+data=[];
+
+document.getElementById("updated")
+.textContent=
+"تعذر تحميل البيانات";
+
+document.getElementById("rows").innerHTML=
+`
+<div class="error">
+تعذر تحميل dashboard_data.json
+<br>
+تأكد أن الملف موجود في نفس مجلد index.html.
+</div>
+`;
+
+}
+
+}
+
+// ==========================================================
+// التبديل بين "الرئيسية" و"السجل التاريخي"
+// ==========================================================
+
+const ALL_VIEWS=["home","stocks","filter","history","notifications","settings"];
+
+function showView(view){
+
+ALL_VIEWS.forEach(v=>{
+
+const el=document.getElementById(v+"View");
+
+if(el){
+el.style.display=(v===view) ? "" : "none";
+}
+
+const btn=document.getElementById("nav-"+v);
+
+if(btn){
+btn.classList.toggle("active", v===view);
+}
+
+});
+
+if(view==="history" && !historyLoaded){
+loadHistory();
+}
+
+if(view==="stocks" && !stocksLoaded){
+loadStocksView();
+}
+
+if(view==="notifications" && !notifLoaded){
+loadNotifications();
+}
+
+}
+
+let historyLoaded=false;
+let stocksLoaded=false;
+let notifLoaded=false;
+let candidatesCache=null;
+
+let advancedFilters={
+scoreMin:0,
+rsiMax:100,
+liquidity:"all",
+spring:"all",
+};
+
+function applyAdvancedFilters(){
+
+advancedFilters.scoreMin=
+Number(document.getElementById("fltScoreMin").value);
+
+advancedFilters.rsiMax=
+Number(document.getElementById("fltRsiMax").value);
+
+advancedFilters.liquidity=
+document.getElementById("fltLiquidity").value;
+
+advancedFilters.spring=
+document.getElementById("fltSpring").value;
+
+document.getElementById("fltScoreMinVal").textContent=
+advancedFilters.scoreMin+"%";
+
+document.getElementById("fltRsiMaxVal").textContent=
+advancedFilters.rsiMax;
+
+render();
+
+}
+
+function resetAdvancedFilters(){
+
+document.getElementById("fltScoreMin").value=0;
+document.getElementById("fltRsiMax").value=100;
+document.getElementById("fltLiquidity").value="all";
+document.getElementById("fltSpring").value="all";
+
+applyAdvancedFilters();
+
+}
+
+// -------------------------------------------------
+// قائمة الأسهم الكاملة (كل ما رصده الرادار، مؤهل أو لا)
+// -------------------------------------------------
+
+async function loadStocksView(){
+
+stocksLoaded=true;
+
+document.getElementById("stocksUpdated").textContent=
+"جارٍ التحميل...";
+
+try{
+
+const r=await fetch(
+"reverse_split_candidates.json?"+Date.now()
+);
+
+const candidates=r.ok ? await r.json() : [];
+
+candidatesCache=Array.isArray(candidates) ? candidates : [];
+
+const qualifiedTickers=new Set(
+data.map(x=>String(x.t).toUpperCase())
+);
+
+document.getElementById("stocksUpdated").textContent=
+"إجمالي الأسهم المرصودة: "+candidatesCache.length;
+
+if(!candidatesCache.length){
+
+document.getElementById("stocksRows").innerHTML=
+`<div class="error">لا توجد بيانات مرشحين متاحة حاليًا.</div>`;
+
+return;
+
+}
+
+document.getElementById("stocksRows").innerHTML=
+
+candidatesCache.map(c=>{
+
+const symbol=String(c.symbol||"N/A").toUpperCase();
+
+const qualified=qualifiedTickers.has(symbol);
+
+return `
+
+<div class="row" style="grid-template-columns:90px 1fr 1fr 1fr 1.3fr">
+
+<div class="ticker">
+<div class="coin">${symbol}</div>
+</div>
+
+<div class="cell"><b>${c.split_date||"N/A"}</b></div>
+
+<div class="cell"><b>${c.days??"N/A"}</b></div>
+
+<div class="cell"><b style="font-size:12.5px">${c.company||"—"}</b></div>
+
+<div>
+<span class="pill ${qualified?'pill-ready':'pill-wait-support'}">
+${qualified?"✓ مؤهل حاليًا":"غير مؤهل بعد/مستبعد"}
+</span>
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+}catch(e){
+
+console.error(e);
+
+document.getElementById("stocksUpdated").textContent=
+"تعذر تحميل قائمة الأسهم";
+
+document.getElementById("stocksRows").innerHTML=
+`<div class="error">تعذر تحميل reverse_split_candidates.json</div>`;
+
+}
+
+}
+
+// -------------------------------------------------
+// الإشعارات: سجل أحداث زمني من stock_history.json
+// -------------------------------------------------
+
+async function loadNotifications(){
+
+notifLoaded=true;
+
+const box=document.getElementById("notifRows");
+
+box.innerHTML=`<div class="loading">جارٍ تحميل الإشعارات...</div>`;
+
+try{
+
+const r=await fetch(
+"stock_history.json?"+Date.now()
+);
+
+const historyMap=r.ok ? await r.json() : {};
+
+const entries=Object.values(historyMap || {});
+
+const events=[];
+
+entries.forEach(rec=>{
+
+if(rec.first_seen){
+events.push({
+date:rec.first_seen,
+icon:"🆕",
+text:`${rec.ticker} دخل الرادار عند مرجع ${fmt(rec.reference_price)}`,
+});
+}
+
+if(rec.completed_70_date){
+events.push({
+date:rec.completed_70_date,
+icon:"🎯",
+text:`${rec.ticker} حقق هدف +70% (خلال ${rec.days_to_complete_70??"?"} يوم)`,
+});
+}
+
+if(rec.completed_100_date){
+events.push({
+date:rec.completed_100_date,
+icon:"🚀",
+text:`${rec.ticker} حقق +100% من نقطة الدعم`,
+});
+}
+
+if(rec.expired_date){
+events.push({
+date:rec.expired_date,
+icon:"⌛",
+text:`${rec.ticker} انتهت مهلة المتابعة بدون تحقيق الهدف`,
+});
+}
+
+if(rec.status==="TRACKING" && (rec.max_gain_percent??0) >= 40){
+events.push({
+date:rec.last_checked||rec.first_seen,
+icon:"📈",
+text:`${rec.ticker} تحسّن ملحوظ - وصل حاليًا ${Number(rec.max_gain_percent).toFixed(1)}% من الدعم`,
+});
+}
+
+});
+
+events.sort((a,b)=>
+String(b.date).localeCompare(String(a.date))
+);
+
+if(!events.length){
+
+box.innerHTML=
+`<div class="error">لا توجد أحداث مسجّلة بعد.</div>`;
+
+return;
+
+}
+
+box.innerHTML=
+
+events.slice(0,60).map(ev=>`
+
+<div class="notif-item">
+<div class="notif-icon">${ev.icon}</div>
+<div class="notif-body">
+<b>${ev.text}</b>
+<small>${ev.date}</small>
+</div>
+</div>
+
+`).join("");
+
+}catch(e){
+
+console.error(e);
+
+box.innerHTML=
+`<div class="error">تعذر تحميل الإشعارات.</div>`;
+
+}
+
+}
+
+// -------------------------------------------------
+// مقارنة الأسهم النشطة حاليًا بنمط النجاح التاريخي + نصيحة
+// -------------------------------------------------
+
+function renderComparison(caseStudy, historyMap){
+
+const box=document.getElementById("comparisonRows");
+
+if(!box){
+return;
+}
+
+if(!caseStudy || !caseStudy.completed_count){
+
+box.innerHTML=
+`<div class="cmp-card"><p>لا توجد بيانات كافية بعد للمقارنة - '
++'ستظهر التحليلات هنا بعد أول حالة ناجحة مكتملة.</p></div>`;
+
+return;
+
+}
+
+const tracking=Object.values(historyMap || {})
+.filter(r=>r.status==="TRACKING");
+
+if(!tracking.length){
+
+box.innerHTML=
+`<div class="cmp-card"><p>لا توجد أسهم قيد المتابعة حاليًا للمقارنة.</p></div>`;
+
+return;
+
+}
+
+box.innerHTML=
+
+tracking.map(rec=>{
+
+const snap=rec.entry_snapshot || {};
+
+const rsiDiff=
+(snap.rsi!=null && caseStudy.avg_entry_rsi!=null)
+? (snap.rsi - caseStudy.avg_entry_rsi)
+: null;
+
+const scoreDiff=
+(snap.score_percent!=null && caseStudy.avg_entry_score_percent!=null)
+? (snap.score_percent - caseStudy.avg_entry_score_percent)
+: null;
+
+let advice="بيانات غير كافية للمقارنة الدقيقة.";
+
+if(scoreDiff!=null){
+
+if(scoreDiff >= 0 && (rsiDiff==null || rsiDiff<=5)){
+advice="✅ يشبه نمط الحالات الناجحة سابقًا (Score قريب/أعلى من المتوسط الناجح).";
+}else if(scoreDiff < -10){
+advice="⚠️ أضعف وضوحًا من متوسط الحالات الناجحة - يحتاج مراقبة أدق قبل أي قرار.";
+}else{
+advice="🔎 ضمن النطاق المقبول تقريبًا، راقب تطور RSI وMACD القادم.";
+}
+
+}
+
+return `
+
+<div class="cmp-card">
+<b>${rec.ticker} - أعلى صعود حاليًا: ${rec.max_gain_percent!=null?rec.max_gain_percent.toFixed(1)+'%':'N/A'}</b>
+<p>
+Score عند الدخول: ${snap.score_percent??"N/A"}% (متوسط الناجحين: ${caseStudy.avg_entry_score_percent??"N/A"}%)
+<br>
+RSI عند الدخول: ${snap.rsi??"N/A"} (متوسط الناجحين: ${caseStudy.avg_entry_rsi??"N/A"})
+<br>
+${advice}
+</p>
+</div>
+
+`;
+
+}).join("");
+
+}
+
+function statusBadgeHistory(status){
+
+const map={
+"TRACKING":["pill-wait-trigger","قيد المتابعة"],
+"COMPLETED":["pill-ready","تحقق الهدف ✓"],
+"EXPIRED":["pill-wait-support","انتهت المهلة"],
+};
+
+const found=map[status] || ["pill-wait-support", status||"N/A"];
+
+return `<span class="pill ${found[0]}">${found[1]}</span>`;
+
+}
+
+async function loadHistory(){
+
+document.getElementById("historyUpdated").textContent=
+"جارٍ تحميل السجل...";
+
+try{
+
+const [histRes, csRes]=await Promise.all([
+fetch("stock_history.json?"+Date.now()),
+fetch("case_study.json?"+Date.now()),
+]);
+
+const historyMap=
+histRes.ok ? await histRes.json() : {};
+
+const caseStudy=
+csRes.ok ? await csRes.json() : null;
+
+historyLoaded=true;
+
+// ---------------- بطاقات دراسة الحالات ----------------
+
+if(caseStudy && caseStudy.completed_count){
+
+document.getElementById("cs-completed").textContent=
+caseStudy.completed_count;
+
+document.getElementById("cs-days").textContent=
+caseStudy.avg_days_to_target_70 ?? "-";
+
+document.getElementById("cs-rsi").textContent=
+caseStudy.avg_entry_rsi ?? "-";
+
+const sigs=caseStudy.top_recurring_signals_at_entry || [];
+
+document.getElementById("cs-signals").innerHTML=
+sigs.length
+? sigs.map(s=>
+`<div>• ${s.signal} <span style="color:var(--muted)">(${s.count} مرة)</span></div>`
+).join("")
+: "لا توجد إشارات كافية بعد.";
+
+}else{
+
+document.getElementById("cs-completed").textContent="0";
+document.getElementById("cs-days").textContent="-";
+document.getElementById("cs-rsi").textContent="-";
+
+document.getElementById("cs-signals").textContent=
+"لا توجد حالات مكتملة بعد لدراستها - سيظهر التحليل هنا "
++"بمجرد وصول أول سهم إلى هدف +70%.";
+
+}
+
+renderComparison(caseStudy, historyMap);
+
+// ---------------- جدول كل الأسهم المتابَعة ----------------
+
+const entries=Object.values(historyMap || {});
+
+document.getElementById("historyUpdated").textContent=
+"عدد الأسهم في السجل: "+entries.length;
+
+if(!entries.length){
+
+document.getElementById("historyRows").innerHTML=
+`<div class="error">لا توجد أسهم مسجّلة في السجل التاريخي بعد.</div>`;
+
+return;
+
+}
+
+entries.sort((a,b)=>
+(b.max_gain_percent||-999) - (a.max_gain_percent||-999)
+);
+
+document.getElementById("historyRows").innerHTML=
+
+entries.map(rec=>{
+
+const gain=rec.max_gain_percent;
+
+const gainClass=
+gain==null ? "" : (gain>=70 ? "pos" : "");
+
+return `
+
+<div class="row" style="grid-template-columns:90px 1fr 1fr 1fr 1fr 1fr 1fr">
+
+<div class="ticker">
+<div class="coin">${rec.ticker||"N/A"}</div>
+</div>
+
+<div class="cell"><b>${rec.first_seen||"N/A"}</b></div>
+
+<div class="cell"><b>${fmt(rec.reference_price)}</b></div>
+
+<div class="cell"><b>${fmt(rec.last_price)}</b></div>
+
+<div class="cell">
+<b class="${gainClass}">
+${gain!=null ? gain.toFixed(1)+"%" : "N/A"}
+</b>
+</div>
+
+<div>${statusBadgeHistory(rec.status)}</div>
+
+<div class="cell">
+<b>${rec.days_to_complete_70 ?? "-"}</b>
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+}catch(e){
+
+console.error(e);
+
+document.getElementById("historyUpdated").textContent=
+"تعذر تحميل السجل التاريخي";
+
+document.getElementById("historyRows").innerHTML=
+`<div class="error">
+تعذر تحميل stock_history.json أو case_study.json.
+<br>
+تأكد من تشغيل history_tracker.py على الأقل مرة واحدة.
+</div>`;
+
+}
+
+}
+
+document
+.getElementById("search")
+.addEventListener(
+"input",
+render
+);
+
+document
+.getElementById("filters")
+.addEventListener(
+"click",
+e=>{
+
+if(e.target.dataset.filter){
+
+currentFilter=
+e.target.dataset.filter;
+
+document
+.querySelectorAll("#filters button")
+.forEach(
+b=>b.classList.remove("active")
+);
+
+e.target.classList.add("active");
+
+render();
+
+}
+
+});
+
+window.onclick=e=>{
+
+if(e.target.id==="modal"){
+
+closeModal();
+
+}
+
+};
+
+loadData();
+
+</script>
+
+</body>
+</html>
