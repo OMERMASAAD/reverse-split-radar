@@ -1,1443 +1,237 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>داشبورد متابعة الأسهم</title>
-<link rel="manifest" href="manifest.json">
-<style>
-:root{
---bg:#07101f;
---card:#0d1a2d;
---card2:#101f35;
---line:#1d304b;
---text:#eef4ff;
---muted:#91a4bf;
---green:#35e28b;
---purple:#8b5cf6;
---red:#ff5c70;
---yellow:#f4c95d
-}
-
-*{box-sizing:border-box}
-
-body{
-margin:0;
-background:radial-gradient(circle at 70% 0,#172444 0,#07101f 42%);
-color:var(--text);
-font-family:Arial,Tahoma,sans-serif
-}
-
-button,input{font:inherit}
-
-.app{
-display:flex;
-min-height:100vh
-}
-
-.side{
-width:220px;
-background:#091426;
-border-left:1px solid var(--line);
-padding:24px 14px;
-position:fixed;
-right:0;
-top:0;
-bottom:0
-}
-
-.brand{
-display:flex;
-gap:12px;
-align-items:center;
-padding:8px 12px 30px
-}
-
-.logo{
-width:48px;
-height:48px;
-border-radius:14px;
-background:linear-gradient(135deg,#8b5cf6,#4f46e5);
-display:grid;
-place-items:center;
-font-size:25px
-}
-
-.brand b{font-size:17px}
-
-.nav button{
-width:100%;
-border:0;
-background:transparent;
-color:#b9c8dc;
-text-align:right;
-padding:13px 15px;
-border-radius:12px;
-margin:3px 0;
-cursor:pointer
-}
-
-.nav button.active,
-.nav button:hover{
-background:#171f45;
-color:#fff
-}
-
-.main{
-margin-right:220px;
-width:calc(100% - 220px);
-padding:25px;
-max-width:1700px
-}
-
-.top{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:18px;
-margin-bottom:22px
-}
-
-.title h1{
-margin:0 0 7px;
-font-size:27px
-}
-
-.title p{
-margin:0;
-color:var(--muted)
-}
-
-.tools{
-display:flex;
-gap:10px;
-align-items:center
-}
-
-.search{
-background:#0d1a2d;
-border:1px solid var(--line);
-color:#fff;
-border-radius:12px;
-padding:12px 14px;
-width:230px
-}
-
-.refresh{
-border:1px solid var(--line);
-background:#0d1a2d;
-color:#fff;
-border-radius:12px;
-padding:11px 14px;
-cursor:pointer
-}
-
-.stats{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:14px;
-margin-bottom:20px
-}
-
-.stat{
-background:linear-gradient(145deg,#101e34,#0b1729);
-border:1px solid var(--line);
-border-radius:16px;
-padding:18px
-}
-
-.stat span{
-color:var(--muted);
-font-size:14px
-}
-
-.stat strong{
-display:block;
-font-size:30px;
-margin-top:9px
-}
-
-.green{color:var(--green)}
-.purple{color:#a78bfa}
-.yellow{color:var(--yellow)}
-
-.filters{
-background:#0c192c;
-border:1px solid var(--line);
-border-radius:16px;
-padding:12px;
-display:flex;
-gap:10px;
-flex-wrap:wrap;
-margin-bottom:18px
-}
-
-.filters button{
-background:#111f35;
-color:#b9c8dc;
-border:1px solid var(--line);
-border-radius:10px;
-padding:9px 13px;
-cursor:pointer
-}
-
-.filters button.active{
-background:#252052;
-color:#fff;
-border-color:#6d5be7
-}
-
-.section-title{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin:20px 3px 10px
-}
-
-.section-title h2{
-font-size:19px;
-margin:0
-}
-
-.section-title span{
-color:var(--muted);
-font-size:13px
-}
-
-.table{
-display:grid;
-gap:10px
-}
-
-.row{
-background:linear-gradient(145deg,#0e1c30,#0a1628);
-border:1px solid var(--line);
-border-radius:16px;
-padding:15px;
-display:grid;
-grid-template-columns:90px 1.5fr 1fr 1fr 1fr 1.4fr 1.2fr 80px;
-align-items:center;
-gap:12px
-}
-
-.head{
-background:transparent;
-border:0;
-color:#8194ad;
-font-size:12px;
-padding:4px 15px
-}
-
-.ticker{
-display:flex;
-align-items:center;
-gap:10px
-}
-
-.coin{
-width:42px;
-height:42px;
-border-radius:50%;
-display:grid;
-place-items:center;
-font-weight:bold;
-background:#27315b;
-border:1px solid #5e6ec2
-}
-
-.ticker b{font-size:17px}
-
-.ticker small{
-display:block;
-color:var(--muted);
-margin-top:4px
-}
-
-.cell small{
-display:block;
-color:var(--muted);
-font-size:11px;
-margin-top:5px
-}
-
-.badge{
-display:inline-block;
-border-radius:8px;
-padding:5px 8px;
-font-size:12px;
-background:#102c2a;
-color:#6df0ae
-}
-
-.rsi{
-border:1px solid #542a36;
-background:#171526;
-border-radius:10px;
-padding:10px;
-text-align:center
-}
-
-.rsi b{
-font-size:19px
-}
-
-.action{
-color:#a7f3d0;
-font-size:12px;
-line-height:1.6
-}
-
-.score{
-width:55px;
-height:55px;
-border-radius:50%;
-border:6px solid #3bca83;
-display:grid;
-place-items:center;
-font-weight:bold;
-font-size:16px;
-margin:auto
-}
-
-.detail{
-border:1px solid #273b5b;
-background:#101f35;
-color:#fff;
-border-radius:10px;
-padding:8px 10px;
-cursor:pointer;
-margin-top:7px
-}
-
-.detail:hover{
-background:#1b2d49
-}
-
-.notice{
-margin-top:18px;
-padding:13px 16px;
-background:#0c192c;
-border:1px solid var(--line);
-border-radius:13px;
-color:#9fb1c9;
-font-size:12px;
-line-height:1.8
-}
-
-.modal{
-position:fixed;
-inset:0;
-background:#0009;
-display:none;
-align-items:center;
-justify-content:center;
-padding:20px;
-z-index:10
-}
-
-.modal.open{
-display:flex
-}
-
-.modalbox{
-width:min(850px,100%);
-max-height:90vh;
-overflow:auto;
-background:#0c192c;
-border:1px solid #304766;
-border-radius:18px;
-padding:22px
-}
-
-.modalhead{
-display:flex;
-justify-content:space-between;
-align-items:center
-}
-
-.close{
-background:transparent;
-border:0;
-color:#fff;
-font-size:24px;
-cursor:pointer
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:10px;
-margin-top:15px
-}
-
-.info{
-background:#101f35;
-border:1px solid var(--line);
-border-radius:12px;
-padding:13px
-}
-
-.info span{
-display:block;
-color:var(--muted);
-font-size:12px;
-margin-bottom:6px
-}
-
-.loading{
-padding:30px;
-text-align:center;
-color:var(--muted)
-}
-
-.error{
-padding:25px;
-text-align:center;
-color:var(--red)
-}
-
-@media(max-width:1100px){
-
-.row{
-grid-template-columns:90px 1.4fr 1fr 1fr 70px
-}
-
-.row .hide-md{
-display:none
-}
-
-}
-
-@media(max-width:760px){
-
-.side{
-width:64px;
-padding:12px 8px
-}
-
-.brand div:not(.logo),
-.nav button span{
-display:none
-}
-
-.brand{
-padding:8px 0 25px;
-justify-content:center
-}
-
-.main{
-margin-right:64px;
-width:calc(100% - 64px);
-padding:13px
-}
-
-.top{
-display:block
-}
-
-.tools{
-margin-top:14px
-}
-
-.search{
-width:100%
-}
-
-.stats{
-grid-template-columns:1fr 1fr
-}
-
-.row{
-grid-template-columns:1fr 1fr;
-padding:13px
-}
-
-.head{
-display:none
-}
-
-.row>div{
-min-width:0
-}
-
-.score{
-margin:0
-}
-
-.hide-sm{
-display:none
-}
-
-.grid{
-grid-template-columns:1fr
-}
-
-}
-</style>
-</head>
-
-<body>
-
-<div class="app">
-
-<aside class="side">
-
-<div class="brand">
-<div class="logo">↗️</div>
-
-<div>
-<b>متابعة الأسهم</b>
-<small style="display:block;color:#91a4bf;margin-top:4px">
-Reverse Split Radar
-</small>
-</div>
-
-</div>
-
-<nav class="nav">
-
-<button class="active">
-⌂ <span>الرئيسية</span>
-</button>
-
-<button>
-☷ <span>قائمة الأسهم</span>
-</button>
-
-<button>
-⚙ <span>فلتر النظام</span>
-</button>
-
-<button>
-◷ <span>السجل التاريخي</span>
-</button>
-
-<button>
-♟ <span>الإشعارات</span>
-</button>
-
-<button>
-⚙ <span>الإعدادات</span>
-</button>
-
-</nav>
-
-</aside>
-
-
-<main class="main">
-
-<div class="top">
-
-<div class="title">
-
-<h1>داشبورد متابعة الأسهم</h1>
-
-<p>
-أسهم التقسيم العكسي الإيجابية — تحديث تلقائي من الماسح
-</p>
-
-</div>
-
-<div class="tools">
-
-<input
-id="search"
-class="search"
-placeholder="ابحث عن سهم..."
->
-
-<button
-class="refresh"
-onclick="loadData()"
->
-↻ تحديث
-</button>
-
-</div>
-
-</div>
-
-
-<div class="stats">
-
-<div class="stat">
-
-<span>فرص حالية</span>
-
-<strong
-class="green"
-id="opps"
->
-0
-</strong>
-
-</div>
-
-
-<div class="stat">
-
-<span>أسهم تحت المراقبة</span>
-
-<strong
-class="purple"
-id="watch"
->
-0
-</strong>
-
-</div>
-
-
-<div class="stat">
-
-<span>إشارات جاهزة للمحفز</span>
-
-<strong
-class="yellow"
-id="ready"
->
-0
-</strong>
-
-</div>
-
-</div>
-
-
-<div
-class="filters"
-id="filters"
->
-
-<button
-class="active"
-data-filter="all"
->
-الكل
-</button>
-
-<button data-filter="ready">
-READY
-</button>
-
-<button data-filter="match">
-MATCH قوي جداً
-</button>
-
-<button data-filter="watch">
-WATCHLIST
-</button>
-
-</div>
-
-
-<div class="section-title">
-
-<h2>
-الأسهم الإيجابية المتوقعة
-</h2>
-
-<span id="updated">
-جارٍ تحميل البيانات...
-</span>
-
-</div>
-
-
-<div class="table">
-
-<div class="row head">
-
-<div>الفرصة</div>
-<div>السهم</div>
-<div>السعر</div>
-<div>نصف الشمعة</div>
-<div>الاختبارات</div>
-<div>المؤشرات</div>
-<div>ملخص النظام</div>
-<div>التقييم</div>
-
-</div>
-
-<div id="rows">
-<div class="loading">
-جارٍ تحميل البيانات الحقيقية...
-</div>
-</div>
-
-</div>
-
-
-<div class="notice">
-
-<b>تنبيه:</b>
-هذا النظام أداة تحليل ومتابعة فقط، وليس توصية استثمارية.
-البيانات المعروضة تعتمد على آخر تشغيل للماسح.
-
-</div>
-
-</main>
-
-</div>
-
-
-<div
-class="modal"
-id="modal"
->
-
-<div class="modalbox">
-
-<div class="modalhead">
-
-<h2 id="mtitle"></h2>
-
-<button
-class="close"
-onclick="closeModal()"
->
-×
-</button>
-
-</div>
-
-<div id="mbody"></div>
-
-</div>
-
-</div>
-
-
-<script>
-
-let data=[];
-let currentFilter="all";
-
-
-function safeNumber(x){
-
-if(x===null || x===undefined || x===""){
-return null;
-}
-
-const n=Number(x);
-
-return Number.isFinite(n) ? n : null;
-
-}
-
-
-function fmt(x){
-
-const n=safeNumber(x);
-
-if(n===null){
-return "N/A";
-}
-
-return "$"+n.toFixed(4);
-
-}
-
-
-function fmtPercent(x){
-
-const n=safeNumber(x);
-
-if(n===null){
-return "N/A";
-}
-
-return n.toFixed(1)+"%";
-
-}
-
-
-function fmtNumber(x){
-
-const n=safeNumber(x);
-
-if(n===null){
-return "N/A";
-}
-
-return n.toLocaleString();
-
-}
-
-
-function render(){
-
-const q=
-document.getElementById("search")
-.value
-.trim()
-.toUpperCase();
-
-
-let d=data.filter(x=>{
-
-const matchSearch=
-String(x.t||"")
-.toUpperCase()
-.includes(q);
-
-
-let matchFilter=true;
-
-
-if(currentFilter==="ready"){
-
-matchFilter=
-x.state==="READY_TRIGGER";
-
-}
-
-
-if(currentFilter==="match"){
-
-matchFilter=
-String(x.status||"")
-.includes("MATCH");
-
-}
-
-
-if(currentFilter==="watch"){
-
-matchFilter=
-String(x.status||"")
-.includes("WATCH");
-
-}
-
-
-return matchSearch && matchFilter;
-
-});
-
-
-document.getElementById("opps").textContent=
-data.filter(x=>
-String(x.status||"")
-.includes("MATCH")
-).length;
-
-
-document.getElementById("watch").textContent=
-data.filter(x=>
-String(x.status||"")
-.includes("WATCH")
-).length;
-
-
-document.getElementById("ready").textContent=
-data.filter(x=>
-x.state==="READY_TRIGGER"
-).length;
-
-
-if(!d.length){
-
-document.getElementById("rows").innerHTML=
-`
-<div class="error">
-لا توجد أسهم مطابقة للفلاتر الحالية.
-</div>
-`;
-
-return;
-
-}
-
-
-document.getElementById("rows").innerHTML=
-
-d.map(x=>{
-
-const rsi=safeNumber(x.rsi);
-
-const rsiText=
-rsi===null
-?"N/A"
-:rsi.toFixed(1);
-
-
-const rsiStatus=
-rsi!==null && rsi<30
-?"تشبع بيعي"
-:"مراقبة";
-
-
-const isMatch=
-String(x.status||"")
-.includes("MATCH");
-
-
-return `
-
-<div class="row">
-
-<div>
-
-<span class="badge">
-${isMatch ? "MATCH" : "WATCH"}
-</span>
-
-</div>
-
-
-<div class="ticker">
-
-<div class="coin">
-${x.t||"N/A"}
-</div>
-
-<div>
-
-<b>
-${x.t||"N/A"}
-</b>
-
-<small>
-${x.state||"N/A"}
-</small>
-
-</div>
-
-</div>
-
-
-<div class="cell">
-
-<b>
-${fmt(x.price)}
-</b>
-
-<small>
-حجم ${fmtNumber(x.volume)}
-</small>
-
-</div>
-
-
-<div class="cell">
-
-<b>
-${fmt(x.half)}
-</b>
-
-<small>
-${fmt(x.zone_low)} - ${fmt(x.zone_high)}
-</small>
-
-</div>
-
-
-<div class="cell">
-
-<b>
-${x.tests ?? "N/A"}
-</b>
-
-<small>
-اختبار دعم
-</small>
-
-</div>
-
-
-<div>
-
-<div class="rsi">
-
-RSI
-
-<b>
-${rsiText}
-</b>
-
-<small>
-${rsiStatus}
-</small>
-
-</div>
-
-</div>
-
-
-<div class="action">
-
-${x.action||"لا توجد ملاحظة"}
-
-</div>
-
-
-<div>
-
-<div class="score">
-
-${x.score ?? "N/A"}
-
-</div>
-
-<button
-class="detail"
-onclick="details('${x.t}')"
->
-تفاصيل
-</button>
-
-</div>
-
-
-</div>
-
-`;
-
-}).join("");
-
-}
-
-
-function details(t){
-
-const x=data.find(a=>
-String(a.t)===String(t)
-);
-
-if(!x){
-return;
-}
-
-
-document.getElementById("mtitle").textContent=
-x.t+" — تفاصيل السهم";
-
-
-const signals=(x.signals||[])
-.map(s=>"✓ "+s)
-.join("<br>");
-
-
-const warnings=(x.warnings||[])
-.map(w=>"⚠ "+w)
-.join("<br>");
-
-
-const catalysts=(x.catalysts||[])
-.join("<br>");
-
-
-document.getElementById("mbody").innerHTML=`
-
-<div class="grid">
-
-
-<div class="info">
-<span>السعر الحالي</span>
-<b>${fmt(x.price)}</b>
-</div>
-
-
-<div class="info">
-<span>التقييم</span>
-<b>${x.status||"N/A"}</b>
-</div>
-
-
-<div class="info">
-<span>Score</span>
-<b>${x.score??"N/A"}</b>
-</div>
-
-
-<div class="info">
-<span>Core</span>
-<b>${x.core??"N/A"}</b>
-</div>
-
-
-<div class="info">
-<span>الخطوة التالية</span>
-<b>${x.state||"N/A"}</b>
-</div>
-
-
-<div class="info">
-<span>الحجم</span>
-<b>${fmtNumber(x.volume)}</b>
-</div>
-
-
-<div class="info">
-<span>Volume Ratio</span>
-<b>
-${x.volume_ratio!=null
-?Number(x.volume_ratio).toFixed(2)+"x"
-:"N/A"}
-</b>
-</div>
-
-
-<div class="info">
-<span>RSI</span>
-<b>
-${x.rsi!=null
-?Number(x.rsi).toFixed(1)
-:"N/A"}
-</b>
-</div>
-
-
-<div class="info">
-<span>RSI السابق</span>
-<b>
-${x.previous_rsi!=null
-?Number(x.previous_rsi).toFixed(1)
-:"N/A"}
-</b>
-</div>
-
-
-<div class="info">
-<span>RSI يتحسن</span>
-<b>
-${x.rsi_improving ? "نعم ✓" : "لا"}
-</b>
-</div>
-
-
-<div class="info">
-<span>MACD</span>
-<b>
-${x.macd!=null
-?Number(x.macd).toFixed(5)
-:"N/A"}
-</b>
-</div>
-
-
-<div class="info">
-<span>MACD يتحسن</span>
-<b>
-${x.macd_improving ? "نعم ✓" : "لا"}
-</b>
-</div>
-
-
-<div class="info">
-<span>MA20</span>
-<b>${fmt(x.ma20)}</b>
-</div>
-
-
-<div class="info">
-<span>MA50</span>
-<b>${fmt(x.ma50)}</b>
-</div>
-
-
-<div class="info">
-<span>نصف الافتتاح</span>
-<b>${fmt(x.half)}</b>
-</div>
-
-
-<div class="info">
-<span>منطقة نصف الشمعة</span>
-<b>
-${fmt(x.zone_low)}
--
-${fmt(x.zone_high)}
-</b>
-</div>
-
-
-<div class="info">
-<span>اختبارات المنطقة</span>
-<b>${x.tests??"N/A"}</b>
-</div>
-
-
-<div class="info">
-<span>الاختبارات الناجحة</span>
-<b>${x.successful_tests??"N/A"}</b>
-</div>
-
-
-<div class="info">
-<span>الدعم العام</span>
-<b>${fmt(x.support)}</b>
-</div>
-
-
-<div class="info">
-<span>اختبارات الدعم العام</span>
-<b>${x.support_tests??"N/A"}</b>
-</div>
-
-
-<div class="info">
-<span>Float</span>
-<b>
-${fmtNumber(x.float_shares)}
-</b>
-</div>
-
-
-<div class="info">
-<span>Short</span>
-<b>
-${fmtNumber(x.short_shares)}
-</b>
-</div>
-
-
-<div class="info">
-<span>تاريخ Reverse Split</span>
-<b>${x.split_date||"N/A"}</b>
-</div>
-
-
-<div class="info">
-<span>نسبة Reverse Split</span>
-<b>${x.split_ratio??"N/A"}</b>
-</div>
-
-
-<div class="info">
-<span>الأيام منذ التقسيم</span>
-<b>${x.days_since_split??"N/A"}</b>
-</div>
-
-
-<div class="info">
-<span>افتتاح يوم التقسيم</span>
-<b>${fmt(x.split_open)}</b>
-</div>
-
-
-<div class="info">
-<span>أعلى سعر منذ التقسيم</span>
-<b>${fmt(x.split_high)}</b>
-</div>
-
-
-<div class="info">
-<span>أدنى سعر منذ التقسيم</span>
-<b>${fmt(x.split_low)}</b>
-</div>
-
-
-<div class="info">
-<span>الحركة من الافتتاح</span>
-<b>${fmtPercent(x.post_change)}</b>
-</div>
-
-
-<div class="info">
-<span>الهبوط من القمة</span>
-<b>${fmtPercent(x.drawdown)}</b>
-</div>
-
-
-</div>
-
-
-<div class="notice">
-
-<b>الخطوة التالية</b>
-
-<br>
-
-${x.action||"لا توجد ملاحظة"}
-
-<br><br>
-
-
-<b>الإشارات</b>
-
-<br>
-
-${signals||"لا توجد إشارات"}
-
-<br><br>
-
-
-<b>التحذيرات</b>
-
-<br>
-
-${warnings||"لا توجد تحذيرات"}
-
-<br><br>
-
-
-<b>المحفزات</b>
-
-<br>
-
-${catalysts||"لا توجد محفزات واضحة"}
-
-<br><br>
-
-
-<b>السجل التاريخي</b>
-
-<br>
-
-سيتم ربط سجل حركات هذا السهم بالـScanner في المرحلة التالية، بحيث يحتفظ النظام بالنتائج السابقة ويقارنها بالنتائج الجديدة.
-
-</div>
-
-`;
-
-
-document.getElementById("modal")
-.classList.add("open");
-
-}
-
-
-function closeModal(){
-
-document.getElementById("modal")
-.classList.remove("open");
-
-}
-
-
-async function loadData(){
-
-document.getElementById("updated")
-.textContent="جارٍ تحديث البيانات...";
-
-
-try{
-
-const r=
-await fetch(
-"dashboard_data.json?"+Date.now()
-);
-
-
-if(!r.ok){
-
-throw new Error(
-"dashboard_data.json غير موجود"
-);
-
-}
-
-
-const j=await r.json();
-
-
-data=
-Array.isArray(j)
-?j
-:(j.stocks||[]);
-
-
-if(!Array.isArray(data)){
-
-data=[];
-
-}
-
-
-document.getElementById("updated")
-.textContent=
-"آخر تحديث: "+
-(
-j.updated_at ||
-new Date().toLocaleString("ar-SA")
-);
-
-
-render();
-
-
-}catch(e){
-
-console.error(e);
-
-
-data=[];
-
-
-document.getElementById("updated")
-.textContent=
-"تعذر تحميل البيانات";
-
-
-document.getElementById("rows").innerHTML=
-`
-<div class="error">
-تعذر تحميل dashboard_data.json
-<br>
-تأكد أن الملف موجود في نفس مجلد index.html.
-</div>
-`;
-
-}
-
-}
-
-
-document
-.getElementById("search")
-.addEventListener(
-"input",
-render
-);
-
-
-document
-.getElementById("filters")
-.addEventListener(
-"click",
-e=>{
-
-if(e.target.dataset.filter){
-
-currentFilter=
-e.target.dataset.filter;
-
-
-document
-.querySelectorAll("#filters button")
-.forEach(
-b=>b.classList.remove("active")
-);
-
-
-e.target.classList.add("active");
-
-
-render();
-
-}
-
-});
-
-
-window.onclick=e=>{
-
-if(e.target.id==="modal"){
-
-closeModal();
-
-}
-
-};
-
-
-loadData();
-
-</script>
-
-</body>
-</html>
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+داشبورد متابعة الأسهم - الكود الوظيفي فقط
+أسهم التقسيم العكسي الإيجابية
+"""
+
+import json
+import os
+from datetime import datetime
+from typing import List, Dict, Optional
+
+
+DATA_FILE = "dashboard_data.json"
+
+
+# =========================
+# تحميل وحفظ البيانات
+# =========================
+
+def load_data() -> Dict:
+    """تحميل البيانات من ملف JSON"""
+    if not os.path.exists(DATA_FILE):
+        return {
+            "updated_at": None,
+            "stats": {
+                "watch": 0,
+                "opportunities": 0,
+                "signals": 0
+            },
+            "stocks": []
+        }
+
+    with open(DATA_FILE, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def save_data(data: Dict) -> None:
+    """حفظ البيانات في ملف JSON"""
+    data["updated_at"] = datetime.now().strftime("%Y-%m-%d %H:%M")
+    with open(DATA_FILE, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+
+
+# =========================
+# إدارة الأسهم
+# =========================
+
+def add_stock(
+    symbol: str,
+    name: str = "",
+    status: str = "watch",
+    watchlist: bool = False
+) -> None:
+    """
+    إضافة سهم جديد
+    status: watch | candidate | ready
+    """
+    data = load_data()
+
+    # منع التكرار
+    for s in data["stocks"]:
+        if s["symbol"].upper() == symbol.upper():
+            print(f"السهم {symbol} موجود مسبقاً")
+            return
+
+    data["stocks"].append({
+        "symbol": symbol.upper(),
+        "name": name,
+        "status": status,
+        "watchlist": watchlist
+    })
+
+    update_stats(data)
+    save_data(data)
+    print(f"تمت إضافة {symbol}")
+
+
+def remove_stock(symbol: str) -> None:
+    """حذف سهم"""
+    data = load_data()
+    before = len(data["stocks"])
+    data["stocks"] = [s for s in data["stocks"] if s["symbol"].upper() != symbol.upper()]
+
+    if len(data["stocks"]) == before:
+        print(f"السهم {symbol} غير موجود")
+        return
+
+    update_stats(data)
+    save_data(data)
+    print(f"تم حذف {symbol}")
+
+
+def update_stock_status(symbol: str, status: str) -> None:
+    """تحديث حالة السهم: watch | candidate | ready"""
+    data = load_data()
+    found = False
+
+    for s in data["stocks"]:
+        if s["symbol"].upper() == symbol.upper():
+            s["status"] = status
+            found = True
+            break
+
+    if not found:
+        print(f"السهم {symbol} غير موجود")
+        return
+
+    update_stats(data)
+    save_data(data)
+    print(f"تم تحديث حالة {symbol} إلى {status}")
+
+
+def toggle_watchlist(symbol: str) -> None:
+    """إضافة/إزالة من قائمة المتابعة"""
+    data = load_data()
+    found = False
+
+    for s in data["stocks"]:
+        if s["symbol"].upper() == symbol.upper():
+            s["watchlist"] = not s.get("watchlist", False)
+            found = True
+            print(f"{symbol} → قائمة المتابعة: {s['watchlist']}")
+            break
+
+    if not found:
+        print(f"السهم {symbol} غير موجود")
+        return
+
+    save_data(data)
+
+
+# =========================
+# الإحصائيات والفلترة
+# =========================
+
+def update_stats(data: Dict) -> None:
+    """حساب الإحصائيات تلقائياً"""
+    stocks = data["stocks"]
+    data["stats"] = {
+        "watch": len(stocks),
+        "opportunities": len([s for s in stocks if s.get("status") == "candidate"]),
+        "signals": len([s for s in stocks if s.get("status") == "ready"])
+    }
+
+
+def get_stats() -> Dict:
+    """إرجاع الإحصائيات الحالية"""
+    data = load_data()
+    return data.get("stats", {})
+
+
+def filter_stocks(
+    status: Optional[str] = None,
+    watchlist_only: bool = False,
+    search: str = ""
+) -> List[Dict]:
+    """
+    فلترة الأسهم
+    status: None | watch | candidate | ready
+    """
+    data = load_data()
+    result = data["stocks"]
+
+    if status:
+        result = [s for s in result if s.get("status") == status]
+
+    if watchlist_only:
+        result = [s for s in result if s.get("watchlist")]
+
+    if search:
+        q = search.lower()
+        result = [
+            s for s in result
+            if q in s.get("symbol", "").lower() or q in s.get("name", "").lower()
+        ]
+
+    return result
+
+
+# =========================
+# عرض سريع في التيرمينال
+# =========================
+
+def show_dashboard() -> None:
+    """عرض ملخص الداشبورد في التيرمينال"""
+    data = load_data()
+    stats = data.get("stats", {})
+
+    print("\n" + "=" * 40)
+    print("  داشبورد متابعة الأسهم")
+    print("=" * 40)
+    print(f"  أسهم تحت المراقبة : {stats.get('watch', 0)}")
+    print(f"  فرص حالية         : {stats.get('opportunities', 0)}")
+    print(f"  إشارات جاهزة      : {stats.get('signals', 0)}")
+    print(f"  آخر تحديث         : {data.get('updated_at') or '—'}")
+    print("=" * 40)
+
+    stocks = data.get("stocks", [])
+    if not stocks:
+        print("  لا توجد أسهم حالياً")
+        return
+
+    print("\n  الأسهم:")
+    for s in stocks:
+        status_map = {
+            "ready": "جاهز للدخول",
+            "candidate": "مرشح للصعود",
+            "watch": "تحت المراقبة"
+        }
+        status_ar = status_map.get(s.get("status"), s.get("status"))
+        watch = "★" if s.get("watchlist") else " "
+        print(f"  {watch} {s['symbol']:<8} | {status_ar:<15} | {s.get('name', '')}")
+
+
+# =========================
+# تشغيل مباشر
+# =========================
+
+if __name__ == "__main__":
+    # أمثلة استخدام:
+
+    # إضافة أسهم
+    # add_stock("AAPL", "Apple Inc.", status="ready", watchlist=True)
+    # add_stock("TSLA", "Tesla", status="candidate")
+    # add_stock("NVDA", "NVIDIA", status="watch")
+
+    # تحديث حالة
+    # update_stock_status("TSLA", "ready")
+
+    # فلترة
+    # print(filter_stocks(status="ready"))
+    # print(filter_stocks(watchlist_only=True))
+    # print(filter_stocks(search="app"))
+
+    # عرض الداشبورد
+    show_dashboard()
