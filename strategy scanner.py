@@ -64,7 +64,9 @@ SPRING_LOOKBACK_DAYS = 40
 # ============================================================
 
 # التجميع الصامت: يحتاج فوليوم "جاف" أقل من هذا الرقم
-DRY_VOLUME_MAX = 50000
+# التجميع الصامت: يحتاج فوليوم "جاف" - نسبي وليس رقمًا مطلقًا
+# (أقل من هذه النسبة من متوسط حجم تداول نفس السهم آخر 20 يوم)
+DRY_VOLUME_RATIO_MAX = 0.60
 
 # التجميع الصامت: عدد الأيام للنظر في اتجاه A/D مقابل اتجاه السعر
 ACCUMULATION_LOOKBACK = 10
@@ -658,7 +660,8 @@ def detect_liquidity_status(df, price, volume, volume_ratio):
     1) التجميع الصامت (silent_accumulation):
        السعر ثابت/هابط خلال آخر ACCUMULATION_LOOKBACK يومًا، بينما
        خط التجميع والتصريف (A/D عبر pandas_ta) في اتجاه صاعد،
-       والفوليوم الحالي جاف (أقل من DRY_VOLUME_MAX). مؤشر على
+       والفوليوم الحالي جاف (أقل من DRY_VOLUME_RATIO_MAX من متوسط
+       حجم نفس السهم - نسبي وليس رقمًا مطلقًا). مؤشر على
        مضارب خفي يجمع بهدوء دون تحريك السعر أو الفوليوم الظاهر.
 
     2) الزخم الوهمي للقروبات (fake_pump):
@@ -758,8 +761,8 @@ def detect_liquidity_status(df, price, volume, volume_ratio):
             price_flat_or_down = price <= price_prev * 1.02
 
             volume_dry = (
-                volume is not None
-                and volume <= DRY_VOLUME_MAX
+                volume_ratio is not None
+                and volume_ratio <= DRY_VOLUME_RATIO_MAX
             )
 
             if ad_rising and price_flat_or_down and volume_dry:
