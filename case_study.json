@@ -1,27 +1,35 @@
 {
-  "generated_at": "2026-08-15T10:36:02.589136",
-  "completed_count": 13,
-  "avg_days_to_target_70": 0.08,
-  "avg_entry_rsi": 55.99,
-  "avg_entry_score_percent": 48.52,
-  "avg_entry_core": 4.77,
-  "avg_entry_support_tests": 4.0,
-  "avg_max_gain_percent": 3179.88,
+  "generated_at": "2026-08-17T14:51:49.184830",
+  "completed_count": 15,
+  "avg_days_to_target_70": 0.33,
+  "avg_entry_rsi": 52.86,
+  "avg_entry_score_percent": 50.51,
+  "avg_entry_core": 4.93,
+  "avg_entry_support_tests": 4.07,
+  "avg_max_gain_percent": 2795.61,
   "top_recurring_signals_at_entry": [
     {
       "signal": "Reverse Split حديث",
-      "count": 13
+      "count": 15
     },
     {
       "signal": "موعد نتائج مالية",
-      "count": 13
+      "count": 15
     },
     {
       "signal": "السعر قريب من MA20",
-      "count": 5
+      "count": 6
     },
     {
       "signal": "نتائج مالية قادمة",
+      "count": 3
+    },
+    {
+      "signal": "الدعم العام اختُبر 6 مرات",
+      "count": 3
+    },
+    {
+      "signal": "الدعم العام اختُبر 3 مرات",
       "count": 3
     },
     {
@@ -33,26 +41,19 @@
       "count": 2
     },
     {
+      "signal": "MACD يتحسن",
+      "count": 2
+    },
+    {
       "signal": "الدعم العام اختُبر 7 مرات",
       "count": 2
-    },
-    {
-      "signal": "الدعم العام اختُبر 6 مرات",
-      "count": 2
-    },
-    {
-      "signal": "الدعم العام اختُبر 3 مرات",
-      "count": 2
-    },
-    {
-      "signal": "دعم نصف الشمعة مؤكد (4 اختبارات)",
-      "count": 1
     }
   ],
   "tickers_completed": [
     "FFAI",
     "AMIX",
     "NIPG",
+    "PFSA",
     "DBGI",
     "CIIT",
     "QNCX",
@@ -62,6 +63,7 @@
     "NCRA",
     "YXT",
     "PRPL",
-    "TRIB"
+    "TRIB",
+    "STKH"
   ]
 }
