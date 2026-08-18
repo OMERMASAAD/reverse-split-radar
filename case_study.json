@@ -1,24 +1,24 @@
 {
-  "generated_at": "2026-08-17T21:46:37.718466",
-  "completed_count": 15,
-  "avg_days_to_target_70": 0.33,
-  "avg_entry_rsi": 52.86,
-  "avg_entry_score_percent": 50.51,
-  "avg_entry_core": 4.93,
-  "avg_entry_support_tests": 4.07,
-  "avg_max_gain_percent": 2795.61,
+  "generated_at": "2026-08-18T15:06:52.124174",
+  "completed_count": 16,
+  "avg_days_to_target_70": 0.38,
+  "avg_entry_rsi": 52.78,
+  "avg_entry_score_percent": 50.71,
+  "avg_entry_core": 4.88,
+  "avg_entry_support_tests": 4.12,
+  "avg_max_gain_percent": 2625.49,
   "top_recurring_signals_at_entry": [
     {
       "signal": "Reverse Split حديث",
-      "count": 15
+      "count": 16
     },
     {
       "signal": "موعد نتائج مالية",
-      "count": 15
+      "count": 16
     },
     {
       "signal": "السعر قريب من MA20",
-      "count": 6
+      "count": 7
     },
     {
       "signal": "نتائج مالية قادمة",
@@ -41,11 +41,11 @@
       "count": 2
     },
     {
-      "signal": "MACD يتحسن",
+      "signal": "الدعم العام اختُبر 5 مرات",
       "count": 2
     },
     {
-      "signal": "الدعم العام اختُبر 7 مرات",
+      "signal": "MACD يتحسن",
       "count": 2
     }
   ],
@@ -64,6 +64,7 @@
     "YXT",
     "PRPL",
     "TRIB",
+    "SGLY",
     "STKH"
   ]
 }
