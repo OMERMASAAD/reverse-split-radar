@@ -776,6 +776,104 @@ margin-bottom:8px
 .cmp-card b{display:block;margin-bottom:6px;font-size:14.5px}
 .cmp-card p{margin:0;font-size:13px;color:var(--muted);line-height:1.7}
 
+.pattern-cols{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px
+}
+
+@media(max-width:700px){
+.pattern-cols{grid-template-columns:1fr}
+}
+
+.pattern-col{
+border-radius:16px;
+padding:16px;
+border:1px solid var(--line)
+}
+
+.pattern-col.success{background:#0e2a20;border-color:#1f6b4c}
+.pattern-col.failure{background:#2a1418;border-color:#6b2530}
+
+.pattern-col h3{
+margin:0 0 12px;
+font-size:16px
+}
+
+.pattern-stat{
+display:flex;
+justify-content:space-between;
+padding:7px 0;
+border-bottom:1px solid #ffffff14;
+font-size:13.5px
+}
+
+.pattern-stat:last-of-type{border-bottom:0}
+
+.pattern-stat b{font-size:14.5px}
+
+.pattern-signals{
+margin-top:12px;
+font-size:12.5px;
+line-height:2
+}
+
+.history-detail-row{cursor:pointer;transition:background .15s ease}
+.history-detail-row:hover{background:#132441}
+
+.daily-log-track{
+display:flex;
+overflow-x:auto;
+gap:8px;
+padding:10px 2px;
+margin-top:8px
+}
+
+.daily-log-point{
+flex:0 0 auto;
+background:#101f35;
+border:1px solid var(--line);
+border-radius:10px;
+padding:8px 12px;
+text-align:center;
+min-width:78px
+}
+
+.daily-log-point small{display:block;color:var(--muted);font-size:10.5px}
+.daily-log-point b{display:block;margin-top:3px;font-size:13px}
+
+.row-history{grid-template-columns:90px 1fr 1fr 1fr 1fr 1fr 1fr}
+.row-stocks{grid-template-columns:90px 1fr 1fr 1fr 1.3fr}
+
+@media(max-width:900px){
+
+.row-history{
+grid-template-columns:80px 1fr 1fr;
+row-gap:6px
+}
+
+.row-stocks{
+grid-template-columns:80px 1fr 1fr;
+row-gap:6px
+}
+
+}
+
+@media(max-width:600px){
+
+.row-history,
+.row-stocks{
+grid-template-columns:1fr 1fr;
+font-size:12.5px
+}
+
+.row-history.head,
+.row-stocks.head{
+display:none
+}
+
+}
+
 .pulse-dot{
 display:inline-block;
 width:9px;
@@ -930,6 +1028,7 @@ Reverse Split Radar
 
 </aside>
 
+
 <main class="main">
 
 <div id="homeView">
@@ -965,6 +1064,7 @@ onclick="loadData()"
 
 </div>
 
+
 <div class="stats">
 
 <div class="stat" style="--stat-color:var(--green)">
@@ -980,6 +1080,7 @@ id="opps"
 
 </div>
 
+
 <div class="stat" style="--stat-color:var(--purple)">
 
 <span>أسهم تحت المراقبة</span>
@@ -992,6 +1093,7 @@ id="watch"
 </strong>
 
 </div>
+
 
 <div class="stat" style="--stat-color:var(--yellow)">
 
@@ -1007,6 +1109,7 @@ id="ready"
 </div>
 
 </div>
+
 
 <div
 class="filters"
@@ -1034,6 +1137,7 @@ data-filter="all"
 
 </div>
 
+
 <div class="section-title">
 
 <h2>
@@ -1045,6 +1149,7 @@ data-filter="all"
 </span>
 
 </div>
+
 
 <div class="table">
 
@@ -1070,6 +1175,7 @@ data-filter="all"
 
 </div>
 
+
 <div class="notice">
 
 <b>تنبيه:</b>
@@ -1079,6 +1185,7 @@ data-filter="all"
 </div>
 
 </div>
+
 
 <div id="historyView" style="display:none">
 
@@ -1104,6 +1211,7 @@ data-filter="all"
 
 </div>
 
+
 <div class="stats" id="caseStudyStats">
 
 <div class="stat" style="--stat-color:var(--green)">
@@ -1123,19 +1231,22 @@ data-filter="all"
 
 </div>
 
+
 <div class="notice" id="cs-signals-box">
 <b>أكثر الإشارات تكرارًا في الحالات الناجحة:</b>
 <div id="cs-signals" style="margin-top:8px">جارٍ التحميل...</div>
 </div>
+
 
 <div class="section-title">
 <h2>كل الأسهم المتابَعة</h2>
 <span id="historyUpdated">جارٍ تحميل السجل...</span>
 </div>
 
+
 <div class="table">
 
-<div class="row head" style="grid-template-columns:90px 1fr 1fr 1fr 1fr 1fr 1fr">
+<div class="row head row-history">
 <div>السهم</div>
 <div>تاريخ الدخول</div>
 <div>سعر الدعم (المرجع)</div>
@@ -1151,6 +1262,7 @@ data-filter="all"
 
 </div>
 
+
 <div class="section-title">
 <h2>🧭 مقارنة الأسهم النشطة بنمط النجاح</h2>
 <span>تحليل تلقائي مبني على متوسطات الحالات المكتملة سابقًا</span>
@@ -1160,7 +1272,18 @@ data-filter="all"
 <div class="loading">جارٍ التحليل...</div>
 </div>
 
+
+<div class="section-title">
+<h2>🔬 ما الذي يتكرر؟ (الناجح مقابل الفاشل)</h2>
+<span>مقارنة إحصائية بين الحالات التي حققت +70% والحالات التي فشلت (60 يومًا بلا تحقيق)</span>
 </div>
+
+<div id="patternRows">
+<div class="loading">جارٍ تحميل تحليل الأنماط...</div>
+</div>
+
+</div>
+
 
 <div id="stocksView" style="display:none">
 
@@ -1177,7 +1300,7 @@ data-filter="all"
 </div>
 
 <div class="table">
-<div class="row head" style="grid-template-columns:90px 1fr 1fr 1fr 1.3fr">
+<div class="row head row-stocks">
 <div>السهم</div>
 <div>تاريخ التقسيم</div>
 <div>الأيام منذ التقسيم</div>
@@ -1190,6 +1313,7 @@ data-filter="all"
 </div>
 
 </div>
+
 
 <div id="filterView" style="display:none">
 
@@ -1237,6 +1361,7 @@ data-filter="all"
 
 </div>
 
+
 <div id="notificationsView" style="display:none">
 
 <div class="top">
@@ -1251,6 +1376,7 @@ data-filter="all"
 </div>
 
 </div>
+
 
 <div id="settingsView" style="display:none">
 
@@ -1282,6 +1408,7 @@ data-filter="all"
 
 </div>
 
+
 <div
 class="modal"
 id="modal"
@@ -1300,6 +1427,7 @@ onclick="closeModal()"
 ×
 </button>
 
+
 </div>
 
 <div id="mbody"></div>
@@ -1308,11 +1436,13 @@ onclick="closeModal()"
 
 </div>
 
+
 <script>
 
 let data=[];
 let currentFilter="all";
 let pulseData={};
+
 
 // -------------------------------------------------
 // نبض 4 ساعات (اختياري) - لا يكسر الداشبورد إذا لم
@@ -1344,6 +1474,7 @@ pulseData={};
 
 }
 
+
 function pulseDot(ticker){
 
 const p=pulseData[ticker];
@@ -1367,6 +1498,7 @@ return `<span class="pulse-dot ${cls}" title="${title}"></span>`;
 
 }
 
+
 function safeNumber(x){
 
 if(x===null || x===undefined || x===""){
@@ -1378,6 +1510,7 @@ const n=Number(x);
 return Number.isFinite(n) ? n : null;
 
 }
+
 
 function fmt(x){
 
@@ -1395,6 +1528,7 @@ return "$"+n.toFixed(decimals);
 
 }
 
+
 function fmtPercent(x){
 
 const n=safeNumber(x);
@@ -1407,6 +1541,7 @@ return n.toFixed(1)+"%";
 
 }
 
+
 function fmtNumber(x){
 
 const n=safeNumber(x);
@@ -1418,6 +1553,7 @@ return "N/A";
 return n.toLocaleString();
 
 }
+
 
 // -------------------------------------------------
 // دائرة Score: تستخدم score_percent (0-100) حصريًا
@@ -1441,6 +1577,7 @@ return {color:"var(--red)"};
 
 }
 
+
 function rsiColor(rsi){
 
 if(rsi===null){
@@ -1458,6 +1595,7 @@ return "var(--yellow)";
 return "var(--red)";
 
 }
+
 
 function statePill(state){
 
@@ -1477,6 +1615,7 @@ return `<span class="pill pill-wait-support">${state||"N/A"}</span>`;
 return `<span class="pill ${found[0]}">${found[1]}</span>`;
 
 }
+
 
 // -------------------------------------------------
 // حالة السيولة والقروبات (تجميع صامت / زخم وهمي)
@@ -1502,6 +1641,7 @@ return `<span class="liq-badge liq-normal">— عادي —</span>`;
 
 }
 
+
 function render(){
 
 const q=
@@ -1510,6 +1650,7 @@ document.getElementById("search")
 .trim()
 .toUpperCase();
 
+
 let d=data.filter(x=>{
 
 const matchSearch=
@@ -1517,7 +1658,9 @@ String(x.t||"")
 .toUpperCase()
 .includes(q);
 
+
 let matchFilter=true;
+
 
 if(currentFilter==="ready"){
 
@@ -1525,6 +1668,7 @@ matchFilter=
 x.state==="READY_TRIGGER";
 
 }
+
 
 if(currentFilter==="match"){
 
@@ -1534,6 +1678,7 @@ String(x.status||"")
 
 }
 
+
 if(currentFilter==="watch"){
 
 matchFilter=
@@ -1541,6 +1686,7 @@ String(x.status||"")
 .includes("WATCH");
 
 }
+
 
 // ---- فلتر النظام المتقدم (من صفحة "فلتر النظام") ----
 
@@ -1577,6 +1723,7 @@ advancedFilters.spring==="confirmed"
 matchFilter=false;
 }
 
+
 return matchSearch && matchFilter;
 
 });
@@ -1589,11 +1736,13 @@ d=d.slice().sort((a,b)=>
 (safeNumber(a.score_percent)||0)
 );
 
+
 document.getElementById("opps").textContent=
 data.filter(x=>
 String(x.status||"")
 .includes("MATCH")
 ).length;
+
 
 document.getElementById("watch").textContent=
 data.filter(x=>
@@ -1601,10 +1750,12 @@ String(x.status||"")
 .includes("WATCH")
 ).length;
 
+
 document.getElementById("ready").textContent=
 data.filter(x=>
 x.state==="READY_TRIGGER"
 ).length;
+
 
 if(!d.length){
 
@@ -1619,6 +1770,7 @@ return;
 
 }
 
+
 document.getElementById("rows").innerHTML=
 
 d.map(x=>{
@@ -1630,12 +1782,15 @@ rsi===null
 ?"N/A"
 :rsi.toFixed(1);
 
+
 const rsiStatus=
 rsi!==null && rsi<30
 ?"تشبع بيعي"
 :(rsi!==null && rsi<50 ? "محايد" : "مراقبة");
 
+
 const rc=rsiColor(rsi);
+
 
 const pct=Math.max(
 0,
@@ -1645,7 +1800,9 @@ safeNumber(x.score_percent) ?? 0
 )
 );
 
+
 const tier=scoreTier(pct);
+
 
 return `
 
@@ -1654,6 +1811,7 @@ return `
 <div>
 ${statePill(x.state)}
 </div>
+
 
 <div class="ticker">
 
@@ -1676,6 +1834,7 @@ ${x.status||"N/A"}
 
 </div>
 
+
 <div class="cell">
 
 <b>
@@ -1687,6 +1846,7 @@ ${fmt(x.price)}
 </small>
 
 </div>
+
 
 <div class="cell">
 
@@ -1700,6 +1860,7 @@ ${fmt(x.zone_low)} - ${fmt(x.zone_high)}
 
 </div>
 
+
 <div class="cell">
 
 <b>
@@ -1711,6 +1872,7 @@ ${x.tests ?? "N/A"}
 </small>
 
 </div>
+
 
 <div>
 
@@ -1730,15 +1892,18 @@ ${rsiStatus}
 
 </div>
 
+
 <div class="action">
 
 ${x.action||"لا توجد ملاحظة"}
 
 </div>
 
+
 <div class="hide-md">
 ${liquidityBadge(x)}
 </div>
+
 
 <div class="score-wrap">
 
@@ -1766,6 +1931,7 @@ onclick="details('${x.t}')"
 
 </div>
 
+
 </div>
 
 `;
@@ -1773,6 +1939,7 @@ onclick="details('${x.t}')"
 }).join("");
 
 }
+
 
 function details(t){
 
@@ -1784,20 +1951,25 @@ if(!x){
 return;
 }
 
+
 document.getElementById("mtitle").textContent=
 x.t+" — تحليل شامل";
+
 
 const signals=(x.signals||[])
 .map(s=>`<div class="chip chip-pos">✓ ${s}</div>`)
 .join("");
 
+
 const warnings=(x.warnings||[])
 .map(w=>`<div class="chip chip-warn">⚠ ${w}</div>`)
 .join("");
 
+
 const catalysts=(x.catalysts||[])
 .map(c=>`<div class="chip chip-info">📅 ${c}</div>`)
 .join("");
+
 
 const pct=Math.max(
 0,
@@ -1810,6 +1982,7 @@ safeNumber(x.score_percent) ?? 0
 const tier=scoreTier(pct);
 
 const postChangePositive=(safeNumber(x.post_change)||0) >= 0;
+
 
 // -------- شريط الدعم/المقاومة البصري --------
 
@@ -1868,6 +2041,7 @@ ${pricePct!=null?
 </div>
 `:``;
 
+
 const liq=liquidityBadge(x);
 
 const liqDetail=(x.liquidity_type && x.liquidity_type!=="normal")?`
@@ -1877,12 +2051,14 @@ const liqDetail=(x.liquidity_type && x.liquidity_type!=="normal")?`
 </div>
 `:``;
 
+
 const springDetail=(x.spring_stage && x.spring_stage!=="none")?`
 <div class="liq-detail-box ${x.spring_confirmed?'liq-detail-pos':'liq-detail-info'}">
 <b>${x.spring_confirmed?'🎯 نمط Spring مؤكد':'⏳ نمط Spring قيد التكوّن'}</b>
 <p>${x.spring_label||""}</p>
 </div>
 `:``;
+
 
 document.getElementById("mbody").innerHTML=`
 
@@ -1910,11 +2086,14 @@ ${statePill(x.state)}
 
 </div>
 
+
 ${liqDetail}
 
 ${springDetail}
 
+
 ${srBar}
+
 
 <div class="msection">
 <div class="msection-title">📊 التحليل الفني</div>
@@ -1963,6 +2142,7 @@ ${x.macd!=null?Number(x.macd).toFixed(4):"N/A"}
 </div>
 </div>
 
+
 <div class="msection">
 <div class="msection-title">🔄 بيانات Reverse Split</div>
 <div class="tgrid">
@@ -2001,10 +2181,12 @@ ${x.macd!=null?Number(x.macd).toFixed(4):"N/A"}
 </div>
 </div>
 
+
 <div class="msection">
 <div class="msection-title">🧭 الخطوة التالية</div>
 <p class="mnext-text">${x.action||"لا توجد ملاحظة"}</p>
 </div>
+
 
 <div class="msection">
 <div class="msection-title">الإشارات والتحذيرات والمحفزات</div>
@@ -2018,10 +2200,12 @@ ${(!signals && !warnings && !catalysts)?'<span style="color:var(--muted)">لا �
 
 `;
 
+
 document.getElementById("modal")
 .classList.add("open");
 
 }
+
 
 function closeModal(){
 
@@ -2030,10 +2214,12 @@ document.getElementById("modal")
 
 }
 
+
 async function loadData(){
 
 document.getElementById("updated")
 .textContent="جارٍ تحديث البيانات...";
+
 
 try{
 
@@ -2041,6 +2227,7 @@ const r=
 await fetch(
 "dashboard_data.json?"+Date.now()
 );
+
 
 if(!r.ok){
 
@@ -2050,18 +2237,22 @@ throw new Error(
 
 }
 
+
 const j=await r.json();
+
 
 data=
 Array.isArray(j)
 ?j
 :(j.stocks||[]);
 
+
 if(!Array.isArray(data)){
 
 data=[];
 
 }
+
 
 document.getElementById("updated")
 .textContent=
@@ -2071,19 +2262,25 @@ j.updated_at ||
 new Date().toLocaleString("ar-SA")
 );
 
+
 await loadPulse();
 
+
 render();
+
 
 }catch(e){
 
 console.error(e);
 
+
 data=[];
+
 
 document.getElementById("updated")
 .textContent=
 "تعذر تحميل البيانات";
+
 
 document.getElementById("rows").innerHTML=
 `
@@ -2098,11 +2295,13 @@ document.getElementById("rows").innerHTML=
 
 }
 
+
 // ==========================================================
 // التبديل بين "الرئيسية" و"السجل التاريخي"
 // ==========================================================
 
 const ALL_VIEWS=["home","stocks","filter","history","notifications","settings"];
+
 
 function showView(view){
 
@@ -2136,6 +2335,7 @@ loadNotifications();
 
 }
 
+
 let historyLoaded=false;
 let stocksLoaded=false;
 let notifLoaded=false;
@@ -2147,6 +2347,7 @@ rsiMax:100,
 liquidity:"all",
 spring:"all",
 };
+
 
 function applyAdvancedFilters(){
 
@@ -2172,6 +2373,7 @@ render();
 
 }
 
+
 function resetAdvancedFilters(){
 
 document.getElementById("fltScoreMin").value=0;
@@ -2182,6 +2384,7 @@ document.getElementById("fltSpring").value="all";
 applyAdvancedFilters();
 
 }
+
 
 // -------------------------------------------------
 // قائمة الأسهم الكاملة (كل ما رصده الرادار، مؤهل أو لا)
@@ -2230,19 +2433,20 @@ const qualified=qualifiedTickers.has(symbol);
 
 return `
 
-<div class="row" style="grid-template-columns:90px 1fr 1fr 1fr 1.3fr">
+<div class="row row-stocks">
 
 <div class="ticker">
 <div class="coin">${symbol}</div>
 </div>
 
-<div class="cell"><b>${c.split_date||"N/A"}</b></div>
+<div class="cell"><small>تاريخ التقسيم</small><b>${c.split_date||"N/A"}</b></div>
 
-<div class="cell"><b>${c.days??"N/A"}</b></div>
+<div class="cell"><small>الأيام</small><b>${c.days??"N/A"}</b></div>
 
-<div class="cell"><b style="font-size:12.5px">${c.company||"—"}</b></div>
+<div class="cell"><small>الشركة</small><b style="font-size:12.5px">${c.company||"—"}</b></div>
 
 <div>
+<small class="hide-sm">الحالة</small>
 <span class="pill ${qualified?'pill-ready':'pill-wait-support'}">
 ${qualified?"✓ مؤهل حاليًا":"غير مؤهل بعد/مستبعد"}
 </span>
@@ -2267,6 +2471,7 @@ document.getElementById("stocksRows").innerHTML=
 }
 
 }
+
 
 // -------------------------------------------------
 // الإشعارات: سجل أحداث زمني من stock_history.json
@@ -2374,9 +2579,242 @@ box.innerHTML=
 
 }
 
+
 // -------------------------------------------------
 // مقارنة الأسهم النشطة حاليًا بنمط النجاح التاريخي + نصيحة
 // -------------------------------------------------
+
+function renderPatternAnalysis(pattern){
+
+const box=document.getElementById("patternRows");
+
+if(!box){
+return;
+}
+
+if(!pattern || (!pattern.completed_count && !pattern.expired_count)){
+
+box.innerHTML=
+`<div class="cmp-card"><p>لا توجد حالات مكتملة أو منتهية بعد - سيظهر تحليل الأنماط هنا مع تراكم البيانات (يحتاج على الأقل شهرًا إلى شهرين من التشغيل).</p></div>`;
+
+return;
+
+}
+
+function statRow(label, successVal, failureVal, unit){
+return {label, successVal, failureVal, unit};
+}
+
+function renderCol(title, cls, stats, count){
+
+if(!stats){
+return `<div class="pattern-col ${cls}"><h3>${title}</h3><p style="color:var(--muted);font-size:13px">لا توجد بيانات كافية بعد.</p></div>`;
+}
+
+const signalsHtml=(stats.top_signals||[])
+.map(s=>`• ${s.signal} (${s.percent}%)`)
+.join("<br>");
+
+return `
+<div class="pattern-col ${cls}">
+<h3>${title} (${stats.count} حالة)</h3>
+
+<div class="pattern-stat"><span>متوسط RSI عند الدخول</span><b>${stats.avg_entry_rsi??"N/A"}</b></div>
+<div class="pattern-stat"><span>متوسط Score%</span><b>${stats.avg_entry_score_percent??"N/A"}%</b></div>
+<div class="pattern-stat"><span>متوسط اختبارات الدعم</span><b>${stats.avg_entry_support_tests??"N/A"}</b></div>
+<div class="pattern-stat"><span>متوسط الارتدادات الناجحة</span><b>${stats.avg_entry_rebounds??"N/A"}</b></div>
+<div class="pattern-stat"><span>RSI كان يتحسن</span><b>${stats.rsi_improving_percent??"N/A"}%</b></div>
+<div class="pattern-stat"><span>MACD كان يتحسن</span><b>${stats.macd_improving_percent??"N/A"}%</b></div>
+<div class="pattern-stat"><span>متوسط أعلى صعود</span><b>${stats.avg_max_gain_percent??"N/A"}%</b></div>
+<div class="pattern-stat"><span>وصلت +100%</span><b>${stats.reached_100_percent??"N/A"}%</b></div>
+<div class="pattern-stat"><span>وصلت +200%</span><b>${stats.reached_200_percent??"N/A"}%</b></div>
+
+<div class="pattern-signals">
+<b style="font-size:12.5px">أكثر الإشارات تكرارًا:</b><br>
+${signalsHtml||"لا توجد"}
+</div>
+
+</div>
+`;
+
+}
+
+box.innerHTML=`
+
+<div class="cmp-card" style="margin-bottom:14px">
+<b>نسبة النجاح الإجمالية: ${pattern.success_rate_percent??"N/A"}%</b>
+<p>${pattern.completed_count} حالة ناجحة (+70%) مقابل ${pattern.expired_count} حالة فشلت خلال 60 يومًا. ${pattern.note}</p>
+</div>
+
+<div class="pattern-cols">
+${renderCol("✅ الحالات الناجحة", "success", pattern.success)}
+${renderCol("❌ الحالات الفاشلة", "failure", pattern.failure)}
+</div>
+
+
+<div class="section-title">
+<h2>💡 توصيات مبنية على البيانات</h2>
+<span>فروقات إحصائية حقيقية بين الناجح والفاشل - للمراجعة اليدوية فقط</span>
+</div>
+
+${renderRecommendations(pattern.recommendations)}
+
+`;
+
+}
+
+
+function renderRecommendations(rec){
+
+if(!rec){
+return `<div class="cmp-card"><p>لا توجد بيانات كافية بعد.</p></div>`;
+}
+
+if(!rec.ready){
+
+return `
+<div class="cmp-card">
+<b>⏳ لم تكتمل العينة بعد</b>
+<p>${rec.reason||""}</p>
+</div>
+`;
+
+}
+
+if(!rec.items || !rec.items.length){
+
+return `
+<div class="cmp-card">
+<b>لا توجد فروقات كبيرة بعد</b>
+<p>العينة كافية لكن لم يظهر فرق واضح بين الناجح والفاشل حتى الآن - استمر بالتشغيل.</p>
+</div>
+`;
+
+}
+
+const itemsHtml=rec.items.map(it=>`
+<div class="chip chip-info" style="display:block;margin-bottom:8px">💡 ${it.text}</div>
+`).join("");
+
+return `
+${itemsHtml}
+<div class="cmp-card" style="margin-top:6px;border-color:#3a2f0e;background:#1a1608">
+<p>⚠️ ${rec.disclaimer||""}</p>
+</div>
+`;
+
+}
+
+
+async function loadPatternAnalysis(){
+
+try{
+
+const r=await fetch("pattern_analysis.json?"+Date.now());
+
+const pattern=r.ok ? await r.json() : null;
+
+renderPatternAnalysis(pattern);
+
+}catch(e){
+
+console.error(e);
+
+const box=document.getElementById("patternRows");
+
+if(box){
+box.innerHTML=`<div class="error">تعذر تحميل pattern_analysis.json</div>`;
+}
+
+}
+
+}
+
+
+// -------------------------------------------------
+// بطاقة السهم الكاملة في السجل التاريخي (عند الضغط على صف)
+// -------------------------------------------------
+
+let historyMapCache={};
+
+
+function openHistoryCard(ticker){
+
+const rec=historyMapCache[ticker];
+
+if(!rec){
+return;
+}
+
+const snap=rec.entry_snapshot||{};
+
+document.getElementById("mtitle").textContent=
+ticker+" — بطاقة السجل التاريخي الكاملة";
+
+const dailyPoints=(rec.daily_log||[])
+.map((p,i)=>`
+<div class="daily-log-point">
+<small>${i===0?"الدخول":"يوم "+i}</small>
+<b>${fmt(p.price)}</b>
+<small class="${p.gain_pct>=0?'pos':'neg'}">${p.gain_pct>=0?"+":""}${p.gain_pct}%</small>
+</div>
+`).join("");
+
+const outcomeNote=
+rec.status==="COMPLETED"
+? `<div class="liq-detail-box liq-detail-pos"><b>🎯 نجح</b><p>${rec.behavior_note||""}</p></div>`
+: rec.status==="EXPIRED"
+? `<div class="liq-detail-box liq-detail-warn"><b>❌ فشل (سبب مبدئي)</b><p>${rec.failure_reason||""}<br>${rec.behavior_note||""}</p></div>`
+: `<div class="liq-detail-box liq-detail-info"><b>⏳ قيد المتابعة</b><p>ما زال ضمن مهلة الـ60 يومًا.</p></div>`;
+
+document.getElementById("mbody").innerHTML=`
+
+<div class="msection">
+<div class="msection-title">📋 بطاقة الدخول</div>
+<div class="tgrid">
+
+<div class="tcard"><span>تاريخ ووقت الدخول</span><b>${rec.first_seen_datetime||rec.first_seen||"N/A"}</b></div>
+<div class="tcard"><span>سعر الدخول للرادار</span><b>${fmt(snap.price)}</b></div>
+<div class="tcard"><span>سعر الدعم وقت الرصد</span><b>${fmt(rec.reference_price)}</b></div>
+<div class="tcard"><span>المسافة عن الدعم</span><b>${snap.distance_from_support_pct??"N/A"}%</b></div>
+<div class="tcard"><span>Reverse Split</span><b>${snap.split_date||"N/A"} (${snap.split_ratio??"N/A"})</b></div>
+<div class="tcard"><span>الأيام منذ التقسيم عند الدخول</span><b>${snap.days_since_split??"N/A"}</b></div>
+<div class="tcard"><span>Float</span><b>${fmtNumber(snap.float_shares)}</b></div>
+<div class="tcard"><span>Short</span><b>${fmtNumber(snap.short_shares)}</b></div>
+<div class="tcard"><span>RSI / MACD</span><b>${snap.rsi??"N/A"} / ${snap.macd!=null?Number(snap.macd).toFixed(4):"N/A"}</b></div>
+<div class="tcard"><span>MA20 / MA50</span><b>${fmt(snap.ma20)} / ${fmt(snap.ma50)}</b></div>
+<div class="tcard"><span>الحجم عند الدخول</span><b>${fmtNumber(snap.volume)}</b></div>
+<div class="tcard"><span>اختبارات الدعم / الارتدادات</span><b>${snap.support_tests??"N/A"} / ${snap.half_successful_tests??"N/A"}</b></div>
+<div class="tcard"><span>Score عند الدخول</span><b>${snap.score_percent??"N/A"}%</b></div>
+<div class="tcard"><span>سبب الدخول</span><b style="font-size:13px">${snap.entry_reason||"N/A"}</b></div>
+
+</div>
+</div>
+
+
+<div class="msection">
+<div class="msection-title">📈 النتيجة حتى الآن</div>
+<div class="tgrid">
+<div class="tcard"><span>أعلى سعر وصله</span><b>${fmt(rec.max_price_since_entry)}</b></div>
+<div class="tcard"><span>أعلى نسبة صعود</span><b class="${(rec.max_gain_percent||0)>=0?'pos':'neg'}">${rec.max_gain_percent??"N/A"}%</b></div>
+<div class="tcard"><span>الأيام حتى القمة</span><b>${rec.days_to_peak??"N/A"}</b></div>
+<div class="tcard"><span>وصل +70% / +100% / +200%؟</span><b>${rec.reached_70?"✓":"✗"} / ${rec.reached_100?"✓":"✗"} / ${rec.reached_200?"✓":"✗"}</b></div>
+</div>
+</div>
+
+${outcomeNote}
+
+<div class="msection">
+<div class="msection-title">🗓️ السجل الزمني اليومي</div>
+<div class="daily-log-track">${dailyPoints||"لا توجد نقاط مسجّلة بعد"}</div>
+</div>
+
+`;
+
+document.getElementById("modal").classList.add("open");
+
+}
+
 
 function renderComparison(caseStudy, historyMap){
 
@@ -2457,6 +2895,7 @@ ${advice}
 
 }
 
+
 function statusBadgeHistory(status){
 
 const map={
@@ -2470,6 +2909,7 @@ const found=map[status] || ["pill-wait-support", status||"N/A"];
 return `<span class="pill ${found[0]}">${found[1]}</span>`;
 
 }
+
 
 async function loadHistory(){
 
@@ -2527,6 +2967,10 @@ document.getElementById("cs-signals").textContent=
 
 renderComparison(caseStudy, historyMap);
 
+loadPatternAnalysis();
+
+historyMapCache=historyMap || {};
+
 // ---------------- جدول كل الأسهم المتابَعة ----------------
 
 const entries=Object.values(historyMap || {});
@@ -2558,27 +3002,29 @@ gain==null ? "" : (gain>=70 ? "pos" : "");
 
 return `
 
-<div class="row" style="grid-template-columns:90px 1fr 1fr 1fr 1fr 1fr 1fr">
+<div class="row row-history history-detail-row" onclick="openHistoryCard('${rec.ticker}')">
 
 <div class="ticker">
 <div class="coin">${rec.ticker||"N/A"}</div>
 </div>
 
-<div class="cell"><b>${rec.first_seen||"N/A"}</b></div>
+<div class="cell"><small>الدخول</small><b>${rec.first_seen||"N/A"}</b></div>
 
-<div class="cell"><b>${fmt(rec.reference_price)}</b></div>
+<div class="cell"><small>سعر المرجع</small><b>${fmt(rec.reference_price)}</b></div>
 
-<div class="cell"><b>${fmt(rec.last_price)}</b></div>
+<div class="cell"><small>آخر سعر</small><b>${fmt(rec.last_price)}</b></div>
 
 <div class="cell">
+<small>أعلى صعود</small>
 <b class="${gainClass}">
 ${gain!=null ? gain.toFixed(1)+"%" : "N/A"}
 </b>
 </div>
 
-<div>${statusBadgeHistory(rec.status)}</div>
+<div><small class="hide-sm">الحالة</small>${statusBadgeHistory(rec.status)}</div>
 
 <div class="cell">
+<small>أيام حتى +70%</small>
 <b>${rec.days_to_complete_70 ?? "-"}</b>
 </div>
 
@@ -2606,12 +3052,14 @@ document.getElementById("historyRows").innerHTML=
 
 }
 
+
 document
 .getElementById("search")
 .addEventListener(
 "input",
 render
 );
+
 
 document
 .getElementById("filters")
@@ -2624,19 +3072,23 @@ if(e.target.dataset.filter){
 currentFilter=
 e.target.dataset.filter;
 
+
 document
 .querySelectorAll("#filters button")
 .forEach(
 b=>b.classList.remove("active")
 );
 
+
 e.target.classList.add("active");
+
 
 render();
 
 }
 
 });
+
 
 window.onclick=e=>{
 
@@ -2647,6 +3099,7 @@ closeModal();
 }
 
 };
+
 
 loadData();
 
