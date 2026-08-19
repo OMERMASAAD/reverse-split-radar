@@ -29,7 +29,7 @@ History Tracker - Reverse Split Radar
 """
 
 import json
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 from collections import Counter
 
 import yfinance as yf
@@ -52,6 +52,22 @@ EXPIRE_AFTER_DAYS = 60
 
 # أقصى عدد نقاط يومية تُحفظ لكل سهم (يطابق سقف المتابعة + هامش)
 MAX_DAILY_LOG_POINTS = 65
+
+# ============================================================
+# كشف "لحظة الانفجار" - عندما يقفز سهم كان خاملاً خلال يوم واحد
+# فقط (بين قراءتين يوميتين متتاليتين). عند الاكتشاف، نرجع بالزمن
+# ونجلب بيانات ذلك اليوم بدقة 5 دقائق لإعادة بناء اللحظة كاملة.
+# ============================================================
+
+# أقل نسبة قفزة خلال يوم واحد لاعتبارها "انفجارًا" يستحق الدراسة
+EXPLOSION_MIN_DAY_JUMP = 70.0
+
+# عتبات تصنيف شدة الانفجار (خلال نفس اليوم)
+EXPLOSION_TIER_STRONG = 100.0
+EXPLOSION_TIER_EXCEPTIONAL = 200.0
+
+# yfinance يوفر بيانات فريم 5 دقائق لآخر 60 يومًا فقط - يطابق
+# بالضبط سقف متابعتنا (EXPIRE_AFTER_DAYS)، فلا حاجة لأي تعديل هناك
 
 
 def safe_float(x):
@@ -100,6 +116,119 @@ def get_live_price(ticker):
     except Exception as e:
         print(f"ERROR fetching price for {ticker}: {e}")
         return None
+
+
+def classify_explosion_tier(day_jump_pct):
+
+    if day_jump_pct >= EXPLOSION_TIER_EXCEPTIONAL:
+        return "استثنائي"
+
+    if day_jump_pct >= EXPLOSION_TIER_STRONG:
+        return "قوي"
+
+    return "عادي"
+
+
+def analyze_explosion_intraday(ticker, explosion_date):
+    """
+    عند اكتشاف قفزة يومية كبيرة (يوم انفجار)، نجلب بيانات ذلك
+    اليوم بالتحديد على فريم 5 دقائق ونعيد بناء اللحظة: القاع قبل
+    الانفجار، القمة، الوقت بالدقائق بينهما، والحجم مقارنة بمتوسطه.
+
+    yfinance يدعم فريم 5m لآخر 60 يومًا فقط - يطابق سقف متابعتنا.
+    """
+
+    result = {
+        "pre_explosion_low": None,
+        "pre_explosion_low_time": None,
+        "post_explosion_high": None,
+        "post_explosion_high_time": None,
+        "minutes_to_peak": None,
+        "explosion_volume": None,
+        "explosion_volume_ratio": None,
+    }
+
+    try:
+
+        stock = yf.Ticker(ticker)
+
+        # نطلب يومين (اليوم + اليوم السابق) لضمان التقاط بداية
+        # الحركة حتى لو بدأت قبل منتصف الليل بقليل بتوقيت السوق
+        df = stock.history(
+            start=explosion_date - timedelta(days=2),
+            end=explosion_date + timedelta(days=1),
+            interval="5m",
+            auto_adjust=False,
+            prepost=True,
+        )
+
+        if df is None or df.empty:
+            return result
+
+        day_data = df[df.index.date == explosion_date]
+
+        if day_data.empty or len(day_data) < 2:
+            return result
+
+        low_idx = day_data["Low"].idxmin()
+        low_price = safe_float(day_data["Low"].min())
+
+        after_low = day_data[day_data.index >= low_idx]
+
+        if after_low.empty:
+            return result
+
+        high_idx = after_low["High"].idxmax()
+        high_price = safe_float(after_low["High"].max())
+
+        minutes_to_peak = int(
+            (high_idx - low_idx).total_seconds() / 60
+        )
+
+        explosion_window = day_data[
+            (day_data.index >= low_idx) & (day_data.index <= high_idx)
+        ]
+
+        explosion_volume = safe_float(
+            explosion_window["Volume"].sum()
+        )
+
+        avg_5m_volume = safe_float(
+            df["Volume"].mean()
+        )
+
+        explosion_volume_ratio = None
+
+        if (
+            explosion_volume is not None
+            and avg_5m_volume is not None
+            and avg_5m_volume > 0
+            and len(explosion_window) > 0
+        ):
+
+            avg_window_volume = avg_5m_volume * len(explosion_window)
+
+            if avg_window_volume > 0:
+                explosion_volume_ratio = round(
+                    explosion_volume / avg_window_volume, 2
+                )
+
+        result.update({
+            "pre_explosion_low": low_price,
+            "pre_explosion_low_time": low_idx.strftime("%H:%M"),
+            "post_explosion_high": high_price,
+            "post_explosion_high_time": high_idx.strftime("%H:%M"),
+            "minutes_to_peak": minutes_to_peak,
+            "explosion_volume": explosion_volume,
+            "explosion_volume_ratio": explosion_volume_ratio,
+        })
+
+        return result
+
+    except Exception as e:
+
+        print(f"ERROR analyze_explosion_intraday {ticker}: {e}")
+        return result
 
 
 def register_new_entries(history, radar_results):
@@ -365,6 +494,15 @@ def update_tracking_entries(history):
 
         daily_log = rec.setdefault("daily_log", [])
 
+        # نلتقط "أمس" *قبل* أي تعديل على السجل، لاستخدامه في كشف
+        # القفزة اليومية (انفجار خلال يوم واحد) بدقة
+        if daily_log and daily_log[-1]["date"] == today_str:
+            previous_day_entry = (
+                daily_log[-2] if len(daily_log) >= 2 else None
+            )
+        else:
+            previous_day_entry = daily_log[-1] if daily_log else None
+
         if daily_log and daily_log[-1]["date"] == today_str:
 
             daily_log[-1]["price"] = price
@@ -380,6 +518,57 @@ def update_tracking_entries(history):
 
         if len(daily_log) > MAX_DAILY_LOG_POINTS:
             rec["daily_log"] = daily_log[-MAX_DAILY_LOG_POINTS:]
+
+        # ---- كشف "يوم انفجار": قفزة كبيرة خلال يوم واحد فقط ----
+
+        if (
+            previous_day_entry is not None
+            and previous_day_entry.get("price")
+            and previous_day_entry["price"] > 0
+        ):
+
+            day_jump_pct = (
+                (price - previous_day_entry["price"])
+                / previous_day_entry["price"]
+            ) * 100.0
+
+            if day_jump_pct >= EXPLOSION_MIN_DAY_JUMP:
+
+                intraday = analyze_explosion_intraday(ticker, today)
+
+                explosion_event = {
+                    "date": today_str,
+                    "tier": classify_explosion_tier(day_jump_pct),
+                    "day_jump_percent": round(day_jump_pct, 2),
+                    "price_before": previous_day_entry["price"],
+                    "price_after": price,
+
+                    # حالة "مرحلة الركود" (آخر ما نعرفه عن السهم
+                    # قبل الانفجار مباشرة - من بطاقة الدخول)
+                    "pre_explosion_context": {
+                        "rsi": (rec.get("entry_snapshot") or {}).get("rsi"),
+                        "macd_improving":
+                            (rec.get("entry_snapshot") or {}).get("macd_improving"),
+                        "ma20": (rec.get("entry_snapshot") or {}).get("ma20"),
+                        "float_shares":
+                            (rec.get("entry_snapshot") or {}).get("float_shares"),
+                        "days_since_split":
+                            (rec.get("entry_snapshot") or {}).get("days_since_split"),
+                        "days_quiet_before_explosion": days_since_entry,
+                    },
+
+                    # تفاصيل اللحظة نفسها (بدقة 5 دقائق)
+                    **intraday,
+                }
+
+                explosions = rec.setdefault("explosion_events", [])
+                explosions.append(explosion_event)
+
+                print(
+                    f"🚀 انفجار مكتشف: {ticker} "
+                    f"({explosion_event['tier']}, "
+                    f"+{explosion_event['day_jump_percent']}% خلال يوم واحد)"
+                )
 
         # ---- أعلى سعر / أعلى نسبة صعود / يوم القمة ----
 

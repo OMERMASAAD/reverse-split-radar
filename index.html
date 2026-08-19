@@ -2767,6 +2767,20 @@ rec.status==="COMPLETED"
 ? `<div class="liq-detail-box liq-detail-warn"><b>❌ فشل (سبب مبدئي)</b><p>${rec.failure_reason||""}<br>${rec.behavior_note||""}</p></div>`
 : `<div class="liq-detail-box liq-detail-info"><b>⏳ قيد المتابعة</b><p>ما زال ضمن مهلة الـ60 يومًا.</p></div>`;
 
+const explosionEventsHtml=(rec.explosion_events||[]).map(ev=>`
+<div class="liq-detail-box liq-detail-warn" style="margin-bottom:10px">
+<b>🚀 انفجار ${ev.tier} - ${ev.date} (+${ev.day_jump_percent}% خلال يوم واحد)</b>
+<p>
+من ${fmt(ev.price_before)} إلى ${fmt(ev.price_after)}
+${ev.pre_explosion_low!=null?`<br>القاع قبل الانفجار: ${fmt(ev.pre_explosion_low)} الساعة ${ev.pre_explosion_low_time}`:""}
+${ev.post_explosion_high!=null?`<br>القمة: ${fmt(ev.post_explosion_high)} الساعة ${ev.post_explosion_high_time}`:""}
+${ev.minutes_to_peak!=null?`<br>استغرق ${ev.minutes_to_peak} دقيقة للوصول للقمة`:""}
+${ev.explosion_volume_ratio!=null?`<br>حجم التداول ${ev.explosion_volume_ratio}x من المعتاد أثناء الانفجار`:""}
+${ev.pre_explosion_context?.days_quiet_before_explosion!=null?`<br>كان خاملاً لمدة ${ev.pre_explosion_context.days_quiet_before_explosion} يوم قبلها`:""}
+</p>
+</div>
+`).join("");
+
 document.getElementById("mbody").innerHTML=`
 
 <div class="msection">
@@ -2803,6 +2817,8 @@ document.getElementById("mbody").innerHTML=`
 </div>
 
 ${outcomeNote}
+
+${explosionEventsHtml}
 
 <div class="msection">
 <div class="msection-title">🗓️ السجل الزمني اليومي</div>
