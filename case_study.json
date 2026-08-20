@@ -1,24 +1,28 @@
 {
-  "generated_at": "2026-08-20T19:03:23.026683",
-  "completed_count": 17,
-  "avg_days_to_target_70": 0.65,
-  "avg_entry_rsi": 49.89,
-  "avg_entry_score_percent": 52.71,
-  "avg_entry_core": 5.06,
-  "avg_entry_support_tests": 4.0,
-  "avg_max_gain_percent": 2475.2,
+  "generated_at": "2026-08-20T19:21:37.279949",
+  "completed_count": 20,
+  "avg_days_to_target_70": 0.55,
+  "avg_entry_rsi": 51.71,
+  "avg_entry_score_percent": 51.91,
+  "avg_entry_core": 4.95,
+  "avg_entry_support_tests": 4.15,
+  "avg_max_gain_percent": 2254.21,
   "top_recurring_signals_at_entry": [
     {
       "signal": "Reverse Split حديث",
-      "count": 17
+      "count": 20
     },
     {
       "signal": "موعد نتائج مالية",
-      "count": 17
+      "count": 20
     },
     {
       "signal": "السعر قريب من MA20",
       "count": 8
+    },
+    {
+      "signal": "الدعم العام اختُبر 3 مرات",
+      "count": 5
     },
     {
       "signal": "نتائج مالية قادمة",
@@ -34,10 +38,6 @@
     },
     {
       "signal": "الدعم العام اختُبر 6 مرات",
-      "count": 3
-    },
-    {
-      "signal": "الدعم العام اختُبر 3 مرات",
       "count": 3
     },
     {
@@ -66,6 +66,9 @@
     "PRPL",
     "TRIB",
     "SGLY",
-    "STKH"
+    "STKH",
+    "OFAL",
+    "CSAI",
+    "YAAS"
   ]
 }
