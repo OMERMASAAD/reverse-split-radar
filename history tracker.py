@@ -38,6 +38,7 @@ RADAR_RESULTS_FILE = "reverse_split_dashboard.json"
 HISTORY_FILE = "stock_history.json"
 CASE_STUDY_FILE = "case_study.json"
 PATTERN_ANALYSIS_FILE = "pattern_analysis.json"
+EXPLOSION_ANALYSIS_FILE = "explosion_analysis.json"
 
 # هدف المتابعة الأساسي المعتمد في المشروع (لا تغييره بدون موافقة)
 TARGET_GAIN_PERCENT = 70.0
@@ -870,6 +871,132 @@ def generate_recommendations(success, failure):
     }
 
 
+def build_explosion_analysis(history):
+    """
+    النموذج الجديد الوحيد المعتمد لتحليل السلوك: يجمع كل أحداث
+    الانفجار (explosion_events) من كل الأسهم في سجل واحد، ويحسب
+    متوسطات ونمط مشترك - بدل مقارنة أرقام آنية بلا سياق واضح.
+
+    هذا يستبدل قسم "مقارنة الأسهم النشطة" القديم بالكامل.
+    """
+
+    all_events = []
+
+    for ticker, rec in history.items():
+
+        for ev in rec.get("explosion_events", []):
+
+            enriched = dict(ev)
+            enriched["ticker"] = ticker
+
+            all_events.append(enriched)
+
+    if not all_events:
+
+        return {
+            "generated_at": datetime.now().isoformat(),
+            "total_explosions": 0,
+            "note": (
+                "لم يُرصد أي انفجار بعد - سيظهر التحليل هنا بمجرد "
+                "اكتشاف أول قفزة يومية كبيرة."
+            ),
+        }
+
+    def avg(values):
+        values = [v for v in values if v is not None]
+        return round(sum(values) / len(values), 2) if values else None
+
+    def pct(count, total):
+        return round((count / total) * 100, 1) if total else None
+
+    total = len(all_events)
+
+    tier_counts = Counter(ev.get("tier") for ev in all_events)
+
+    minutes_list = [ev.get("minutes_to_peak") for ev in all_events]
+    jump_list = [ev.get("day_jump_percent") for ev in all_events]
+    volume_ratio_list = [
+        ev.get("explosion_volume_ratio") for ev in all_events
+    ]
+
+    contexts = [
+        ev.get("pre_explosion_context") or {}
+        for ev in all_events
+    ]
+
+    rsi_list = [c.get("rsi") for c in contexts]
+
+    days_quiet_list = [
+        c.get("days_quiet_before_explosion") for c in contexts
+    ]
+
+    float_list = [
+        c.get("float_shares") for c in contexts
+        if c.get("float_shares") is not None
+    ]
+
+    macd_improving_count = sum(
+        1 for c in contexts if c.get("macd_improving")
+    )
+
+    recent_reverse_split_count = sum(
+        1 for c in contexts
+        if (c.get("days_since_split") or 999) <= 35
+    )
+
+    # آخر 15 انفجارًا (الأحدث أولًا) لعرضها كسجل مباشر
+    recent = sorted(
+        all_events, key=lambda e: e.get("date", ""), reverse=True
+    )[:15]
+
+    recent_list = [
+        {
+            "ticker": ev.get("ticker"),
+            "date": ev.get("date"),
+            "tier": ev.get("tier"),
+            "day_jump_percent": ev.get("day_jump_percent"),
+            "minutes_to_peak": ev.get("minutes_to_peak"),
+        }
+        for ev in recent
+    ]
+
+    return {
+
+        "generated_at": datetime.now().isoformat(),
+
+        "total_explosions": total,
+
+        "tier_breakdown": {
+            "عادي": tier_counts.get("عادي", 0),
+            "قوي": tier_counts.get("قوي", 0),
+            "استثنائي": tier_counts.get("استثنائي", 0),
+        },
+
+        "avg_day_jump_percent": avg(jump_list),
+        "avg_minutes_to_peak": avg(minutes_list),
+        "avg_explosion_volume_ratio": avg(volume_ratio_list),
+
+        "avg_pre_explosion_rsi": avg(rsi_list),
+        "avg_days_quiet_before": avg(days_quiet_list),
+        "avg_float_shares": avg(float_list),
+
+        "macd_improving_before_percent": pct(
+            macd_improving_count, total
+        ),
+
+        "recent_reverse_split_percent": pct(
+            recent_reverse_split_count, total
+        ),
+
+        "recent_explosions": recent_list,
+
+        "note": (
+            "تقرير وصفي لسلوك الانفجارات المرصودة فقط - لا يُستخدم "
+            "لتعديل أي شرط في الاستراتيجية تلقائيًا."
+        ),
+    }
+
+
 def build_pattern_analysis(history):
     """
     صفحة "ما الذي يتكرر؟" - تقارن مجموعتين: الناجحة (COMPLETED)
@@ -1077,6 +1204,12 @@ def main():
     save_json(PATTERN_ANALYSIS_FILE, pattern_analysis)
 
     print(f"تم حفظ: {PATTERN_ANALYSIS_FILE}")
+
+    explosion_analysis = build_explosion_analysis(history)
+
+    save_json(EXPLOSION_ANALYSIS_FILE, explosion_analysis)
+
+    print(f"تم حفظ: {EXPLOSION_ANALYSIS_FILE}")
 
     print("=" * 60)
     print("انتهى تحديث السجل التاريخي.")

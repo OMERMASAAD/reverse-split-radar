@@ -1264,12 +1264,12 @@ data-filter="all"
 
 
 <div class="section-title">
-<h2>🧭 مقارنة الأسهم النشطة بنمط النجاح</h2>
-<span>تحليل تلقائي مبني على متوسطات الحالات المكتملة سابقًا</span>
+<h2>🚀 تحليل الانفجارات (النموذج الجديد)</h2>
+<span>كل الأسهم التي قفزت فجأة خلال يوم واحد بعد ركود - القاع/القمة/الوقت/الحجم بدقة</span>
 </div>
 
-<div id="comparisonRows">
-<div class="loading">جارٍ التحليل...</div>
+<div id="explosionRows">
+<div class="loading">جارٍ تحميل تحليل الانفجارات...</div>
 </div>
 
 
@@ -2832,82 +2832,85 @@ document.getElementById("modal").classList.add("open");
 }
 
 
-function renderComparison(caseStudy, historyMap){
+function renderExplosionAnalysis(exp){
 
-const box=document.getElementById("comparisonRows");
+const box=document.getElementById("explosionRows");
 
 if(!box){
 return;
 }
 
-if(!caseStudy || !caseStudy.completed_count){
+if(!exp || !exp.total_explosions){
 
 box.innerHTML=
-`<div class="cmp-card"><p>لا توجد بيانات كافية بعد للمقارنة - '
-+'ستظهر التحليلات هنا بعد أول حالة ناجحة مكتملة.</p></div>`;
+`<div class="cmp-card"><p>${exp?.note||"لا توجد انفجارات مرصودة بعد."}</p></div>`;
 
 return;
 
 }
 
-const tracking=Object.values(historyMap || {})
-.filter(r=>r.status==="TRACKING");
+const tb=exp.tier_breakdown||{};
 
-if(!tracking.length){
-
-box.innerHTML=
-`<div class="cmp-card"><p>لا توجد أسهم قيد المتابعة حاليًا للمقارنة.</p></div>`;
-
-return;
-
-}
-
-box.innerHTML=
-
-tracking.map(rec=>{
-
-const snap=rec.entry_snapshot || {};
-
-const rsiDiff=
-(snap.rsi!=null && caseStudy.avg_entry_rsi!=null)
-? (snap.rsi - caseStudy.avg_entry_rsi)
-: null;
-
-const scoreDiff=
-(snap.score_percent!=null && caseStudy.avg_entry_score_percent!=null)
-? (snap.score_percent - caseStudy.avg_entry_score_percent)
-: null;
-
-let advice="بيانات غير كافية للمقارنة الدقيقة.";
-
-if(scoreDiff!=null){
-
-if(scoreDiff >= 0 && (rsiDiff==null || rsiDiff<=5)){
-advice="✅ يشبه نمط الحالات الناجحة سابقًا (Score قريب/أعلى من المتوسط الناجح).";
-}else if(scoreDiff < -10){
-advice="⚠️ أضعف وضوحًا من متوسط الحالات الناجحة - يحتاج مراقبة أدق قبل أي قرار.";
-}else{
-advice="🔎 ضمن النطاق المقبول تقريبًا، راقب تطور RSI وMACD القادم.";
-}
-
-}
-
-return `
-
-<div class="cmp-card">
-<b>${rec.ticker} - أعلى صعود حاليًا: ${rec.max_gain_percent!=null?rec.max_gain_percent.toFixed(1)+'%':'N/A'}</b>
-<p>
-Score عند الدخول: ${snap.score_percent??"N/A"}% (متوسط الناجحين: ${caseStudy.avg_entry_score_percent??"N/A"}%)
-<br>
-RSI عند الدخول: ${snap.rsi??"N/A"} (متوسط الناجحين: ${caseStudy.avg_entry_rsi??"N/A"})
-<br>
-${advice}
-</p>
+const recentHtml=(exp.recent_explosions||[]).map(ev=>`
+<div class="notif-item">
+<div class="notif-icon">🚀</div>
+<div class="notif-body">
+<b>${ev.ticker} - انفجار ${ev.tier} (+${ev.day_jump_percent}%)</b>
+<small>${ev.date} - استغرق ${ev.minutes_to_peak??"N/A"} دقيقة للقمة</small>
 </div>
+</div>
+`).join("");
+
+box.innerHTML=`
+
+<div class="cmp-card" style="margin-bottom:14px">
+<b>إجمالي الانفجارات المرصودة: ${exp.total_explosions}</b>
+<p>عادي: ${tb["عادي"]??0} | قوي: ${tb["قوي"]??0} | استثنائي: ${tb["استثنائي"]??0}</p>
+</div>
+
+<div class="tgrid" style="margin-bottom:16px">
+
+<div class="tcard"><span>متوسط القفزة اليومية</span><b>${exp.avg_day_jump_percent??"N/A"}%</b></div>
+<div class="tcard"><span>متوسط الوقت للقمة</span><b>${exp.avg_minutes_to_peak??"N/A"} دقيقة</b></div>
+<div class="tcard"><span>متوسط حجم الانفجار</span><b>${exp.avg_explosion_volume_ratio??"N/A"}x</b></div>
+<div class="tcard"><span>متوسط RSI قبل الانفجار (الركود)</span><b>${exp.avg_pre_explosion_rsi??"N/A"}</b></div>
+<div class="tcard"><span>متوسط أيام الركود قبله</span><b>${exp.avg_days_quiet_before??"N/A"} يوم</b></div>
+<div class="tcard"><span>متوسط Float</span><b>${fmtNumber(exp.avg_float_shares)}</b></div>
+<div class="tcard"><span>MACD كان يتحسن قبل الانفجار</span><b>${exp.macd_improving_before_percent??"N/A"}%</b></div>
+<div class="tcard"><span>Reverse Split حديث (≤35 يوم)</span><b>${exp.recent_reverse_split_percent??"N/A"}%</b></div>
+
+</div>
+
+<div class="msection-title" style="margin-bottom:10px">آخر الانفجارات المرصودة</div>
+
+${recentHtml||"لا توجد بعد"}
 
 `;
 
-}).join("");
+}
+
+
+async function loadExplosionAnalysis(){
+
+try{
+
+const r=await fetch("explosion_analysis.json?"+Date.now());
+
+const exp=r.ok ? await r.json() : null;
+
+renderExplosionAnalysis(exp);
+
+}catch(e){
+
+console.error(e);
+
+const box=document.getElementById("explosionRows");
+
+if(box){
+box.innerHTML=`<div class="error">تعذر تحميل explosion_analysis.json</div>`;
+}
+
+}
 
 }
 
@@ -2981,7 +2984,7 @@ document.getElementById("cs-signals").textContent=
 
 }
 
-renderComparison(caseStudy, historyMap);
+loadExplosionAnalysis();
 
 loadPatternAnalysis();
 
