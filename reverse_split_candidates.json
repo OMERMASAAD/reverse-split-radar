@@ -1,0 +1,436 @@
+[
+  {
+    "symbol": "CLDI",
+    "split_date": "2026-07-31",
+    "days": 20,
+    "reverse_split": "16:1 Reverse split",
+    "company": "Calidi Biotherapeutics Inc"
+  },
+  {
+    "symbol": "CSAI",
+    "split_date": "2026-07-31",
+    "days": 20,
+    "reverse_split": "30:1 Reverse split",
+    "company": "Cloudastructure Inc"
+  },
+  {
+    "symbol": "NEXR",
+    "split_date": "2026-07-31",
+    "days": 20,
+    "reverse_split": "11:1 Reverse split",
+    "company": "Nexera Technologies Ltd."
+  },
+  {
+    "symbol": "OFAL",
+    "split_date": "2026-07-31",
+    "days": 20,
+    "reverse_split": "10:1 Reverse split",
+    "company": "Ofa Group"
+  },
+  {
+    "symbol": "YAAS",
+    "split_date": "2026-07-30",
+    "days": 21,
+    "reverse_split": "5:1 Reverse split",
+    "company": "Youxin Technology Ltd."
+  },
+  {
+    "symbol": "AMZE",
+    "split_date": "2026-07-27",
+    "days": 24,
+    "reverse_split": "8:1 Reverse split",
+    "company": "Amaze Holdings Inc"
+  },
+  {
+    "symbol": "SBEV",
+    "split_date": "2026-07-27",
+    "days": 24,
+    "reverse_split": "4:1 Reverse split",
+    "company": "Splash Beverage Group Inc"
+  },
+  {
+    "symbol": "SGLY",
+    "split_date": "2026-07-27",
+    "days": 24,
+    "reverse_split": "14:1 Reverse split",
+    "company": "Singularity Future Technology Ltd."
+  },
+  {
+    "symbol": "STKH",
+    "split_date": "2026-07-27",
+    "days": 24,
+    "reverse_split": "3:1 Reverse split",
+    "company": "Steakholder Foods Ltd."
+  },
+  {
+    "symbol": "VYNE",
+    "split_date": "2026-07-27",
+    "days": 24,
+    "reverse_split": "50:1 Reverse split",
+    "company": "Vyne Therapeutics Inc"
+  },
+  {
+    "symbol": "YARW",
+    "split_date": "2026-07-27",
+    "days": 24,
+    "reverse_split": "50:1 Reverse split",
+    "company": "Yarrow Bioscience Inc"
+  },
+  {
+    "symbol": "ZNB",
+    "split_date": "2026-07-27",
+    "days": 24,
+    "reverse_split": "8:1 Reverse split",
+    "company": "Zeta Network Group"
+  },
+  {
+    "symbol": "APUS",
+    "split_date": "2026-07-24",
+    "days": 27,
+    "reverse_split": "10:1 Reverse split",
+    "company": "Apimeds Pharmaceuticals Us Inc"
+  },
+  {
+    "symbol": "DBGI",
+    "split_date": "2026-07-24",
+    "days": 27,
+    "reverse_split": "40:1 Reverse split",
+    "company": "Digital Brands Group Inc"
+  },
+  {
+    "symbol": "FFAI",
+    "split_date": "2026-07-24",
+    "days": 27,
+    "reverse_split": "149.93:1 Reverse split",
+    "company": "Faraday Future Intelligent Electric Inc"
+  },
+  {
+    "symbol": "TRIB",
+    "split_date": "2026-07-24",
+    "days": 27,
+    "reverse_split": "30:1 Reverse split",
+    "company": "Trinity Biotech PLC"
+  },
+  {
+    "symbol": "MSS",
+    "split_date": "2026-07-22",
+    "days": 29,
+    "reverse_split": "5:1 Reverse split",
+    "company": "Maison Solutions Inc"
+  },
+  {
+    "symbol": "CANG",
+    "split_date": "2026-07-21",
+    "days": 30,
+    "reverse_split": "10:1 Reverse split",
+    "company": "Cango Inc"
+  },
+  {
+    "symbol": "XPON",
+    "split_date": "2026-07-21",
+    "days": 30,
+    "reverse_split": "12:1 Reverse split",
+    "company": "Expion360 Inc"
+  },
+  {
+    "symbol": "BANL",
+    "split_date": "2026-07-20",
+    "days": 31,
+    "reverse_split": "13:1 Reverse split",
+    "company": "Cbl International Ltd."
+  },
+  {
+    "symbol": "CCG",
+    "split_date": "2026-07-20",
+    "days": 31,
+    "reverse_split": "35:1 Reverse split",
+    "company": "Cheche Group Inc"
+  },
+  {
+    "symbol": "CDT",
+    "split_date": "2026-07-20",
+    "days": 31,
+    "reverse_split": "10:1 Reverse split",
+    "company": "Cdt Equity Inc"
+  },
+  {
+    "symbol": "CIIT",
+    "split_date": "2026-07-20",
+    "days": 31,
+    "reverse_split": "10:1 Reverse split",
+    "company": "Tianci International Inc"
+  },
+  {
+    "symbol": "DFNS",
+    "split_date": "2026-07-20",
+    "days": 31,
+    "reverse_split": "125:1 Reverse split",
+    "company": "T3 Defense Inc"
+  },
+  {
+    "symbol": "NIKI",
+    "split_date": "2026-07-20",
+    "days": 31,
+    "reverse_split": "10:1 Reverse split",
+    "company": "Niki Biosolutions Inc"
+  },
+  {
+    "symbol": "PRPL",
+    "split_date": "2026-07-20",
+    "days": 31,
+    "reverse_split": "25:1 Reverse split",
+    "company": "Purple Innovation Inc"
+  },
+  {
+    "symbol": "TOMZ",
+    "split_date": "2026-07-20",
+    "days": 31,
+    "reverse_split": "3:1 Reverse split",
+    "company": "Tomi Environmental Solutions Inc"
+  },
+  {
+    "symbol": "VIVK",
+    "split_date": "2026-07-17",
+    "days": 34,
+    "reverse_split": "20:1 Reverse split",
+    "company": "Vivakor Inc"
+  },
+  {
+    "symbol": "GNPX",
+    "split_date": "2026-07-16",
+    "days": 35,
+    "reverse_split": "22:1 Reverse split",
+    "company": "Genprex Inc"
+  },
+  {
+    "symbol": "JEM",
+    "split_date": "2026-07-14",
+    "days": 37,
+    "reverse_split": "12:1 Reverse split",
+    "company": "707 Cayman Holdings Ltd."
+  },
+  {
+    "symbol": "LGHL",
+    "split_date": "2026-07-14",
+    "days": 37,
+    "reverse_split": "9:1 Reverse split",
+    "company": "Lion Group Holding Ltd."
+  },
+  {
+    "symbol": "YXT",
+    "split_date": "2026-07-14",
+    "days": 37,
+    "reverse_split": "10:1 Reverse split",
+    "company": "Yxtcom Group Holding Ltd."
+  },
+  {
+    "symbol": "BIYA",
+    "split_date": "2026-07-13",
+    "days": 38,
+    "reverse_split": "10:1 Reverse split",
+    "company": "Baiya International Group Inc"
+  },
+  {
+    "symbol": "CCHH",
+    "split_date": "2026-07-13",
+    "days": 38,
+    "reverse_split": "10:1 Reverse split",
+    "company": "Cch Holdings Ltd."
+  },
+  {
+    "symbol": "CPOP",
+    "split_date": "2026-07-13",
+    "days": 38,
+    "reverse_split": "10:1 Reverse split",
+    "company": "Pop Culture Group Co Ltd."
+  },
+  {
+    "symbol": "EDBL",
+    "split_date": "2026-07-13",
+    "days": 38,
+    "reverse_split": "45:1 Reverse split",
+    "company": "Edible Garden Ag Inc"
+  },
+  {
+    "symbol": "FTFT",
+    "split_date": "2026-07-13",
+    "days": 38,
+    "reverse_split": "4:1 Reverse split",
+    "company": "Future Fintech Group Inc"
+  },
+  {
+    "symbol": "PSQH",
+    "split_date": "2026-07-13",
+    "days": 38,
+    "reverse_split": "15:1 Reverse split",
+    "company": "Psq Holdings Inc"
+  },
+  {
+    "symbol": "PWCM",
+    "split_date": "2026-07-13",
+    "days": 38,
+    "reverse_split": "25:1 Reverse split",
+    "company": "Powercompute Inc"
+  },
+  {
+    "symbol": "XAIR",
+    "split_date": "2026-07-13",
+    "days": 38,
+    "reverse_split": "20:1 Reverse split",
+    "company": "Beyond Air Inc"
+  },
+  {
+    "symbol": "YHC",
+    "split_date": "2026-07-13",
+    "days": 38,
+    "reverse_split": "100:1 Reverse split",
+    "company": "Lqr House Inc"
+  },
+  {
+    "symbol": "GIPR",
+    "split_date": "2026-07-10",
+    "days": 41,
+    "reverse_split": "10:1 Reverse split",
+    "company": "Generation Income Properties Inc"
+  },
+  {
+    "symbol": "YMAT",
+    "split_date": "2026-07-10",
+    "days": 41,
+    "reverse_split": "5:1 Reverse split",
+    "company": "J-star Holding Co Ltd."
+  },
+  {
+    "symbol": "ENLV",
+    "split_date": "2026-07-09",
+    "days": 42,
+    "reverse_split": "15:1 Reverse split",
+    "company": "Enlivex Ltd."
+  },
+  {
+    "symbol": "RBNE",
+    "split_date": "2026-07-09",
+    "days": 42,
+    "reverse_split": "15:1 Reverse split",
+    "company": "Robin Energy Ltd."
+  },
+  {
+    "symbol": "CGTL",
+    "split_date": "2026-07-07",
+    "days": 44,
+    "reverse_split": "15:1 Reverse split",
+    "company": "Creative Global Technology Holdings Ltd."
+  },
+  {
+    "symbol": "NCRA",
+    "split_date": "2026-07-07",
+    "days": 44,
+    "reverse_split": "30:1 Reverse split",
+    "company": "Nocera Inc"
+  },
+  {
+    "symbol": "PFSA",
+    "split_date": "2026-07-07",
+    "days": 44,
+    "reverse_split": "25:1 Reverse split",
+    "company": "Profusa Inc"
+  },
+  {
+    "symbol": "ABTC",
+    "split_date": "2026-07-06",
+    "days": 45,
+    "reverse_split": "15:1 Reverse split",
+    "company": "American Bitcoin Corp"
+  },
+  {
+    "symbol": "CRIS",
+    "split_date": "2026-07-06",
+    "days": 45,
+    "reverse_split": "20:1 Reverse split",
+    "company": "Curis Inc"
+  },
+  {
+    "symbol": "HKIT",
+    "split_date": "2026-07-06",
+    "days": 45,
+    "reverse_split": "25:1 Reverse split",
+    "company": "Hitek Global Inc"
+  },
+  {
+    "symbol": "JZ",
+    "split_date": "2026-07-06",
+    "days": 45,
+    "reverse_split": "30:1 Reverse split",
+    "company": "Jianzhi Education Technology Group Co Ltd."
+  },
+  {
+    "symbol": "NIPG",
+    "split_date": "2026-07-06",
+    "days": 45,
+    "reverse_split": "30:1 Reverse split",
+    "company": "Nip Group Inc"
+  },
+  {
+    "symbol": "NTCL",
+    "split_date": "2026-07-06",
+    "days": 45,
+    "reverse_split": "50:1 Reverse split",
+    "company": "Netclass Technology Inc"
+  },
+  {
+    "symbol": "NVVE",
+    "split_date": "2026-07-06",
+    "days": 45,
+    "reverse_split": "18:1 Reverse split",
+    "company": "Nuvve Holding Corp"
+  },
+  {
+    "symbol": "SLAI",
+    "split_date": "2026-07-06",
+    "days": 45,
+    "reverse_split": "7:1 Reverse split",
+    "company": "Solai Ltd."
+  },
+  {
+    "symbol": "SNAL",
+    "split_date": "2026-07-06",
+    "days": 45,
+    "reverse_split": "5:1 Reverse split",
+    "company": "Snail Inc"
+  },
+  {
+    "symbol": "SRXH",
+    "split_date": "2026-07-06",
+    "days": 45,
+    "reverse_split": "60:1 Reverse split",
+    "company": "Srx Global Inc"
+  },
+  {
+    "symbol": "GMEX",
+    "split_date": "2026-07-02",
+    "days": 49,
+    "reverse_split": "9:1 Reverse split",
+    "company": "Gmex Robotics Corp"
+  },
+  {
+    "symbol": "ALIT",
+    "split_date": "2026-07-01",
+    "days": 50,
+    "reverse_split": "20:1 Reverse split",
+    "company": "Alight Inc"
+  },
+  {
+    "symbol": "MQ",
+    "split_date": "2026-07-01",
+    "days": 50,
+    "reverse_split": "4:1 Reverse split",
+    "company": "Marqeta Inc"
+  },
+  {
+    "symbol": "RMTI",
+    "split_date": "2026-07-01",
+    "days": 50,
+    "reverse_split": "10:1 Reverse split",
+    "company": "Rockwell Medical Inc"
+  }
+]
