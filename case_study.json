@@ -1,32 +1,40 @@
 {
-  "generated_at": "2026-08-20T20:57:48.589944",
-  "completed_count": 20,
-  "avg_days_to_target_70": 0.55,
-  "avg_entry_rsi": 51.71,
-  "avg_entry_score_percent": 51.91,
-  "avg_entry_core": 4.95,
-  "avg_entry_support_tests": 4.15,
-  "avg_max_gain_percent": 2254.21,
+  "generated_at": "2026-08-21T15:08:10.406877",
+  "completed_count": 21,
+  "avg_days_to_target_70": 0.9,
+  "avg_entry_rsi": 51.67,
+  "avg_entry_score_percent": 52.56,
+  "avg_entry_core": 5.1,
+  "avg_entry_support_tests": 4.24,
+  "avg_max_gain_percent": 2150.53,
   "top_recurring_signals_at_entry": [
     {
       "signal": "Reverse Split حديث",
-      "count": 20
+      "count": 21
     },
     {
       "signal": "موعد نتائج مالية",
-      "count": 20
+      "count": 21
     },
     {
       "signal": "السعر قريب من MA20",
-      "count": 8
+      "count": 9
     },
     {
       "signal": "الدعم العام اختُبر 3 مرات",
       "count": 5
     },
     {
+      "signal": "الدعم العام اختُبر 6 مرات",
+      "count": 4
+    },
+    {
       "signal": "نتائج مالية قادمة",
       "count": 4
+    },
+    {
+      "signal": "السعر قريب من الدعم",
+      "count": 3
     },
     {
       "signal": "الدعم العام اختُبر 2 مرات",
@@ -37,19 +45,12 @@
       "count": 3
     },
     {
-      "signal": "الدعم العام اختُبر 6 مرات",
-      "count": 3
-    },
-    {
       "signal": "يوجد اختبار دعم واحد",
-      "count": 2
-    },
-    {
-      "signal": "الدعم العام اختُبر 5 مرات",
       "count": 2
     }
   ],
   "tickers_completed": [
+    "GDC",
     "FFAI",
     "AMIX",
     "NIPG",
