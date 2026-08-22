@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 import numpy as np
 import pandas as pd
 import yfinance as yf
+import pandas_ta as ta
 
 CANDIDATES_FILE = "reverse_split_candidates.json"
 DASHBOARD_FILE = "reverse_split_dashboard.json"
@@ -25,6 +26,59 @@ QUIET_VOLUME_RATIO = 1.50
 MAX_SHORT = 50000
 MAX_FLOAT = 4000000
 MAX_SCORE = 26
+
+# ============================================================
+# إعدادات مرجع "نصف الشمعة" (تصحيح بناءً على مراجعة الاستراتيجية:
+# المرجع أصبح القمة الحقيقية الأولى بعد التقسيم، وليس سعر الافتتاح)
+# ============================================================
+
+# أقصى نسبة صعود مسموحة للقمة الأولى بعد التقسيم فوق سعر الافتتاح.
+# إذا تجاوزتها، السهم يُستبعد كليًا من الرادار (نمط حركة مختلف).
+MAX_INITIAL_PEAK_RISE_PERCENT = 30.0
+
+# نسبة الارتداد الهابط من القمة المرشحة لاعتبارها "قمة مؤكدة"
+# (أي أن الانعكاس أصبح واضحًا وليس مجرد تذبذب يومي عادي)
+PEAK_CONFIRMATION_PULLBACK_PERCENT = 5.0
+
+# عدد الأيام المتتالية المطلوبة تحت القمة لتأكيد الارتداد المستمر
+PEAK_CONFIRMATION_DAYS = 3
+
+# ============================================================
+# إعدادات نمط "Spring" (سحب سيولة ← استعادة ← اختبار مقاومة ←
+# ارتداد للدعم ← تقاطع MACD إيجابي) - إشارة عرض إضافية فقط،
+# لا تؤثر على Score/Core/Rating الحالية
+# ============================================================
+
+# نسبة الكسر تحت الدعم لاعتباره "سحب سيولة" حقيقي (2%)
+SPRING_SWEEP_BUFFER = 0.02
+
+# نسبة الاقتراب من المقاومة القريبة لاعتباره "اختبار مقاومة"
+SPRING_RETEST_PROXIMITY = 0.95
+
+# عدد الأيام للبحث عن التسلسل الكامل
+SPRING_LOOKBACK_DAYS = 40
+
+# ============================================================
+# إعدادات كشف "حالة السيولة والقروبات" (ميزة جديدة - عرض فقط،
+# لا تؤثر إطلاقًا على Score/Core/Rating الحالية)
+# ============================================================
+
+# التجميع الصامت: يحتاج فوليوم "جاف" أقل من هذا الرقم
+# التجميع الصامت: يحتاج فوليوم "جاف" - نسبي وليس رقمًا مطلقًا
+# (أقل من هذه النسبة من متوسط حجم تداول نفس السهم آخر 20 يوم)
+DRY_VOLUME_RATIO_MAX = 0.60
+
+# التجميع الصامت: عدد الأيام للنظر في اتجاه A/D مقابل اتجاه السعر
+ACCUMULATION_LOOKBACK = 10
+
+# الزخم الوهمي للقروبات: أقل قفزة سعر باليوم (بالدولار) لتفعيل الفحص
+PUMP_MIN_PRICE_JUMP = 0.20
+
+# الزخم الوهمي للقروبات: أقل نسبة Volume Ratio لاعتباره ضخًا
+PUMP_VOLUME_RATIO_THRESHOLD = 4.0
+
+# الزخم الوهمي للقروبات: أقل نسبة للذيل العلوي من مدى الشمعة
+PUMP_UPPER_SHADOW_RATIO = 0.40
 
 
 def load_tickers():
@@ -186,7 +240,80 @@ def count_support_tests(df, support):
     return tests
 
 
-def analyze_half_zone(df, split_date):
+def find_post_split_peak(df, split_date):
+    """
+    يبحث عن أول "قمة حقيقية" بعد التقسيم: يتتبع أعلى سعر (High)
+    تصاعديًا، ويعتبر القمة مؤكدة عندما يرتد السعر عنها بنسبة
+    PEAK_CONFIRMATION_PULLBACK_PERCENT ويستمر تحتها لمدة
+    PEAK_CONFIRMATION_DAYS أيام متتالية على الأقل (أي ارتداد
+    مستمر واضح، وليس مجرد تذبذب يومي).
+
+    إذا لم يتأكد أي ارتداد حتى نهاية البيانات المتاحة (السهم ما
+    زال يصعد بلا قمة واضحة)، تُستخدم أعلى قيمة وصل إليها حتى الآن
+    كأفضل تقدير متاح.
+
+    يُرجع: (peak_price, peak_date) أو (None, None) إذا تعذر التحديد.
+    """
+
+    try:
+
+        post = df[df.index.date >= split_date]
+
+        if post.empty:
+            return None, None
+
+        running_max = None
+        running_max_date = None
+        days_below = 0
+
+        for idx, row in post.iterrows():
+
+            high = safe_float(row["High"])
+
+            if high is None:
+                continue
+
+            if running_max is None or high > running_max:
+
+                running_max = high
+                running_max_date = idx
+                days_below = 0
+
+                continue
+
+            # السعر تحت القمة الحالية - هل الارتداد كافٍ؟
+            pullback = (
+                (running_max - high) / running_max
+            ) * 100
+
+            if pullback >= PEAK_CONFIRMATION_PULLBACK_PERCENT:
+
+                days_below += 1
+
+                if days_below >= PEAK_CONFIRMATION_DAYS:
+                    # قمة مؤكدة - توقف هنا
+                    return running_max, running_max_date
+
+            else:
+
+                # لم يرتد كفاية بعد - قد تكون تذبذبًا مؤقتًا
+                days_below = 0
+
+        # لم يتأكد ارتداد واضح حتى نهاية البيانات - أفضل تقدير متاح
+        return running_max, running_max_date
+
+    except Exception as e:
+
+        print(f"ERROR find_post_split_peak: {e}")
+        return None, None
+
+
+def analyze_half_zone(df, split_date, half_reference_price):
+    """
+    half_reference_price: السعر المستخدم كمرجع لحساب "نصف الشمعة"
+    (القمة الحقيقية بعد التقسيم - يُحسب مسبقًا عبر
+    find_post_split_peak ويُمرَّر هنا جاهزًا).
+    """
 
     result = {
         "split_open": None,
@@ -217,7 +344,14 @@ def analyze_half_zone(df, split_date):
             result["reason"] = "تعذر تحديد افتتاح يوم التقسيم"
             return result
 
-        half = split_open / 2
+        if (
+            half_reference_price is None
+            or half_reference_price <= 0
+        ):
+            result["reason"] = "تعذر تحديد القمة المرجعية بعد التقسيم"
+            return result
+
+        half = half_reference_price / 2
 
         low_zone = half * (
             1 - HALF_ZONE_TOLERANCE
@@ -381,6 +515,273 @@ def get_catalysts(stock):
     return list(
         dict.fromkeys(catalysts)
     )
+
+
+def detect_spring_pattern(df, support, zone_high):
+    """
+    يبحث عن تسلسل زمني كامل (بالترتيب الزمني الصحيح، كل مرحلة
+    يجب أن تحدث بعد التي قبلها):
+
+    1) سحب سيولة: كسر واضح تحت الدعم (اصطياد أوامر وقف الخسارة)
+    2) استعادة: إغلاق يعود فوق الدعم
+    3) اختبار مقاومة: اقتراب من المقاومة القريبة (zone_high)
+    4) ارتداد: عودة السعر نحو الدعم مجددًا
+    5) تقاطع MACD إيجابي: Histogram ينتقل من سالب إلى موجب
+
+    إشارة عرض إضافية فقط - لا تُدخل في Score/Core/Rating.
+    """
+
+    result = {
+        "confirmed": False,
+        "stage": "none",
+        "label": "",
+    }
+
+    try:
+
+        if (
+            df is None
+            or support is None or support <= 0
+            or zone_high is None or zone_high <= support
+            or "MACD_HIST" not in df.columns
+        ):
+            return result
+
+        window = df.tail(SPRING_LOOKBACK_DAYS)
+
+        if len(window) < 8:
+            return result
+
+        rows = list(window.iterrows())
+
+        stage = 0
+
+        for i, (idx, row) in enumerate(rows):
+
+            low = safe_float(row["Low"])
+            close = safe_float(row["Close"])
+            high = safe_float(row["High"])
+
+            if stage == 0:
+
+                if (
+                    low is not None
+                    and low < support * (1 - SPRING_SWEEP_BUFFER)
+                ):
+                    stage = 1
+
+                continue
+
+            if stage == 1:
+
+                if close is not None and close > support:
+                    stage = 2
+
+                continue
+
+            if stage == 2:
+
+                if (
+                    high is not None
+                    and high >= zone_high * SPRING_RETEST_PROXIMITY
+                ):
+                    stage = 3
+
+                continue
+
+            if stage == 3:
+
+                if (
+                    close is not None
+                    and close <= zone_high * SPRING_RETEST_PROXIMITY
+                    and close >= support * (1 - SPRING_SWEEP_BUFFER)
+                ):
+                    stage = 4
+
+                continue
+
+            if stage == 4:
+
+                hist_now = safe_float(row["MACD_HIST"])
+
+                hist_prev = (
+                    safe_float(rows[i - 1][1]["MACD_HIST"])
+                    if i > 0
+                    else None
+                )
+
+                if (
+                    hist_now is not None
+                    and hist_prev is not None
+                    and hist_prev <= 0
+                    and hist_now > 0
+                ):
+                    stage = 5
+                    break
+
+        if stage >= 5:
+
+            result["confirmed"] = True
+            result["stage"] = "complete"
+            result["label"] = (
+                "نمط Spring مؤكد: سحب سيولة تحت الدعم ← استعادة ← "
+                "اختبار مقاومة ← ارتداد للدعم ← تقاطع MACD إيجابي. "
+                "منطقة دخول محتملة على دفعات قرب الدعم."
+            )
+
+        elif stage >= 3:
+
+            result["stage"] = "partial"
+            result["label"] = (
+                "نمط Spring جزئي (وصل حتى الارتداد للدعم) - "
+                "بانتظار تأكيد تقاطع MACD"
+            )
+
+        elif stage >= 1:
+
+            result["stage"] = "early"
+            result["label"] = (
+                "رُصد سحب سيولة تحت الدعم - بانتظار بقية التسلسل"
+            )
+
+        return result
+
+    except Exception as e:
+
+        print(f"ERROR detect_spring_pattern: {e}")
+        return result
+
+
+def detect_liquidity_status(df, price, volume, volume_ratio):
+    """
+    يكشف حالتين إضافيتين لا علاقة لهما بـ Score/Core/Rating (عرض
+    فقط في الداشبورد كعمود منفصل "حالة السيولة والقروبات"):
+
+    1) التجميع الصامت (silent_accumulation):
+       السعر ثابت/هابط خلال آخر ACCUMULATION_LOOKBACK يومًا، بينما
+       خط التجميع والتصريف (A/D عبر pandas_ta) في اتجاه صاعد،
+       والفوليوم الحالي جاف (أقل من DRY_VOLUME_RATIO_MAX من متوسط
+       حجم نفس السهم - نسبي وليس رقمًا مطلقًا). مؤشر على
+       مضارب خفي يجمع بهدوء دون تحريك السعر أو الفوليوم الظاهر.
+
+    2) الزخم الوهمي للقروبات (fake_pump):
+       قفزة سعر يومية ملحوظة (High - Open >= PUMP_MIN_PRICE_JUMP)
+       مصحوبة بـ Volume Ratio مرتفع جدًا (>= PUMP_VOLUME_RATIO_
+       THRESHOLD) وذيل علوي طويل (Upper Shadow) يدل على رفض السعر
+       وتصريف داخل نفس الشمعة - نمط دخول/خروج قروبات.
+
+    الأولوية عند تحقق الحالتين معًا (نادر): يُعطى الأولوية للتحذير
+    (fake_pump) لأنه يستدعي حذرًا فوريًا أهم من إشارة تجميع محتملة.
+    """
+
+    result = {
+        "type": "normal",
+        "icon": "",
+        "label": "",
+    }
+
+    try:
+
+        if df is None or len(df) < ACCUMULATION_LOOKBACK + 2:
+            return result
+
+        # ---- خط A/D عبر pandas_ta ----
+        ad_series = ta.ad(
+            df["High"], df["Low"], df["Close"], df["Volume"]
+        )
+
+        if ad_series is None or ad_series.dropna().empty:
+            return result
+
+        df = df.copy()
+        df["AD"] = ad_series
+
+        latest = df.iloc[-1]
+
+        high = safe_float(latest["High"])
+        low = safe_float(latest["Low"])
+        open_ = safe_float(latest["Open"])
+        close = safe_float(latest["Close"])
+
+        # ==========================================
+        # 1) فحص الزخم الوهمي للقروبات (أولوية أعلى)
+        # ==========================================
+
+        if (
+            high is not None
+            and open_ is not None
+            and low is not None
+            and close is not None
+            and volume_ratio is not None
+            and high > low
+        ):
+
+            price_jump = high - open_
+
+            upper_shadow = high - max(open_, close)
+            upper_shadow_ratio = upper_shadow / (high - low)
+
+            if (
+                price_jump >= PUMP_MIN_PRICE_JUMP
+                and volume_ratio >= PUMP_VOLUME_RATIO_THRESHOLD
+                and upper_shadow_ratio >= PUMP_UPPER_SHADOW_RATIO
+            ):
+
+                return {
+                    "type": "fake_pump",
+                    "icon": "⚠️",
+                    "label": (
+                        "زخم وهمي محتمل (قروبات) - تصريف بعد "
+                        "قفزة سعر مع حجم مرتفع جدًا وذيل علوي طويل"
+                    ),
+                }
+
+        # ==========================================
+        # 2) فحص التجميع الصامت
+        # ==========================================
+
+        ad_now = safe_float(df["AD"].iloc[-1])
+        ad_prev = safe_float(
+            df["AD"].iloc[-1 - ACCUMULATION_LOOKBACK]
+        )
+
+        price_prev = safe_float(
+            df["Close"].iloc[-1 - ACCUMULATION_LOOKBACK]
+        )
+
+        if (
+            ad_now is not None
+            and ad_prev is not None
+            and price_prev is not None
+            and price is not None
+        ):
+
+            ad_rising = ad_now > ad_prev
+
+            price_flat_or_down = price <= price_prev * 1.02
+
+            volume_dry = (
+                volume_ratio is not None
+                and volume_ratio <= DRY_VOLUME_RATIO_MAX
+            )
+
+            if ad_rising and price_flat_or_down and volume_dry:
+
+                return {
+                    "type": "silent_accumulation",
+                    "icon": "🟢",
+                    "label": (
+                        "تجميع صامت محتمل - A/D يصعد رغم ثبات/"
+                        "هبوط السعر وفوليوم جاف"
+                    ),
+                }
+
+        return result
+
+    except Exception as e:
+
+        print(f"ERROR detect_liquidity_status: {e}")
+        return result
 
 
 def analyze_stock(ticker):
@@ -566,6 +967,27 @@ def analyze_stock(ticker):
         if split_open is None or split_open <= 0:
             return None
 
+        # ====================================================
+        # القمة الحقيقية بعد التقسيم (مرجع نصف الشمعة الجديد)
+        # ====================================================
+
+        peak_price, peak_date = find_post_split_peak(
+            df, split_date
+        )
+
+        if peak_price is None or peak_price <= 0:
+            return None
+
+        initial_peak_rise_percent = (
+            (peak_price - split_open) / split_open
+        ) * 100
+
+        if initial_peak_rise_percent > MAX_INITIAL_PEAK_RISE_PERCENT:
+
+            # نمط حركة مختلف تمامًا عن استراتيجية Reverse Split
+            # Radar (صعود أولي حاد جدًا) - استبعاد كامل من الرادار
+            return None
+
         post_change = (
             (price - split_open)
             / split_open
@@ -585,7 +1007,8 @@ def analyze_stock(ticker):
 
         half = analyze_half_zone(
             df,
-            split_date
+            split_date,
+            peak_price
         )
 
         support = calculate_support(df)
@@ -645,6 +1068,14 @@ def analyze_stock(ticker):
 
         catalysts = get_catalysts(
             stock
+        )
+
+        liquidity_status = detect_liquidity_status(
+            df, price, volume, volume_ratio
+        )
+
+        spring_pattern = detect_spring_pattern(
+            df, support, half["zone_high"]
         )
 
         # ====================================================
@@ -1033,6 +1464,10 @@ def analyze_stock(ticker):
             "warnings": warnings,
 
             "core": core,
+
+            "liquidity_status": liquidity_status,
+
+            "spring_pattern": spring_pattern,
         }
 
     except Exception as e:
@@ -1316,6 +1751,14 @@ def to_dashboard_record(r):
         "catalysts": r.get("catalysts") or [],
         "signals": r.get("signals") or [],
         "warnings": r.get("warnings") or [],
+
+        "liquidity_type": (r.get("liquidity_status") or {}).get("type", "normal"),
+        "liquidity_icon": (r.get("liquidity_status") or {}).get("icon", ""),
+        "liquidity_label": (r.get("liquidity_status") or {}).get("label", ""),
+
+        "spring_confirmed": (r.get("spring_pattern") or {}).get("confirmed", False),
+        "spring_stage": (r.get("spring_pattern") or {}).get("stage", "none"),
+        "spring_label": (r.get("spring_pattern") or {}).get("label", ""),
     }
 
 
