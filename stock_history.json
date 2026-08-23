@@ -30,8 +30,8 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
-    "last_price": 0.3001999855041504,
+    "last_checked": "2026-08-23",
+    "last_price": 0.30000001192092896,
     "max_price_since_entry": 0.7400000095367432,
     "max_gain_percent": 8.26,
     "completed_70_date": null,
@@ -49,6 +49,11 @@
         "date": "2026-08-21",
         "price": 0.3001999855041504,
         "gain_pct": -56.08
+      },
+      {
+        "date": "2026-08-23",
+        "price": 0.30000001192092896,
+        "gain_pct": -56.11
       }
     ]
   },
@@ -83,7 +88,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 1.350000023841858,
     "max_price_since_entry": 1.5199999809265137,
     "max_gain_percent": 2.12,
@@ -100,6 +105,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 1.350000023841858,
+        "gain_pct": -9.3
+      },
+      {
+        "date": "2026-08-23",
         "price": 1.350000023841858,
         "gain_pct": -9.3
       }
@@ -136,7 +146,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 1.6699999570846558,
     "max_price_since_entry": 1.7949999570846558,
     "max_gain_percent": 10.51,
@@ -153,6 +163,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 1.6699999570846558,
+        "gain_pct": 2.82
+      },
+      {
+        "date": "2026-08-23",
         "price": 1.6699999570846558,
         "gain_pct": 2.82
       }
@@ -190,7 +205,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 1.4800000190734863,
     "max_price_since_entry": 1.590000033378601,
     "max_gain_percent": 15.59,
@@ -207,6 +222,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 1.4800000190734863,
+        "gain_pct": 7.6
+      },
+      {
+        "date": "2026-08-23",
         "price": 1.4800000190734863,
         "gain_pct": 7.6
       }
@@ -245,7 +265,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 3.950000047683716,
     "max_price_since_entry": 4.869999885559082,
     "max_gain_percent": 14.61,
@@ -262,6 +282,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 3.950000047683716,
+        "gain_pct": -7.04
+      },
+      {
+        "date": "2026-08-23",
         "price": 3.950000047683716,
         "gain_pct": -7.04
       }
@@ -298,8 +323,8 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
-    "last_price": 0.6614000201225281,
+    "last_checked": "2026-08-23",
+    "last_price": 0.6600000262260437,
     "max_price_since_entry": 0.8626000285148621,
     "max_gain_percent": 2.87,
     "completed_70_date": null,
@@ -317,6 +342,11 @@
         "date": "2026-08-21",
         "price": 0.6614000201225281,
         "gain_pct": -21.12
+      },
+      {
+        "date": "2026-08-23",
+        "price": 0.6600000262260437,
+        "gain_pct": -21.29
       }
     ]
   },
@@ -348,7 +378,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 1.8600000143051147,
     "max_price_since_entry": 1.9850000143051147,
     "max_gain_percent": 44.89,
@@ -365,6 +395,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 1.8600000143051147,
+        "gain_pct": 35.77
+      },
+      {
+        "date": "2026-08-23",
         "price": 1.8600000143051147,
         "gain_pct": 35.77
       }
@@ -454,7 +489,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 5.440000057220459,
     "max_price_since_entry": 5.440000057220459,
     "max_gain_percent": 66.19,
@@ -473,9 +508,14 @@
         "date": "2026-08-21",
         "price": 5.440000057220459,
         "gain_pct": 66.19
+      },
+      {
+        "date": "2026-08-23",
+        "price": 5.440000057220459,
+        "gain_pct": 66.19
       }
     ],
-    "days_to_peak": 8
+    "days_to_peak": 10
   },
   "NUWE": {
     "ticker": "NUWE",
@@ -506,7 +546,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 1.159999966621399,
     "max_price_since_entry": 1.409999966621399,
     "max_gain_percent": -12.88,
@@ -523,6 +563,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 1.159999966621399,
+        "gain_pct": -28.33
+      },
+      {
+        "date": "2026-08-23",
         "price": 1.159999966621399,
         "gain_pct": -28.33
       }
@@ -559,7 +604,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 2.180000066757202,
     "max_price_since_entry": 3.1449999809265137,
     "max_gain_percent": 3.71,
@@ -576,6 +621,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 2.180000066757202,
+        "gain_pct": -28.11
+      },
+      {
+        "date": "2026-08-23",
         "price": 2.180000066757202,
         "gain_pct": -28.11
       }
@@ -612,7 +662,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 2.799999952316284,
     "max_price_since_entry": 3.0,
     "max_gain_percent": 25.84,
@@ -629,6 +679,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 2.799999952316284,
+        "gain_pct": 17.45
+      },
+      {
+        "date": "2026-08-23",
         "price": 2.799999952316284,
         "gain_pct": 17.45
       }
@@ -704,7 +759,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 1.4600000381469727,
     "max_price_since_entry": 1.7100000381469727,
     "max_gain_percent": -9.64,
@@ -721,6 +776,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 1.4600000381469727,
+        "gain_pct": -22.85
+      },
+      {
+        "date": "2026-08-23",
         "price": 1.4600000381469727,
         "gain_pct": -22.85
       }
@@ -755,7 +815,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 1.0700000524520874,
     "max_price_since_entry": 1.3300000429153442,
     "max_gain_percent": -8.18,
@@ -772,6 +832,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 1.0700000524520874,
+        "gain_pct": -26.13
+      },
+      {
+        "date": "2026-08-23",
         "price": 1.0700000524520874,
         "gain_pct": -26.13
       }
@@ -841,7 +906,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 5.03000020980835,
     "max_price_since_entry": 6.989999771118164,
     "max_gain_percent": 58.67,
@@ -858,6 +923,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 5.03000020980835,
+        "gain_pct": 14.18
+      },
+      {
+        "date": "2026-08-23",
         "price": 5.03000020980835,
         "gain_pct": 14.18
       }
@@ -893,7 +963,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 0.6079999804496765,
     "max_price_since_entry": 0.8069999814033508,
     "max_gain_percent": -8.07,
@@ -910,6 +980,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 0.6079999804496765,
+        "gain_pct": -30.74
+      },
+      {
+        "date": "2026-08-23",
         "price": 0.6079999804496765,
         "gain_pct": -30.74
       }
@@ -944,7 +1019,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 2.680000066757202,
     "max_price_since_entry": 3.450000047683716,
     "max_gain_percent": 28.06,
@@ -961,6 +1036,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 2.680000066757202,
+        "gain_pct": -0.52
+      },
+      {
+        "date": "2026-08-23",
         "price": 2.680000066757202,
         "gain_pct": -0.52
       }
@@ -996,7 +1076,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 1.1100000143051147,
     "max_price_since_entry": 1.25,
     "max_gain_percent": 0.12,
@@ -1013,6 +1093,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 1.1100000143051147,
+        "gain_pct": -11.09
+      },
+      {
+        "date": "2026-08-23",
         "price": 1.1100000143051147,
         "gain_pct": -11.09
       }
@@ -1046,8 +1131,8 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
-    "last_price": 2.9811999797821045,
+    "last_checked": "2026-08-23",
+    "last_price": 2.9809999465942383,
     "max_price_since_entry": 3.9800000190734863,
     "max_gain_percent": 42.15,
     "completed_70_date": null,
@@ -1065,6 +1150,11 @@
         "date": "2026-08-21",
         "price": 2.9811999797821045,
         "gain_pct": 6.48
+      },
+      {
+        "date": "2026-08-23",
+        "price": 2.9809999465942383,
+        "gain_pct": 6.47
       }
     ]
   },
@@ -1098,8 +1188,8 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
-    "last_price": 0.3450999855995178,
+    "last_checked": "2026-08-23",
+    "last_price": 0.3449999988079071,
     "max_price_since_entry": 0.4099999964237213,
     "max_gain_percent": 20.34,
     "completed_70_date": null,
@@ -1117,6 +1207,11 @@
         "date": "2026-08-21",
         "price": 0.3450999855995178,
         "gain_pct": 1.29
+      },
+      {
+        "date": "2026-08-23",
+        "price": 0.3449999988079071,
+        "gain_pct": 1.26
       }
     ]
   },
@@ -1229,7 +1324,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 3.1500000953674316,
     "max_price_since_entry": 3.1700000762939453,
     "max_gain_percent": 8.62,
@@ -1246,6 +1341,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 3.1500000953674316,
+        "gain_pct": 7.93
+      },
+      {
+        "date": "2026-08-23",
         "price": 3.1500000953674316,
         "gain_pct": 7.93
       }
@@ -1280,7 +1380,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 2.369999885559082,
     "max_price_since_entry": 2.690000057220459,
     "max_gain_percent": -0.46,
@@ -1297,6 +1397,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 2.369999885559082,
+        "gain_pct": -12.3
+      },
+      {
+        "date": "2026-08-23",
         "price": 2.369999885559082,
         "gain_pct": -12.3
       }
@@ -1331,7 +1436,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 2.3399999141693115,
     "max_price_since_entry": 2.9700000286102295,
     "max_gain_percent": 11.72,
@@ -1348,6 +1453,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 2.3399999141693115,
+        "gain_pct": -11.98
+      },
+      {
+        "date": "2026-08-23",
         "price": 2.3399999141693115,
         "gain_pct": -11.98
       }
@@ -1382,7 +1492,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 1.7599999904632568,
     "max_price_since_entry": 1.9900000095367432,
     "max_gain_percent": -6.94,
@@ -1399,6 +1509,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 1.7599999904632568,
+        "gain_pct": -17.7
+      },
+      {
+        "date": "2026-08-23",
         "price": 1.7599999904632568,
         "gain_pct": -17.7
       }
@@ -1433,7 +1548,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 1.5800000429153442,
     "max_price_since_entry": 1.9399000406265259,
     "max_gain_percent": -53.51,
@@ -1450,6 +1565,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 1.5800000429153442,
+        "gain_pct": -62.14
+      },
+      {
+        "date": "2026-08-23",
         "price": 1.5800000429153442,
         "gain_pct": -62.14
       }
@@ -1520,7 +1640,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 4.090000152587891,
     "max_price_since_entry": 4.340000152587891,
     "max_gain_percent": 4.69,
@@ -1537,6 +1657,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 4.090000152587891,
+        "gain_pct": -1.34
+      },
+      {
+        "date": "2026-08-23",
         "price": 4.090000152587891,
         "gain_pct": -1.34
       }
@@ -1570,7 +1695,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 1.7699999809265137,
     "max_price_since_entry": 1.8700000047683716,
     "max_gain_percent": 14.94,
@@ -1587,6 +1712,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 1.7699999809265137,
+        "gain_pct": 8.79
+      },
+      {
+        "date": "2026-08-23",
         "price": 1.7699999809265137,
         "gain_pct": 8.79
       }
@@ -1666,7 +1796,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 3.190000057220459,
     "max_price_since_entry": 3.575000047683716,
     "max_gain_percent": 30.07,
@@ -1683,6 +1813,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 3.190000057220459,
+        "gain_pct": 16.06
+      },
+      {
+        "date": "2026-08-23",
         "price": 3.190000057220459,
         "gain_pct": 16.06
       }
@@ -1720,7 +1855,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 1.2999999523162842,
     "max_price_since_entry": 1.4199999570846558,
     "max_gain_percent": 13.6,
@@ -1737,6 +1872,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 1.2999999523162842,
+        "gain_pct": 4.0
+      },
+      {
+        "date": "2026-08-23",
         "price": 1.2999999523162842,
         "gain_pct": 4.0
       }
@@ -1771,7 +1911,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 1.7999999523162842,
     "max_price_since_entry": 2.058799982070923,
     "max_gain_percent": 15.76,
@@ -1788,6 +1928,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 1.7999999523162842,
+        "gain_pct": 1.21
+      },
+      {
+        "date": "2026-08-23",
         "price": 1.7999999523162842,
         "gain_pct": 1.21
       }
@@ -1824,7 +1969,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 3.434999942779541,
     "max_price_since_entry": 4.690000057220459,
     "max_gain_percent": 42.68,
@@ -1841,6 +1986,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 3.434999942779541,
+        "gain_pct": 4.5
+      },
+      {
+        "date": "2026-08-23",
         "price": 3.434999942779541,
         "gain_pct": 4.5
       }
@@ -1874,7 +2024,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 138.3300018310547,
     "max_price_since_entry": 146.25999450683594,
     "max_gain_percent": 10.22,
@@ -1891,6 +2041,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 138.3300018310547,
+        "gain_pct": 4.25
+      },
+      {
+        "date": "2026-08-23",
         "price": 138.3300018310547,
         "gain_pct": 4.25
       }
@@ -1923,7 +2078,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 7.929999828338623,
     "max_price_since_entry": 8.470000267028809,
     "max_gain_percent": 60.94,
@@ -1940,6 +2095,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 7.929999828338623,
+        "gain_pct": 50.68
+      },
+      {
+        "date": "2026-08-23",
         "price": 7.929999828338623,
         "gain_pct": 50.68
       }
@@ -1972,7 +2132,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 2.140000104904175,
     "max_price_since_entry": 2.259999990463257,
     "max_gain_percent": 48.68,
@@ -1989,6 +2149,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 2.140000104904175,
+        "gain_pct": 40.79
+      },
+      {
+        "date": "2026-08-23",
         "price": 2.140000104904175,
         "gain_pct": 40.79
       }
@@ -2023,8 +2188,8 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
-    "last_price": 0.9284999966621399,
+    "last_checked": "2026-08-23",
+    "last_price": 0.9290000200271606,
     "max_price_since_entry": 1.0700000524520874,
     "max_gain_percent": 6.1,
     "completed_70_date": null,
@@ -2042,6 +2207,11 @@
         "date": "2026-08-21",
         "price": 0.9284999966621399,
         "gain_pct": -7.93
+      },
+      {
+        "date": "2026-08-23",
+        "price": 0.9290000200271606,
+        "gain_pct": -7.88
       }
     ]
   },
@@ -2074,7 +2244,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 5.039999961853027,
     "max_price_since_entry": 6.920000076293945,
     "max_gain_percent": 30.36,
@@ -2091,6 +2261,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 5.039999961853027,
+        "gain_pct": -5.06
+      },
+      {
+        "date": "2026-08-23",
         "price": 5.039999961853027,
         "gain_pct": -5.06
       }
@@ -2124,7 +2299,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 8.579999923706055,
     "max_price_since_entry": 9.579999923706055,
     "max_gain_percent": 24.42,
@@ -2141,6 +2316,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 8.579999923706055,
+        "gain_pct": 11.43
+      },
+      {
+        "date": "2026-08-23",
         "price": 8.579999923706055,
         "gain_pct": 11.43
       }
@@ -2174,7 +2354,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 32.900001525878906,
     "max_price_since_entry": 33.380001068115234,
     "max_gain_percent": 33.53,
@@ -2191,6 +2371,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 32.900001525878906,
+        "gain_pct": 31.61
+      },
+      {
+        "date": "2026-08-23",
         "price": 32.900001525878906,
         "gain_pct": 31.61
       }
@@ -2224,7 +2409,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 1.7599999904632568,
     "max_price_since_entry": 1.8700000047683716,
     "max_gain_percent": 17.31,
@@ -2241,6 +2426,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 1.7599999904632568,
+        "gain_pct": 10.41
+      },
+      {
+        "date": "2026-08-23",
         "price": 1.7599999904632568,
         "gain_pct": 10.41
       }
@@ -2274,7 +2464,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 16.360000610351562,
     "max_price_since_entry": 16.469999313354492,
     "max_gain_percent": 7.4,
@@ -2291,6 +2481,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 16.360000610351562,
+        "gain_pct": 6.68
+      },
+      {
+        "date": "2026-08-23",
         "price": 16.360000610351562,
         "gain_pct": 6.68
       }
@@ -2322,7 +2517,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 8.100000381469727,
     "max_price_since_entry": 8.100000381469727,
     "max_gain_percent": 47.01,
@@ -2339,6 +2534,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 8.100000381469727,
+        "gain_pct": 47.01
+      },
+      {
+        "date": "2026-08-23",
         "price": 8.100000381469727,
         "gain_pct": 47.01
       }
@@ -2445,7 +2645,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 4.840000152587891,
     "max_price_since_entry": 4.989999771118164,
     "max_gain_percent": 7.14,
@@ -2462,6 +2662,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 4.840000152587891,
+        "gain_pct": 3.92
+      },
+      {
+        "date": "2026-08-23",
         "price": 4.840000152587891,
         "gain_pct": 3.92
       }
@@ -2495,7 +2700,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 1.350000023841858,
     "max_price_since_entry": 1.4215999841690063,
     "max_gain_percent": 35.68,
@@ -2512,6 +2717,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 1.350000023841858,
+        "gain_pct": 28.85
+      },
+      {
+        "date": "2026-08-23",
         "price": 1.350000023841858,
         "gain_pct": 28.85
       }
@@ -2658,7 +2868,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 2.8499999046325684,
     "max_price_since_entry": 3.0799999237060547,
     "max_gain_percent": 6.6,
@@ -2675,6 +2885,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 2.8499999046325684,
+        "gain_pct": -1.36
+      },
+      {
+        "date": "2026-08-23",
         "price": 2.8499999046325684,
         "gain_pct": -1.36
       }
@@ -2709,7 +2924,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 1.4700000286102295,
     "max_price_since_entry": 1.840000033378601,
     "max_gain_percent": -6.82,
@@ -2726,6 +2941,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 1.4700000286102295,
+        "gain_pct": -25.56
+      },
+      {
+        "date": "2026-08-23",
         "price": 1.4700000286102295,
         "gain_pct": -25.56
       }
@@ -2798,7 +3018,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 4.71999979019165,
     "max_price_since_entry": 4.929999828338623,
     "max_gain_percent": 23.03,
@@ -2815,6 +3035,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 4.71999979019165,
+        "gain_pct": 17.79
+      },
+      {
+        "date": "2026-08-23",
         "price": 4.71999979019165,
         "gain_pct": 17.79
       }
@@ -2886,7 +3111,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 14.220000267028809,
     "max_price_since_entry": 14.630000114440918,
     "max_gain_percent": 31.98,
@@ -2903,6 +3128,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 14.220000267028809,
+        "gain_pct": 28.28
+      },
+      {
+        "date": "2026-08-23",
         "price": 14.220000267028809,
         "gain_pct": 28.28
       }
@@ -2974,7 +3204,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 2.200000047683716,
     "max_price_since_entry": 3.319999933242798,
     "max_gain_percent": 52.29,
@@ -2991,6 +3221,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 2.200000047683716,
+        "gain_pct": 0.92
+      },
+      {
+        "date": "2026-08-23",
         "price": 2.200000047683716,
         "gain_pct": 0.92
       }
@@ -3061,7 +3296,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 215.89999389648438,
     "max_price_since_entry": 235.33999633789062,
     "max_gain_percent": 6.69,
@@ -3078,6 +3313,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 215.89999389648438,
+        "gain_pct": -2.13
+      },
+      {
+        "date": "2026-08-23",
         "price": 215.89999389648438,
         "gain_pct": -2.13
       }
@@ -3113,8 +3353,8 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
-    "last_price": 0.18809999525547028,
+    "last_checked": "2026-08-23",
+    "last_price": 0.18799999356269836,
     "max_price_since_entry": 0.22200000286102295,
     "max_gain_percent": 22.08,
     "completed_70_date": null,
@@ -3132,6 +3372,11 @@
         "date": "2026-08-21",
         "price": 0.18809999525547028,
         "gain_pct": 3.44
+      },
+      {
+        "date": "2026-08-23",
+        "price": 0.18799999356269836,
+        "gain_pct": 3.38
       }
     ]
   },
@@ -3164,7 +3409,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 1.7699999809265137,
     "max_price_since_entry": 2.299999952316284,
     "max_gain_percent": 9.68,
@@ -3181,6 +3426,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 1.7699999809265137,
+        "gain_pct": -15.59
+      },
+      {
+        "date": "2026-08-23",
         "price": 1.7699999809265137,
         "gain_pct": -15.59
       }
@@ -3251,10 +3501,10 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
-    "last_price": 0.4715000092983246,
-    "max_price_since_entry": 0.4715000092983246,
-    "max_gain_percent": 49.21,
+    "last_checked": "2026-08-23",
+    "last_price": 0.47200000286102295,
+    "max_price_since_entry": 0.47200000286102295,
+    "max_gain_percent": 49.37,
     "completed_70_date": null,
     "days_to_complete_70": null,
     "completed_100_date": null,
@@ -3270,9 +3520,14 @@
         "date": "2026-08-21",
         "price": 0.4715000092983246,
         "gain_pct": 49.21
+      },
+      {
+        "date": "2026-08-23",
+        "price": 0.47200000286102295,
+        "gain_pct": 49.37
       }
     ],
-    "days_to_peak": 4
+    "days_to_peak": 6
   },
   "YARW": {
     "ticker": "YARW",
@@ -3300,7 +3555,7 @@
       ]
     },
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 36.42499923706055,
     "max_price_since_entry": 42.2599983215332,
     "max_gain_percent": 36.03,
@@ -3317,6 +3572,11 @@
       },
       {
         "date": "2026-08-21",
+        "price": 36.42499923706055,
+        "gain_pct": 17.24
+      },
+      {
+        "date": "2026-08-23",
         "price": 36.42499923706055,
         "gain_pct": 17.24
       }
@@ -3495,14 +3755,19 @@
         "date": "2026-08-21",
         "price": 2.5850000381469727,
         "gain_pct": 2.23
+      },
+      {
+        "date": "2026-08-23",
+        "price": 2.5850000381469727,
+        "gain_pct": 2.23
       }
     ],
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 2.5850000381469727,
     "max_price_since_entry": 2.5850000381469727,
     "max_gain_percent": 2.23,
-    "days_to_peak": 1,
+    "days_to_peak": 3,
     "reached_70": false,
     "completed_70_date": null,
     "days_to_complete_70": null,
@@ -3653,10 +3918,15 @@
         "date": "2026-08-21",
         "price": 1.340000033378601,
         "gain_pct": -10.56
+      },
+      {
+        "date": "2026-08-23",
+        "price": 1.340000033378601,
+        "gain_pct": -10.56
       }
     ],
     "status": "TRACKING",
-    "last_checked": "2026-08-21",
+    "last_checked": "2026-08-23",
     "last_price": 1.340000033378601,
     "max_price_since_entry": 1.399999976158142,
     "max_gain_percent": -6.55,
@@ -3748,5 +4018,461 @@
     "expired_date": null,
     "failure_reason": null,
     "behavior_note": "اختُبر الدعم 9 مرة/مرات عند الدخول، RSI عند الدخول 64.4، وصل لأعلى ارتفاع 302.9% خلال 0 يوم."
+  },
+  "MVIS": {
+    "ticker": "MVIS",
+    "first_seen": "2026-08-23",
+    "first_seen_datetime": "2026-08-23T09:14",
+    "reference_type": "support",
+    "reference_price": 2.950999903678894,
+    "target_70_price": 5.0167,
+    "target_100_price": 5.902,
+    "target_200_price": 8.853,
+    "entry_snapshot": {
+      "price": 1.659999966621399,
+      "distance_from_support_pct": -43.75,
+      "split_date": "2026-08-03",
+      "split_ratio": 0.06666666666666667,
+      "days_since_split": 20,
+      "float_shares": 23430885.0,
+      "short_shares": 3511455.0,
+      "rsi": 29.30056707793122,
+      "previous_rsi": 28.703702313746305,
+      "rsi_improving": true,
+      "macd": -0.7807897063425457,
+      "macd_improving": false,
+      "ma20": 3.161500018835068,
+      "ma50": 4.34259999036789,
+      "volume": 1727900.0,
+      "volume_ratio": 0.854399923495135,
+      "support_tests": 0,
+      "half_tests": 2,
+      "half_successful_tests": 2,
+      "score": 19,
+      "score_percent": 73.1,
+      "core": 6,
+      "rating": "WATCHLIST قوية",
+      "next_step": "WAIT_TRIGGER",
+      "signals": [
+        "Reverse Split حديث",
+        "دعم نصف الشمعة مؤكد (2 اختبارات)",
+        "RSI منخفض ويتحسن (28.7->29.3)",
+        "Volume هادئ (1,727,900)",
+        "هبوط قوي من القمة (-66.1%)",
+        "السعر قريب من MA20",
+        "موعد نتائج مالية",
+        "نتائج مالية قادمة"
+      ],
+      "warnings": [
+        "MACD لم يظهر تحسنًا كافيًا",
+        "Short مرتفع (3,511,455)"
+      ],
+      "entry_reason": "Reverse Split حديث / دعم نصف الشمعة مؤكد (2 اختبارات) / RSI منخفض ويتحسن (28.7->29.3)"
+    },
+    "daily_log": [
+      {
+        "date": "2026-08-23",
+        "price": 1.659999966621399,
+        "gain_pct": 0.0
+      }
+    ],
+    "status": "TRACKING",
+    "last_checked": "2026-08-23",
+    "last_price": 1.659999966621399,
+    "max_price_since_entry": 1.659999966621399,
+    "max_gain_percent": null,
+    "days_to_peak": null,
+    "reached_70": false,
+    "completed_70_date": null,
+    "days_to_complete_70": null,
+    "reached_100": false,
+    "completed_100_date": null,
+    "days_to_complete_100": null,
+    "reached_200": false,
+    "completed_200_date": null,
+    "days_to_complete_200": null,
+    "expired_date": null,
+    "failure_reason": null,
+    "behavior_note": null
+  },
+  "PMI": {
+    "ticker": "PMI",
+    "first_seen": "2026-08-23",
+    "first_seen_datetime": "2026-08-23T09:14",
+    "reference_type": "support",
+    "reference_price": 3.3708500266075134,
+    "target_70_price": 5.730445,
+    "target_100_price": 6.7417,
+    "target_200_price": 10.11255,
+    "entry_snapshot": {
+      "price": 3.2100000381469727,
+      "distance_from_support_pct": -4.77,
+      "split_date": "2026-08-03",
+      "split_ratio": 0.02,
+      "days_since_split": 20,
+      "float_shares": 1135266.0,
+      "short_shares": 74555.0,
+      "rsi": 18.42105098048073,
+      "previous_rsi": 30.919217872813448,
+      "rsi_improving": false,
+      "macd": -0.9509727907428496,
+      "macd_improving": false,
+      "ma20": 3.8020000576972963,
+      "ma50": 6.159800028800964,
+      "volume": 9041600.0,
+      "volume_ratio": 17.281180416853815,
+      "support_tests": 5,
+      "half_tests": 2,
+      "half_successful_tests": 2,
+      "score": 18,
+      "score_percent": 69.2,
+      "core": 6,
+      "rating": "WATCHLIST قوية",
+      "next_step": "WAIT_TRIGGER",
+      "signals": [
+        "Reverse Split حديث",
+        "دعم نصف الشمعة مؤكد (2 اختبارات)",
+        "RSI منخفض (18.4)",
+        "Volume Ratio 17.28x",
+        "الدعم العام اختُبر 5 مرات",
+        "هبوط قوي من القمة (-41.0%)",
+        "Float منخفض (1,135,266)",
+        "السعر قريب من MA20",
+        "موعد نتائج مالية"
+      ],
+      "warnings": [
+        "MACD لم يظهر تحسنًا كافيًا",
+        "Short مرتفع (74,555)"
+      ],
+      "entry_reason": "Reverse Split حديث / دعم نصف الشمعة مؤكد (2 اختبارات) / RSI منخفض (18.4)"
+    },
+    "daily_log": [
+      {
+        "date": "2026-08-23",
+        "price": 3.2100000381469727,
+        "gain_pct": 0.0
+      }
+    ],
+    "status": "TRACKING",
+    "last_checked": "2026-08-23",
+    "last_price": 3.2100000381469727,
+    "max_price_since_entry": 3.2100000381469727,
+    "max_gain_percent": null,
+    "days_to_peak": null,
+    "reached_70": false,
+    "completed_70_date": null,
+    "days_to_complete_70": null,
+    "reached_100": false,
+    "completed_100_date": null,
+    "days_to_complete_100": null,
+    "reached_200": false,
+    "completed_200_date": null,
+    "days_to_complete_200": null,
+    "expired_date": null,
+    "failure_reason": null,
+    "behavior_note": null
+  },
+  "WETO": {
+    "ticker": "WETO",
+    "first_seen": "2026-08-23",
+    "first_seen_datetime": "2026-08-23T09:14",
+    "reference_type": "support",
+    "reference_price": 4.327499890327454,
+    "target_70_price": 7.35675,
+    "target_100_price": 8.655,
+    "target_200_price": 12.9825,
+    "entry_snapshot": {
+      "price": 26.010000228881836,
+      "distance_from_support_pct": 501.04,
+      "split_date": "2026-08-03",
+      "split_ratio": 0.01,
+      "days_since_split": 20,
+      "float_shares": 176268.0,
+      "short_shares": 5829.0,
+      "rsi": 67.69498423521499,
+      "previous_rsi": 66.71177240789879,
+      "rsi_improving": true,
+      "macd": -5.696081363817459,
+      "macd_improving": true,
+      "ma20": 10.47574999332428,
+      "ma50": 49.24630013465881,
+      "volume": 377500.0,
+      "volume_ratio": 0.05794977903288727,
+      "support_tests": 3,
+      "half_tests": 1,
+      "half_successful_tests": 1,
+      "score": 16,
+      "score_percent": 61.5,
+      "core": 7,
+      "rating": "WATCHLIST",
+      "next_step": "WAIT_RETEST",
+      "signals": [
+        "Reverse Split حديث",
+        "MACD يتحسن",
+        "Volume هادئ (377,500)",
+        "الدعم العام اختُبر 3 مرات",
+        "هبوط قوي من القمة (-51.5%)",
+        "Float منخفض (176,268)",
+        "Short منخفض (5,829)",
+        "موعد نتائج مالية"
+      ],
+      "warnings": [
+        "اختبار واحد فقط لنصف الشمعة",
+        "RSI مرتفع (67.7)"
+      ],
+      "entry_reason": "Reverse Split حديث / MACD يتحسن / Volume هادئ (377,500)"
+    },
+    "daily_log": [
+      {
+        "date": "2026-08-23",
+        "price": 26.010000228881836,
+        "gain_pct": 0.0
+      }
+    ],
+    "status": "TRACKING",
+    "last_checked": "2026-08-23",
+    "last_price": 26.010000228881836,
+    "max_price_since_entry": 26.010000228881836,
+    "max_gain_percent": null,
+    "days_to_peak": null,
+    "reached_70": false,
+    "completed_70_date": null,
+    "days_to_complete_70": null,
+    "reached_100": false,
+    "completed_100_date": null,
+    "days_to_complete_100": null,
+    "reached_200": false,
+    "completed_200_date": null,
+    "days_to_complete_200": null,
+    "expired_date": null,
+    "failure_reason": null,
+    "behavior_note": null
+  },
+  "SEGG": {
+    "ticker": "SEGG",
+    "first_seen": "2026-08-23",
+    "first_seen_datetime": "2026-08-23T09:14",
+    "reference_type": "support",
+    "reference_price": 2.359999895095825,
+    "target_70_price": 4.012,
+    "target_100_price": 4.72,
+    "target_200_price": 7.08,
+    "entry_snapshot": {
+      "price": 2.5,
+      "distance_from_support_pct": 5.93,
+      "split_date": "2026-08-03",
+      "split_ratio": 0.14285714285714285,
+      "days_since_split": 20,
+      "float_shares": 2980767.0,
+      "short_shares": 162787.0,
+      "rsi": 31.465508116408316,
+      "previous_rsi": 23.101255938019605,
+      "rsi_improving": true,
+      "macd": -0.7597906441214719,
+      "macd_improving": true,
+      "ma20": 2.872000002861023,
+      "ma50": 4.881620006561279,
+      "volume": 54000.0,
+      "volume_ratio": 0.42155290723181815,
+      "support_tests": 6,
+      "half_tests": 0,
+      "half_successful_tests": 0,
+      "score": 15,
+      "score_percent": 57.7,
+      "core": 8,
+      "rating": "WATCHLIST",
+      "next_step": "WAIT_SUPPORT",
+      "signals": [
+        "Reverse Split حديث",
+        "RSI قريب من التشبع البيعي (31.5)",
+        "MACD يتحسن",
+        "Volume هادئ (54,000)",
+        "الدعم العام اختُبر 6 مرات",
+        "السعر قريب من الدعم",
+        "تصحيح متوسط (-22.8%)",
+        "Float منخفض (2,980,767)",
+        "السعر قريب من MA20",
+        "موعد نتائج مالية"
+      ],
+      "warnings": [
+        "لم يتأكد دعم نصف الشمعة",
+        "Short مرتفع (162,787)"
+      ],
+      "entry_reason": "Reverse Split حديث / RSI قريب من التشبع البيعي (31.5) / MACD يتحسن"
+    },
+    "daily_log": [
+      {
+        "date": "2026-08-23",
+        "price": 2.5,
+        "gain_pct": 0.0
+      }
+    ],
+    "status": "TRACKING",
+    "last_checked": "2026-08-23",
+    "last_price": 2.5,
+    "max_price_since_entry": 2.5,
+    "max_gain_percent": null,
+    "days_to_peak": null,
+    "reached_70": false,
+    "completed_70_date": null,
+    "days_to_complete_70": null,
+    "reached_100": false,
+    "completed_100_date": null,
+    "days_to_complete_100": null,
+    "reached_200": false,
+    "completed_200_date": null,
+    "days_to_complete_200": null,
+    "expired_date": null,
+    "failure_reason": null,
+    "behavior_note": null
+  },
+  "TOP": {
+    "ticker": "TOP",
+    "first_seen": "2026-08-23",
+    "first_seen_datetime": "2026-08-23T09:14",
+    "reference_type": "support",
+    "reference_price": 8.770000219345093,
+    "target_70_price": 14.909,
+    "target_100_price": 17.54,
+    "target_200_price": 26.310001,
+    "entry_snapshot": {
+      "price": 14.130000114440918,
+      "distance_from_support_pct": 61.12,
+      "split_date": "2026-08-03",
+      "split_ratio": 0.2,
+      "days_since_split": 20,
+      "float_shares": 100878135.0,
+      "short_shares": 114602.0,
+      "rsi": 75.20949198867046,
+      "previous_rsi": 72.81775826096558,
+      "rsi_improving": true,
+      "macd": 0.8382738279278712,
+      "macd_improving": true,
+      "ma20": 11.384750032424927,
+      "ma50": 9.991400003433228,
+      "volume": 137500.0,
+      "volume_ratio": 1.3401820698259226,
+      "support_tests": 3,
+      "half_tests": 0,
+      "half_successful_tests": 0,
+      "score": 10,
+      "score_percent": 38.5,
+      "core": 5,
+      "rating": "WATCHLIST",
+      "next_step": "WAIT_SUPPORT",
+      "signals": [
+        "Reverse Split حديث",
+        "MACD يتحسن",
+        "Volume هادئ (137,500)",
+        "الدعم العام اختُبر 3 مرات",
+        "موعد نتائج مالية"
+      ],
+      "warnings": [
+        "لم يتأكد دعم نصف الشمعة",
+        "RSI مرتفع (75.2)",
+        "Short مرتفع (114,602)"
+      ],
+      "entry_reason": "Reverse Split حديث / MACD يتحسن / Volume هادئ (137,500)"
+    },
+    "daily_log": [
+      {
+        "date": "2026-08-23",
+        "price": 14.130000114440918,
+        "gain_pct": 0.0
+      }
+    ],
+    "status": "TRACKING",
+    "last_checked": "2026-08-23",
+    "last_price": 14.130000114440918,
+    "max_price_since_entry": 14.130000114440918,
+    "max_gain_percent": null,
+    "days_to_peak": null,
+    "reached_70": false,
+    "completed_70_date": null,
+    "days_to_complete_70": null,
+    "reached_100": false,
+    "completed_100_date": null,
+    "days_to_complete_100": null,
+    "reached_200": false,
+    "completed_200_date": null,
+    "days_to_complete_200": null,
+    "expired_date": null,
+    "failure_reason": null,
+    "behavior_note": null
+  },
+  "LEXX": {
+    "ticker": "LEXX",
+    "first_seen": "2026-08-23",
+    "first_seen_datetime": "2026-08-23T09:14",
+    "reference_type": "support",
+    "reference_price": 5.316749835014344,
+    "target_70_price": 9.038475,
+    "target_100_price": 10.6335,
+    "target_200_price": 15.95025,
+    "entry_snapshot": {
+      "price": 10.914999961853027,
+      "distance_from_support_pct": 105.29,
+      "split_date": "2026-08-03",
+      "split_ratio": 0.06666666666666667,
+      "days_since_split": 20,
+      "float_shares": 1602575.0,
+      "short_shares": 16265.0,
+      "rsi": 87.70641650655439,
+      "previous_rsi": 80.2462251416289,
+      "rsi_improving": true,
+      "macd": 0.8006154860103063,
+      "macd_improving": false,
+      "ma20": 7.6205000400543215,
+      "ma50": 8.268800029754638,
+      "volume": 8900.0,
+      "volume_ratio": 0.2366684527600461,
+      "support_tests": 4,
+      "half_tests": 0,
+      "half_successful_tests": 0,
+      "score": 10,
+      "score_percent": 38.5,
+      "core": 5,
+      "rating": "WATCHLIST",
+      "next_step": "WAIT_SUPPORT",
+      "signals": [
+        "Reverse Split حديث",
+        "Volume هادئ (8,900)",
+        "الدعم العام اختُبر 4 مرات",
+        "Float منخفض (1,602,575)",
+        "Short منخفض (16,265)",
+        "موعد نتائج مالية"
+      ],
+      "warnings": [
+        "لم يتأكد دعم نصف الشمعة",
+        "RSI مرتفع (87.7)",
+        "MACD لم يظهر تحسنًا كافيًا"
+      ],
+      "entry_reason": "Reverse Split حديث / Volume هادئ (8,900) / الدعم العام اختُبر 4 مرات"
+    },
+    "daily_log": [
+      {
+        "date": "2026-08-23",
+        "price": 10.914999961853027,
+        "gain_pct": 0.0
+      }
+    ],
+    "status": "TRACKING",
+    "last_checked": "2026-08-23",
+    "last_price": 10.914999961853027,
+    "max_price_since_entry": 10.914999961853027,
+    "max_gain_percent": null,
+    "days_to_peak": null,
+    "reached_70": false,
+    "completed_70_date": null,
+    "days_to_complete_70": null,
+    "reached_100": false,
+    "completed_100_date": null,
+    "days_to_complete_100": null,
+    "reached_200": false,
+    "completed_200_date": null,
+    "days_to_complete_200": null,
+    "expired_date": null,
+    "failure_reason": null,
+    "behavior_note": null
   }
 }
