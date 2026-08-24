@@ -1,5 +1,27 @@
 {
-  "generated_at": "2026-08-23T09:14:27.874095",
-  "total_explosions": 0,
-  "note": "لم يُرصد أي انفجار بعد - سيظهر التحليل هنا بمجرد اكتشاف أول قفزة يومية كبيرة."
+  "generated_at": "2026-08-24T15:26:05.266417",
+  "total_explosions": 1,
+  "tier_breakdown": {
+    "عادي": 0,
+    "قوي": 1,
+    "استثنائي": 0
+  },
+  "avg_day_jump_percent": 163.12,
+  "avg_minutes_to_peak": 185.0,
+  "avg_explosion_volume_ratio": 0.0,
+  "avg_pre_explosion_rsi": 48.1,
+  "avg_days_quiet_before": 11.0,
+  "avg_float_shares": null,
+  "macd_improving_before_percent": 0.0,
+  "recent_reverse_split_percent": 0.0,
+  "recent_explosions": [
+    {
+      "ticker": "XPON",
+      "date": "2026-08-24",
+      "tier": "قوي",
+      "day_jump_percent": 163.12,
+      "minutes_to_peak": 185
+    }
+  ],
+  "note": "تقرير وصفي لسلوك الانفجارات المرصودة فقط - لا يُستخدم لتعديل أي شرط في الاستراتيجية تلقائيًا."
 }

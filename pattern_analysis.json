@@ -1,61 +1,61 @@
 {
-  "generated_at": "2026-08-23T09:14:27.873893",
-  "completed_count": 21,
+  "generated_at": "2026-08-24T15:26:05.266195",
+  "completed_count": 25,
   "expired_count": 0,
   "success_rate_percent": 100.0,
   "success": {
-    "count": 21,
-    "avg_entry_rsi": 51.67,
-    "avg_entry_score_percent": 52.56,
-    "avg_entry_core": 5.1,
-    "avg_entry_support_tests": 4.24,
-    "avg_entry_rebounds": 0.33,
-    "avg_entry_volume_ratio": 0.05,
-    "rsi_improving_percent": 4.8,
-    "macd_improving_percent": 0.0,
-    "avg_max_gain_percent": 2150.53,
-    "reached_100_percent": 14.3,
-    "reached_200_percent": 14.3,
+    "count": 25,
+    "avg_entry_rsi": 53.6,
+    "avg_entry_score_percent": 53.07,
+    "avg_entry_core": 5.32,
+    "avg_entry_support_tests": 4.16,
+    "avg_entry_rebounds": 0.4,
+    "avg_entry_volume_ratio": 0.09,
+    "rsi_improving_percent": 12.0,
+    "macd_improving_percent": 4.0,
+    "avg_max_gain_percent": 1839.52,
+    "reached_100_percent": 20.0,
+    "reached_200_percent": 16.0,
     "top_signals": [
       {
         "signal": "Reverse Split حديث",
-        "count": 21,
+        "count": 25,
         "percent": 100.0
       },
       {
         "signal": "موعد نتائج مالية",
-        "count": 21,
+        "count": 25,
         "percent": 100.0
       },
       {
         "signal": "السعر قريب من MA20",
-        "count": 9,
-        "percent": 42.9
+        "count": 11,
+        "percent": 44.0
+      },
+      {
+        "signal": "نتائج مالية قادمة",
+        "count": 6,
+        "percent": 24.0
       },
       {
         "signal": "الدعم العام اختُبر 3 مرات",
+        "count": 6,
+        "percent": 24.0
+      },
+      {
+        "signal": "السعر قريب من الدعم",
         "count": 5,
-        "percent": 23.8
+        "percent": 20.0
+      },
+      {
+        "signal": "MACD يتحسن",
+        "count": 5,
+        "percent": 20.0
       },
       {
         "signal": "الدعم العام اختُبر 6 مرات",
         "count": 4,
-        "percent": 19.0
-      },
-      {
-        "signal": "نتائج مالية قادمة",
-        "count": 4,
-        "percent": 19.0
-      },
-      {
-        "signal": "السعر قريب من الدعم",
-        "count": 3,
-        "percent": 14.3
-      },
-      {
-        "signal": "الدعم العام اختُبر 2 مرات",
-        "count": 3,
-        "percent": 14.3
+        "percent": 16.0
       }
     ]
   },
