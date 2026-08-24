@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-08-24T19:18:48.229193",
-  "total_explosions": 3,
+  "generated_at": "2026-08-24T21:01:40.414291",
+  "total_explosions": 4,
   "tier_breakdown": {
     "عادي": 1,
-    "قوي": 2,
+    "قوي": 3,
     "استثنائي": 0
   },
-  "avg_day_jump_percent": 123.26,
-  "avg_minutes_to_peak": 426.67,
-  "avg_explosion_volume_ratio": 0.69,
-  "avg_pre_explosion_rsi": 39.55,
+  "avg_day_jump_percent": 130.15,
+  "avg_minutes_to_peak": 501.25,
+  "avg_explosion_volume_ratio": 0.8,
+  "avg_pre_explosion_rsi": 38.49,
   "avg_days_quiet_before": 11.0,
   "avg_float_shares": null,
   "macd_improving_before_percent": 0.0,
@@ -28,6 +28,13 @@
       "tier": "قوي",
       "day_jump_percent": 113.93,
       "minutes_to_peak": 610
+    },
+    {
+      "ticker": "GIPR",
+      "date": "2026-08-24",
+      "tier": "قوي",
+      "day_jump_percent": 150.83,
+      "minutes_to_peak": 725
     },
     {
       "ticker": "XPON",
