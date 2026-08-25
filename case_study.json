@@ -1,36 +1,36 @@
 {
-  "generated_at": "2026-08-24T21:01:40.413719",
-  "completed_count": 26,
-  "avg_days_to_target_70": 1.69,
-  "avg_entry_rsi": 54.43,
-  "avg_entry_score_percent": 52.51,
-  "avg_entry_core": 5.31,
-  "avg_entry_support_tests": 4.12,
-  "avg_max_gain_percent": 1771.78,
+  "generated_at": "2026-08-25T15:31:19.572299",
+  "completed_count": 28,
+  "avg_days_to_target_70": 2.07,
+  "avg_entry_rsi": 53.3,
+  "avg_entry_score_percent": 52.74,
+  "avg_entry_core": 5.32,
+  "avg_entry_support_tests": 4.18,
+  "avg_max_gain_percent": 1652.37,
   "top_recurring_signals_at_entry": [
     {
       "signal": "Reverse Split حديث",
-      "count": 26
+      "count": 28
     },
     {
       "signal": "موعد نتائج مالية",
-      "count": 26
+      "count": 28
     },
     {
       "signal": "السعر قريب من MA20",
-      "count": 11
+      "count": 12
+    },
+    {
+      "signal": "نتائج مالية قادمة",
+      "count": 7
+    },
+    {
+      "signal": "MACD يتحسن",
+      "count": 7
     },
     {
       "signal": "الدعم العام اختُبر 3 مرات",
       "count": 7
-    },
-    {
-      "signal": "نتائج مالية قادمة",
-      "count": 6
-    },
-    {
-      "signal": "MACD يتحسن",
-      "count": 6
     },
     {
       "signal": "السعر قريب من الدعم",
@@ -41,11 +41,11 @@
       "count": 4
     },
     {
-      "signal": "الدعم العام اختُبر 4 مرات",
-      "count": 3
+      "signal": "الدعم العام اختُبر 5 مرات",
+      "count": 4
     },
     {
-      "signal": "الدعم العام اختُبر 2 مرات",
+      "signal": "الدعم العام اختُبر 4 مرات",
       "count": 3
     }
   ],
@@ -59,6 +59,7 @@
     "DBGI",
     "NVVE",
     "XPON",
+    "ABTC",
     "CIIT",
     "QNCX",
     "CDT",
@@ -73,6 +74,7 @@
     "OFAL",
     "CSAI",
     "YAAS",
+    "PMI",
     "WETO",
     "TOP",
     "LEXX"
