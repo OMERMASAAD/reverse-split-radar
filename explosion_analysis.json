@@ -1,20 +1,27 @@
 {
-  "generated_at": "2026-08-25T17:17:10.588037",
-  "total_explosions": 4,
+  "generated_at": "2026-08-25T19:19:08.898411",
+  "total_explosions": 5,
   "tier_breakdown": {
-    "عادي": 1,
+    "عادي": 2,
     "قوي": 3,
     "استثنائي": 0
   },
-  "avg_day_jump_percent": 130.15,
-  "avg_minutes_to_peak": 501.25,
-  "avg_explosion_volume_ratio": 0.8,
-  "avg_pre_explosion_rsi": 38.49,
-  "avg_days_quiet_before": 11.0,
+  "avg_day_jump_percent": 120.14,
+  "avg_minutes_to_peak": 401.0,
+  "avg_explosion_volume_ratio": 1.24,
+  "avg_pre_explosion_rsi": 39.45,
+  "avg_days_quiet_before": 11.2,
   "avg_float_shares": null,
   "macd_improving_before_percent": 0.0,
   "recent_reverse_split_percent": 0.0,
   "recent_explosions": [
+    {
+      "ticker": "JEM",
+      "date": "2026-08-25",
+      "tier": "عادي",
+      "day_jump_percent": 80.1,
+      "minutes_to_peak": 0
+    },
     {
       "ticker": "GIPR",
       "date": "2026-08-24",
