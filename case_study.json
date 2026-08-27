@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-08-25T20:54:15.397762",
-  "completed_count": 28,
-  "avg_days_to_target_70": 2.07,
-  "avg_entry_rsi": 53.3,
-  "avg_entry_score_percent": 52.74,
-  "avg_entry_core": 5.32,
-  "avg_entry_support_tests": 4.18,
-  "avg_max_gain_percent": 1652.37,
+  "generated_at": "2026-08-27T15:01:03.389059",
+  "completed_count": 29,
+  "avg_days_to_target_70": 2.48,
+  "avg_entry_rsi": 53.47,
+  "avg_entry_score_percent": 51.98,
+  "avg_entry_core": 5.28,
+  "avg_entry_support_tests": 4.14,
+  "avg_max_gain_percent": 1598.07,
   "top_recurring_signals_at_entry": [
     {
       "signal": "Reverse Split حديث",
-      "count": 28
+      "count": 29
     },
     {
       "signal": "موعد نتائج مالية",
-      "count": 28
+      "count": 29
     },
     {
       "signal": "السعر قريب من MA20",
@@ -22,15 +22,15 @@
     },
     {
       "signal": "نتائج مالية قادمة",
-      "count": 7
+      "count": 8
     },
     {
       "signal": "MACD يتحسن",
-      "count": 7
+      "count": 8
     },
     {
       "signal": "الدعم العام اختُبر 3 مرات",
-      "count": 7
+      "count": 8
     },
     {
       "signal": "السعر قريب من الدعم",
@@ -60,6 +60,7 @@
     "NVVE",
     "XPON",
     "ABTC",
+    "CANG",
     "CIIT",
     "QNCX",
     "CDT",
