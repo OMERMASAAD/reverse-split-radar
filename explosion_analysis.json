@@ -1,20 +1,27 @@
 {
-  "generated_at": "2026-08-28T01:37:25.580660",
-  "total_explosions": 6,
+  "generated_at": "2026-08-31T13:33:22.816866",
+  "total_explosions": 7,
   "tier_breakdown": {
     "عادي": 3,
     "قوي": 3,
-    "استثنائي": 0
+    "استثنائي": 1
   },
-  "avg_day_jump_percent": 113.1,
-  "avg_minutes_to_peak": 346.67,
-  "avg_explosion_volume_ratio": 1.24,
-  "avg_pre_explosion_rsi": 40.1,
-  "avg_days_quiet_before": 11.33,
+  "avg_day_jump_percent": 126.36,
+  "avg_minutes_to_peak": 297.14,
+  "avg_explosion_volume_ratio": 2.06,
+  "avg_pre_explosion_rsi": 37.34,
+  "avg_days_quiet_before": 12.29,
   "avg_float_shares": null,
   "macd_improving_before_percent": 0.0,
   "recent_reverse_split_percent": 0.0,
   "recent_explosions": [
+    {
+      "ticker": "FTFT",
+      "date": "2026-08-31",
+      "tier": "استثنائي",
+      "day_jump_percent": 205.95,
+      "minutes_to_peak": 0
+    },
     {
       "ticker": "JEM",
       "date": "2026-08-25",

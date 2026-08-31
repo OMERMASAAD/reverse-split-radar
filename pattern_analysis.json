@@ -1,61 +1,61 @@
 {
-  "generated_at": "2026-08-28T01:37:25.580488",
-  "completed_count": 31,
+  "generated_at": "2026-08-31T13:33:22.816676",
+  "completed_count": 32,
   "expired_count": 0,
   "success_rate_percent": 100.0,
   "success": {
-    "count": 31,
-    "avg_entry_rsi": 51.94,
-    "avg_entry_score_percent": 52.97,
-    "avg_entry_core": 5.32,
-    "avg_entry_support_tests": 4.0,
+    "count": 32,
+    "avg_entry_rsi": 50.97,
+    "avg_entry_score_percent": 54.32,
+    "avg_entry_core": 5.44,
+    "avg_entry_support_tests": 3.94,
     "avg_entry_rebounds": 0.67,
     "avg_entry_volume_ratio": 2.12,
-    "rsi_improving_percent": 16.1,
-    "macd_improving_percent": 6.5,
-    "avg_max_gain_percent": 1648.16,
-    "reached_100_percent": 25.8,
-    "reached_200_percent": 19.4,
+    "rsi_improving_percent": 15.6,
+    "macd_improving_percent": 6.2,
+    "avg_max_gain_percent": 1600.17,
+    "reached_100_percent": 28.1,
+    "reached_200_percent": 18.8,
     "top_signals": [
       {
         "signal": "Reverse Split حديث",
-        "count": 31,
+        "count": 32,
         "percent": 100.0
       },
       {
         "signal": "موعد نتائج مالية",
-        "count": 31,
+        "count": 32,
         "percent": 100.0
       },
       {
         "signal": "السعر قريب من MA20",
-        "count": 14,
-        "percent": 45.2
+        "count": 15,
+        "percent": 46.9
+      },
+      {
+        "signal": "MACD يتحسن",
+        "count": 9,
+        "percent": 28.1
       },
       {
         "signal": "نتائج مالية قادمة",
         "count": 8,
-        "percent": 25.8
-      },
-      {
-        "signal": "MACD يتحسن",
-        "count": 8,
-        "percent": 25.8
+        "percent": 25.0
       },
       {
         "signal": "الدعم العام اختُبر 3 مرات",
         "count": 8,
-        "percent": 25.8
+        "percent": 25.0
+      },
+      {
+        "signal": "الدعم العام اختُبر 2 مرات",
+        "count": 6,
+        "percent": 18.8
       },
       {
         "signal": "السعر قريب من الدعم",
         "count": 5,
-        "percent": 16.1
-      },
-      {
-        "signal": "الدعم العام اختُبر 2 مرات",
-        "count": 5,
-        "percent": 16.1
+        "percent": 15.6
       }
     ]
   },

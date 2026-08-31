@@ -1,31 +1,31 @@
 {
-  "generated_at": "2026-08-28T01:37:25.580175",
-  "completed_count": 31,
-  "avg_days_to_target_70": 2.39,
-  "avg_entry_rsi": 51.94,
-  "avg_entry_score_percent": 52.97,
-  "avg_entry_core": 5.32,
-  "avg_entry_support_tests": 4.0,
-  "avg_max_gain_percent": 1648.16,
+  "generated_at": "2026-08-31T13:33:22.816359",
+  "completed_count": 32,
+  "avg_days_to_target_70": 2.88,
+  "avg_entry_rsi": 50.97,
+  "avg_entry_score_percent": 54.32,
+  "avg_entry_core": 5.44,
+  "avg_entry_support_tests": 3.94,
+  "avg_max_gain_percent": 1600.17,
   "top_recurring_signals_at_entry": [
     {
       "signal": "Reverse Split حديث",
-      "count": 31
+      "count": 32
     },
     {
       "signal": "موعد نتائج مالية",
-      "count": 31
+      "count": 32
     },
     {
       "signal": "السعر قريب من MA20",
-      "count": 14
-    },
-    {
-      "signal": "نتائج مالية قادمة",
-      "count": 8
+      "count": 15
     },
     {
       "signal": "MACD يتحسن",
+      "count": 9
+    },
+    {
+      "signal": "نتائج مالية قادمة",
       "count": 8
     },
     {
@@ -33,11 +33,11 @@
       "count": 8
     },
     {
-      "signal": "السعر قريب من الدعم",
-      "count": 5
+      "signal": "الدعم العام اختُبر 2 مرات",
+      "count": 6
     },
     {
-      "signal": "الدعم العام اختُبر 2 مرات",
+      "signal": "السعر قريب من الدعم",
       "count": 5
     },
     {
@@ -50,6 +50,7 @@
     }
   ],
   "tickers_completed": [
+    "FTFT",
     "GDC",
     "PSQH",
     "FFAI",
