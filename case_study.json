@@ -1,24 +1,24 @@
 {
-  "generated_at": "2026-09-02T13:37:59.366332",
-  "completed_count": 35,
-  "avg_days_to_target_70": 2.63,
-  "avg_entry_rsi": 50.54,
-  "avg_entry_score_percent": 54.28,
-  "avg_entry_core": 5.37,
-  "avg_entry_support_tests": 3.74,
-  "avg_max_gain_percent": 1673.74,
+  "generated_at": "2026-09-02T14:37:41.703987",
+  "completed_count": 39,
+  "avg_days_to_target_70": 2.36,
+  "avg_entry_rsi": 47.91,
+  "avg_entry_score_percent": 55.81,
+  "avg_entry_core": 5.44,
+  "avg_entry_support_tests": 4.03,
+  "avg_max_gain_percent": 1567.46,
   "top_recurring_signals_at_entry": [
     {
       "signal": "Reverse Split حديث",
-      "count": 35
+      "count": 39
     },
     {
       "signal": "موعد نتائج مالية",
-      "count": 35
+      "count": 39
     },
     {
       "signal": "السعر قريب من MA20",
-      "count": 18
+      "count": 22
     },
     {
       "signal": "MACD يتحسن",
@@ -37,15 +37,15 @@
       "count": 8
     },
     {
+      "signal": "الدعم العام اختُبر 6 مرات",
+      "count": 5
+    },
+    {
       "signal": "السعر قريب من الدعم",
       "count": 5
     },
     {
-      "signal": "الدعم العام اختُبر 6 مرات",
-      "count": 4
-    },
-    {
-      "signal": "الدعم العام اختُبر 5 مرات",
+      "signal": "الدعم العام اختُبر 4 مرات",
       "count": 4
     }
   ],
@@ -84,6 +84,10 @@
     "JUNS",
     "SXTC",
     "NXTT",
-    "ELPW"
+    "ELPW",
+    "MYSZ",
+    "SMXT",
+    "MBAI",
+    "KIDZ"
   ]
 }
