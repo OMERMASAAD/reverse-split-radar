@@ -5,11 +5,10 @@ from datetime import datetime, timedelta
 
 
 # ==========================================
-# إعدادات الرادار
+# إعدادات الدراسة
 # ==========================================
 
-MIN_DAYS = 20
-MAX_DAYS = 50
+LOOKBACK_DAYS = 90
 
 API_URL = "https://data.businessquant.com/corporate_actions"
 
@@ -44,9 +43,9 @@ def valid_symbol(symbol):
 
 def get_reverse_splits():
 
-    print("=" * 60)
-    print("🚨 REVERSE SPLIT RADAR")
-    print("=" * 60)
+    print("=" * 70)
+    print("🧠 REVERSE SPLIT HISTORICAL RESEARCH")
+    print("=" * 70)
 
     api_key = os.getenv("BUSINESSQUANT_API_KEY")
 
@@ -61,18 +60,44 @@ def get_reverse_splits():
 
     today = datetime.now().date()
 
-    start_date = today - timedelta(days=MAX_DAYS)
-    end_date = today - timedelta(days=MIN_DAYS)
+    # ======================================
+    # آخر 90 يوم
+    # ======================================
 
-    print(f"📅 البحث من: {start_date}")
-    print(f"📅 إلى:     {end_date}")
+    start_date = today - timedelta(
+        days=LOOKBACK_DAYS
+    )
+
+    end_date = today
+
+    print(
+        f"📅 فترة الدراسة: آخر "
+        f"{LOOKBACK_DAYS} يوم"
+    )
+
+    print(
+        f"📅 من: {start_date}"
+    )
+
+    print(
+        f"📅 إلى: {end_date}"
+    )
 
     params = {
+
         "action": "split",
-        "from_date": str(start_date),
-        "till_date": str(end_date),
-        "limit": 10000,
-        "api_key": api_key,
+
+        "from_date":
+            str(start_date),
+
+        "till_date":
+            str(end_date),
+
+        "limit":
+            10000,
+
+        "api_key":
+            api_key,
     }
 
     try:
@@ -87,11 +112,14 @@ def get_reverse_splits():
 
         result = response.json()
 
-        data = result.get("data", [])
+        data = result.get(
+            "data",
+            []
+        )
 
         print(
-            f"📊 عدد عمليات التقسيم التي رجعها المصدر: "
-            f"{len(data)}"
+            f"📊 إجمالي عمليات التقسيم "
+            f"من المصدر: {len(data)}"
         )
 
         candidates = []
@@ -103,45 +131,67 @@ def get_reverse_splits():
         for item in data:
 
             ticker = str(
-                item.get("ticker", "")
+                item.get(
+                    "ticker",
+                    ""
+                )
             ).strip().upper()
 
             action = str(
-                item.get("action", "")
+                item.get(
+                    "action",
+                    ""
+                )
             ).strip().lower()
 
             notes = str(
-                item.get("notes", "")
+                item.get(
+                    "notes",
+                    ""
+                )
             ).strip()
 
             date_text = str(
-                item.get("date", "")
+                item.get(
+                    "date",
+                    ""
+                )
             ).strip()
 
-            # -------------------------------
+            company = str(
+                item.get(
+                    "name",
+                    ""
+                )
+            ).strip()
+
+            # ----------------------------------
             # التأكد من الرمز
-            # -------------------------------
+            # ----------------------------------
 
             if not valid_symbol(ticker):
                 continue
 
-            # -------------------------------
+            # ----------------------------------
             # نريد Split فقط
-            # -------------------------------
+            # ----------------------------------
 
             if action != "split":
                 continue
 
-            # -------------------------------
+            # ----------------------------------
             # نريد Reverse Split فقط
-            # -------------------------------
+            # ----------------------------------
 
-            if "reverse split" not in notes.lower():
+            if (
+                "reverse split"
+                not in notes.lower()
+            ):
                 continue
 
-            # -------------------------------
+            # ----------------------------------
             # تحويل التاريخ
-            # -------------------------------
+            # ----------------------------------
 
             try:
 
@@ -154,40 +204,47 @@ def get_reverse_splits():
 
                 continue
 
-            # -------------------------------
+            # ----------------------------------
             # حساب عمر التقسيم
-            # -------------------------------
+            # ----------------------------------
 
             days_passed = (
                 today - split_date
             ).days
 
-            if not (
-                MIN_DAYS
-                <= days_passed
-                <= MAX_DAYS
+            # ----------------------------------
+            # التأكد أنه داخل آخر 90 يوم
+            # ----------------------------------
+
+            if (
+                days_passed < 0
+                or days_passed > LOOKBACK_DAYS
             ):
                 continue
 
-            # -------------------------------
+            # ----------------------------------
             # إضافة السهم
-            # -------------------------------
+            # ----------------------------------
 
             candidates.append({
 
-                "symbol": ticker,
+                "ticker":
+                    ticker,
 
-                "split_date": str(
-                    split_date
-                ),
+                "symbol":
+                    ticker,
 
-                "days": days_passed,
+                "split_date":
+                    str(split_date),
 
-                "reverse_split": notes,
+                "days":
+                    days_passed,
 
-                "company": str(
-                    item.get("name", "")
-                ),
+                "reverse_split":
+                    notes,
+
+                "company":
+                    company,
 
             })
 
@@ -199,19 +256,26 @@ def get_reverse_splits():
 
         for stock in candidates:
 
-            unique[
-                stock["symbol"]
-            ] = stock
+            key = (
+                stock["ticker"],
+                stock["split_date"]
+            )
+
+            unique[key] = stock
 
         candidates = list(
             unique.values()
         )
 
-        # ترتيب حسب عمر التقسيم
+        # ======================================
+        # ترتيب حسب تاريخ التقسيم
+        # الأقدم أولاً للدراسة التاريخية
+        # ======================================
+
         candidates.sort(
             key=lambda x: (
-                x["days"],
-                x["symbol"]
+                x["split_date"],
+                x["ticker"]
             )
         )
 
@@ -237,15 +301,15 @@ def get_reverse_splits():
         # ======================================
 
         print()
-        print("=" * 60)
-        print("🎯 الأسهم المؤهلة للرادار")
-        print("=" * 60)
+        print("=" * 70)
+        print("📚 Reverse Splits داخل آخر 90 يوم")
+        print("=" * 70)
 
         if not candidates:
 
             print(
-                "⚪ لا توجد أسهم حاليًا "
-                "بين 20 و50 يوم"
+                "⚪ لم يتم العثور على "
+                "Reverse Splits"
             )
 
         else:
@@ -253,7 +317,7 @@ def get_reverse_splits():
             for stock in candidates:
 
                 print(
-                    f"🟢 {stock['symbol']} | "
+                    f"🟢 {stock['ticker']} | "
                     f"التقسيم: "
                     f"{stock['split_date']} | "
                     f"العمر: "
@@ -262,19 +326,19 @@ def get_reverse_splits():
                 )
 
         print()
-        print("=" * 60)
+        print("=" * 70)
 
         print(
-            f"📌 عدد الأسهم المؤهلة: "
+            f"📌 عدد Reverse Splits للدراسة: "
             f"{len(candidates)}"
         )
 
         print(
-            f"💾 تم حفظ القائمة في: "
+            f"💾 تم حفظ البيانات في: "
             f"{OUTPUT_FILE}"
         )
 
-        print("=" * 60)
+        print("=" * 70)
 
         return candidates
 
