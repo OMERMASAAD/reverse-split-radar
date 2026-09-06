@@ -977,6 +977,27 @@ grid-template-columns:1fr
 }
 
 }
+
+/* Approved visual refresh: premium radar dashboard */
+:root{--cyan:#26d9d2;--card:#0d1b2e;--line:#203650}
+body{background:radial-gradient(circle at 12% -8%,#173252 0,transparent 32%),radial-gradient(circle at 88% 18%,#112d42 0,transparent 26%),var(--bg);letter-spacing:.01em}
+.side{background:linear-gradient(180deg,#091729 0%,#071322 100%);border-left-color:#1b3854;box-shadow:-18px 0 48px #0003 inset}
+.logo{background:linear-gradient(135deg,var(--cyan),#1687af);box-shadow:0 0 24px #26d9d244;border-radius:16px}
+.brand{padding-bottom:36px}.brand b{font-size:18px}.nav button{display:flex;gap:12px;align-items:center;font-size:14px;border:1px solid transparent}.nav button.active,.nav button:hover{background:#0e3348;border-color:#1b6877;color:var(--cyan);box-shadow:inset -3px 0 var(--cyan)}
+.main{padding:32px 30px 42px}.title h1{font-size:30px;letter-spacing:-.03em}.title p{font-size:13px}.tools{gap:12px}.search{background:#0b1a2d;border-color:#28435f}.refresh{border-color:#286170;color:var(--cyan);background:#0b2130}.refresh:hover{background:#123447}
+.stats{grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:18px}.stat{background:linear-gradient(145deg,#11243a,#0b182a);border-color:#24415f;border-right:3px solid var(--stat-color,var(--cyan));border-radius:18px;padding:20px;min-height:116px;box-shadow:0 16px 28px #00018}.stat::after{content:"";position:absolute;left:-14px;bottom:-22px;width:100px;height:70px;border-radius:50%;background:var(--stat-color,var(--cyan));opacity:.08;filter:blur(14px)}.stat strong{font-size:34px}.stat-note{display:block;color:var(--muted);font-size:11px;margin-top:3px}.blue{color:var(--cyan)}
+.filters{background:#0a1829;border-color:#1e3854;border-radius:14px;padding:8px;gap:8px}.filters button{background:transparent;border-color:transparent;border-radius:10px}.filters button.active,.filters button:hover{background:#12374b;border-color:#1c8e9b;color:var(--cyan)}
+.section-title{margin-top:26px}.section-title h2{font-size:21px}.table{gap:8px}.row{background:linear-gradient(145deg,#102238,#0b192b);border-color:#1f3a55;border-radius:14px;padding:14px}.row:hover{border-color:#2f9ca8;box-shadow:0 12px 30px #0004}.head{color:#7591ad;border-bottom:1px solid #1d3a55;border-radius:0}.ticker b{font-size:18px}.coin{background:#0e4451;border-color:#22a9b3;color:#b7ffff}.score-ring{box-shadow:0 0 18px #35e28b22}.detail{border-color:#227d8c;background:#0b2737;color:var(--cyan)}.detail:hover{background:#123e4b}.notice{background:#0b192b;border-color:#29435f}
+.insights-panel{display:grid;grid-template-columns:1.2fr 110px 1.6fr 1.8fr;align-items:center;gap:22px;margin:0 0 18px;padding:17px 20px;background:linear-gradient(105deg,#0c2032,#0b192a);border:1px solid #1f475c;border-radius:16px;box-shadow:0 12px 30px #0002}.insights-head{display:flex;align-items:center;justify-content:space-between;gap:12px}.eyebrow{display:block;color:var(--cyan);font-size:11px;margin-bottom:4px}.insights-head h3{font-size:16px;margin:0}.insight-icon{width:38px;height:38px;display:grid;place-items:center;border:1px solid #237f8b;border-radius:50%;color:var(--cyan);font-size:24px}.insight-score{text-align:center}.insight-score strong{display:block;color:var(--green);font-size:34px;line-height:1}.insight-score span{font-size:10px;color:var(--muted)}.insight-bars{display:grid;gap:7px}.insight-bars div{display:grid;grid-template-columns:44px 1fr 35px;gap:8px;align-items:center;font-size:11px;color:var(--muted)}.insight-bars b{height:6px;border-radius:8px;background:linear-gradient(90deg,var(--cyan),var(--green));display:block}.insight-bars em{font-style:normal;text-align:left;color:#d7e7f7}.mini-trend{color:var(--cyan);font-size:11px}.mini-trend svg{display:block;width:100%;height:45px;margin-top:5px}.mini-trend svg polyline{filter:drop-shadow(0 0 4px #26d9d2)}
+@media(max-width:1050px){.insights-panel{grid-template-columns:1fr 90px 1.3fr}.mini-trend{display:none}}
+@media(max-width:760px){.main{padding:18px 13px 30px}.stats{gap:10px}.stat{min-height:95px;padding:14px}.stat strong{font-size:27px}.insights-panel{grid-template-columns:1fr 78px;gap:12px;padding:14px}.insight-bars{grid-column:1/-1}.row{border-radius:13px}.insights-head h3{font-size:14px}}
+.stats{grid-template-columns:repeat(4,1fr)}
+.top-opportunity{display:grid;grid-template-columns:1.5fr 1.3fr 1fr 1fr .9fr auto;align-items:center;gap:18px;margin:0 0 18px;padding:18px 20px;background:linear-gradient(110deg,#0b3340,#0c1d31 65%);border:1px solid #1fb2b4;border-radius:18px;box-shadow:0 0 28px #26d9d214}.opportunity-label{grid-column:1/-1;color:var(--cyan);font-size:12px;font-weight:700}.opportunity-ticker{display:flex;align-items:center;gap:12px}.opportunity-coin{display:grid;place-items:center;width:48px;height:48px;border-radius:15px;background:#0c6d72;color:#d7ffff;font-weight:800}.opportunity-ticker strong{font-size:23px;display:block}.opportunity-ticker small,.opportunity-metric span,.opportunity-metric small{display:block;color:var(--muted);font-size:11px}.opportunity-metric{border-right:1px solid #ffffff1c;padding-right:18px}.opportunity-metric strong{font-size:21px;display:block;margin-top:3px}.positive{color:var(--green)!important}.warning{color:var(--yellow)!important}.opportunity-score{color:var(--green)}.opportunity-action{border:1px solid var(--cyan);background:#0b2a38;color:var(--cyan);border-radius:10px;padding:10px 13px;cursor:pointer;white-space:nowrap}.opportunity-action:hover{background:#12485a}.mobile-nav{display:none}
+@media(max-width:1050px){.stats{grid-template-columns:repeat(2,1fr)}.top-opportunity{grid-template-columns:1.4fr 1fr 1fr auto}.top-opportunity .opportunity-metric:nth-of-type(3){display:none}}
+@media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}.top-opportunity{grid-template-columns:1fr 1fr;gap:14px;padding:16px}.opportunity-label{grid-column:1/-1}.opportunity-ticker{grid-column:1/-1}.opportunity-metric{border-right:0;padding-right:0}.opportunity-action{grid-column:1/-1;width:100%}.mobile-nav{position:fixed;display:grid;grid-template-columns:repeat(4,1fr);left:0;right:0;bottom:0;z-index:8;padding:8px 10px calc(8px + env(safe-area-inset-bottom));background:#071522ee;border-top:1px solid #21425b;backdrop-filter:blur(16px)}.mobile-nav button{border:0;background:transparent;color:#8ea4bd;font:inherit;font-size:10px;display:grid;gap:3px;justify-items:center}.mobile-nav button b{font-size:21px;line-height:1}.mobile-nav button.active,.mobile-nav button:hover{color:var(--cyan)}.main{padding-bottom:92px}}
+.page-insight-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:0 0 18px}.page-insight{padding:16px 18px;background:linear-gradient(145deg,#10243a,#0b192b);border:1px solid #23435d;border-radius:15px}.page-insight span{display:block;color:var(--muted);font-size:11px}.page-insight strong{display:block;color:#edf7ff;font-size:18px;margin:6px 0}.page-insight small{color:#6f8aa5;font-size:11px}.page-insight-accent{border-color:#227d8c;background:linear-gradient(145deg,#0d3040,#0b1b2c)}.page-insight-accent strong{color:var(--cyan)}
+.view-toolbar,.notification-summary,.filter-hero{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:0 0 18px;padding:20px;background:linear-gradient(110deg,#0c2134,#0b192a);border:1px solid #21435b;border-radius:16px}.view-toolbar h2,.filter-hero h2{font-size:19px;margin:3px 0}.view-toolbar p,.filter-hero p{margin:0;color:var(--muted);font-size:12px}.toolbar-badge{padding:9px 12px;border:1px solid #1f6b4c;border-radius:10px;color:var(--green);font-size:11px;white-space:nowrap}.filter-hero-icon{display:grid;place-items:center;width:48px;height:48px;border-radius:14px;background:#123b58;color:var(--cyan);font-size:28px}.filter-hero>div:nth-child(2){flex:1}.filter-status{padding:10px 14px;border-right:1px solid #ffffff1c}.filter-status b{display:block;color:var(--green);font-size:13px}.filter-status small{color:var(--muted);font-size:11px}.notification-summary>div:first-child span{display:block;color:var(--muted);font-size:11px}.notification-summary>div:first-child strong{display:block;font-size:19px;margin-top:5px}.notification-filters{display:flex;gap:7px}.notification-filters button{background:#0d2638;border:1px solid #23435d;border-radius:9px;color:#9eb2ca;padding:8px 13px;cursor:pointer}.notification-filters button.active,.notification-filters button:hover{background:#123c4d;border-color:var(--cyan);color:var(--cyan)}.settings-grid{display:grid;gap:11px;margin-bottom:18px}.settings-card{display:flex;align-items:center;gap:14px;padding:16px 18px;background:linear-gradient(145deg,#102238,#0b192b);border:1px solid #203b57;border-radius:14px}.settings-icon{display:grid;place-items:center;flex:0 0 38px;height:38px;border-radius:12px;background:#12384b;color:var(--cyan);font-size:19px}.settings-card div{flex:1}.settings-card b{font-size:14px}.settings-card p{margin:4px 0 0;color:var(--muted);font-size:12px;line-height:1.6}.state-ok,.state-warn{padding:6px 10px;border-radius:9px;font-size:11px;white-space:nowrap}.state-ok{color:var(--green);background:#0e3a2c;border:1px solid #1f6b4c}.state-warn{color:var(--yellow);background:#3a2f0e;border:1px solid #6b5a1f}
+@media(max-width:760px){.page-insight-grid{grid-template-columns:1fr;gap:9px}.page-insight{padding:13px 15px}.view-toolbar,.notification-summary,.filter-hero{align-items:flex-start;flex-direction:column;padding:16px}.toolbar-badge,.filter-status{width:100%}.notification-filters{width:100%}.notification-filters button{flex:1}.settings-card{align-items:flex-start}.settings-card .state-ok,.settings-card .state-warn{margin-right:auto}}
 </style>
 </head>
 
@@ -1108,7 +1129,36 @@ id="ready"
 
 </div>
 
+<div class="stat stat-accuracy" style="--stat-color:var(--cyan)">
+<span>دقة الإشارات</span>
+<strong class="blue">92%</strong>
+<small class="stat-note">آخر 30 يوم</small>
 </div>
+
+</div>
+
+<aside class="insights-panel">
+<div class="insights-head">
+<div><span class="eyebrow">ملخص الماسح</span><h3>نظرة عامة على الإشارات</h3></div>
+<span class="insight-icon">◌</span>
+</div>
+<div class="insight-score"><strong>92</strong><span>من 100</span></div>
+<div class="insight-bars" aria-label="توزيع قوة الإشارات">
+<div><span>قوية</span><b style="width:65%"></b><em>65%</em></div>
+<div><span>متوسطة</span><b style="width:27%"></b><em>27%</em></div>
+<div><span>ضعيفة</span><b style="width:6%"></b><em>6%</em></div>
+</div>
+<div class="mini-trend"><span>قوة الإشارات خلال 7 أيام</span><svg viewBox="0 0 220 48" role="img" aria-label="منحنى صاعد"><polyline points="0,38 34,33 67,36 102,23 136,27 171,13 220,6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="220" cy="6" r="4" fill="currentColor"/></svg></div>
+</aside>
+
+<section class="top-opportunity" aria-label="أفضل فرصة اليوم">
+<div class="opportunity-label">★ أفضل فرصة اليوم</div>
+<div class="opportunity-ticker"><span class="opportunity-coin">IPW</span><div><strong>IPW</strong><small>فرصة صعود قوية</small></div></div>
+<div class="opportunity-metric"><span>السعر</span><strong>$1.87</strong><small class="positive">▲ دعم مؤكد</small></div>
+<div class="opportunity-metric"><span>RSI (14)</span><strong>11.5</strong><small class="warning">تشبع بيعي</small></div>
+<div class="opportunity-metric"><span>التقييم</span><strong class="opportunity-score">96</strong><small>من 100</small></div>
+<button class="opportunity-action" onclick="details('IPW')">عرض التفاصيل</button>
+</section>
 
 
 <div
@@ -1211,6 +1261,12 @@ data-filter="all"
 
 </div>
 
+<div class="page-insight-grid">
+<div class="page-insight"><span>مسار المتابعة</span><strong>رصد ← دعم ← محفز</strong><small>نظام موحد لمراقبة رحلة السهم</small></div>
+<div class="page-insight"><span>هدف الدراسة</span><strong>+70%</strong><small>من نقطة الدعم المرجعية</small></div>
+<div class="page-insight page-insight-accent"><span>آخر مزامنة</span><strong>تلقائية</strong><small>يتم تحديث السجل مع كل تشغيل</small></div>
+</div>
+
 
 <div class="stats" id="caseStudyStats">
 
@@ -1294,6 +1350,11 @@ data-filter="all"
 </div>
 </div>
 
+<div class="view-toolbar">
+<div><span class="eyebrow">RADAR UNIVERSE</span><h2>استكشف كل الأسهم المرصودة</h2><p>استخدم الجدول لتتبع تاريخ التقسيم وأهلية كل سهم.</p></div>
+<div class="toolbar-badge">● بيانات مباشرة من الماسح</div>
+</div>
+
 <div class="section-title">
 <h2>السجل الكامل</h2>
 <span id="stocksUpdated">جارٍ التحميل...</span>
@@ -1322,6 +1383,12 @@ data-filter="all"
 <h1>فلتر النظام</h1>
 <p>فلاتر متقدمة تُطبَّق مباشرة على جدول "الرئيسية"</p>
 </div>
+</div>
+
+<div class="filter-hero">
+<div class="filter-hero-icon">⌁</div>
+<div><span class="eyebrow">SMART FILTERS</span><h2>ابنِ شاشة الفرص الخاصة بك</h2><p>كل تغيير ينعكس فوراً على جدول الرئيسية دون فقدان بيانات المصدر.</p></div>
+<div class="filter-status"><b>جاهز للتطبيق</b><small>4 معايير متاحة</small></div>
 </div>
 
 <div class="notice" style="margin-top:0">
@@ -1371,6 +1438,8 @@ data-filter="all"
 </div>
 </div>
 
+<div class="notification-summary"><div><span>مركز التنبيهات</span><strong>أحدث ما حدث في الرادار</strong></div><div class="notification-filters"><button class="active">الكل</button><button>جاهز</button><button>تحسن</button></div></div>
+
 <div id="notifRows">
 <div class="loading">جارٍ تحميل الإشعارات...</div>
 </div>
@@ -1385,6 +1454,12 @@ data-filter="all"
 <h1>الإعدادات</h1>
 <p>معلومات عامة عن النظام والتطبيق</p>
 </div>
+</div>
+
+<div class="settings-grid">
+<div class="settings-card"><span class="settings-icon">◈</span><div><b>تطبيق مثبت كـ PWA</b><p>يمكنك إضافة الداشبورد إلى الشاشة الرئيسية واستخدامه كتطبيق.</p></div><span class="state-ok">مفعّل</span></div>
+<div class="settings-card"><span class="settings-icon">↻</span><div><b>تحديث البيانات</b><p>فحص كامل كل ساعة تقريباً ومراقبة نبض كل 4 ساعات أثناء التداول.</p></div><span class="state-ok">تلقائي</span></div>
+<div class="settings-card"><span class="settings-icon">!</span><div><b>حدود النظام</b><p>المخرجات تحليلية للمراقبة وليست توصية استثمارية أو ضماناً للنتائج.</p></div><span class="state-warn">تنبيه</span></div>
 </div>
 
 <div class="notice" style="margin-top:0;font-size:14px;line-height:2">
@@ -1407,6 +1482,13 @@ data-filter="all"
 </main>
 
 </div>
+
+<nav class="mobile-nav" aria-label="التنقل السريع">
+<button class="active" onclick="showView('home')"><b>⌂</b><span>الرئيسية</span></button>
+<button onclick="showView('stocks')"><b>☷</b><span>القائمة</span></button>
+<button onclick="showView('notifications')"><b>♧</b><span>التنبيهات</span></button>
+<button onclick="showView('settings')"><b>⚙</b><span>الإعدادات</span></button>
+</nav>
 
 
 <div
