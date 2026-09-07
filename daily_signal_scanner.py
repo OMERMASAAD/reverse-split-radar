@@ -48,7 +48,10 @@ def analyze(row):
         positive=bool(last['Close']>last['Open'] and last['Close']>prev['Close'])
         momentum=bool((f(last['vr']) or 0)>=1.05 or (f(last['hist']) is not None and f(prev['hist']) is not None and last['hist']>prev['hist']))
         near_support=bool(float(last.Close)<=support*1.12)
-        base=bool(age<=120 and drawdown<=-30 and tests>=2 and base_range<=80)
+        # Operational window is deliberately limited to the first 40 trading
+        # sessions: the historical study median was 19 sessions and its
+        # upper quartile was about 39 sessions. No legacy 20-50 filter.
+        base=bool(age<=40 and drawdown<=-30 and tests>=2 and base_range<=80)
         entry=bool(base and positive and momentum and not near_support)
         state='ENTRY_PAPER' if entry else ('BASE_WATCH' if base else 'OBSERVE')
         score=sum([age<=60,drawdown<=-40,tests>=3,near_support,positive,momentum])
@@ -78,6 +81,6 @@ def main():
         by_id[key]=old
     history=list(by_id.values())
     Path(HISTORY).write_text(json.dumps(history,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-    payload={'generated_at':now,'methodology':{'purpose':'مراقبة تجريبية فقط بلا تنفيذ صفقات','base':'Reverse Split خلال 120 جلسة، هبوط >=30%، اختبارات دعم >=2، نطاق قاعدة <=80%','entry':'إيجابية يومية (Close>Open وClose>Previous Close) مع تأكيد حجم أو تحسن MACD، والخروج التجريبي عند +70% من سعر الإشارة','status_definitions':{'ENTRY_PAPER':'إشارة يومية تجريبية','BASE_WATCH':'قاعدة/دعم للمراقبة','OBSERVE':'لا يطابق مرحلة القاعدة حالياً'}},'summary':{'candidates':len(rows),'ok':len(ok),'paper_entries':len(entries),'base_watches':len(watches),'unavailable':len(rows)-len(ok),'history_records':len(history)},'signals':entries,'watchlist':watches,'history':history,'all':out}
+    payload={'generated_at':now,'methodology':{'purpose':'مراقبة تجريبية فقط بلا تنفيذ صفقات','base':'Reverse Split خلال أول 40 جلسة تداول فقط (بدون حد أدنى)، هبوط >=30%، اختبارات دعم >=2، نطاق قاعدة <=80%','entry':'إيجابية يومية (Close>Open وClose>Previous Close) مع تأكيد حجم أو تحسن MACD، والخروج التجريبي عند +70% من سعر الإشارة','status_definitions':{'ENTRY_PAPER':'إشارة يومية تجريبية','BASE_WATCH':'قاعدة/دعم للمراقبة','OBSERVE':'لا يطابق مرحلة القاعدة حالياً'}},'summary':{'candidates':len(rows),'ok':len(ok),'paper_entries':len(entries),'base_watches':len(watches),'unavailable':len(rows)-len(ok),'history_records':len(history)},'signals':entries,'watchlist':watches,'history':history,'all':out}
     Path(OUTPUT).write_text(json.dumps(payload,ensure_ascii=False,indent=2,default=str)+'\n',encoding='utf-8'); print(json.dumps(payload['summary'],ensure_ascii=False))
 if __name__=='__main__': main()
