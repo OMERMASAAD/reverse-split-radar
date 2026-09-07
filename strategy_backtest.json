@@ -1,7 +1,0 @@
-{
-  "status": "not_run",
-  "reason": "لا توجد استراتيجية مكتشفة ومثبتة خارج العينة بعد؛ يمنع تشغيل Backtest انتقائيًا قبل اكتمال validation/OOS.",
-  "training_cases": 61,
-  "validation_cases": 20,
-  "out_of_sample_cases": 21
-}

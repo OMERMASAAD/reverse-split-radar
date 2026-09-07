@@ -1,0 +1,50 @@
+name: Daily Paper Signal Monitor
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "20 23 * * 1-5"
+
+permissions:
+  contents: write
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Refresh reverse-split universe
+        env:
+          BUSINESSQUANT_API_KEY: ${{ secrets.BUSINESSQUANT_API_KEY }}
+        run: python reverse_split_source.py
+      - name: Scan daily paper signals
+        run: python daily_signal_scanner.py
+      - name: Validate monitor outputs
+        run: |
+          python -m py_compile daily_signal_scanner.py reverse_split_source.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for name in ["reverse_split_candidates.json", "daily_signals.json", "paper_signal_history.json"]:
+              p=Path(name)
+              assert p.exists() and p.stat().st_size > 0, name
+          x=json.loads(Path("daily_signals.json").read_text(encoding="utf-8"))
+          assert "paper_entries" in x["summary"]
+          assert "base_watches" in x["summary"]
+          assert "أول 40 جلسة" in x["methodology"]["base"]
+          print(x["summary"])
+          PY
+      - name: Commit monitor data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reverse_split_candidates.json daily_signals.json paper_signal_history.json
+          git diff --cached --quiet || git commit -m "Update daily paper signal monitor"
+          git push
