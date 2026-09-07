@@ -1,5 +1,941 @@
 [
   {
+    "ticker": "WLDS",
+    "symbol": "WLDS",
+    "split_date": "2026-03-11",
+    "days": 180,
+    "reverse_split": "3:1 Reverse split",
+    "company": "Wearable Devices Ltd."
+  },
+  {
+    "ticker": "ELPW",
+    "symbol": "ELPW",
+    "split_date": "2026-03-12",
+    "days": 179,
+    "reverse_split": "80:1 Reverse split",
+    "company": "Elong Power Holding Ltd."
+  },
+  {
+    "ticker": "ZNB",
+    "symbol": "ZNB",
+    "split_date": "2026-03-12",
+    "days": 179,
+    "reverse_split": "100:1 Reverse split",
+    "company": "Zeta Network Group"
+  },
+  {
+    "ticker": "KXIN",
+    "symbol": "KXIN",
+    "split_date": "2026-03-13",
+    "days": 178,
+    "reverse_split": "15:1 Reverse split",
+    "company": "Kaixin Holdings"
+  },
+  {
+    "ticker": "PED",
+    "symbol": "PED",
+    "split_date": "2026-03-13",
+    "days": 178,
+    "reverse_split": "20:1 Reverse split",
+    "company": "Pedevco Corp"
+  },
+  {
+    "ticker": "STFS",
+    "symbol": "STFS",
+    "split_date": "2026-03-13",
+    "days": 178,
+    "reverse_split": "40:1 Reverse split",
+    "company": "Star Fashion Culture Holdings Ltd."
+  },
+  {
+    "ticker": "CLIR",
+    "symbol": "CLIR",
+    "split_date": "2026-03-16",
+    "days": 175,
+    "reverse_split": "10:1 Reverse split",
+    "company": "Clearsign Technologies Corp"
+  },
+  {
+    "ticker": "DXST",
+    "symbol": "DXST",
+    "split_date": "2026-03-16",
+    "days": 175,
+    "reverse_split": "25:1 Reverse split",
+    "company": "Decent Holding Inc"
+  },
+  {
+    "ticker": "HBIO",
+    "symbol": "HBIO",
+    "split_date": "2026-03-16",
+    "days": 175,
+    "reverse_split": "10:1 Reverse split",
+    "company": "Harvard Bioscience Inc"
+  },
+  {
+    "ticker": "MASK",
+    "symbol": "MASK",
+    "split_date": "2026-03-16",
+    "days": 175,
+    "reverse_split": "25:1 Reverse split",
+    "company": "3 E Network Technology Group Ltd."
+  },
+  {
+    "ticker": "SKYQ",
+    "symbol": "SKYQ",
+    "split_date": "2026-03-16",
+    "days": 175,
+    "reverse_split": "8:1 Reverse split",
+    "company": "Sky Quarry Inc"
+  },
+  {
+    "ticker": "XLO",
+    "symbol": "XLO",
+    "split_date": "2026-03-16",
+    "days": 175,
+    "reverse_split": "14:1 Reverse split",
+    "company": "Xilio Therapeutics Inc"
+  },
+  {
+    "ticker": "ZJYL",
+    "symbol": "ZJYL",
+    "split_date": "2026-03-16",
+    "days": 175,
+    "reverse_split": "20:1 Reverse split",
+    "company": "Jin Medical International Ltd."
+  },
+  {
+    "ticker": "COOK",
+    "symbol": "COOK",
+    "split_date": "2026-03-18",
+    "days": 173,
+    "reverse_split": "50:1 Reverse split",
+    "company": "Traeger Inc"
+  },
+  {
+    "ticker": "CIIT",
+    "symbol": "CIIT",
+    "split_date": "2026-03-20",
+    "days": 171,
+    "reverse_split": "7:1 Reverse split",
+    "company": "Tianci International Inc"
+  },
+  {
+    "ticker": "ORGN",
+    "symbol": "ORGN",
+    "split_date": "2026-03-20",
+    "days": 171,
+    "reverse_split": "30:1 Reverse split",
+    "company": "Origin Materials Inc"
+  },
+  {
+    "ticker": "AREB",
+    "symbol": "AREB",
+    "split_date": "2026-03-23",
+    "days": 168,
+    "reverse_split": "100:1 Reverse split",
+    "company": "American Rebel Holdings Inc"
+  },
+  {
+    "ticker": "AZI",
+    "symbol": "AZI",
+    "split_date": "2026-03-23",
+    "days": 168,
+    "reverse_split": "10:1 Reverse split",
+    "company": "Autozi Internet Technology (global) Ltd."
+  },
+  {
+    "ticker": "EUDA",
+    "symbol": "EUDA",
+    "split_date": "2026-03-23",
+    "days": 168,
+    "reverse_split": "20:1 Reverse split",
+    "company": "Euda Health Holdings Ltd."
+  },
+  {
+    "ticker": "FCHL",
+    "symbol": "FCHL",
+    "split_date": "2026-03-23",
+    "days": 168,
+    "reverse_split": "15:1 Reverse split",
+    "company": "Fitness Champs Holdings Ltd."
+  },
+  {
+    "ticker": "JDZG",
+    "symbol": "JDZG",
+    "split_date": "2026-03-23",
+    "days": 168,
+    "reverse_split": "25:1 Reverse split",
+    "company": "Jiade Ltd."
+  },
+  {
+    "ticker": "YYGH",
+    "symbol": "YYGH",
+    "split_date": "2026-03-23",
+    "days": 168,
+    "reverse_split": "50:1 Reverse split",
+    "company": "Yy Group Holding Ltd."
+  },
+  {
+    "ticker": "FUBO",
+    "symbol": "FUBO",
+    "split_date": "2026-03-24",
+    "days": 167,
+    "reverse_split": "12:1 Reverse split",
+    "company": "Fubotv Inc"
+  },
+  {
+    "ticker": "VIVK",
+    "symbol": "VIVK",
+    "split_date": "2026-03-24",
+    "days": 167,
+    "reverse_split": "200:1 Reverse split",
+    "company": "Vivakor Inc"
+  },
+  {
+    "ticker": "ONCO",
+    "symbol": "ONCO",
+    "split_date": "2026-03-25",
+    "days": 166,
+    "reverse_split": "5:1 Reverse split",
+    "company": "Onconetix Inc"
+  },
+  {
+    "ticker": "XTLB",
+    "symbol": "XTLB",
+    "split_date": "2026-03-25",
+    "days": 166,
+    "reverse_split": "4:1 Reverse split",
+    "company": "Xtl Biopharmaceuticals Ltd."
+  },
+  {
+    "ticker": "RENX",
+    "symbol": "RENX",
+    "split_date": "2026-03-26",
+    "days": 165,
+    "reverse_split": "20:1 Reverse split",
+    "company": "Renx Enterprises Corp"
+  },
+  {
+    "ticker": "ADV",
+    "symbol": "ADV",
+    "split_date": "2026-03-27",
+    "days": 164,
+    "reverse_split": "25:1 Reverse split",
+    "company": "Advantage Solutions Inc"
+  },
+  {
+    "ticker": "CDT",
+    "symbol": "CDT",
+    "split_date": "2026-03-27",
+    "days": 164,
+    "reverse_split": "25:1 Reverse split",
+    "company": "Cdt Equity Inc"
+  },
+  {
+    "ticker": "LBGJ",
+    "symbol": "LBGJ",
+    "split_date": "2026-03-27",
+    "days": 164,
+    "reverse_split": "100:1 Reverse split",
+    "company": "Li Bang International Corp Inc"
+  },
+  {
+    "ticker": "TRUG",
+    "symbol": "TRUG",
+    "split_date": "2026-03-27",
+    "days": 164,
+    "reverse_split": "10:1 Reverse split",
+    "company": "Trugolf Holdings Inc"
+  },
+  {
+    "ticker": "ATXG",
+    "symbol": "ATXG",
+    "split_date": "2026-03-30",
+    "days": 161,
+    "reverse_split": "15:1 Reverse split",
+    "company": "Addentax Group Corp"
+  },
+  {
+    "ticker": "EJH",
+    "symbol": "EJH",
+    "split_date": "2026-03-30",
+    "days": 161,
+    "reverse_split": "25:1 Reverse split",
+    "company": "E-home Household Service Holdings Ltd."
+  },
+  {
+    "ticker": "FBLG",
+    "symbol": "FBLG",
+    "split_date": "2026-03-30",
+    "days": 161,
+    "reverse_split": "20:1 Reverse split",
+    "company": "Fibrobiologics Inc"
+  },
+  {
+    "ticker": "SVRN",
+    "symbol": "SVRN",
+    "split_date": "2026-03-30",
+    "days": 161,
+    "reverse_split": "20:1 Reverse split",
+    "company": "Oceanpal Inc"
+  },
+  {
+    "ticker": "AGL",
+    "symbol": "AGL",
+    "split_date": "2026-03-31",
+    "days": 160,
+    "reverse_split": "25:1 Reverse split",
+    "company": "Agilon Health Inc"
+  },
+  {
+    "ticker": "AKTX",
+    "symbol": "AKTX",
+    "split_date": "2026-03-31",
+    "days": 160,
+    "reverse_split": "40:1 Reverse split",
+    "company": "Akari Therapeutics PLC"
+  },
+  {
+    "ticker": "MODD",
+    "symbol": "MODD",
+    "split_date": "2026-03-31",
+    "days": 160,
+    "reverse_split": "30:1 Reverse split",
+    "company": "Modular Medical Inc"
+  },
+  {
+    "ticker": "PAVS",
+    "symbol": "PAVS",
+    "split_date": "2026-03-31",
+    "days": 160,
+    "reverse_split": "12:1 Reverse split",
+    "company": "Paranovus Entertainment Technology Ltd."
+  },
+  {
+    "ticker": "AUUD",
+    "symbol": "AUUD",
+    "split_date": "2026-04-01",
+    "days": 159,
+    "reverse_split": "7.7:1 Reverse split",
+    "company": "Auddia Inc"
+  },
+  {
+    "ticker": "BARK",
+    "symbol": "BARK",
+    "split_date": "2026-04-01",
+    "days": 159,
+    "reverse_split": "20:1 Reverse split",
+    "company": "Bark Inc"
+  },
+  {
+    "ticker": "UCAR",
+    "symbol": "UCAR",
+    "split_date": "2026-04-01",
+    "days": 159,
+    "reverse_split": "10:1 Reverse split",
+    "company": "U Power Ltd."
+  },
+  {
+    "ticker": "CNSY",
+    "symbol": "CNSY",
+    "split_date": "2026-04-02",
+    "days": 158,
+    "reverse_split": "25:1 Reverse split",
+    "company": "Cerenome Inc"
+  },
+  {
+    "ticker": "NCT",
+    "symbol": "NCT",
+    "split_date": "2026-04-02",
+    "days": 158,
+    "reverse_split": "25:1 Reverse split",
+    "company": "Intercont (cayman) Ltd."
+  },
+  {
+    "ticker": "PSTV",
+    "symbol": "PSTV",
+    "split_date": "2026-04-02",
+    "days": 158,
+    "reverse_split": "25:1 Reverse split",
+    "company": "Plus Therapeutics Inc"
+  },
+  {
+    "ticker": "AIIO",
+    "symbol": "AIIO",
+    "split_date": "2026-04-06",
+    "days": 154,
+    "reverse_split": "20:1 Reverse split",
+    "company": "Roboai Inc"
+  },
+  {
+    "ticker": "BCAB",
+    "symbol": "BCAB",
+    "split_date": "2026-04-06",
+    "days": 154,
+    "reverse_split": "50:1 Reverse split",
+    "company": "Bioatla Inc"
+  },
+  {
+    "ticker": "BDRX",
+    "symbol": "BDRX",
+    "split_date": "2026-04-06",
+    "days": 154,
+    "reverse_split": "5:1 Reverse split",
+    "company": "Biodexa Pharmaceuticals PLC"
+  },
+  {
+    "ticker": "GNLN",
+    "symbol": "GNLN",
+    "split_date": "2026-04-06",
+    "days": 154,
+    "reverse_split": "8:1 Reverse split",
+    "company": "Greenlane Holdings Inc"
+  },
+  {
+    "ticker": "HKIT",
+    "symbol": "HKIT",
+    "split_date": "2026-04-06",
+    "days": 154,
+    "reverse_split": "50:1 Reverse split",
+    "company": "Hitek Global Inc"
+  },
+  {
+    "ticker": "HTCR",
+    "symbol": "HTCR",
+    "split_date": "2026-04-06",
+    "days": 154,
+    "reverse_split": "20:1 Reverse split",
+    "company": "Heartcore Enterprises Inc"
+  },
+  {
+    "ticker": "LNKS",
+    "symbol": "LNKS",
+    "split_date": "2026-04-06",
+    "days": 154,
+    "reverse_split": "250:1 Reverse split",
+    "company": "Linkers Industries Ltd."
+  },
+  {
+    "ticker": "SKK",
+    "symbol": "SKK",
+    "split_date": "2026-04-06",
+    "days": 154,
+    "reverse_split": "10:1 Reverse split",
+    "company": "Skk Holdings Ltd."
+  },
+  {
+    "ticker": "WNW",
+    "symbol": "WNW",
+    "split_date": "2026-04-06",
+    "days": 154,
+    "reverse_split": "100:1 Reverse split",
+    "company": "Meiwu Technology Co Ltd."
+  },
+  {
+    "ticker": "XRTX",
+    "symbol": "XRTX",
+    "split_date": "2026-04-06",
+    "days": 154,
+    "reverse_split": "5:1 Reverse split",
+    "company": "Xortx Therapeutics Inc"
+  },
+  {
+    "ticker": "CHR",
+    "symbol": "CHR",
+    "split_date": "2026-04-07",
+    "days": 153,
+    "reverse_split": "3:1 Reverse split",
+    "company": "Cheer Holding Inc"
+  },
+  {
+    "ticker": "MOBX",
+    "symbol": "MOBX",
+    "split_date": "2026-04-07",
+    "days": 153,
+    "reverse_split": "10:1 Reverse split",
+    "company": "Mobix Labs Inc"
+  },
+  {
+    "ticker": "JTAI",
+    "symbol": "JTAI",
+    "split_date": "2026-04-08",
+    "days": 152,
+    "reverse_split": "200:1 Reverse split",
+    "company": "Jetai Inc"
+  },
+  {
+    "ticker": "NXTS",
+    "symbol": "NXTS",
+    "split_date": "2026-04-08",
+    "days": 152,
+    "reverse_split": "7:1 Reverse split",
+    "company": "Nexentis Technologies Inc"
+  },
+  {
+    "ticker": "RDGT",
+    "symbol": "RDGT",
+    "split_date": "2026-04-08",
+    "days": 152,
+    "reverse_split": "149.93:1 Reverse split",
+    "company": "Ridgetech Inc"
+  },
+  {
+    "ticker": "RUBI",
+    "symbol": "RUBI",
+    "split_date": "2026-04-09",
+    "days": 151,
+    "reverse_split": "10:1 Reverse split",
+    "company": "Rubico Inc"
+  },
+  {
+    "ticker": "WORX",
+    "symbol": "WORX",
+    "split_date": "2026-04-10",
+    "days": 150,
+    "reverse_split": "15:1 Reverse split",
+    "company": "Scworx Corp"
+  },
+  {
+    "ticker": "AKAN",
+    "symbol": "AKAN",
+    "split_date": "2026-04-13",
+    "days": 147,
+    "reverse_split": "5:1 Reverse split",
+    "company": "Akanda Corp"
+  },
+  {
+    "ticker": "CENN",
+    "symbol": "CENN",
+    "split_date": "2026-04-13",
+    "days": 147,
+    "reverse_split": "60:1 Reverse split",
+    "company": "Cenntro Inc"
+  },
+  {
+    "ticker": "HCAI",
+    "symbol": "HCAI",
+    "split_date": "2026-04-13",
+    "days": 147,
+    "reverse_split": "30:1 Reverse split",
+    "company": "Huachen Ai Parking Management Technology Holding Co Ltd."
+  },
+  {
+    "ticker": "JEM",
+    "symbol": "JEM",
+    "split_date": "2026-04-13",
+    "days": 147,
+    "reverse_split": "20:1 Reverse split",
+    "company": "707 Cayman Holdings Ltd."
+  },
+  {
+    "ticker": "MSAI",
+    "symbol": "MSAI",
+    "split_date": "2026-04-13",
+    "days": 147,
+    "reverse_split": "40:1 Reverse split",
+    "company": "Multisensor Ai Holdings Inc"
+  },
+  {
+    "ticker": "NXPL",
+    "symbol": "NXPL",
+    "split_date": "2026-04-13",
+    "days": 147,
+    "reverse_split": "10:1 Reverse split",
+    "company": "Nextplat Corp"
+  },
+  {
+    "ticker": "PN",
+    "symbol": "PN",
+    "split_date": "2026-04-13",
+    "days": 147,
+    "reverse_split": "20:1 Reverse split",
+    "company": "Pn Smart Energy Ltd."
+  },
+  {
+    "ticker": "QNCX",
+    "symbol": "QNCX",
+    "split_date": "2026-04-13",
+    "days": 147,
+    "reverse_split": "10:1 Reverse split",
+    "company": "Quince Therapeutics Inc"
+  },
+  {
+    "ticker": "BNRG",
+    "symbol": "BNRG",
+    "split_date": "2026-04-15",
+    "days": 145,
+    "reverse_split": "5:1 Reverse split",
+    "company": "Brenx Ltd."
+  },
+  {
+    "ticker": "BRNX",
+    "symbol": "BRNX",
+    "split_date": "2026-04-15",
+    "days": 145,
+    "reverse_split": "5:1 Reverse split",
+    "company": "Brenx Ltd."
+  },
+  {
+    "ticker": "NMTC",
+    "symbol": "NMTC",
+    "split_date": "2026-04-16",
+    "days": 144,
+    "reverse_split": "6:1 Reverse split",
+    "company": "Neuroone Medical Technologies Corp"
+  },
+  {
+    "ticker": "PMAX",
+    "symbol": "PMAX",
+    "split_date": "2026-04-17",
+    "days": 143,
+    "reverse_split": "10:1 Reverse split",
+    "company": "Powell Max Ltd."
+  },
+  {
+    "ticker": "EHGO",
+    "symbol": "EHGO",
+    "split_date": "2026-04-20",
+    "days": 140,
+    "reverse_split": "16:1 Reverse split",
+    "company": "Eshallgo Inc"
+  },
+  {
+    "ticker": "HUBC",
+    "symbol": "HUBC",
+    "split_date": "2026-04-20",
+    "days": 140,
+    "reverse_split": "50:1 Reverse split",
+    "company": "Hub Cyber Security Ltd."
+  },
+  {
+    "ticker": "LRHC",
+    "symbol": "LRHC",
+    "split_date": "2026-04-20",
+    "days": 140,
+    "reverse_split": "10:1 Reverse split",
+    "company": "La Rosa Holdings Corp"
+  },
+  {
+    "ticker": "LXEH",
+    "symbol": "LXEH",
+    "split_date": "2026-04-20",
+    "days": 140,
+    "reverse_split": "10:1 Reverse split",
+    "company": "Lixiang Education Holding Co Ltd."
+  },
+  {
+    "ticker": "RAYA",
+    "symbol": "RAYA",
+    "split_date": "2026-04-20",
+    "days": 140,
+    "reverse_split": "10:1 Reverse split",
+    "company": "Erayak Power Solution Group Inc"
+  },
+  {
+    "ticker": "TDIC",
+    "symbol": "TDIC",
+    "split_date": "2026-04-20",
+    "days": 140,
+    "reverse_split": "5:1 Reverse split",
+    "company": "Dreamland Ltd."
+  },
+  {
+    "ticker": "KITT",
+    "symbol": "KITT",
+    "split_date": "2026-04-21",
+    "days": 139,
+    "reverse_split": "8:1 Reverse split",
+    "company": "Nauticus Robotics Inc"
+  },
+  {
+    "ticker": "ZSPC",
+    "symbol": "ZSPC",
+    "split_date": "2026-04-21",
+    "days": 139,
+    "reverse_split": "25:1 Reverse split",
+    "company": "Zspace Inc"
+  },
+  {
+    "ticker": "KUST",
+    "symbol": "KUST",
+    "split_date": "2026-04-22",
+    "days": 138,
+    "reverse_split": "5:1 Reverse split",
+    "company": "Kustom Entertainment Inc"
+  },
+  {
+    "ticker": "TOUR",
+    "symbol": "TOUR",
+    "split_date": "2026-04-22",
+    "days": 138,
+    "reverse_split": "10:1 Reverse split",
+    "company": "Tuniu Corp"
+  },
+  {
+    "ticker": "IPST",
+    "symbol": "IPST",
+    "split_date": "2026-04-23",
+    "days": 137,
+    "reverse_split": "20:1 Reverse split",
+    "company": "Ip Strategy Holdings Inc"
+  },
+  {
+    "ticker": "CUE",
+    "symbol": "CUE",
+    "split_date": "2026-04-24",
+    "days": 136,
+    "reverse_split": "30:1 Reverse split",
+    "company": "Cue Biopharma Inc"
+  },
+  {
+    "ticker": "MSS",
+    "symbol": "MSS",
+    "split_date": "2026-04-24",
+    "days": 136,
+    "reverse_split": "10:1 Reverse split",
+    "company": "Maison Solutions Inc"
+  },
+  {
+    "ticker": "OIO",
+    "symbol": "OIO",
+    "split_date": "2026-04-24",
+    "days": 136,
+    "reverse_split": "3:1 Reverse split",
+    "company": "Oio Group"
+  },
+  {
+    "ticker": "SOWG",
+    "symbol": "SOWG",
+    "split_date": "2026-04-24",
+    "days": 136,
+    "reverse_split": "15:1 Reverse split",
+    "company": "Sow Good Inc"
+  },
+  {
+    "ticker": "TDTH",
+    "symbol": "TDTH",
+    "split_date": "2026-04-24",
+    "days": 136,
+    "reverse_split": "30:1 Reverse split",
+    "company": "Trident Digital Tech Holdings Ltd."
+  },
+  {
+    "ticker": "AIOS",
+    "symbol": "AIOS",
+    "split_date": "2026-04-27",
+    "days": 133,
+    "reverse_split": "20:1 Reverse split",
+    "company": "Aios Tech Inc"
+  },
+  {
+    "ticker": "CISS",
+    "symbol": "CISS",
+    "split_date": "2026-04-27",
+    "days": 133,
+    "reverse_split": "7:1 Reverse split",
+    "company": "C3is Inc"
+  },
+  {
+    "ticker": "DRCT",
+    "symbol": "DRCT",
+    "split_date": "2026-04-27",
+    "days": 133,
+    "reverse_split": "4:1 Reverse split",
+    "company": "Direct Digital Holdings Inc"
+  },
+  {
+    "ticker": "IMUX",
+    "symbol": "IMUX",
+    "split_date": "2026-04-27",
+    "days": 133,
+    "reverse_split": "10:1 Reverse split",
+    "company": "Immunic Inc"
+  },
+  {
+    "ticker": "OCG",
+    "symbol": "OCG",
+    "split_date": "2026-04-27",
+    "days": 133,
+    "reverse_split": "3:1 Reverse split",
+    "company": "Oriental Culture Holding Ltd."
+  },
+  {
+    "ticker": "QH",
+    "symbol": "QH",
+    "split_date": "2026-04-27",
+    "days": 133,
+    "reverse_split": "30:1 Reverse split",
+    "company": "Quhuo Ltd."
+  },
+  {
+    "ticker": "UP",
+    "symbol": "UP",
+    "split_date": "2026-04-27",
+    "days": 133,
+    "reverse_split": "20:1 Reverse split",
+    "company": "Wheels Up Experience Inc"
+  },
+  {
+    "ticker": "DGNX",
+    "symbol": "DGNX",
+    "split_date": "2026-04-28",
+    "days": 132,
+    "reverse_split": "8:1 Reverse split",
+    "company": "Diginex Ltd."
+  },
+  {
+    "ticker": "ISPC",
+    "symbol": "ISPC",
+    "split_date": "2026-04-28",
+    "days": 132,
+    "reverse_split": "40:1 Reverse split",
+    "company": "Ispecimen Inc"
+  },
+  {
+    "ticker": "VNRX",
+    "symbol": "VNRX",
+    "split_date": "2026-04-28",
+    "days": 132,
+    "reverse_split": "20:1 Reverse split",
+    "company": "Volitionrx Ltd."
+  },
+  {
+    "ticker": "CTNT",
+    "symbol": "CTNT",
+    "split_date": "2026-04-29",
+    "days": 131,
+    "reverse_split": "200:1 Reverse split",
+    "company": "Cheetah Net Supply Chain Service Inc"
+  },
+  {
+    "ticker": "AIRE",
+    "symbol": "AIRE",
+    "split_date": "2026-04-30",
+    "days": 130,
+    "reverse_split": "25:1 Reverse split",
+    "company": "Realpha Tech Corp"
+  },
+  {
+    "ticker": "BKYI",
+    "symbol": "BKYI",
+    "split_date": "2026-04-30",
+    "days": 130,
+    "reverse_split": "10:1 Reverse split",
+    "company": "Bio Key International Inc"
+  },
+  {
+    "ticker": "JAGX",
+    "symbol": "JAGX",
+    "split_date": "2026-04-30",
+    "days": 130,
+    "reverse_split": "35:1 Reverse split",
+    "company": "Jaguar Health Inc"
+  },
+  {
+    "ticker": "UK",
+    "symbol": "UK",
+    "split_date": "2026-04-30",
+    "days": 130,
+    "reverse_split": "10:1 Reverse split",
+    "company": "Ucommune International Ltd."
+  },
+  {
+    "ticker": "GMEX",
+    "symbol": "GMEX",
+    "split_date": "2026-05-01",
+    "days": 129,
+    "reverse_split": "7:1 Reverse split",
+    "company": "Gmex Robotics Corp"
+  },
+  {
+    "ticker": "TLIH",
+    "symbol": "TLIH",
+    "split_date": "2026-05-01",
+    "days": 129,
+    "reverse_split": "10:1 Reverse split",
+    "company": "Ten-league International Holdings Ltd."
+  },
+  {
+    "ticker": "ERNA",
+    "symbol": "ERNA",
+    "split_date": "2026-05-04",
+    "days": 126,
+    "reverse_split": "25:1 Reverse split",
+    "company": "Ernexa Therapeutics Inc"
+  },
+  {
+    "ticker": "FCHL",
+    "symbol": "FCHL",
+    "split_date": "2026-05-04",
+    "days": 126,
+    "reverse_split": "30:1 Reverse split",
+    "company": "Fitness Champs Holdings Ltd."
+  },
+  {
+    "ticker": "INHD",
+    "symbol": "INHD",
+    "split_date": "2026-05-04",
+    "days": 126,
+    "reverse_split": "20:1 Reverse split",
+    "company": "Inno Holdings Inc"
+  },
+  {
+    "ticker": "TRI",
+    "symbol": "TRI",
+    "split_date": "2026-05-04",
+    "days": 126,
+    "reverse_split": "1.02:1 Reverse split",
+    "company": "Thomson Reuters Corp"
+  },
+  {
+    "ticker": "VEEE",
+    "symbol": "VEEE",
+    "split_date": "2026-05-04",
+    "days": 126,
+    "reverse_split": "37:1 Reverse split",
+    "company": "Twin Vee Powercats Co."
+  },
+  {
+    "ticker": "MIMI",
+    "symbol": "MIMI",
+    "split_date": "2026-05-06",
+    "days": 124,
+    "reverse_split": "10:1 Reverse split",
+    "company": "Mint Inc Ltd."
+  },
+  {
+    "ticker": "CHSN",
+    "symbol": "CHSN",
+    "split_date": "2026-05-07",
+    "days": 123,
+    "reverse_split": "100:1 Reverse split",
+    "company": "Chanson International Holding"
+  },
+  {
+    "ticker": "BNZI",
+    "symbol": "BNZI",
+    "split_date": "2026-05-08",
+    "days": 122,
+    "reverse_split": "20:1 Reverse split",
+    "company": "Banzai International Inc"
+  },
+  {
+    "ticker": "OLOX",
+    "symbol": "OLOX",
+    "split_date": "2026-05-08",
+    "days": 122,
+    "reverse_split": "10:1 Reverse split",
+    "company": "Olenox Industries Inc"
+  },
+  {
+    "ticker": "PARA",
+    "symbol": "PARA",
+    "split_date": "2026-05-08",
+    "days": 122,
+    "reverse_split": "20:1 Reverse split",
+    "company": "Banzai International Inc"
+  },
+  {
     "ticker": "AIXI",
     "symbol": "AIXI",
     "split_date": "2026-05-11",
