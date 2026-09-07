@@ -38,7 +38,7 @@ CASES_FILE = "historical_cases.json"
 FEATURES_CSV = "historical_features.csv"
 BACKTEST_FILE = "strategy_backtest.json"
 REPORT_FILE = "strategy_report.md"
-LOOKBACK_CALENDAR_DAYS = 120
+LOOKBACK_CALENDAR_DAYS = 180
 PRE_SESSIONS = 5
 MIN_CONTEXT_SESSIONS = 55
 EXPLOSION_THRESHOLDS = (70.0, 100.0, 200.0)
@@ -386,7 +386,7 @@ def main():
         "statistical_features": stats,
         "discovered_candidates": discovered[:30],
         "validation": {"split": splits["status"], "train_cases": len(splits["train"]), "validation_cases": len(splits["validation"]), "out_of_sample_cases": len(splits["out_of_sample"]), "status": "not_validated" if len(splits["out_of_sample"]) < 5 else "requires_walk_forward_and_more_history"},
-        "strategy_proposal": {"status": "not_approved", "reason": "هذه أول لقطة 120 يومًا؛ لا يجوز اعتماد استراتيجية أو عتبات قبل تراكم حالات كافية واختبار زمني خارج العينة.", "candidate_features": [x["feature"] for x in discovered[:10]]},
+        "strategy_proposal": {"status": "not_approved", "reason": "هذه أول لقطة 180 يومًا؛ سنقرر الخطوة التالية بناءً على عدد الحالات الناجحة وجودة الفصل الإحصائي.", "candidate_features": [x["feature"] for x in discovered[:10]]},
     }
     dump_json(OUTPUT_FILE, output)
     dump_json(ANALYSIS_FILE, {"generated_at": output["generated_at"], "feature_statistics": stats, "discovered_candidates": discovered[:30], "classifications": dict(by_class), "data_quality": output["data_quality"]})
@@ -401,7 +401,7 @@ def main():
 
 ## المنهج
 
-تغطي الدراسة آخر 120 يومًا تقويميًا من عمليات التقسيم العكسي المؤكدة. لكل حالة انفجار، تُحسب الخصائص باستخدام البيانات المتاحة حتى D-1 فقط، وتُقارن بنوافذ ضابطة من نفس الكون. لم تُستخدم قيم الفلوت أو الشورت الحالية كبديل عن القيم التاريخية.
+تغطي الدراسة آخر 180 يومًا تقويميًا من عمليات التقسيم العكسي المؤكدة. لكل حالة انفجار، تُحسب الخصائص باستخدام البيانات المتاحة حتى D-1 فقط، وتُقارن بنوافذ ضابطة من نفس الكون. لم تُستخدم قيم الفلوت أو الشورت الحالية كبديل عن القيم التاريخية.
 
 ## الملفات
 

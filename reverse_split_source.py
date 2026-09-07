@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 # إعدادات الدراسة
 # ==========================================
 
-LOOKBACK_DAYS = 120
+LOOKBACK_DAYS = 180
 
 API_URL = "https://data.businessquant.com/corporate_actions"
 
@@ -61,7 +61,7 @@ def get_reverse_splits():
     today = datetime.now().date()
 
     # ======================================
-    # آخر 120 يومًا — أربعة أشهر تقريبًا للدراسة التاريخية
+    # آخر 180 يومًا — ستة أشهر تقريبًا للدراسة التاريخية
     # ======================================
 
     start_date = today - timedelta(
@@ -213,7 +213,7 @@ def get_reverse_splits():
             ).days
 
             # ----------------------------------
-        # التأكد أنه داخل آخر 120 يومًا
+        # التأكد أنه داخل آخر 180 يومًا
             # ----------------------------------
 
             if (
@@ -302,7 +302,7 @@ def get_reverse_splits():
 
         print()
         print("=" * 70)
-        print("📚 Reverse Splits داخل آخر 120 يومًا")
+        print("📚 Reverse Splits داخل آخر 180 يومًا")
         print("=" * 70)
 
         if not candidates:

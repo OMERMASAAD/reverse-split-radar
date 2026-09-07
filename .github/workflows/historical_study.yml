@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Refresh reverse-split universe (120 days)
+      - name: Refresh reverse-split universe (180 days)
         env:
           BUSINESSQUANT_API_KEY: ${{ secrets.BUSINESSQUANT_API_KEY }}
         run: python reverse_split_source.py
@@ -42,7 +42,7 @@ jobs:
               p = Path(name)
               assert p.exists() and p.stat().st_size > 0, name
           study = json.loads(Path("historical_study.json").read_text(encoding="utf-8"))
-          assert study["universe"]["lookback_calendar_days"] == 120
+          assert study["universe"]["lookback_calendar_days"] == 180
           assert study["universe"]["no_age_filter"] is True
           print("outputs valid", study["sample"])
           PY
