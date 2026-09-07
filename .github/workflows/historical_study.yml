@@ -37,13 +37,16 @@ jobs:
       - name: Run one-day 4-hour entry backtest
         run: python four_hour_backtest.py
 
+      - name: Run experimental daily paper-signal scanner
+        run: python daily_signal_scanner.py
+
       - name: Validate outputs
         run: |
-          python -m py_compile historical_study.py reverse_split_source.py
+          python -m py_compile historical_study.py reverse_split_source.py daily_signal_scanner.py
           python - <<'PY'
           import json
           from pathlib import Path
-          required = ["historical_study.json", "historical_analysis.json", "historical_cases.json", "historical_features.csv", "explosion_lifecycle.json", "explosion_lifecycle.csv", "four_hour_backtest.json", "strategy_backtest.json", "strategy_report.md"]
+          required = ["historical_study.json", "historical_analysis.json", "historical_cases.json", "historical_features.csv", "explosion_lifecycle.json", "explosion_lifecycle.csv", "four_hour_backtest.json", "daily_signals.json", "paper_signal_history.json", "strategy_backtest.json", "strategy_report.md"]
           for name in required:
               p = Path(name)
               assert p.exists() and p.stat().st_size > 0, name
@@ -57,6 +60,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add historical_study.json historical_analysis.json historical_cases.json historical_features.csv explosion_lifecycle.json explosion_lifecycle.csv four_hour_backtest.json strategy_backtest.json strategy_report.md reverse_split_candidates.json
+          git add historical_study.json historical_analysis.json historical_cases.json historical_features.csv explosion_lifecycle.json explosion_lifecycle.csv four_hour_backtest.json daily_signals.json paper_signal_history.json strategy_backtest.json strategy_report.md reverse_split_candidates.json
           git diff --cached --quiet || git commit -m "Update historical reverse-split research"
           git push
