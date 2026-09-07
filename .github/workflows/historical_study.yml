@@ -31,13 +31,16 @@ jobs:
       - name: Run historical study
         run: python historical_study.py
 
+      - name: Run explosion lifecycle and 4-hour analysis
+        run: python explosion_lifecycle.py
+
       - name: Validate outputs
         run: |
           python -m py_compile historical_study.py reverse_split_source.py
           python - <<'PY'
           import json
           from pathlib import Path
-          required = ["historical_study.json", "historical_analysis.json", "historical_cases.json", "historical_features.csv", "strategy_backtest.json", "strategy_report.md"]
+          required = ["historical_study.json", "historical_analysis.json", "historical_cases.json", "historical_features.csv", "explosion_lifecycle.json", "explosion_lifecycle.csv", "strategy_backtest.json", "strategy_report.md"]
           for name in required:
               p = Path(name)
               assert p.exists() and p.stat().st_size > 0, name
@@ -51,6 +54,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add historical_study.json historical_analysis.json historical_cases.json historical_features.csv strategy_backtest.json strategy_report.md reverse_split_candidates.json
+          git add historical_study.json historical_analysis.json historical_cases.json historical_features.csv explosion_lifecycle.json explosion_lifecycle.csv strategy_backtest.json strategy_report.md reverse_split_candidates.json
           git diff --cached --quiet || git commit -m "Update historical reverse-split research"
           git push
