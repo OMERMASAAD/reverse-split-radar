@@ -8240,15 +8240,15 @@
       {
         "date": "2026-09-07",
         "price": 0.8420000076293945,
-        "gain_pct": 0.0
+        "gain_pct": -8.0
       }
     ],
     "status": "TRACKING",
     "last_checked": "2026-09-07",
     "last_price": 0.8420000076293945,
     "max_price_since_entry": 0.8420000076293945,
-    "max_gain_percent": null,
-    "days_to_peak": null,
+    "max_gain_percent": -8.0,
+    "days_to_peak": 0,
     "reached_70": false,
     "completed_70_date": null,
     "days_to_complete_70": null,
@@ -8318,15 +8318,15 @@
       {
         "date": "2026-09-07",
         "price": 3.4100000858306885,
-        "gain_pct": 0.0
+        "gain_pct": -3.61
       }
     ],
     "status": "TRACKING",
     "last_checked": "2026-09-07",
     "last_price": 3.4100000858306885,
     "max_price_since_entry": 3.4100000858306885,
-    "max_gain_percent": null,
-    "days_to_peak": null,
+    "max_gain_percent": -3.61,
+    "days_to_peak": 0,
     "reached_70": false,
     "completed_70_date": null,
     "days_to_complete_70": null,
