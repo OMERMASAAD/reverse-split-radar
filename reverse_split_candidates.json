@@ -1,49 +1,9 @@
 [
   {
-    "ticker": "CDLX",
-    "symbol": "CDLX",
-    "split_date": "2026-06-08",
-    "days": 88,
-    "reverse_split": "10:1 Reverse split",
-    "company": "Cardlytics Inc"
-  },
-  {
-    "ticker": "FEMY",
-    "symbol": "FEMY",
-    "split_date": "2026-06-08",
-    "days": 88,
-    "reverse_split": "20:1 Reverse split",
-    "company": "Femasys Inc"
-  },
-  {
-    "ticker": "HUBC",
-    "symbol": "HUBC",
-    "split_date": "2026-06-08",
-    "days": 88,
-    "reverse_split": "20:1 Reverse split",
-    "company": "Hub Cyber Security Ltd."
-  },
-  {
-    "ticker": "KIDZ",
-    "symbol": "KIDZ",
-    "split_date": "2026-06-08",
-    "days": 88,
-    "reverse_split": "10:1 Reverse split",
-    "company": "Kidz Ai Inc"
-  },
-  {
-    "ticker": "ZCMD",
-    "symbol": "ZCMD",
-    "split_date": "2026-06-08",
-    "days": 88,
-    "reverse_split": "31:1 Reverse split",
-    "company": "Zhongchao Inc"
-  },
-  {
     "ticker": "OPAD",
     "symbol": "OPAD",
     "split_date": "2026-06-09",
-    "days": 87,
+    "days": 90,
     "reverse_split": "10:1 Reverse split",
     "company": "Offerpad Solutions Inc"
   },
@@ -51,7 +11,7 @@
     "ticker": "GMM",
     "symbol": "GMM",
     "split_date": "2026-06-11",
-    "days": 85,
+    "days": 88,
     "reverse_split": "50:1 Reverse split",
     "company": "Global Mofy Ai Ltd."
   },
@@ -59,7 +19,7 @@
     "ticker": "SHPH",
     "symbol": "SHPH",
     "split_date": "2026-06-11",
-    "days": 85,
+    "days": 88,
     "reverse_split": "10:1 Reverse split",
     "company": "Shuttle Pharmaceuticals Holdings Inc"
   },
@@ -67,7 +27,7 @@
     "ticker": "AERT",
     "symbol": "AERT",
     "split_date": "2026-06-12",
-    "days": 84,
+    "days": 87,
     "reverse_split": "8:1 Reverse split",
     "company": "Aeries Technology Inc"
   },
@@ -75,7 +35,7 @@
     "ticker": "AIFA",
     "symbol": "AIFA",
     "split_date": "2026-06-12",
-    "days": 84,
+    "days": 87,
     "reverse_split": "6:1 Reverse split",
     "company": "All In Futuretech Alliance Inc"
   },
@@ -83,7 +43,7 @@
     "ticker": "XXII",
     "symbol": "XXII",
     "split_date": "2026-06-12",
-    "days": 84,
+    "days": 87,
     "reverse_split": "20:1 Reverse split",
     "company": "22nd Century Group Inc"
   },
@@ -91,7 +51,7 @@
     "ticker": "AMOD",
     "symbol": "AMOD",
     "split_date": "2026-06-15",
-    "days": 81,
+    "days": 84,
     "reverse_split": "40:1 Reverse split",
     "company": "Alpha Modus Holdings Inc"
   },
@@ -99,7 +59,7 @@
     "ticker": "AVX",
     "symbol": "AVX",
     "split_date": "2026-06-15",
-    "days": 81,
+    "days": 84,
     "reverse_split": "12:1 Reverse split",
     "company": "Avax One Technology Ltd."
   },
@@ -107,7 +67,7 @@
     "ticker": "TDIC",
     "symbol": "TDIC",
     "split_date": "2026-06-15",
-    "days": 81,
+    "days": 84,
     "reverse_split": "25:1 Reverse split",
     "company": "Dreamland Ltd."
   },
@@ -115,7 +75,7 @@
     "ticker": "AIFU",
     "symbol": "AIFU",
     "split_date": "2026-06-16",
-    "days": 80,
+    "days": 83,
     "reverse_split": "20:1 Reverse split",
     "company": "Aifu Inc"
   },
@@ -123,7 +83,7 @@
     "ticker": "CREG",
     "symbol": "CREG",
     "split_date": "2026-06-16",
-    "days": 80,
+    "days": 83,
     "reverse_split": "10:1 Reverse split",
     "company": "Smart Powerr Corp"
   },
@@ -131,7 +91,7 @@
     "ticker": "UPLD",
     "symbol": "UPLD",
     "split_date": "2026-06-17",
-    "days": 79,
+    "days": 82,
     "reverse_split": "10:1 Reverse split",
     "company": "Upland Software Inc"
   },
@@ -139,7 +99,7 @@
     "ticker": "VMAR",
     "symbol": "VMAR",
     "split_date": "2026-06-17",
-    "days": 79,
+    "days": 82,
     "reverse_split": "10:1 Reverse split",
     "company": "Vision Marine Technologies Inc"
   },
@@ -147,7 +107,7 @@
     "ticker": "WOK",
     "symbol": "WOK",
     "split_date": "2026-06-18",
-    "days": 78,
+    "days": 81,
     "reverse_split": "100:1 Reverse split",
     "company": "Work Medical Technology Group Ltd."
   },
@@ -155,7 +115,7 @@
     "ticker": "BMGL",
     "symbol": "BMGL",
     "split_date": "2026-06-22",
-    "days": 74,
+    "days": 77,
     "reverse_split": "12:1 Reverse split",
     "company": "Basel Medical Group Ltd."
   },
@@ -163,7 +123,7 @@
     "ticker": "BOXL",
     "symbol": "BOXL",
     "split_date": "2026-06-22",
-    "days": 74,
+    "days": 77,
     "reverse_split": "6:1 Reverse split",
     "company": "Boxlight Corp"
   },
@@ -171,7 +131,7 @@
     "ticker": "FXHO",
     "symbol": "FXHO",
     "split_date": "2026-06-22",
-    "days": 74,
+    "days": 77,
     "reverse_split": "10:1 Reverse split",
     "company": "Utime Ltd."
   },
@@ -179,7 +139,7 @@
     "ticker": "LABT",
     "symbol": "LABT",
     "split_date": "2026-06-22",
-    "days": 74,
+    "days": 77,
     "reverse_split": "10:1 Reverse split",
     "company": "Lakewood-amedex Biotherapeutics Inc"
   },
@@ -187,7 +147,7 @@
     "ticker": "LHSW",
     "symbol": "LHSW",
     "split_date": "2026-06-22",
-    "days": 74,
+    "days": 77,
     "reverse_split": "16:1 Reverse split",
     "company": "Lianhe Sowell International Group Ltd."
   },
@@ -195,7 +155,7 @@
     "ticker": "ORIS",
     "symbol": "ORIS",
     "split_date": "2026-06-22",
-    "days": 74,
+    "days": 77,
     "reverse_split": "4:1 Reverse split",
     "company": "Oriental Rise Holdings Ltd."
   },
@@ -203,7 +163,7 @@
     "ticker": "POM",
     "symbol": "POM",
     "split_date": "2026-06-22",
-    "days": 74,
+    "days": 77,
     "reverse_split": "18:1 Reverse split",
     "company": "Pomdoctor Ltd."
   },
@@ -211,7 +171,7 @@
     "ticker": "WLDS",
     "symbol": "WLDS",
     "split_date": "2026-06-22",
-    "days": 74,
+    "days": 77,
     "reverse_split": "3:1 Reverse split",
     "company": "Wearable Devices Ltd."
   },
@@ -219,7 +179,7 @@
     "ticker": "WTO",
     "symbol": "WTO",
     "split_date": "2026-06-22",
-    "days": 74,
+    "days": 77,
     "reverse_split": "10:1 Reverse split",
     "company": "Utime Ltd."
   },
@@ -227,7 +187,7 @@
     "ticker": "FCUV",
     "symbol": "FCUV",
     "split_date": "2026-06-23",
-    "days": 73,
+    "days": 76,
     "reverse_split": "4:1 Reverse split",
     "company": "Focus Universal Inc"
   },
@@ -235,7 +195,7 @@
     "ticker": "ILLR",
     "symbol": "ILLR",
     "split_date": "2026-06-23",
-    "days": 73,
+    "days": 76,
     "reverse_split": "10:1 Reverse split",
     "company": "Triller Group Inc"
   },
@@ -243,7 +203,7 @@
     "ticker": "YYGH",
     "symbol": "YYGH",
     "split_date": "2026-06-23",
-    "days": 73,
+    "days": 76,
     "reverse_split": "30:1 Reverse split",
     "company": "Yy Group Holding Ltd."
   },
@@ -251,7 +211,7 @@
     "ticker": "AMIX",
     "symbol": "AMIX",
     "split_date": "2026-06-24",
-    "days": 72,
+    "days": 75,
     "reverse_split": "21:1 Reverse split",
     "company": "Autonomix Medical Inc"
   },
@@ -259,7 +219,7 @@
     "ticker": "DD",
     "symbol": "DD",
     "split_date": "2026-06-24",
-    "days": 72,
+    "days": 75,
     "reverse_split": "3:1 Reverse split",
     "company": "Dupont De Nemours Inc"
   },
@@ -267,7 +227,7 @@
     "ticker": "NAMI",
     "symbol": "NAMI",
     "split_date": "2026-06-25",
-    "days": 71,
+    "days": 74,
     "reverse_split": "25:1 Reverse split",
     "company": "Jinxin Technology Holding Co."
   },
@@ -275,7 +235,7 @@
     "ticker": "NUWE",
     "symbol": "NUWE",
     "split_date": "2026-06-26",
-    "days": 70,
+    "days": 73,
     "reverse_split": "35:1 Reverse split",
     "company": "Nuwellis Inc"
   },
@@ -283,7 +243,7 @@
     "ticker": "RUBI",
     "symbol": "RUBI",
     "split_date": "2026-06-26",
-    "days": 70,
+    "days": 73,
     "reverse_split": "25:1 Reverse split",
     "company": "Rubico Inc"
   },
@@ -291,7 +251,7 @@
     "ticker": "VRAX",
     "symbol": "VRAX",
     "split_date": "2026-06-26",
-    "days": 70,
+    "days": 73,
     "reverse_split": "25:1 Reverse split",
     "company": "Virax Biolabs Group Ltd."
   },
@@ -299,7 +259,7 @@
     "ticker": "GDC",
     "symbol": "GDC",
     "split_date": "2026-06-29",
-    "days": 67,
+    "days": 70,
     "reverse_split": "250:1 Reverse split",
     "company": "Gd Culture Group Ltd."
   },
@@ -307,7 +267,7 @@
     "ticker": "GIBO",
     "symbol": "GIBO",
     "split_date": "2026-06-29",
-    "days": 67,
+    "days": 70,
     "reverse_split": "25:1 Reverse split",
     "company": "Gibo Holdings Ltd."
   },
@@ -315,7 +275,7 @@
     "ticker": "HON",
     "symbol": "HON",
     "split_date": "2026-06-29",
-    "days": 67,
+    "days": 70,
     "reverse_split": "2:1 Reverse split",
     "company": "Honeywell International Inc"
   },
@@ -323,7 +283,7 @@
     "ticker": "MNDR",
     "symbol": "MNDR",
     "split_date": "2026-06-29",
-    "days": 67,
+    "days": 70,
     "reverse_split": "6:1 Reverse split",
     "company": "Mobile-health Network Solutions"
   },
@@ -331,7 +291,7 @@
     "ticker": "PAVS",
     "symbol": "PAVS",
     "split_date": "2026-06-29",
-    "days": 67,
+    "days": 70,
     "reverse_split": "100:1 Reverse split",
     "company": "Paranovus Entertainment Technology Ltd."
   },
@@ -339,7 +299,7 @@
     "ticker": "ZCMD",
     "symbol": "ZCMD",
     "split_date": "2026-06-29",
-    "days": 67,
+    "days": 70,
     "reverse_split": "3:1 Reverse split",
     "company": "Zhongchao Inc"
   },
@@ -347,7 +307,7 @@
     "ticker": "HCWB",
     "symbol": "HCWB",
     "split_date": "2026-06-30",
-    "days": 66,
+    "days": 69,
     "reverse_split": "6:1 Reverse split",
     "company": "Hcw Biologics Inc"
   },
@@ -355,7 +315,7 @@
     "ticker": "JBDI",
     "symbol": "JBDI",
     "split_date": "2026-06-30",
-    "days": 66,
+    "days": 69,
     "reverse_split": "2:1 Reverse split",
     "company": "Jbdi Holdings Ltd."
   },
@@ -363,7 +323,7 @@
     "ticker": "QNCX",
     "symbol": "QNCX",
     "split_date": "2026-06-30",
-    "days": 66,
+    "days": 69,
     "reverse_split": "20:1 Reverse split",
     "company": "Quince Therapeutics Inc"
   },
@@ -371,7 +331,7 @@
     "ticker": "TRNR",
     "symbol": "TRNR",
     "split_date": "2026-06-30",
-    "days": 66,
+    "days": 69,
     "reverse_split": "7:1 Reverse split",
     "company": "Interactive Strength Inc"
   },
@@ -379,7 +339,7 @@
     "ticker": "ALIT",
     "symbol": "ALIT",
     "split_date": "2026-07-01",
-    "days": 65,
+    "days": 68,
     "reverse_split": "20:1 Reverse split",
     "company": "Alight Inc"
   },
@@ -387,7 +347,7 @@
     "ticker": "MQ",
     "symbol": "MQ",
     "split_date": "2026-07-01",
-    "days": 65,
+    "days": 68,
     "reverse_split": "4:1 Reverse split",
     "company": "Marqeta Inc"
   },
@@ -395,7 +355,7 @@
     "ticker": "RMTI",
     "symbol": "RMTI",
     "split_date": "2026-07-01",
-    "days": 65,
+    "days": 68,
     "reverse_split": "10:1 Reverse split",
     "company": "Rockwell Medical Inc"
   },
@@ -403,7 +363,7 @@
     "ticker": "GMEX",
     "symbol": "GMEX",
     "split_date": "2026-07-02",
-    "days": 64,
+    "days": 67,
     "reverse_split": "9:1 Reverse split",
     "company": "Gmex Robotics Corp"
   },
@@ -411,7 +371,7 @@
     "ticker": "ABTC",
     "symbol": "ABTC",
     "split_date": "2026-07-06",
-    "days": 60,
+    "days": 63,
     "reverse_split": "15:1 Reverse split",
     "company": "American Bitcoin Corp"
   },
@@ -419,7 +379,7 @@
     "ticker": "CRIS",
     "symbol": "CRIS",
     "split_date": "2026-07-06",
-    "days": 60,
+    "days": 63,
     "reverse_split": "20:1 Reverse split",
     "company": "Curis Inc"
   },
@@ -427,7 +387,7 @@
     "ticker": "HKIT",
     "symbol": "HKIT",
     "split_date": "2026-07-06",
-    "days": 60,
+    "days": 63,
     "reverse_split": "25:1 Reverse split",
     "company": "Hitek Global Inc"
   },
@@ -435,7 +395,7 @@
     "ticker": "JZ",
     "symbol": "JZ",
     "split_date": "2026-07-06",
-    "days": 60,
+    "days": 63,
     "reverse_split": "30:1 Reverse split",
     "company": "Jianzhi Education Technology Group Co Ltd."
   },
@@ -443,7 +403,7 @@
     "ticker": "NIPG",
     "symbol": "NIPG",
     "split_date": "2026-07-06",
-    "days": 60,
+    "days": 63,
     "reverse_split": "30:1 Reverse split",
     "company": "Nip Group Inc"
   },
@@ -451,7 +411,7 @@
     "ticker": "NTCL",
     "symbol": "NTCL",
     "split_date": "2026-07-06",
-    "days": 60,
+    "days": 63,
     "reverse_split": "50:1 Reverse split",
     "company": "Netclass Technology Inc"
   },
@@ -459,7 +419,7 @@
     "ticker": "NVVE",
     "symbol": "NVVE",
     "split_date": "2026-07-06",
-    "days": 60,
+    "days": 63,
     "reverse_split": "18:1 Reverse split",
     "company": "Nuvve Holding Corp"
   },
@@ -467,7 +427,7 @@
     "ticker": "SLAI",
     "symbol": "SLAI",
     "split_date": "2026-07-06",
-    "days": 60,
+    "days": 63,
     "reverse_split": "7:1 Reverse split",
     "company": "Solai Ltd."
   },
@@ -475,7 +435,7 @@
     "ticker": "SNAL",
     "symbol": "SNAL",
     "split_date": "2026-07-06",
-    "days": 60,
+    "days": 63,
     "reverse_split": "5:1 Reverse split",
     "company": "Snail Inc"
   },
@@ -483,15 +443,15 @@
     "ticker": "SRXH",
     "symbol": "SRXH",
     "split_date": "2026-07-06",
-    "days": 60,
-    "reverse_split": "59.99:1 Reverse split",
+    "days": 63,
+    "reverse_split": "60:1 Reverse split",
     "company": "Srx Global Inc"
   },
   {
     "ticker": "CGTL",
     "symbol": "CGTL",
     "split_date": "2026-07-07",
-    "days": 59,
+    "days": 62,
     "reverse_split": "15:1 Reverse split",
     "company": "Creative Global Technology Holdings Ltd."
   },
@@ -499,7 +459,7 @@
     "ticker": "NCRA",
     "symbol": "NCRA",
     "split_date": "2026-07-07",
-    "days": 59,
+    "days": 62,
     "reverse_split": "30:1 Reverse split",
     "company": "Nocera Inc"
   },
@@ -507,7 +467,7 @@
     "ticker": "PFSA",
     "symbol": "PFSA",
     "split_date": "2026-07-07",
-    "days": 59,
+    "days": 62,
     "reverse_split": "25:1 Reverse split",
     "company": "Profusa Inc"
   },
@@ -515,7 +475,7 @@
     "ticker": "ENLV",
     "symbol": "ENLV",
     "split_date": "2026-07-09",
-    "days": 57,
+    "days": 60,
     "reverse_split": "15:1 Reverse split",
     "company": "Enlivex Ltd."
   },
@@ -523,7 +483,7 @@
     "ticker": "RBNE",
     "symbol": "RBNE",
     "split_date": "2026-07-09",
-    "days": 57,
+    "days": 60,
     "reverse_split": "15:1 Reverse split",
     "company": "Robin Energy Ltd."
   },
@@ -531,7 +491,7 @@
     "ticker": "GIPR",
     "symbol": "GIPR",
     "split_date": "2026-07-10",
-    "days": 56,
+    "days": 59,
     "reverse_split": "10:1 Reverse split",
     "company": "Generation Income Properties Inc"
   },
@@ -539,7 +499,7 @@
     "ticker": "YMAT",
     "symbol": "YMAT",
     "split_date": "2026-07-10",
-    "days": 56,
+    "days": 59,
     "reverse_split": "5:1 Reverse split",
     "company": "J-star Holding Co Ltd."
   },
@@ -547,7 +507,7 @@
     "ticker": "BIYA",
     "symbol": "BIYA",
     "split_date": "2026-07-13",
-    "days": 53,
+    "days": 56,
     "reverse_split": "10:1 Reverse split",
     "company": "Baiya International Group Inc"
   },
@@ -555,7 +515,7 @@
     "ticker": "CCHH",
     "symbol": "CCHH",
     "split_date": "2026-07-13",
-    "days": 53,
+    "days": 56,
     "reverse_split": "10:1 Reverse split",
     "company": "Cch Holdings Ltd."
   },
@@ -563,7 +523,7 @@
     "ticker": "CPOP",
     "symbol": "CPOP",
     "split_date": "2026-07-13",
-    "days": 53,
+    "days": 56,
     "reverse_split": "10:1 Reverse split",
     "company": "Pop Culture Group Co Ltd."
   },
@@ -571,7 +531,7 @@
     "ticker": "EDBL",
     "symbol": "EDBL",
     "split_date": "2026-07-13",
-    "days": 53,
+    "days": 56,
     "reverse_split": "45:1 Reverse split",
     "company": "Edible Garden Ag Inc"
   },
@@ -579,7 +539,7 @@
     "ticker": "FTFT",
     "symbol": "FTFT",
     "split_date": "2026-07-13",
-    "days": 53,
+    "days": 56,
     "reverse_split": "4:1 Reverse split",
     "company": "Future Fintech Group Inc"
   },
@@ -587,7 +547,7 @@
     "ticker": "PSQH",
     "symbol": "PSQH",
     "split_date": "2026-07-13",
-    "days": 53,
+    "days": 56,
     "reverse_split": "15:1 Reverse split",
     "company": "Psq Holdings Inc"
   },
@@ -595,7 +555,7 @@
     "ticker": "PWCM",
     "symbol": "PWCM",
     "split_date": "2026-07-13",
-    "days": 53,
+    "days": 56,
     "reverse_split": "25:1 Reverse split",
     "company": "Powercompute Inc"
   },
@@ -603,7 +563,7 @@
     "ticker": "XAIR",
     "symbol": "XAIR",
     "split_date": "2026-07-13",
-    "days": 53,
+    "days": 56,
     "reverse_split": "20:1 Reverse split",
     "company": "Beyond Air Inc"
   },
@@ -611,7 +571,7 @@
     "ticker": "YHC",
     "symbol": "YHC",
     "split_date": "2026-07-13",
-    "days": 53,
+    "days": 56,
     "reverse_split": "100:1 Reverse split",
     "company": "Lqr House Inc"
   },
@@ -619,7 +579,7 @@
     "ticker": "JEM",
     "symbol": "JEM",
     "split_date": "2026-07-14",
-    "days": 52,
+    "days": 55,
     "reverse_split": "12:1 Reverse split",
     "company": "707 Cayman Holdings Ltd."
   },
@@ -627,7 +587,7 @@
     "ticker": "LGHL",
     "symbol": "LGHL",
     "split_date": "2026-07-14",
-    "days": 52,
+    "days": 55,
     "reverse_split": "9:1 Reverse split",
     "company": "Lion Group Holding Ltd."
   },
@@ -635,7 +595,7 @@
     "ticker": "YXT",
     "symbol": "YXT",
     "split_date": "2026-07-14",
-    "days": 52,
+    "days": 55,
     "reverse_split": "10:1 Reverse split",
     "company": "Yxtcom Group Holding Ltd."
   },
@@ -643,7 +603,7 @@
     "ticker": "GNPX",
     "symbol": "GNPX",
     "split_date": "2026-07-16",
-    "days": 50,
+    "days": 53,
     "reverse_split": "22:1 Reverse split",
     "company": "Genprex Inc"
   },
@@ -651,7 +611,7 @@
     "ticker": "VIVK",
     "symbol": "VIVK",
     "split_date": "2026-07-17",
-    "days": 49,
+    "days": 52,
     "reverse_split": "20:1 Reverse split",
     "company": "Vivakor Inc"
   },
@@ -659,7 +619,7 @@
     "ticker": "BANL",
     "symbol": "BANL",
     "split_date": "2026-07-20",
-    "days": 46,
+    "days": 49,
     "reverse_split": "13:1 Reverse split",
     "company": "Cbl International Ltd."
   },
@@ -667,7 +627,7 @@
     "ticker": "CCG",
     "symbol": "CCG",
     "split_date": "2026-07-20",
-    "days": 46,
+    "days": 49,
     "reverse_split": "35:1 Reverse split",
     "company": "Cheche Group Inc"
   },
@@ -675,7 +635,7 @@
     "ticker": "CDT",
     "symbol": "CDT",
     "split_date": "2026-07-20",
-    "days": 46,
+    "days": 49,
     "reverse_split": "10:1 Reverse split",
     "company": "Cdt Equity Inc"
   },
@@ -683,7 +643,7 @@
     "ticker": "CIIT",
     "symbol": "CIIT",
     "split_date": "2026-07-20",
-    "days": 46,
+    "days": 49,
     "reverse_split": "10:1 Reverse split",
     "company": "Tianci International Inc"
   },
@@ -691,7 +651,7 @@
     "ticker": "DFNS",
     "symbol": "DFNS",
     "split_date": "2026-07-20",
-    "days": 46,
+    "days": 49,
     "reverse_split": "125:1 Reverse split",
     "company": "T3 Defense Inc"
   },
@@ -699,7 +659,7 @@
     "ticker": "NIKI",
     "symbol": "NIKI",
     "split_date": "2026-07-20",
-    "days": 46,
+    "days": 49,
     "reverse_split": "10:1 Reverse split",
     "company": "Niki Biosolutions Inc"
   },
@@ -707,7 +667,7 @@
     "ticker": "PRPL",
     "symbol": "PRPL",
     "split_date": "2026-07-20",
-    "days": 46,
+    "days": 49,
     "reverse_split": "25:1 Reverse split",
     "company": "Purple Innovation Inc"
   },
@@ -715,7 +675,7 @@
     "ticker": "TOMZ",
     "symbol": "TOMZ",
     "split_date": "2026-07-20",
-    "days": 46,
+    "days": 49,
     "reverse_split": "3:1 Reverse split",
     "company": "Tomi Environmental Solutions Inc"
   },
@@ -723,7 +683,7 @@
     "ticker": "CANG",
     "symbol": "CANG",
     "split_date": "2026-07-21",
-    "days": 45,
+    "days": 48,
     "reverse_split": "10:1 Reverse split",
     "company": "Cango Inc"
   },
@@ -731,7 +691,7 @@
     "ticker": "XPON",
     "symbol": "XPON",
     "split_date": "2026-07-21",
-    "days": 45,
+    "days": 48,
     "reverse_split": "12:1 Reverse split",
     "company": "Expion Energy Inc"
   },
@@ -739,7 +699,7 @@
     "ticker": "MSS",
     "symbol": "MSS",
     "split_date": "2026-07-22",
-    "days": 44,
+    "days": 47,
     "reverse_split": "5:1 Reverse split",
     "company": "Maison Solutions Inc"
   },
@@ -747,7 +707,7 @@
     "ticker": "APUS",
     "symbol": "APUS",
     "split_date": "2026-07-24",
-    "days": 42,
+    "days": 45,
     "reverse_split": "10:1 Reverse split",
     "company": "Apimeds Pharmaceuticals Us Inc"
   },
@@ -755,7 +715,7 @@
     "ticker": "DBGI",
     "symbol": "DBGI",
     "split_date": "2026-07-24",
-    "days": 42,
+    "days": 45,
     "reverse_split": "40:1 Reverse split",
     "company": "Digital Brands Group Inc"
   },
@@ -763,15 +723,15 @@
     "ticker": "FFAI",
     "symbol": "FFAI",
     "split_date": "2026-07-24",
-    "days": 42,
-    "reverse_split": "150:1 Reverse split",
+    "days": 45,
+    "reverse_split": "149.93:1 Reverse split",
     "company": "Faraday Future Intelligent Electric Inc"
   },
   {
     "ticker": "TRIB",
     "symbol": "TRIB",
     "split_date": "2026-07-24",
-    "days": 42,
+    "days": 45,
     "reverse_split": "30:1 Reverse split",
     "company": "Trinity Biotech PLC"
   },
@@ -779,7 +739,7 @@
     "ticker": "AMZE",
     "symbol": "AMZE",
     "split_date": "2026-07-27",
-    "days": 39,
+    "days": 42,
     "reverse_split": "8:1 Reverse split",
     "company": "Amaze Holdings Inc"
   },
@@ -787,7 +747,7 @@
     "ticker": "EDVA",
     "symbol": "EDVA",
     "split_date": "2026-07-27",
-    "days": 39,
+    "days": 42,
     "reverse_split": "4:1 Reverse split",
     "company": "Endovia Health Sciences Inc"
   },
@@ -795,7 +755,7 @@
     "ticker": "SBEV",
     "symbol": "SBEV",
     "split_date": "2026-07-27",
-    "days": 39,
+    "days": 42,
     "reverse_split": "4:1 Reverse split",
     "company": "Splash Beverage Group Inc"
   },
@@ -803,7 +763,7 @@
     "ticker": "SGLY",
     "symbol": "SGLY",
     "split_date": "2026-07-27",
-    "days": 39,
+    "days": 42,
     "reverse_split": "14:1 Reverse split",
     "company": "Singularity Future Technology Ltd."
   },
@@ -811,7 +771,7 @@
     "ticker": "STKH",
     "symbol": "STKH",
     "split_date": "2026-07-27",
-    "days": 39,
+    "days": 42,
     "reverse_split": "3:1 Reverse split",
     "company": "Steakholder Foods Ltd."
   },
@@ -819,7 +779,7 @@
     "ticker": "VYNE",
     "symbol": "VYNE",
     "split_date": "2026-07-27",
-    "days": 39,
+    "days": 42,
     "reverse_split": "50:1 Reverse split",
     "company": "Vyne Therapeutics Inc"
   },
@@ -827,7 +787,7 @@
     "ticker": "YARW",
     "symbol": "YARW",
     "split_date": "2026-07-27",
-    "days": 39,
+    "days": 42,
     "reverse_split": "50:1 Reverse split",
     "company": "Yarrow Bioscience Inc"
   },
@@ -835,7 +795,7 @@
     "ticker": "ZNB",
     "symbol": "ZNB",
     "split_date": "2026-07-27",
-    "days": 39,
+    "days": 42,
     "reverse_split": "8:1 Reverse split",
     "company": "Zeta Network Group"
   },
@@ -843,7 +803,7 @@
     "ticker": "YAAS",
     "symbol": "YAAS",
     "split_date": "2026-07-30",
-    "days": 36,
+    "days": 39,
     "reverse_split": "5:1 Reverse split",
     "company": "Youxin Technology Ltd."
   },
@@ -851,7 +811,7 @@
     "ticker": "CLDI",
     "symbol": "CLDI",
     "split_date": "2026-07-31",
-    "days": 35,
+    "days": 38,
     "reverse_split": "16:1 Reverse split",
     "company": "Calidi Biotherapeutics Inc"
   },
@@ -859,7 +819,7 @@
     "ticker": "CSAI",
     "symbol": "CSAI",
     "split_date": "2026-07-31",
-    "days": 35,
+    "days": 38,
     "reverse_split": "30:1 Reverse split",
     "company": "Cloudastructure Inc"
   },
@@ -867,7 +827,7 @@
     "ticker": "NEXR",
     "symbol": "NEXR",
     "split_date": "2026-07-31",
-    "days": 35,
+    "days": 38,
     "reverse_split": "11:1 Reverse split",
     "company": "Nexera Technologies Ltd."
   },
@@ -875,7 +835,7 @@
     "ticker": "OFAL",
     "symbol": "OFAL",
     "split_date": "2026-07-31",
-    "days": 35,
+    "days": 38,
     "reverse_split": "10:1 Reverse split",
     "company": "Ofa Group"
   },
@@ -883,7 +843,7 @@
     "ticker": "KWM",
     "symbol": "KWM",
     "split_date": "2026-08-03",
-    "days": 32,
+    "days": 35,
     "reverse_split": "30:1 Reverse split",
     "company": "K Wave Media Ltd."
   },
@@ -891,7 +851,7 @@
     "ticker": "LBGJ",
     "symbol": "LBGJ",
     "split_date": "2026-08-03",
-    "days": 32,
+    "days": 35,
     "reverse_split": "200:1 Reverse split",
     "company": "Li Bang International Corp Inc"
   },
@@ -899,7 +859,7 @@
     "ticker": "LEXX",
     "symbol": "LEXX",
     "split_date": "2026-08-03",
-    "days": 32,
+    "days": 35,
     "reverse_split": "15:1 Reverse split",
     "company": "Lexaria Bioscience Corp"
   },
@@ -907,7 +867,7 @@
     "ticker": "MVIS",
     "symbol": "MVIS",
     "split_date": "2026-08-03",
-    "days": 32,
+    "days": 35,
     "reverse_split": "15:1 Reverse split",
     "company": "Microvision Inc"
   },
@@ -915,7 +875,7 @@
     "ticker": "PMI",
     "symbol": "PMI",
     "split_date": "2026-08-03",
-    "days": 32,
+    "days": 35,
     "reverse_split": "50:1 Reverse split",
     "company": "Picard Medical Inc"
   },
@@ -923,7 +883,7 @@
     "ticker": "SEGG",
     "symbol": "SEGG",
     "split_date": "2026-08-03",
-    "days": 32,
+    "days": 35,
     "reverse_split": "7:1 Reverse split",
     "company": "Sports Entertainment Gaming Global Corp"
   },
@@ -931,7 +891,7 @@
     "ticker": "TOP",
     "symbol": "TOP",
     "split_date": "2026-08-03",
-    "days": 32,
+    "days": 35,
     "reverse_split": "5:1 Reverse split",
     "company": "Top Financial Group Ltd."
   },
@@ -939,7 +899,7 @@
     "ticker": "WETO",
     "symbol": "WETO",
     "split_date": "2026-08-03",
-    "days": 32,
+    "days": 35,
     "reverse_split": "100:1 Reverse split",
     "company": "Wetour Robotics Ltd."
   },
@@ -947,7 +907,7 @@
     "ticker": "AEMD",
     "symbol": "AEMD",
     "split_date": "2026-08-04",
-    "days": 31,
+    "days": 34,
     "reverse_split": "5:1 Reverse split",
     "company": "Aethlon Medical Inc"
   },
@@ -955,7 +915,7 @@
     "ticker": "BYAH",
     "symbol": "BYAH",
     "split_date": "2026-08-06",
-    "days": 29,
+    "days": 32,
     "reverse_split": "8:1 Reverse split",
     "company": "Park Ha Biological Technology Co Ltd."
   },
@@ -963,7 +923,7 @@
     "ticker": "GRNQ",
     "symbol": "GRNQ",
     "split_date": "2026-08-06",
-    "days": 29,
+    "days": 32,
     "reverse_split": "10:1 Reverse split",
     "company": "Greenpro Capital Corp"
   },
@@ -971,7 +931,7 @@
     "ticker": "SUGP",
     "symbol": "SUGP",
     "split_date": "2026-08-06",
-    "days": 29,
+    "days": 32,
     "reverse_split": "5:1 Reverse split",
     "company": "Su Group Holdings Ltd."
   },
@@ -979,7 +939,7 @@
     "ticker": "IPW",
     "symbol": "IPW",
     "split_date": "2026-08-07",
-    "days": 28,
+    "days": 31,
     "reverse_split": "9:1 Reverse split",
     "company": "Ipower Inc"
   },
@@ -987,7 +947,7 @@
     "ticker": "JUNS",
     "symbol": "JUNS",
     "split_date": "2026-08-07",
-    "days": 28,
+    "days": 31,
     "reverse_split": "75.02:1 Reverse split",
     "company": "Jupiter Neurosciences Inc"
   },
@@ -995,7 +955,7 @@
     "ticker": "AEHL",
     "symbol": "AEHL",
     "split_date": "2026-08-10",
-    "days": 25,
+    "days": 28,
     "reverse_split": "16:1 Reverse split",
     "company": "Antelope Enterprise Holdings Ltd."
   },
@@ -1003,7 +963,7 @@
     "ticker": "ELPW",
     "symbol": "ELPW",
     "split_date": "2026-08-10",
-    "days": 25,
+    "days": 28,
     "reverse_split": "45:1 Reverse split",
     "company": "Elong Power Holding Ltd."
   },
@@ -1011,7 +971,7 @@
     "ticker": "NXTT",
     "symbol": "NXTT",
     "split_date": "2026-08-10",
-    "days": 25,
+    "days": 28,
     "reverse_split": "100:1 Reverse split",
     "company": "Next Technology Holding Inc"
   },
@@ -1019,7 +979,7 @@
     "ticker": "ONFO",
     "symbol": "ONFO",
     "split_date": "2026-08-10",
-    "days": 25,
+    "days": 28,
     "reverse_split": "50:1 Reverse split",
     "company": "Onfolio Holdings Inc"
   },
@@ -1027,7 +987,7 @@
     "ticker": "SXTC",
     "symbol": "SXTC",
     "split_date": "2026-08-10",
-    "days": 25,
+    "days": 28,
     "reverse_split": "80:1 Reverse split",
     "company": "China Sxt Pharmaceuticals Inc"
   },
@@ -1035,7 +995,7 @@
     "ticker": "THH",
     "symbol": "THH",
     "split_date": "2026-08-10",
-    "days": 25,
+    "days": 28,
     "reverse_split": "10:1 Reverse split",
     "company": "Tryhard Holdings Ltd."
   },
@@ -1043,7 +1003,7 @@
     "ticker": "TNON",
     "symbol": "TNON",
     "split_date": "2026-08-10",
-    "days": 25,
+    "days": 28,
     "reverse_split": "35:1 Reverse split",
     "company": "Tenon Medical Inc"
   },
@@ -1051,7 +1011,7 @@
     "ticker": "MSGY",
     "symbol": "MSGY",
     "split_date": "2026-08-11",
-    "days": 24,
+    "days": 27,
     "reverse_split": "8:1 Reverse split",
     "company": "Masonglory Ltd."
   },
@@ -1059,7 +1019,7 @@
     "ticker": "BNRG",
     "symbol": "BNRG",
     "split_date": "2026-08-13",
-    "days": 22,
+    "days": 25,
     "reverse_split": "6:1 Reverse split",
     "company": "Brenx Ltd."
   },
@@ -1067,7 +1027,7 @@
     "ticker": "BRNX",
     "symbol": "BRNX",
     "split_date": "2026-08-13",
-    "days": 22,
+    "days": 25,
     "reverse_split": "6:1 Reverse split",
     "company": "Brenx Ltd."
   },
@@ -1075,7 +1035,7 @@
     "ticker": "KIDZ",
     "symbol": "KIDZ",
     "split_date": "2026-08-13",
-    "days": 22,
+    "days": 25,
     "reverse_split": "15:1 Reverse split",
     "company": "Kidz Ai Inc"
   },
@@ -1083,7 +1043,7 @@
     "ticker": "MBAI",
     "symbol": "MBAI",
     "split_date": "2026-08-13",
-    "days": 22,
+    "days": 25,
     "reverse_split": "7:1 Reverse split",
     "company": "Check-cap Ltd."
   },
@@ -1091,7 +1051,7 @@
     "ticker": "MYSZ",
     "symbol": "MYSZ",
     "split_date": "2026-08-13",
-    "days": 22,
+    "days": 25,
     "reverse_split": "8:1 Reverse split",
     "company": "My Size Inc"
   },
@@ -1099,7 +1059,7 @@
     "ticker": "SMXT",
     "symbol": "SMXT",
     "split_date": "2026-08-13",
-    "days": 22,
+    "days": 25,
     "reverse_split": "12:1 Reverse split",
     "company": "Solarmax Technology Inc"
   },
@@ -1107,7 +1067,7 @@
     "ticker": "BYND",
     "symbol": "BYND",
     "split_date": "2026-08-14",
-    "days": 21,
+    "days": 24,
     "reverse_split": "30:1 Reverse split",
     "company": "Beyond Meat Inc"
   },
@@ -1115,7 +1075,7 @@
     "ticker": "HAO",
     "symbol": "HAO",
     "split_date": "2026-08-14",
-    "days": 21,
+    "days": 24,
     "reverse_split": "20:1 Reverse split",
     "company": "Haoxi Health Technology Ltd."
   },
@@ -1123,7 +1083,7 @@
     "ticker": "PFSA",
     "symbol": "PFSA",
     "split_date": "2026-08-17",
-    "days": 18,
+    "days": 21,
     "reverse_split": "4:1 Reverse split",
     "company": "Profusa Inc"
   },
@@ -1131,7 +1091,7 @@
     "ticker": "YYAI",
     "symbol": "YYAI",
     "split_date": "2026-08-17",
-    "days": 18,
+    "days": 21,
     "reverse_split": "20:1 Reverse split",
     "company": "Airwa Inc"
   },
@@ -1139,7 +1099,7 @@
     "ticker": "CXAI",
     "symbol": "CXAI",
     "split_date": "2026-08-18",
-    "days": 17,
+    "days": 20,
     "reverse_split": "50:1 Reverse split",
     "company": "Cxapp Inc"
   },
@@ -1147,7 +1107,7 @@
     "ticker": "RCON",
     "symbol": "RCON",
     "split_date": "2026-08-18",
-    "days": 17,
+    "days": 20,
     "reverse_split": "200:1 Reverse split",
     "company": "Recon Technology Ltd."
   },
@@ -1155,7 +1115,7 @@
     "ticker": "CISS",
     "symbol": "CISS",
     "split_date": "2026-08-19",
-    "days": 16,
+    "days": 19,
     "reverse_split": "40:1 Reverse split",
     "company": "C3is Inc"
   },
@@ -1163,7 +1123,7 @@
     "ticker": "GLMD",
     "symbol": "GLMD",
     "split_date": "2026-08-19",
-    "days": 16,
+    "days": 19,
     "reverse_split": "8:1 Reverse split",
     "company": "Galmed Pharmaceuticals Ltd."
   },
@@ -1171,7 +1131,7 @@
     "ticker": "NRDY",
     "symbol": "NRDY",
     "split_date": "2026-08-19",
-    "days": 16,
+    "days": 19,
     "reverse_split": "15:1 Reverse split",
     "company": "Nerdy Inc"
   },
@@ -1179,7 +1139,7 @@
     "ticker": "CURX",
     "symbol": "CURX",
     "split_date": "2026-08-20",
-    "days": 15,
+    "days": 18,
     "reverse_split": "20:1 Reverse split",
     "company": "Curanex Pharmaceuticals Inc"
   },
@@ -1187,7 +1147,7 @@
     "ticker": "BTOG",
     "symbol": "BTOG",
     "split_date": "2026-08-21",
-    "days": 14,
+    "days": 17,
     "reverse_split": "5:1 Reverse split",
     "company": "Bit Origin Ltd."
   },
@@ -1195,7 +1155,7 @@
     "ticker": "ELAB",
     "symbol": "ELAB",
     "split_date": "2026-08-21",
-    "days": 14,
+    "days": 17,
     "reverse_split": "10:1 Reverse split",
     "company": "Pmgc Holdings Inc"
   },
@@ -1203,7 +1163,7 @@
     "ticker": "LIMN",
     "symbol": "LIMN",
     "split_date": "2026-08-21",
-    "days": 14,
+    "days": 17,
     "reverse_split": "50:1 Reverse split",
     "company": "Liminatus Pharma Inc"
   },
@@ -1211,7 +1171,7 @@
     "ticker": "SCNI",
     "symbol": "SCNI",
     "split_date": "2026-08-21",
-    "days": 14,
+    "days": 17,
     "reverse_split": "10:1 Reverse split",
     "company": "Scinai Immunotherapeutics Ltd."
   },
@@ -1219,7 +1179,7 @@
     "ticker": "SMTK",
     "symbol": "SMTK",
     "split_date": "2026-08-21",
-    "days": 14,
+    "days": 17,
     "reverse_split": "50:1 Reverse split",
     "company": "Smartkem Inc"
   },
@@ -1227,7 +1187,7 @@
     "ticker": "XCH",
     "symbol": "XCH",
     "split_date": "2026-08-21",
-    "days": 14,
+    "days": 17,
     "reverse_split": "20:1 Reverse split",
     "company": "Xchg Ltd."
   },
@@ -1235,7 +1195,7 @@
     "ticker": "BRCC",
     "symbol": "BRCC",
     "split_date": "2026-08-24",
-    "days": 11,
+    "days": 14,
     "reverse_split": "10:1 Reverse split",
     "company": "Brc Inc"
   },
@@ -1243,7 +1203,7 @@
     "ticker": "GAME",
     "symbol": "GAME",
     "split_date": "2026-08-24",
-    "days": 11,
+    "days": 14,
     "reverse_split": "8:1 Reverse split",
     "company": "Gamesquare Holdings Inc"
   },
@@ -1251,7 +1211,7 @@
     "ticker": "GRML",
     "symbol": "GRML",
     "split_date": "2026-08-24",
-    "days": 11,
+    "days": 14,
     "reverse_split": "50:1 Reverse split",
     "company": "Greenland Mines Ltd."
   },
@@ -1259,7 +1219,7 @@
     "ticker": "INCR",
     "symbol": "INCR",
     "split_date": "2026-08-24",
-    "days": 11,
+    "days": 14,
     "reverse_split": "5:1 Reverse split",
     "company": "Intercure Ltd."
   },
@@ -1267,7 +1227,7 @@
     "ticker": "SKYE",
     "symbol": "SKYE",
     "split_date": "2026-08-24",
-    "days": 11,
+    "days": 14,
     "reverse_split": "8:1 Reverse split",
     "company": "Skye Bioscience Inc"
   },
@@ -1275,7 +1235,7 @@
     "ticker": "VCIG",
     "symbol": "VCIG",
     "split_date": "2026-08-24",
-    "days": 11,
+    "days": 14,
     "reverse_split": "15:1 Reverse split",
     "company": "Vci Global Ltd."
   },
@@ -1283,7 +1243,7 @@
     "ticker": "VMAR",
     "symbol": "VMAR",
     "split_date": "2026-08-26",
-    "days": 9,
+    "days": 12,
     "reverse_split": "10:1 Reverse split",
     "company": "Vision Marine Technologies Inc"
   },
@@ -1291,7 +1251,7 @@
     "ticker": "IMCC",
     "symbol": "IMCC",
     "split_date": "2026-08-27",
-    "days": 8,
+    "days": 11,
     "reverse_split": "30:1 Reverse split",
     "company": "Im Cannabis Corp"
   },
@@ -1299,7 +1259,7 @@
     "ticker": "LGVN",
     "symbol": "LGVN",
     "split_date": "2026-08-27",
-    "days": 8,
+    "days": 11,
     "reverse_split": "10:1 Reverse split",
     "company": "Longeveron Inc"
   },
@@ -1307,7 +1267,7 @@
     "ticker": "NVX",
     "symbol": "NVX",
     "split_date": "2026-08-27",
-    "days": 8,
+    "days": 11,
     "reverse_split": "10:1 Reverse split",
     "company": "Novonix Ltd."
   },
@@ -1315,7 +1275,7 @@
     "ticker": "YMT",
     "symbol": "YMT",
     "split_date": "2026-08-27",
-    "days": 8,
+    "days": 11,
     "reverse_split": "16:1 Reverse split",
     "company": "Yimutian Inc"
   },
@@ -1323,7 +1283,7 @@
     "ticker": "CYCU",
     "symbol": "CYCU",
     "split_date": "2026-08-28",
-    "days": 7,
+    "days": 10,
     "reverse_split": "8:1 Reverse split",
     "company": "Cycurion Inc"
   },
@@ -1331,7 +1291,7 @@
     "ticker": "ARTL",
     "symbol": "ARTL",
     "split_date": "2026-08-31",
-    "days": 4,
+    "days": 7,
     "reverse_split": "9:1 Reverse split",
     "company": "Artelo Biosciences Inc"
   },
@@ -1339,7 +1299,7 @@
     "ticker": "CALC",
     "symbol": "CALC",
     "split_date": "2026-08-31",
-    "days": 4,
+    "days": 7,
     "reverse_split": "5:1 Reverse split",
     "company": "Calcimedica Inc"
   },
@@ -1347,7 +1307,7 @@
     "ticker": "CHGA",
     "symbol": "CHGA",
     "split_date": "2026-08-31",
-    "days": 4,
+    "days": 7,
     "reverse_split": "20:1 Reverse split",
     "company": "Change Agents Corporation"
   },
@@ -1355,7 +1315,7 @@
     "ticker": "FTFT",
     "symbol": "FTFT",
     "split_date": "2026-08-31",
-    "days": 4,
+    "days": 7,
     "reverse_split": "4:1 Reverse split",
     "company": "Future Fintech Group Inc"
   },
@@ -1363,7 +1323,7 @@
     "ticker": "GCTK",
     "symbol": "GCTK",
     "split_date": "2026-08-31",
-    "days": 4,
+    "days": 7,
     "reverse_split": "15:1 Reverse split",
     "company": "Glucotrack Inc"
   },
@@ -1371,7 +1331,7 @@
     "ticker": "HCWC",
     "symbol": "HCWC",
     "split_date": "2026-08-31",
-    "days": 4,
+    "days": 7,
     "reverse_split": "35:1 Reverse split",
     "company": "Healthy Choice Wellness Corp"
   },
@@ -1379,7 +1339,7 @@
     "ticker": "NXL",
     "symbol": "NXL",
     "split_date": "2026-08-31",
-    "days": 4,
+    "days": 7,
     "reverse_split": "30:1 Reverse split",
     "company": "Nexalin Technology Inc"
   },
@@ -1387,7 +1347,7 @@
     "ticker": "OMH",
     "symbol": "OMH",
     "split_date": "2026-08-31",
-    "days": 4,
+    "days": 7,
     "reverse_split": "50:1 Reverse split",
     "company": "Ohmyhome Ltd."
   },
@@ -1395,7 +1355,7 @@
     "ticker": "TPET",
     "symbol": "TPET",
     "split_date": "2026-08-31",
-    "days": 4,
+    "days": 7,
     "reverse_split": "9:1 Reverse split",
     "company": "Trio Petroleum Corp"
   },
@@ -1403,7 +1363,7 @@
     "ticker": "VBIO",
     "symbol": "VBIO",
     "split_date": "2026-08-31",
-    "days": 4,
+    "days": 7,
     "reverse_split": "25:1 Reverse split",
     "company": "Valion Bio Inc"
   },
@@ -1411,7 +1371,7 @@
     "ticker": "VEEA",
     "symbol": "VEEA",
     "split_date": "2026-08-31",
-    "days": 4,
+    "days": 7,
     "reverse_split": "20:1 Reverse split",
     "company": "Veea Inc"
   },
@@ -1419,7 +1379,7 @@
     "ticker": "FEED",
     "symbol": "FEED",
     "split_date": "2026-09-01",
-    "days": 3,
+    "days": 6,
     "reverse_split": "12:1 Reverse split",
     "company": "Envue Medical Inc"
   },
@@ -1427,7 +1387,7 @@
     "ticker": "FGL",
     "symbol": "FGL",
     "split_date": "2026-09-01",
-    "days": 3,
+    "days": 6,
     "reverse_split": "100:1 Reverse split",
     "company": "Founder Group Ltd."
   },
@@ -1435,7 +1395,7 @@
     "ticker": "LGCL",
     "symbol": "LGCL",
     "split_date": "2026-09-01",
-    "days": 3,
+    "days": 6,
     "reverse_split": "125:1 Reverse split",
     "company": "Lucas Gc Ltd."
   },
@@ -1443,7 +1403,7 @@
     "ticker": "CLGN",
     "symbol": "CLGN",
     "split_date": "2026-09-04",
-    "days": 0,
+    "days": 3,
     "reverse_split": "10:1 Reverse split",
     "company": "Collplant Biotechnologies Ltd."
   },
@@ -1451,7 +1411,7 @@
     "ticker": "TANH",
     "symbol": "TANH",
     "split_date": "2026-09-04",
-    "days": 0,
+    "days": 3,
     "reverse_split": "50:1 Reverse split",
     "company": "Tantech Holdings Ltd."
   }
