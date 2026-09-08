@@ -1,6 +1,6 @@
 # Phase 2 — First Explosion Start & RSI Timing Discovery
 
-Generated: 2026-09-08T19:53:57+00:00
+Generated: 2026-09-08T19:55:52+00:00
 
 ## Status
 
@@ -12,7 +12,7 @@ The purpose is to identify when a rapid move first becomes observable without us
 
 ## Sample and coverage
 
-The current universe contains **359 candidate rows**, **320 tickers with daily OHLCV**, and **1139 generated signal rows** across 5 candidate definitions.
+The current universe contains **359 candidate rows**, **320 tickers with daily OHLCV**, and **1136 generated signal rows** across 5 candidate definitions.
 
 | Definition | Meaning |
 |---|---|
@@ -27,7 +27,7 @@ The current universe contains **359 candidate rows**, **320 tickers with daily O
 | Class | Rows | Unique tickers | Mean RSI change S vs S-5 | Recovery rate | Mean max return 20 sessions |
 |---|---:|---:|---:|---:|---:|
 | Temporary Spike | 334 | 156 | 9.622605431940585 | 77.1% | 39.2% |
-| No Significant Move | 537 | 203 | 10.998277758092886 | 81.5% | 3.7% |
+| No Significant Move | 534 | 203 | 11.004005121858205 | 81.4% | 3.7% |
 | Gradual Rise | 78 | 45 | 5.390867847296279 | 78.2% | 261.4% |
 | True Explosion | 112 | 57 | 12.146228687695952 | 79.5% | 300.8% |
 | Rapid Move | 78 | 46 | 8.582451420114408 | 74.4% | 323.2% |

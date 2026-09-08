@@ -1118,9 +1118,6 @@ D_rapid_expansion,True Explosion,50-inf,True
 E_base_breakout,True Explosion,50-inf,True
 A_10_from_low,No Significant Move,27-30,False
 B_20_from_low,No Significant Move,35-40,False
-C_20_in_1_3,No Significant Move,40-50,False
-D_rapid_expansion,No Significant Move,40-50,False
-E_base_breakout,No Significant Move,40-50,False
 A_10_from_low,Temporary Spike,50-inf,False
 B_20_from_low,Temporary Spike,50-inf,False
 E_base_breakout,Temporary Spike,50-inf,False

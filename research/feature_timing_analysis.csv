@@ -1125,9 +1125,6 @@ PMI,D_rapid_expansion,True Explosion,S-20,S-20,S-20,S-15,S-1,S-15,S
 PMI,E_base_breakout,True Explosion,S-20,S-20,S-20,S-15,S-1,S-15,S
 SEGG,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-10,S-3,S-15,
 SEGG,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-15,,S-20,S
-SEGG,C_20_in_1_3,No Significant Move,S-20,S-20,S-10,S-15,S-20,S-15,S-7
-SEGG,D_rapid_expansion,No Significant Move,S-20,S-20,S-10,S-15,S-20,S-15,S-7
-SEGG,E_base_breakout,No Significant Move,S-20,S-20,S-10,S-15,S-20,S-15,S-7
 TOP,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-5,,S-20,S-20
 TOP,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-20,S-20,S-20
 TOP,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-10,,S-2,S-20
