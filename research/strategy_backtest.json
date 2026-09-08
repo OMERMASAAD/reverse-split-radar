@@ -7,7 +7,7 @@
       "win_rate": 0.35074626865671643,
       "avg_return": -0.03973987833224932,
       "median_return": -0.1543050819285149,
-      "profit_factor": 0.6441528706125336,
+      "profit_factor": 0.6441528706125341,
       "max_holding_sessions": 12
     },
     "50": {
@@ -16,7 +16,7 @@
       "win_rate": 0.13768115942028986,
       "avg_return": -0.038486910596147166,
       "median_return": -0.2,
-      "profit_factor": 0.7000191289419667,
+      "profit_factor": 0.7000191289419678,
       "max_holding_sessions": 12
     },
     "70": {
@@ -25,7 +25,7 @@
       "win_rate": 0.12142857142857143,
       "avg_return": -0.021279552084836745,
       "median_return": -0.2,
-      "profit_factor": 0.8350876308301535,
+      "profit_factor": 0.8350876308301546,
       "max_holding_sessions": 12
     },
     "100": {
@@ -34,7 +34,7 @@
       "win_rate": 0.09285714285714286,
       "avg_return": -0.010976756584472698,
       "median_return": -0.2,
-      "profit_factor": 0.9167750732670584,
+      "profit_factor": 0.91677507326706,
       "max_holding_sessions": 12
     },
     "200": {
@@ -43,7 +43,7 @@
       "win_rate": 0.03496503496503497,
       "avg_return": -0.0017226341349592638,
       "median_return": -0.2,
-      "profit_factor": 0.9870790954004981,
+      "profit_factor": 0.9870790954004997,
       "max_holding_sessions": 12
     }
   },
@@ -54,7 +54,7 @@
       "win_rate": 0.42391304347826086,
       "avg_return": -0.015709890742600766,
       "median_return": -0.05741501719217196,
-      "profit_factor": 0.8463706197655423,
+      "profit_factor": 0.8463706197655427,
       "max_holding_sessions": 12
     },
     "50": {
@@ -63,7 +63,7 @@
       "win_rate": 0.16666666666666666,
       "avg_return": -0.014938691585851899,
       "median_return": -0.2,
-      "profit_factor": 0.8769241376089069,
+      "profit_factor": 0.8769241376089073,
       "max_holding_sessions": 12
     },
     "70": {
@@ -72,7 +72,7 @@
       "win_rate": 0.13402061855670103,
       "avg_return": -0.004144928060315639,
       "median_return": -0.2,
-      "profit_factor": 0.9665290369286507,
+      "profit_factor": 0.9665290369286509,
       "max_holding_sessions": 12
     },
     "100": {
@@ -81,7 +81,7 @@
       "win_rate": 0.11224489795918367,
       "avg_return": 0.014697278303005502,
       "median_return": -0.2,
-      "profit_factor": 1.116042264399894,
+      "profit_factor": 1.1160422643998946,
       "max_holding_sessions": 12
     },
     "200": {
@@ -90,7 +90,7 @@
       "win_rate": 0.03,
       "avg_return": -0.008538727876292068,
       "median_return": -0.2,
-      "profit_factor": 0.9343787772299748,
+      "profit_factor": 0.9343787772299753,
       "max_holding_sessions": 12
     }
   },
@@ -101,7 +101,7 @@
       "win_rate": 0.19047619047619047,
       "avg_return": -0.09237699400481285,
       "median_return": -0.2,
-      "profit_factor": 0.30180194906574165,
+      "profit_factor": 0.3018019490657415,
       "max_holding_sessions": 12
     },
     "50": {
@@ -110,7 +110,7 @@
       "win_rate": 0.07142857142857142,
       "avg_return": -0.09231141119110779,
       "median_return": -0.2,
-      "profit_factor": 0.359459858790467,
+      "profit_factor": 0.3594598587904669,
       "max_holding_sessions": 12
     },
     "70": {
@@ -128,7 +128,7 @@
       "win_rate": 0.047619047619047616,
       "avg_return": -0.07088283798858856,
       "median_return": -0.2,
-      "profit_factor": 0.5081506991530361,
+      "profit_factor": 0.508150699153036,
       "max_holding_sessions": 12
     },
     "200": {
@@ -137,7 +137,7 @@
       "win_rate": 0.046511627906976744,
       "avg_return": 0.014128746658837956,
       "median_return": -0.2,
-      "profit_factor": 1.100372274136109,
+      "profit_factor": 1.1003722741361088,
       "max_holding_sessions": 12
     }
   },

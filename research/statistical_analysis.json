@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-08T11:52:51+00:00",
+  "generated_at": "2026-09-08T11:54:47+00:00",
   "methodology": {
     "primary_label": "+70%",
     "lookback_calendar_days": 180,
@@ -17,8 +17,8 @@
     "cases": 1356,
     "tickers_requested": 165,
     "tickers_downloaded": 165,
-    "rsi_D-1_success": 101,
-    "rsi_D-1_control": 1241,
+    "rsi_D-1_success": 102,
+    "rsi_D-1_control": 1254,
     "historical_float": 0,
     "historical_short": 0
   },
@@ -62,203 +62,203 @@
   "rsi_analysis": {
     "coverage": {
       "D-20": {
-        "success": 101,
-        "control": 1241,
+        "success": 102,
+        "control": 1254,
         "required_success": 102,
         "required_control": 1254
       },
       "D-15": {
-        "success": 101,
-        "control": 1241,
+        "success": 102,
+        "control": 1254,
         "required_success": 102,
         "required_control": 1254
       },
       "D-10": {
-        "success": 101,
-        "control": 1241,
+        "success": 102,
+        "control": 1254,
         "required_success": 102,
         "required_control": 1254
       },
       "D-7": {
-        "success": 101,
-        "control": 1241,
+        "success": 102,
+        "control": 1254,
         "required_success": 102,
         "required_control": 1254
       },
       "D-5": {
-        "success": 101,
-        "control": 1241,
+        "success": 102,
+        "control": 1254,
         "required_success": 102,
         "required_control": 1254
       },
       "D-4": {
-        "success": 101,
-        "control": 1241,
+        "success": 102,
+        "control": 1254,
         "required_success": 102,
         "required_control": 1254
       },
       "D-3": {
-        "success": 101,
-        "control": 1241,
+        "success": 102,
+        "control": 1254,
         "required_success": 102,
         "required_control": 1254
       },
       "D-2": {
-        "success": 101,
-        "control": 1241,
+        "success": 102,
+        "control": 1254,
         "required_success": 102,
         "required_control": 1254
       },
       "D-1": {
-        "success": 101,
-        "control": 1241,
+        "success": 102,
+        "control": 1254,
         "required_success": 102,
         "required_control": 1254
       }
     },
     "snapshots": {
       "D-20": {
-        "success_mean": 34.96873657471294,
-        "success_median": 33.79879021169019,
+        "success_mean": 34.99129732871238,
+        "success_median": 34.02415819195598,
         "success_min": 1.6714183561733051,
         "success_max": 95.89498804613342,
-        "success_std": 13.463442882064388,
+        "success_std": 13.39856391533787,
         "success_percentiles": {
-          "10": 21.81732229417709,
-          "25": 24.64207075869534,
-          "50": 33.79879021169019,
-          "75": 43.560919274373155,
-          "90": 49.71952803533061
+          "10": 21.849712280761427,
+          "25": 24.674880662580954,
+          "50": 34.02415819195598,
+          "75": 43.444116185268435,
+          "90": 49.63135491782214
         },
-        "control_mean": 42.22260252274921,
-        "control_median": 41.89594767891396
+        "control_mean": 42.10829052393895,
+        "control_median": 41.666230186005876
       },
       "D-15": {
-        "success_mean": 35.92127532895408,
-        "success_median": 33.13349949144846,
+        "success_mean": 36.01549718772476,
+        "success_median": 33.25122164945234,
         "success_min": 1.6714183561733051,
         "success_max": 92.25294043966196,
-        "success_std": 13.527217779571995,
+        "success_std": 13.493680499403157,
         "success_percentiles": {
-          "10": 22.480141348403052,
-          "25": 26.536765954881233,
-          "50": 33.13349949144846,
-          "75": 43.494220866940346,
-          "90": 53.03598081596265
+          "10": 22.499979621992473,
+          "25": 26.734988636261193,
+          "50": 33.25122164945234,
+          "75": 43.92426557068463,
+          "90": 52.82373696627006
         },
-        "control_mean": 41.835201978040956,
-        "control_median": 41.855086528996274
+        "control_mean": 41.793622699946546,
+        "control_median": 41.83394225165591
       },
       "D-10": {
-        "success_mean": 36.52085350122359,
-        "success_median": 34.654624745889336,
+        "success_mean": 36.56055389988406,
+        "success_median": 34.739287124511456,
         "success_min": 1.6714183561733051,
         "success_max": 76.7941184566152,
-        "success_std": 13.658897695729587,
+        "success_std": 13.597024219982604,
         "success_percentiles": {
-          "10": 21.99420485380874,
-          "25": 25.969095392219486,
-          "50": 34.654624745889336,
-          "75": 44.76426529255637,
-          "90": 54.4647824565366
+          "10": 22.02671761009588,
+          "25": 25.99953930248933,
+          "50": 34.739287124511456,
+          "75": 44.747441371618805,
+          "90": 54.36778955140198
         },
-        "control_mean": 41.745318563020255,
-        "control_median": 41.99112304104831
+        "control_mean": 41.73714367853233,
+        "control_median": 41.961311232026084
       },
       "D-7": {
-        "success_mean": 34.697129218375565,
-        "success_median": 33.39951062441732,
+        "success_mean": 34.79372963046401,
+        "success_median": 33.46713158050563,
         "success_min": 1.6714183561733051,
         "success_max": 75.18627189291543,
-        "success_std": 12.395742740748124,
+        "success_std": 12.3727496647011,
         "success_percentiles": {
-          "10": 21.128176511539763,
-          "25": 24.918372384590683,
-          "50": 33.39951062441732,
-          "75": 42.124092847778535,
-          "90": 50.25606140035365
+          "10": 21.143073200645745,
+          "25": 24.960648362042566,
+          "50": 33.46713158050563,
+          "75": 42.199407783795735,
+          "90": 50.2464880582882
         },
-        "control_mean": 42.08667226947569,
-        "control_median": 42.44183348488574
+        "control_mean": 42.046967341584065,
+        "control_median": 42.426488970269695
       },
       "D-5": {
-        "success_mean": 34.655850101910204,
-        "success_median": 34.04662738272617,
+        "success_mean": 34.85451747472123,
+        "success_median": 34.41099643716789,
         "success_min": 1.6714183561733051,
         "success_max": 71.74977658210945,
-        "success_std": 12.152480076144233,
+        "success_std": 12.257502857014074,
         "success_percentiles": {
-          "10": 21.127790612059158,
-          "25": 24.910040261176817,
-          "50": 34.04662738272617,
-          "75": 42.928664114644256,
-          "90": 49.677946539922864
+          "10": 21.131556194989784,
+          "25": 25.109837590571757,
+          "50": 34.41099643716789,
+          "75": 43.2318903489172,
+          "90": 50.09956796127622
         },
-        "control_mean": 42.199869775993896,
-        "control_median": 42.51367432440197
+        "control_mean": 42.15783481696368,
+        "control_median": 42.44146357734298
       },
       "D-4": {
-        "success_mean": 35.21387840736456,
-        "success_median": 35.17394772947911,
+        "success_mean": 35.49896155344115,
+        "success_median": 35.524522015627426,
         "success_min": 1.6714183561733051,
         "success_max": 65.22763465003138,
-        "success_std": 12.40577639966371,
+        "success_std": 12.675538567060178,
         "success_percentiles": {
-          "10": 20.444938072509558,
-          "25": 25.840253736516516,
-          "50": 35.17394772947911,
-          "75": 43.672240499721276,
-          "90": 50.555268470448276
+          "10": 20.445986828736586,
+          "25": 26.154627340957802,
+          "50": 35.524522015627426,
+          "75": 44.33662770639061,
+          "90": 50.584759878604984
         },
-        "control_mean": 42.01620481497712,
-        "control_median": 42.41998478730894
+        "control_mean": 41.97821691033835,
+        "control_median": 42.372222100353284
       },
       "D-3": {
-        "success_mean": 36.25554372734426,
-        "success_median": 35.55791727209905,
+        "success_mean": 36.47441581702968,
+        "success_median": 36.11342052230169,
         "success_min": 1.6714183561733051,
         "success_max": 77.30522871062087,
-        "success_std": 13.003973136041804,
+        "success_std": 13.126893623397194,
         "success_percentiles": {
-          "10": 21.08298362288062,
-          "25": 26.859329731524724,
-          "50": 35.55791727209905,
-          "75": 45.31927100527211,
-          "90": 51.90236577929364
+          "10": 21.137023839372958,
+          "25": 26.873291319827164,
+          "50": 36.11342052230169,
+          "75": 46.02274739595044,
+          "90": 52.40176037062083
         },
-        "control_mean": 42.110801135803094,
-        "control_median": 42.444208333924024
+        "control_mean": 42.082062116978264,
+        "control_median": 42.43090913609734
       },
       "D-2": {
-        "success_mean": 37.82289899634641,
-        "success_median": 36.94361167643095,
+        "success_mean": 37.99925972485909,
+        "success_median": 37.05806781038392,
         "success_min": 1.6714183561733051,
         "success_max": 77.17100871722968,
-        "success_std": 13.823012214520674,
+        "success_std": 13.86925900212679,
         "success_percentiles": {
-          "10": 21.27149327472219,
-          "25": 28.251352368396454,
-          "50": 36.94361167643095,
-          "75": 48.23669269670509,
-          "90": 56.151670933911234
+          "10": 21.327096226256874,
+          "25": 28.3326609933609,
+          "50": 37.05806781038392,
+          "75": 48.46893771432508,
+          "90": 56.11767317098405
         },
-        "control_mean": 42.128165092450956,
-        "control_median": 42.60981047198981
+        "control_mean": 42.107697048426544,
+        "control_median": 42.60065193746438
       },
       "D-1": {
-        "success_mean": 51.090365550058394,
-        "success_median": 51.38749655385677,
+        "success_mean": 51.39070397255188,
+        "success_median": 51.53248668696152,
         "success_min": 5.743206802494569,
         "success_max": 95.55994577951033,
-        "success_std": 20.490345866747518,
+        "success_std": 20.61305469527165,
         "success_percentiles": {
-          "10": 26.761564763504822,
-          "25": 35.6770157304568,
-          "50": 51.38749655385677,
-          "75": 66.33305137220106,
-          "90": 77.94920527176407
+          "10": 26.82885212887281,
+          "25": 35.699412958851354,
+          "50": 51.53248668696152,
+          "75": 66.39952456017178,
+          "90": 79.79547850419381
         },
-        "control_mean": 42.01220852402565,
+        "control_mean": 41.994471829573534,
         "control_median": 42.48130163270519
       }
     },
@@ -290,40 +290,40 @@
       {
         "range": "27-30",
         "success_cases": 7,
-        "control_cases": 58,
-        "success_rate": 0.1076923076923077
+        "control_cases": 59,
+        "success_rate": 0.10606060606060606
       },
       {
         "range": "30-35",
         "success_cases": 5,
-        "control_cases": 144,
-        "success_rate": 0.03355704697986577
+        "control_cases": 148,
+        "success_rate": 0.032679738562091505
       },
       {
         "range": "35-40",
         "success_cases": 12,
-        "control_cases": 150,
-        "success_rate": 0.07407407407407407
+        "control_cases": 152,
+        "success_rate": 0.07317073170731707
       },
       {
         "range": "40-50",
         "success_cases": 13,
-        "control_cases": 447,
-        "success_rate": 0.02826086956521739
+        "control_cases": 449,
+        "success_rate": 0.02813852813852814
       },
       {
         "range": "50-+",
-        "success_cases": 53,
-        "control_cases": 295,
-        "success_rate": 0.15229885057471265
+        "success_cases": 54,
+        "control_cases": 299,
+        "success_rate": 0.1529745042492918
       }
     ],
     "trend_tests": {
-      "n": 101,
-      "d5_to_d1_mean": 16.434515448148176,
-      "d3_to_d1_mean": 14.834821822714117,
-      "rsi_recovery_rate": 0.8712871287128713,
-      "rsi_d5_22_27_rate": 0.12871287128712872,
+      "n": 102,
+      "d5_to_d1_mean": 16.536186497830645,
+      "d3_to_d1_mean": 14.916288155522189,
+      "rsi_recovery_rate": 0.8725490196078431,
+      "rsi_d5_22_27_rate": 0.12745098039215685,
       "low_decreasing": 1,
       "low_stable": 9,
       "low_rising": 25,
@@ -1388,7 +1388,7 @@
         "win_rate": 0.35074626865671643,
         "avg_return": -0.03973987833224932,
         "median_return": -0.1543050819285149,
-        "profit_factor": 0.6441528706125336,
+        "profit_factor": 0.6441528706125341,
         "max_holding_sessions": 12
       },
       "50": {
@@ -1397,7 +1397,7 @@
         "win_rate": 0.13768115942028986,
         "avg_return": -0.038486910596147166,
         "median_return": -0.2,
-        "profit_factor": 0.7000191289419667,
+        "profit_factor": 0.7000191289419678,
         "max_holding_sessions": 12
       },
       "70": {
@@ -1406,7 +1406,7 @@
         "win_rate": 0.12142857142857143,
         "avg_return": -0.021279552084836745,
         "median_return": -0.2,
-        "profit_factor": 0.8350876308301535,
+        "profit_factor": 0.8350876308301546,
         "max_holding_sessions": 12
       },
       "100": {
@@ -1415,7 +1415,7 @@
         "win_rate": 0.09285714285714286,
         "avg_return": -0.010976756584472698,
         "median_return": -0.2,
-        "profit_factor": 0.9167750732670584,
+        "profit_factor": 0.91677507326706,
         "max_holding_sessions": 12
       },
       "200": {
@@ -1424,7 +1424,7 @@
         "win_rate": 0.03496503496503497,
         "avg_return": -0.0017226341349592638,
         "median_return": -0.2,
-        "profit_factor": 0.9870790954004981,
+        "profit_factor": 0.9870790954004997,
         "max_holding_sessions": 12
       }
     },
@@ -1435,7 +1435,7 @@
         "win_rate": 0.42391304347826086,
         "avg_return": -0.015709890742600766,
         "median_return": -0.05741501719217196,
-        "profit_factor": 0.8463706197655423,
+        "profit_factor": 0.8463706197655427,
         "max_holding_sessions": 12
       },
       "50": {
@@ -1444,7 +1444,7 @@
         "win_rate": 0.16666666666666666,
         "avg_return": -0.014938691585851899,
         "median_return": -0.2,
-        "profit_factor": 0.8769241376089069,
+        "profit_factor": 0.8769241376089073,
         "max_holding_sessions": 12
       },
       "70": {
@@ -1453,7 +1453,7 @@
         "win_rate": 0.13402061855670103,
         "avg_return": -0.004144928060315639,
         "median_return": -0.2,
-        "profit_factor": 0.9665290369286507,
+        "profit_factor": 0.9665290369286509,
         "max_holding_sessions": 12
       },
       "100": {
@@ -1462,7 +1462,7 @@
         "win_rate": 0.11224489795918367,
         "avg_return": 0.014697278303005502,
         "median_return": -0.2,
-        "profit_factor": 1.116042264399894,
+        "profit_factor": 1.1160422643998946,
         "max_holding_sessions": 12
       },
       "200": {
@@ -1471,7 +1471,7 @@
         "win_rate": 0.03,
         "avg_return": -0.008538727876292068,
         "median_return": -0.2,
-        "profit_factor": 0.9343787772299748,
+        "profit_factor": 0.9343787772299753,
         "max_holding_sessions": 12
       }
     },
@@ -1482,7 +1482,7 @@
         "win_rate": 0.19047619047619047,
         "avg_return": -0.09237699400481285,
         "median_return": -0.2,
-        "profit_factor": 0.30180194906574165,
+        "profit_factor": 0.3018019490657415,
         "max_holding_sessions": 12
       },
       "50": {
@@ -1491,7 +1491,7 @@
         "win_rate": 0.07142857142857142,
         "avg_return": -0.09231141119110779,
         "median_return": -0.2,
-        "profit_factor": 0.359459858790467,
+        "profit_factor": 0.3594598587904669,
         "max_holding_sessions": 12
       },
       "70": {
@@ -1509,7 +1509,7 @@
         "win_rate": 0.047619047619047616,
         "avg_return": -0.07088283798858856,
         "median_return": -0.2,
-        "profit_factor": 0.5081506991530361,
+        "profit_factor": 0.508150699153036,
         "max_holding_sessions": 12
       },
       "200": {
@@ -1518,7 +1518,7 @@
         "win_rate": 0.046511627906976744,
         "avg_return": 0.014128746658837956,
         "median_return": -0.2,
-        "profit_factor": 1.100372274136109,
+        "profit_factor": 1.1003722741361088,
         "max_holding_sessions": 12
       }
     },
