@@ -1,0 +1,56 @@
+name: Phase 2 Explosion Start Discovery
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 1 1 * *"
+
+permissions:
+  contents: write
+
+jobs:
+  phase2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Refresh reverse-split universe
+        env:
+          BUSINESSQUANT_API_KEY: ${{ secrets.BUSINESSQUANT_API_KEY }}
+        run: python reverse_split_source.py
+      - name: Run discovery-only Phase 2
+        run: python phase2_engine.py
+      - name: Validate discovery outputs
+        run: |
+          python -m py_compile phase2_engine.py reverse_split_source.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          required = [
+            'research_phase2_report.md', 'explosion_start_cases.csv',
+            'explosion_start_cases.json', 'rsi_timing_analysis.csv',
+            'rsi_distribution.csv', 'feature_timing_analysis.csv',
+            'success_vs_failure.csv', 'hypotheses_phase2.json', 'oos_results.json'
+          ]
+          for name in required:
+              p = Path('research') / name
+              assert p.exists() and p.stat().st_size > 0, name
+          x=json.loads(Path('research/explosion_start_cases.json').read_text())
+          assert x and all('signal_date' in r and 'outcomes' in r for r in x)
+          h=json.loads(Path('research/hypotheses_phase2.json').read_text())
+          assert h and all(i['status']=='hypothesis_only' for i in h)
+          print('phase2 rows:', len(x))
+          PY
+      - name: Commit Phase 2 outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reverse_split_candidates.json research/ phase2_engine.py
+          git diff --cached --quiet || git commit -m "Update Phase 2 explosion start discovery"
+          git push

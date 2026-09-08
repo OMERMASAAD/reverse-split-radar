@@ -35,3 +35,11 @@ python daily_signal_scanner.py
 ```
 
 ويشغّل `.github/workflows/daily_monitor.yml` تحديث الكون، الماسح اليومي، ومحرك البحث في GitHub Actions. جميع النتائج قابلة للمراجعة داخل مجلد `research/`.
+
+## Phase 2: First Explosion Start Discovery
+
+تمت إضافة مرحلة اكتشاف مستقلة لاختيار نقطة بداية الحركة قبل معرفة أن السهم سيصل إلى +70%. تختبر المرحلة خمس تعريفات مستقلة: التعافي +10% من القاع، التعافي +20% من القاع، +20% خلال 1–3 جلسات، توسع سريع للسعر والحجم، وكسر قاعدة/تماسك.
+
+هذه المرحلة **Discovery Only**. لا تختار Entry أو Stop أو Take Profit، ولا تنشئ Research Score، ولا تشغل OOS Strategy. تقيس النتائج المستقبلية من تاريخ الإشارة فقط، وتحفظ RSI عند S وS-1 وS-2 وS-3 وS-4 وS-5 وS-6 وS-7 وS-10 وS-15 وS-20.
+
+المخرجات هي `research/research_phase2_report.md` و`explosion_start_cases.csv` و`explosion_start_cases.json` و`rsi_timing_analysis.csv` و`rsi_distribution.csv` و`feature_timing_analysis.csv` و`success_vs_failure.csv` و`hypotheses_phase2.json` و`oos_results.json`. يشغّلها Workflow مستقل باسم `Phase 2 Explosion Start Discovery` يدويًا أو مرة شهريًا.

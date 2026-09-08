@@ -1,0 +1,1133 @@
+definition,classification,rsi_range,success_70_within_10d
+A_10_from_low,Temporary Spike,40-50,False
+B_20_from_low,No Significant Move,40-50,False
+C_20_in_1_3,Gradual Rise,40-50,False
+D_rapid_expansion,Gradual Rise,40-50,False
+A_10_from_low,No Significant Move,25-27,False
+B_20_from_low,No Significant Move,20-22,False
+C_20_in_1_3,No Significant Move,30-35,False
+A_10_from_low,Temporary Spike,30-35,False
+B_20_from_low,Temporary Spike,30-35,False
+C_20_in_1_3,Temporary Spike,30-35,False
+D_rapid_expansion,No Significant Move,40-50,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,50-inf,False
+B_20_from_low,No Significant Move,50-inf,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,50-inf,False
+B_20_from_low,No Significant Move,50-inf,False
+C_20_in_1_3,True Explosion,50-inf,True
+D_rapid_expansion,True Explosion,50-inf,True
+E_base_breakout,True Explosion,50-inf,True
+A_10_from_low,Rapid Move,30-35,True
+B_20_from_low,True Explosion,40-50,True
+C_20_in_1_3,Temporary Spike,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,40-50,False
+B_20_from_low,No Significant Move,40-50,False
+C_20_in_1_3,No Significant Move,35-40,False
+D_rapid_expansion,Temporary Spike,50-inf,False
+E_base_breakout,Temporary Spike,50-inf,False
+A_10_from_low,No Significant Move,40-50,False
+B_20_from_low,No Significant Move,50-inf,False
+C_20_in_1_3,Temporary Spike,50-inf,False
+D_rapid_expansion,Temporary Spike,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,35-40,False
+B_20_from_low,Temporary Spike,40-50,False
+C_20_in_1_3,Temporary Spike,40-50,False
+D_rapid_expansion,Temporary Spike,40-50,False
+E_base_breakout,True Explosion,50-inf,True
+A_10_from_low,Gradual Rise,50-inf,False
+B_20_from_low,Gradual Rise,50-inf,False
+C_20_in_1_3,True Explosion,40-50,True
+D_rapid_expansion,Rapid Move,50-inf,True
+A_10_from_low,Temporary Spike,40-50,False
+B_20_from_low,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,35-40,False
+B_20_from_low,Temporary Spike,35-40,False
+E_base_breakout,Gradual Rise,50-inf,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+A_10_from_low,Temporary Spike,40-50,False
+B_20_from_low,Temporary Spike,40-50,False
+C_20_in_1_3,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+D_rapid_expansion,Temporary Spike,50-inf,False
+A_10_from_low,No Significant Move,30-35,False
+B_20_from_low,No Significant Move,30-35,False
+C_20_in_1_3,No Significant Move,40-50,False
+D_rapid_expansion,True Explosion,50-inf,True
+E_base_breakout,True Explosion,50-inf,True
+A_10_from_low,No Significant Move,-inf-20,False
+B_20_from_low,No Significant Move,-inf-20,False
+C_20_in_1_3,No Significant Move,-inf-20,False
+D_rapid_expansion,No Significant Move,-inf-20,False
+E_base_breakout,No Significant Move,-inf-20,False
+A_10_from_low,No Significant Move,27-30,False
+E_base_breakout,Gradual Rise,35-40,False
+B_20_from_low,True Explosion,50-inf,True
+C_20_in_1_3,True Explosion,50-inf,True
+D_rapid_expansion,True Explosion,50-inf,True
+A_10_from_low,True Explosion,30-35,True
+B_20_from_low,Temporary Spike,35-40,False
+C_20_in_1_3,Gradual Rise,40-50,False
+D_rapid_expansion,Gradual Rise,40-50,False
+E_base_breakout,Rapid Move,50-inf,True
+A_10_from_low,True Explosion,25-27,True
+B_20_from_low,True Explosion,25-27,True
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,Temporary Spike,35-40,False
+A_10_from_low,No Significant Move,35-40,False
+B_20_from_low,No Significant Move,40-50,False
+C_20_in_1_3,No Significant Move,40-50,False
+D_rapid_expansion,No Significant Move,40-50,False
+E_base_breakout,No Significant Move,40-50,False
+A_10_from_low,Temporary Spike,-inf-20,False
+B_20_from_low,Temporary Spike,20-22,False
+C_20_in_1_3,No Significant Move,27-30,False
+D_rapid_expansion,No Significant Move,35-40,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,Temporary Spike,20-22,False
+B_20_from_low,Temporary Spike,40-50,False
+C_20_in_1_3,Temporary Spike,40-50,False
+D_rapid_expansion,Temporary Spike,40-50,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,Rapid Move,30-35,True
+B_20_from_low,Rapid Move,30-35,True
+C_20_in_1_3,Temporary Spike,40-50,False
+D_rapid_expansion,Temporary Spike,40-50,False
+A_10_from_low,True Explosion,40-50,True
+B_20_from_low,True Explosion,40-50,True
+C_20_in_1_3,No Significant Move,30-35,False
+E_base_breakout,Temporary Spike,40-50,False
+D_rapid_expansion,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,50-inf,False
+B_20_from_low,No Significant Move,50-inf,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,True Explosion,30-35,True
+B_20_from_low,True Explosion,35-40,True
+C_20_in_1_3,Temporary Spike,50-inf,False
+D_rapid_expansion,Temporary Spike,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,Temporary Spike,50-inf,False
+B_20_from_low,Temporary Spike,50-inf,False
+C_20_in_1_3,Temporary Spike,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,27-30,False
+B_20_from_low,No Significant Move,27-30,False
+C_20_in_1_3,Temporary Spike,27-30,False
+D_rapid_expansion,True Explosion,35-40,True
+E_base_breakout,True Explosion,35-40,True
+A_10_from_low,Temporary Spike,20-22,False
+B_20_from_low,Temporary Spike,20-22,False
+C_20_in_1_3,No Significant Move,25-27,False
+D_rapid_expansion,No Significant Move,25-27,False
+E_base_breakout,Temporary Spike,35-40,False
+A_10_from_low,Temporary Spike,30-35,False
+B_20_from_low,Temporary Spike,35-40,False
+C_20_in_1_3,No Significant Move,30-35,False
+E_base_breakout,Temporary Spike,40-50,False
+D_rapid_expansion,No Significant Move,50-inf,False
+A_10_from_low,Temporary Spike,50-inf,False
+B_20_from_low,Temporary Spike,50-inf,False
+C_20_in_1_3,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,25-27,False
+B_20_from_low,Gradual Rise,35-40,False
+E_base_breakout,True Explosion,40-50,True
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+A_10_from_low,Temporary Spike,20-22,False
+B_20_from_low,Temporary Spike,20-22,False
+C_20_in_1_3,No Significant Move,40-50,False
+D_rapid_expansion,Gradual Rise,40-50,False
+E_base_breakout,Gradual Rise,50-inf,False
+A_10_from_low,Rapid Move,40-50,True
+B_20_from_low,Temporary Spike,40-50,False
+C_20_in_1_3,Temporary Spike,50-inf,False
+D_rapid_expansion,True Explosion,50-inf,True
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,True Explosion,35-40,True
+B_20_from_low,True Explosion,35-40,True
+C_20_in_1_3,Rapid Move,50-inf,True
+D_rapid_expansion,Rapid Move,50-inf,True
+E_base_breakout,Temporary Spike,50-inf,False
+A_10_from_low,Temporary Spike,27-30,False
+B_20_from_low,Temporary Spike,25-27,False
+C_20_in_1_3,Temporary Spike,35-40,False
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,30-35,False
+B_20_from_low,No Significant Move,30-35,False
+C_20_in_1_3,No Significant Move,40-50,False
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,30-35,False
+B_20_from_low,No Significant Move,30-35,False
+C_20_in_1_3,Temporary Spike,22-25,False
+D_rapid_expansion,Temporary Spike,22-25,False
+A_10_from_low,Gradual Rise,40-50,False
+B_20_from_low,Gradual Rise,40-50,False
+C_20_in_1_3,Rapid Move,40-50,True
+E_base_breakout,No Significant Move,50-inf,False
+D_rapid_expansion,Temporary Spike,40-50,False
+A_10_from_low,No Significant Move,30-35,False
+B_20_from_low,No Significant Move,35-40,False
+C_20_in_1_3,No Significant Move,35-40,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,Rapid Move,22-25,True
+B_20_from_low,True Explosion,25-27,True
+C_20_in_1_3,No Significant Move,35-40,False
+D_rapid_expansion,No Significant Move,35-40,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,Rapid Move,30-35,True
+B_20_from_low,Rapid Move,30-35,True
+C_20_in_1_3,Temporary Spike,40-50,False
+D_rapid_expansion,Temporary Spike,40-50,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,40-50,False
+B_20_from_low,Gradual Rise,35-40,False
+C_20_in_1_3,Temporary Spike,40-50,False
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,Gradual Rise,22-25,False
+B_20_from_low,Gradual Rise,25-27,False
+C_20_in_1_3,True Explosion,40-50,True
+D_rapid_expansion,True Explosion,40-50,True
+E_base_breakout,True Explosion,40-50,True
+A_10_from_low,Temporary Spike,27-30,False
+B_20_from_low,Temporary Spike,30-35,False
+C_20_in_1_3,No Significant Move,40-50,False
+D_rapid_expansion,No Significant Move,40-50,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,40-50,False
+B_20_from_low,No Significant Move,40-50,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,Rapid Move,30-35,True
+B_20_from_low,Rapid Move,30-35,True
+C_20_in_1_3,True Explosion,35-40,True
+D_rapid_expansion,Temporary Spike,50-inf,False
+E_base_breakout,Temporary Spike,50-inf,False
+A_10_from_low,No Significant Move,22-25,False
+B_20_from_low,Gradual Rise,22-25,False
+C_20_in_1_3,Gradual Rise,22-25,False
+D_rapid_expansion,Gradual Rise,22-25,False
+E_base_breakout,Gradual Rise,22-25,False
+A_10_from_low,No Significant Move,35-40,False
+B_20_from_low,No Significant Move,40-50,False
+E_base_breakout,No Significant Move,50-inf,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+A_10_from_low,Temporary Spike,27-30,False
+B_20_from_low,Temporary Spike,27-30,False
+C_20_in_1_3,No Significant Move,27-30,False
+D_rapid_expansion,No Significant Move,27-30,False
+A_10_from_low,Gradual Rise,40-50,False
+B_20_from_low,Gradual Rise,40-50,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,Rapid Move,22-25,True
+B_20_from_low,No Significant Move,22-25,False
+C_20_in_1_3,No Significant Move,22-25,False
+D_rapid_expansion,No Significant Move,22-25,False
+E_base_breakout,Temporary Spike,40-50,False
+A_10_from_low,Temporary Spike,50-inf,False
+B_20_from_low,Temporary Spike,50-inf,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,-inf-20,False
+B_20_from_low,No Significant Move,-inf-20,False
+C_20_in_1_3,Temporary Spike,50-inf,False
+D_rapid_expansion,Temporary Spike,50-inf,False
+E_base_breakout,Temporary Spike,50-inf,False
+A_10_from_low,No Significant Move,40-50,False
+B_20_from_low,Temporary Spike,40-50,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,Temporary Spike,-inf-20,False
+B_20_from_low,Temporary Spike,20-22,False
+C_20_in_1_3,Temporary Spike,22-25,False
+E_base_breakout,Temporary Spike,40-50,False
+D_rapid_expansion,No Significant Move,50-inf,False
+A_10_from_low,Temporary Spike,40-50,False
+B_20_from_low,Temporary Spike,40-50,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,30-35,False
+B_20_from_low,No Significant Move,30-35,False
+C_20_in_1_3,Temporary Spike,30-35,False
+D_rapid_expansion,Gradual Rise,30-35,False
+E_base_breakout,Gradual Rise,30-35,False
+A_10_from_low,No Significant Move,-inf-20,False
+B_20_from_low,No Significant Move,22-25,False
+C_20_in_1_3,True Explosion,22-25,True
+D_rapid_expansion,True Explosion,22-25,True
+C_20_in_1_3,No Significant Move,35-40,False
+A_10_from_low,Rapid Move,40-50,True
+B_20_from_low,Rapid Move,40-50,True
+C_20_in_1_3,Rapid Move,50-inf,True
+D_rapid_expansion,Rapid Move,50-inf,True
+E_base_breakout,No Significant Move,40-50,False
+A_10_from_low,No Significant Move,27-30,False
+B_20_from_low,No Significant Move,35-40,False
+E_base_breakout,Temporary Spike,50-inf,False
+A_10_from_low,Gradual Rise,50-inf,False
+B_20_from_low,Gradual Rise,50-inf,False
+C_20_in_1_3,Rapid Move,50-inf,True
+D_rapid_expansion,Rapid Move,50-inf,True
+A_10_from_low,No Significant Move,40-50,False
+B_20_from_low,No Significant Move,40-50,False
+C_20_in_1_3,Gradual Rise,40-50,False
+D_rapid_expansion,Temporary Spike,50-inf,False
+E_base_breakout,Temporary Spike,50-inf,False
+A_10_from_low,No Significant Move,30-35,False
+B_20_from_low,No Significant Move,30-35,False
+E_base_breakout,Temporary Spike,50-inf,False
+C_20_in_1_3,No Significant Move,40-50,False
+A_10_from_low,Temporary Spike,50-inf,False
+B_20_from_low,Temporary Spike,50-inf,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,Temporary Spike,50-inf,False
+A_10_from_low,Gradual Rise,30-35,False
+B_20_from_low,Gradual Rise,30-35,False
+C_20_in_1_3,True Explosion,50-inf,True
+D_rapid_expansion,True Explosion,50-inf,True
+E_base_breakout,True Explosion,50-inf,True
+A_10_from_low,No Significant Move,40-50,False
+B_20_from_low,No Significant Move,40-50,False
+C_20_in_1_3,Temporary Spike,50-inf,False
+D_rapid_expansion,Temporary Spike,50-inf,False
+E_base_breakout,Temporary Spike,50-inf,False
+C_20_in_1_3,Temporary Spike,35-40,False
+D_rapid_expansion,No Significant Move,40-50,False
+A_10_from_low,Temporary Spike,35-40,False
+B_20_from_low,Temporary Spike,40-50,False
+C_20_in_1_3,No Significant Move,40-50,False
+D_rapid_expansion,No Significant Move,40-50,False
+A_10_from_low,No Significant Move,40-50,False
+B_20_from_low,No Significant Move,50-inf,False
+C_20_in_1_3,Rapid Move,40-50,True
+E_base_breakout,Temporary Spike,50-inf,False
+A_10_from_low,Gradual Rise,25-27,False
+B_20_from_low,Gradual Rise,25-27,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,35-40,False
+B_20_from_low,No Significant Move,30-35,False
+C_20_in_1_3,Gradual Rise,40-50,False
+D_rapid_expansion,Gradual Rise,40-50,False
+E_base_breakout,Gradual Rise,40-50,False
+A_10_from_low,No Significant Move,30-35,False
+B_20_from_low,True Explosion,30-35,True
+C_20_in_1_3,True Explosion,30-35,True
+D_rapid_expansion,True Explosion,30-35,True
+A_10_from_low,No Significant Move,27-30,False
+B_20_from_low,No Significant Move,27-30,False
+C_20_in_1_3,No Significant Move,35-40,False
+A_10_from_low,No Significant Move,40-50,False
+B_20_from_low,Temporary Spike,30-35,False
+C_20_in_1_3,Temporary Spike,30-35,False
+D_rapid_expansion,Temporary Spike,30-35,False
+E_base_breakout,Gradual Rise,50-inf,False
+A_10_from_low,Temporary Spike,35-40,False
+B_20_from_low,Temporary Spike,35-40,False
+C_20_in_1_3,No Significant Move,40-50,False
+D_rapid_expansion,Temporary Spike,50-inf,False
+E_base_breakout,Temporary Spike,50-inf,False
+A_10_from_low,True Explosion,40-50,True
+B_20_from_low,True Explosion,50-inf,True
+C_20_in_1_3,Gradual Rise,50-inf,False
+D_rapid_expansion,Gradual Rise,50-inf,False
+E_base_breakout,True Explosion,50-inf,True
+A_10_from_low,No Significant Move,30-35,False
+B_20_from_low,No Significant Move,40-50,False
+E_base_breakout,No Significant Move,40-50,False
+C_20_in_1_3,Temporary Spike,40-50,False
+D_rapid_expansion,Temporary Spike,40-50,False
+A_10_from_low,Temporary Spike,20-22,False
+B_20_from_low,Temporary Spike,20-22,False
+C_20_in_1_3,Temporary Spike,22-25,False
+D_rapid_expansion,Temporary Spike,30-35,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,50-inf,False
+B_20_from_low,No Significant Move,50-inf,False
+C_20_in_1_3,Temporary Spike,35-40,False
+D_rapid_expansion,Temporary Spike,35-40,False
+A_10_from_low,No Significant Move,40-50,False
+B_20_from_low,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,Gradual Rise,35-40,False
+B_20_from_low,Gradual Rise,40-50,False
+C_20_in_1_3,Temporary Spike,40-50,False
+D_rapid_expansion,Temporary Spike,50-inf,False
+E_base_breakout,Temporary Spike,50-inf,False
+A_10_from_low,True Explosion,50-inf,True
+B_20_from_low,True Explosion,50-inf,True
+C_20_in_1_3,Temporary Spike,50-inf,False
+D_rapid_expansion,Temporary Spike,50-inf,False
+E_base_breakout,Temporary Spike,50-inf,False
+A_10_from_low,Temporary Spike,35-40,False
+B_20_from_low,Temporary Spike,50-inf,False
+C_20_in_1_3,Temporary Spike,50-inf,False
+D_rapid_expansion,Temporary Spike,50-inf,False
+E_base_breakout,True Explosion,35-40,True
+A_10_from_low,Temporary Spike,-inf-20,False
+B_20_from_low,No Significant Move,-inf-20,False
+C_20_in_1_3,No Significant Move,-inf-20,False
+D_rapid_expansion,No Significant Move,-inf-20,False
+A_10_from_low,No Significant Move,22-25,False
+B_20_from_low,Temporary Spike,27-30,False
+C_20_in_1_3,No Significant Move,30-35,False
+D_rapid_expansion,Rapid Move,40-50,True
+E_base_breakout,Rapid Move,50-inf,True
+A_10_from_low,Temporary Spike,-inf-20,False
+B_20_from_low,Temporary Spike,22-25,False
+C_20_in_1_3,Rapid Move,40-50,True
+E_base_breakout,Rapid Move,40-50,True
+D_rapid_expansion,Temporary Spike,50-inf,False
+A_10_from_low,Rapid Move,30-35,True
+B_20_from_low,Rapid Move,30-35,True
+C_20_in_1_3,Temporary Spike,50-inf,False
+D_rapid_expansion,Temporary Spike,50-inf,False
+E_base_breakout,Temporary Spike,50-inf,False
+A_10_from_low,Gradual Rise,25-27,False
+B_20_from_low,Gradual Rise,25-27,False
+C_20_in_1_3,No Significant Move,-inf-20,False
+D_rapid_expansion,No Significant Move,-inf-20,False
+A_10_from_low,Rapid Move,30-35,True
+B_20_from_low,Rapid Move,40-50,True
+C_20_in_1_3,True Explosion,40-50,True
+A_10_from_low,Temporary Spike,40-50,False
+B_20_from_low,Temporary Spike,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,Temporary Spike,40-50,False
+B_20_from_low,Temporary Spike,40-50,False
+C_20_in_1_3,Temporary Spike,40-50,False
+D_rapid_expansion,Temporary Spike,40-50,False
+A_10_from_low,No Significant Move,50-inf,False
+B_20_from_low,No Significant Move,50-inf,False
+C_20_in_1_3,True Explosion,50-inf,True
+D_rapid_expansion,True Explosion,50-inf,True
+A_10_from_low,Gradual Rise,27-30,False
+B_20_from_low,Temporary Spike,40-50,False
+C_20_in_1_3,Temporary Spike,40-50,False
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,Temporary Spike,22-25,False
+B_20_from_low,Temporary Spike,22-25,False
+C_20_in_1_3,Temporary Spike,35-40,False
+D_rapid_expansion,Temporary Spike,35-40,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,Temporary Spike,40-50,False
+B_20_from_low,Temporary Spike,40-50,False
+C_20_in_1_3,No Significant Move,40-50,False
+D_rapid_expansion,No Significant Move,40-50,False
+A_10_from_low,No Significant Move,27-30,False
+B_20_from_low,Temporary Spike,40-50,False
+C_20_in_1_3,Temporary Spike,40-50,False
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,Temporary Spike,20-22,False
+B_20_from_low,No Significant Move,20-22,False
+C_20_in_1_3,No Significant Move,30-35,False
+A_10_from_low,No Significant Move,22-25,False
+B_20_from_low,Temporary Spike,25-27,False
+C_20_in_1_3,No Significant Move,30-35,False
+E_base_breakout,No Significant Move,35-40,False
+A_10_from_low,No Significant Move,35-40,False
+B_20_from_low,No Significant Move,35-40,False
+C_20_in_1_3,No Significant Move,35-40,False
+E_base_breakout,Temporary Spike,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+A_10_from_low,Temporary Spike,-inf-20,False
+B_20_from_low,Temporary Spike,-inf-20,False
+C_20_in_1_3,No Significant Move,25-27,False
+E_base_breakout,No Significant Move,40-50,False
+D_rapid_expansion,No Significant Move,35-40,False
+A_10_from_low,True Explosion,40-50,True
+B_20_from_low,Temporary Spike,40-50,False
+A_10_from_low,No Significant Move,30-35,False
+B_20_from_low,No Significant Move,35-40,False
+C_20_in_1_3,No Significant Move,35-40,False
+D_rapid_expansion,No Significant Move,27-30,False
+A_10_from_low,Temporary Spike,50-inf,False
+B_20_from_low,Temporary Spike,50-inf,False
+C_20_in_1_3,Temporary Spike,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,True Explosion,25-27,True
+B_20_from_low,True Explosion,30-35,True
+C_20_in_1_3,True Explosion,50-inf,True
+D_rapid_expansion,True Explosion,50-inf,True
+E_base_breakout,Temporary Spike,50-inf,False
+A_10_from_low,No Significant Move,27-30,False
+B_20_from_low,No Significant Move,27-30,False
+C_20_in_1_3,No Significant Move,30-35,False
+D_rapid_expansion,Temporary Spike,35-40,False
+E_base_breakout,Temporary Spike,35-40,False
+A_10_from_low,No Significant Move,22-25,False
+B_20_from_low,No Significant Move,22-25,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,50-inf,False
+B_20_from_low,Temporary Spike,50-inf,False
+E_base_breakout,Temporary Spike,50-inf,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+A_10_from_low,Temporary Spike,30-35,False
+B_20_from_low,Temporary Spike,30-35,False
+C_20_in_1_3,No Significant Move,40-50,False
+D_rapid_expansion,No Significant Move,40-50,False
+E_base_breakout,True Explosion,50-inf,True
+A_10_from_low,Temporary Spike,40-50,False
+B_20_from_low,Temporary Spike,40-50,False
+C_20_in_1_3,Temporary Spike,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,-inf-20,False
+B_20_from_low,Temporary Spike,-inf-20,False
+C_20_in_1_3,No Significant Move,20-22,False
+D_rapid_expansion,No Significant Move,20-22,False
+E_base_breakout,No Significant Move,22-25,False
+A_10_from_low,Gradual Rise,30-35,False
+B_20_from_low,Rapid Move,35-40,True
+C_20_in_1_3,Rapid Move,40-50,True
+D_rapid_expansion,Temporary Spike,50-inf,False
+E_base_breakout,Temporary Spike,50-inf,False
+A_10_from_low,Temporary Spike,30-35,False
+B_20_from_low,Temporary Spike,35-40,False
+C_20_in_1_3,No Significant Move,40-50,False
+A_10_from_low,Temporary Spike,40-50,False
+B_20_from_low,No Significant Move,50-inf,False
+C_20_in_1_3,No Significant Move,50-inf,False
+A_10_from_low,Temporary Spike,50-inf,False
+B_20_from_low,Temporary Spike,50-inf,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,Temporary Spike,50-inf,False
+B_20_from_low,Temporary Spike,50-inf,False
+A_10_from_low,No Significant Move,22-25,False
+B_20_from_low,No Significant Move,22-25,False
+E_base_breakout,Temporary Spike,35-40,False
+C_20_in_1_3,No Significant Move,40-50,False
+D_rapid_expansion,No Significant Move,40-50,False
+A_10_from_low,Temporary Spike,50-inf,False
+B_20_from_low,No Significant Move,50-inf,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,35-40,False
+B_20_from_low,Temporary Spike,40-50,False
+C_20_in_1_3,No Significant Move,40-50,False
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,-inf-20,False
+B_20_from_low,No Significant Move,-inf-20,False
+C_20_in_1_3,True Explosion,-inf-20,True
+D_rapid_expansion,True Explosion,-inf-20,True
+E_base_breakout,True Explosion,-inf-20,True
+A_10_from_low,No Significant Move,27-30,False
+B_20_from_low,Temporary Spike,50-inf,False
+C_20_in_1_3,Temporary Spike,50-inf,False
+D_rapid_expansion,Temporary Spike,50-inf,False
+E_base_breakout,Temporary Spike,50-inf,False
+A_10_from_low,Rapid Move,35-40,True
+B_20_from_low,Temporary Spike,40-50,False
+C_20_in_1_3,Temporary Spike,40-50,False
+D_rapid_expansion,Temporary Spike,40-50,False
+A_10_from_low,No Significant Move,50-inf,False
+B_20_from_low,No Significant Move,50-inf,False
+A_10_from_low,Gradual Rise,35-40,False
+B_20_from_low,Gradual Rise,35-40,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,Temporary Spike,35-40,False
+B_20_from_low,Temporary Spike,35-40,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,30-35,False
+B_20_from_low,No Significant Move,30-35,False
+C_20_in_1_3,No Significant Move,27-30,False
+D_rapid_expansion,No Significant Move,40-50,False
+A_10_from_low,No Significant Move,20-22,False
+B_20_from_low,Temporary Spike,40-50,False
+E_base_breakout,Temporary Spike,40-50,False
+C_20_in_1_3,Temporary Spike,50-inf,False
+D_rapid_expansion,Temporary Spike,50-inf,False
+A_10_from_low,Temporary Spike,27-30,False
+B_20_from_low,Temporary Spike,27-30,False
+C_20_in_1_3,Rapid Move,27-30,True
+D_rapid_expansion,No Significant Move,30-35,False
+A_10_from_low,Temporary Spike,35-40,False
+B_20_from_low,Temporary Spike,40-50,False
+E_base_breakout,No Significant Move,50-inf,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+A_10_from_low,True Explosion,30-35,True
+B_20_from_low,True Explosion,30-35,True
+C_20_in_1_3,Temporary Spike,40-50,False
+D_rapid_expansion,Temporary Spike,40-50,False
+E_base_breakout,Temporary Spike,40-50,False
+A_10_from_low,Temporary Spike,-inf-20,False
+B_20_from_low,Rapid Move,-inf-20,True
+C_20_in_1_3,Temporary Spike,-inf-20,False
+D_rapid_expansion,Temporary Spike,-inf-20,False
+E_base_breakout,Temporary Spike,-inf-20,False
+A_10_from_low,No Significant Move,22-25,False
+B_20_from_low,No Significant Move,22-25,False
+C_20_in_1_3,No Significant Move,40-50,False
+E_base_breakout,Temporary Spike,40-50,False
+D_rapid_expansion,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,30-35,False
+B_20_from_low,No Significant Move,35-40,False
+A_10_from_low,Gradual Rise,50-inf,False
+B_20_from_low,Gradual Rise,50-inf,False
+C_20_in_1_3,Temporary Spike,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,Temporary Spike,20-22,False
+B_20_from_low,Temporary Spike,22-25,False
+C_20_in_1_3,No Significant Move,27-30,False
+D_rapid_expansion,No Significant Move,27-30,False
+E_base_breakout,Gradual Rise,40-50,False
+A_10_from_low,No Significant Move,40-50,False
+B_20_from_low,No Significant Move,40-50,False
+E_base_breakout,No Significant Move,50-inf,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,40-50,False
+B_20_from_low,Temporary Spike,40-50,False
+C_20_in_1_3,No Significant Move,40-50,False
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,35-40,False
+B_20_from_low,No Significant Move,40-50,False
+C_20_in_1_3,Temporary Spike,50-inf,False
+D_rapid_expansion,Temporary Spike,50-inf,False
+E_base_breakout,Temporary Spike,50-inf,False
+A_10_from_low,No Significant Move,50-inf,False
+B_20_from_low,No Significant Move,50-inf,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,Rapid Move,50-inf,True
+A_10_from_low,Rapid Move,35-40,True
+B_20_from_low,True Explosion,40-50,True
+C_20_in_1_3,Temporary Spike,40-50,False
+D_rapid_expansion,Temporary Spike,40-50,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,Gradual Rise,40-50,False
+B_20_from_low,Gradual Rise,50-inf,False
+C_20_in_1_3,Rapid Move,50-inf,True
+D_rapid_expansion,True Explosion,50-inf,True
+A_10_from_low,Rapid Move,20-22,True
+B_20_from_low,Rapid Move,20-22,True
+C_20_in_1_3,True Explosion,40-50,True
+D_rapid_expansion,True Explosion,40-50,True
+A_10_from_low,Temporary Spike,35-40,False
+B_20_from_low,Temporary Spike,40-50,False
+C_20_in_1_3,No Significant Move,35-40,False
+D_rapid_expansion,No Significant Move,35-40,False
+E_base_breakout,No Significant Move,35-40,False
+A_10_from_low,No Significant Move,40-50,False
+B_20_from_low,No Significant Move,40-50,False
+C_20_in_1_3,True Explosion,30-35,True
+D_rapid_expansion,True Explosion,30-35,True
+A_10_from_low,No Significant Move,40-50,False
+B_20_from_low,No Significant Move,40-50,False
+C_20_in_1_3,No Significant Move,35-40,False
+A_10_from_low,True Explosion,40-50,True
+B_20_from_low,True Explosion,40-50,True
+C_20_in_1_3,Rapid Move,40-50,True
+D_rapid_expansion,Rapid Move,40-50,True
+A_10_from_low,No Significant Move,40-50,False
+B_20_from_low,No Significant Move,40-50,False
+C_20_in_1_3,No Significant Move,40-50,False
+D_rapid_expansion,True Explosion,50-inf,True
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,40-50,False
+B_20_from_low,No Significant Move,40-50,False
+C_20_in_1_3,No Significant Move,25-27,False
+A_10_from_low,No Significant Move,50-inf,False
+B_20_from_low,No Significant Move,50-inf,False
+C_20_in_1_3,Temporary Spike,-inf-20,False
+D_rapid_expansion,No Significant Move,-inf-20,False
+A_10_from_low,Temporary Spike,27-30,False
+B_20_from_low,No Significant Move,30-35,False
+A_10_from_low,Temporary Spike,35-40,False
+B_20_from_low,No Significant Move,40-50,False
+C_20_in_1_3,Temporary Spike,50-inf,False
+D_rapid_expansion,Temporary Spike,50-inf,False
+E_base_breakout,Temporary Spike,50-inf,False
+A_10_from_low,No Significant Move,40-50,False
+B_20_from_low,No Significant Move,50-inf,False
+C_20_in_1_3,Temporary Spike,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,50-inf,False
+B_20_from_low,No Significant Move,40-50,False
+E_base_breakout,No Significant Move,50-inf,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,50-inf,False
+B_20_from_low,No Significant Move,50-inf,False
+E_base_breakout,Temporary Spike,50-inf,False
+C_20_in_1_3,Temporary Spike,50-inf,False
+D_rapid_expansion,Temporary Spike,50-inf,False
+A_10_from_low,Gradual Rise,50-inf,False
+B_20_from_low,Gradual Rise,50-inf,False
+C_20_in_1_3,True Explosion,50-inf,True
+D_rapid_expansion,True Explosion,50-inf,True
+E_base_breakout,Temporary Spike,50-inf,False
+A_10_from_low,Temporary Spike,50-inf,False
+B_20_from_low,Temporary Spike,50-inf,False
+C_20_in_1_3,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,50-inf,False
+B_20_from_low,No Significant Move,50-inf,False
+C_20_in_1_3,No Significant Move,50-inf,False
+A_10_from_low,Rapid Move,30-35,True
+B_20_from_low,Rapid Move,30-35,True
+C_20_in_1_3,Temporary Spike,50-inf,False
+D_rapid_expansion,Temporary Spike,50-inf,False
+A_10_from_low,No Significant Move,50-inf,False
+B_20_from_low,No Significant Move,50-inf,False
+C_20_in_1_3,True Explosion,50-inf,True
+D_rapid_expansion,True Explosion,50-inf,True
+E_base_breakout,True Explosion,50-inf,True
+A_10_from_low,No Significant Move,27-30,False
+B_20_from_low,No Significant Move,27-30,False
+A_10_from_low,No Significant Move,50-inf,False
+B_20_from_low,No Significant Move,50-inf,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,27-30,False
+B_20_from_low,No Significant Move,35-40,False
+A_10_from_low,No Significant Move,27-30,False
+B_20_from_low,No Significant Move,35-40,False
+C_20_in_1_3,No Significant Move,40-50,False
+D_rapid_expansion,No Significant Move,40-50,False
+A_10_from_low,Temporary Spike,30-35,False
+B_20_from_low,Temporary Spike,30-35,False
+C_20_in_1_3,No Significant Move,30-35,False
+A_10_from_low,No Significant Move,22-25,False
+B_20_from_low,No Significant Move,27-30,False
+C_20_in_1_3,No Significant Move,27-30,False
+D_rapid_expansion,No Significant Move,27-30,False
+A_10_from_low,No Significant Move,-inf-20,False
+B_20_from_low,No Significant Move,-inf-20,False
+C_20_in_1_3,Gradual Rise,-inf-20,False
+D_rapid_expansion,Gradual Rise,-inf-20,False
+A_10_from_low,No Significant Move,50-inf,False
+B_20_from_low,No Significant Move,50-inf,False
+C_20_in_1_3,No Significant Move,50-inf,False
+A_10_from_low,Gradual Rise,20-22,False
+B_20_from_low,Gradual Rise,22-25,False
+C_20_in_1_3,Temporary Spike,22-25,False
+D_rapid_expansion,No Significant Move,35-40,False
+A_10_from_low,Temporary Spike,30-35,False
+B_20_from_low,Temporary Spike,30-35,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,50-inf,False
+B_20_from_low,No Significant Move,50-inf,False
+C_20_in_1_3,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,40-50,False
+B_20_from_low,No Significant Move,40-50,False
+C_20_in_1_3,True Explosion,50-inf,True
+D_rapid_expansion,True Explosion,50-inf,True
+E_base_breakout,Temporary Spike,50-inf,False
+A_10_from_low,No Significant Move,20-22,False
+B_20_from_low,No Significant Move,30-35,False
+A_10_from_low,Temporary Spike,25-27,False
+B_20_from_low,No Significant Move,35-40,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,Temporary Spike,40-50,False
+B_20_from_low,No Significant Move,40-50,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,40-50,False
+B_20_from_low,No Significant Move,40-50,False
+A_10_from_low,No Significant Move,50-inf,False
+B_20_from_low,No Significant Move,50-inf,False
+C_20_in_1_3,Temporary Spike,30-35,False
+D_rapid_expansion,Temporary Spike,30-35,False
+A_10_from_low,Temporary Spike,40-50,False
+B_20_from_low,No Significant Move,40-50,False
+C_20_in_1_3,Temporary Spike,25-27,False
+A_10_from_low,Temporary Spike,30-35,False
+B_20_from_low,No Significant Move,35-40,False
+E_base_breakout,Temporary Spike,50-inf,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,27-30,False
+B_20_from_low,No Significant Move,27-30,False
+C_20_in_1_3,Gradual Rise,25-27,False
+D_rapid_expansion,Gradual Rise,25-27,False
+E_base_breakout,No Significant Move,40-50,False
+A_10_from_low,No Significant Move,40-50,False
+B_20_from_low,No Significant Move,40-50,False
+E_base_breakout,Temporary Spike,40-50,False
+A_10_from_low,Temporary Spike,50-inf,False
+B_20_from_low,No Significant Move,50-inf,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,50-inf,False
+B_20_from_low,No Significant Move,50-inf,False
+C_20_in_1_3,No Significant Move,40-50,False
+D_rapid_expansion,Temporary Spike,50-inf,False
+E_base_breakout,Temporary Spike,50-inf,False
+A_10_from_low,Rapid Move,30-35,True
+B_20_from_low,Rapid Move,30-35,True
+C_20_in_1_3,True Explosion,50-inf,True
+D_rapid_expansion,No Significant Move,50-inf,False
+A_10_from_low,Gradual Rise,-inf-20,False
+B_20_from_low,Rapid Move,-inf-20,True
+C_20_in_1_3,No Significant Move,27-30,False
+D_rapid_expansion,No Significant Move,27-30,False
+E_base_breakout,No Significant Move,40-50,False
+A_10_from_low,Rapid Move,40-50,True
+B_20_from_low,True Explosion,40-50,True
+C_20_in_1_3,True Explosion,35-40,True
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,Temporary Spike,50-inf,False
+A_10_from_low,Temporary Spike,30-35,False
+B_20_from_low,Temporary Spike,35-40,False
+C_20_in_1_3,Temporary Spike,35-40,False
+D_rapid_expansion,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,30-35,False
+B_20_from_low,No Significant Move,30-35,False
+C_20_in_1_3,True Explosion,50-inf,True
+D_rapid_expansion,True Explosion,50-inf,True
+E_base_breakout,True Explosion,50-inf,True
+A_10_from_low,True Explosion,50-inf,True
+B_20_from_low,True Explosion,50-inf,True
+C_20_in_1_3,Temporary Spike,50-inf,False
+D_rapid_expansion,Temporary Spike,50-inf,False
+A_10_from_low,True Explosion,30-35,True
+B_20_from_low,True Explosion,50-inf,True
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,22-25,False
+B_20_from_low,Temporary Spike,22-25,False
+C_20_in_1_3,No Significant Move,22-25,False
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,35-40,False
+B_20_from_low,No Significant Move,40-50,False
+C_20_in_1_3,No Significant Move,40-50,False
+D_rapid_expansion,No Significant Move,40-50,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,27-30,False
+B_20_from_low,Gradual Rise,30-35,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+A_10_from_low,Gradual Rise,-inf-20,False
+B_20_from_low,No Significant Move,40-50,False
+C_20_in_1_3,No Significant Move,40-50,False
+D_rapid_expansion,No Significant Move,40-50,False
+A_10_from_low,No Significant Move,20-22,False
+B_20_from_low,No Significant Move,20-22,False
+A_10_from_low,Rapid Move,35-40,True
+B_20_from_low,Rapid Move,35-40,True
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,27-30,False
+B_20_from_low,No Significant Move,27-30,False
+E_base_breakout,Temporary Spike,27-30,False
+C_20_in_1_3,Gradual Rise,30-35,False
+A_10_from_low,Temporary Spike,40-50,False
+B_20_from_low,Temporary Spike,40-50,False
+C_20_in_1_3,Temporary Spike,40-50,False
+D_rapid_expansion,Temporary Spike,40-50,False
+A_10_from_low,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,35-40,False
+B_20_from_low,No Significant Move,35-40,False
+C_20_in_1_3,No Significant Move,27-30,False
+D_rapid_expansion,No Significant Move,27-30,False
+A_10_from_low,Temporary Spike,20-22,False
+B_20_from_low,Temporary Spike,20-22,False
+C_20_in_1_3,Temporary Spike,22-25,False
+D_rapid_expansion,Temporary Spike,22-25,False
+A_10_from_low,Rapid Move,-inf-20,True
+B_20_from_low,Rapid Move,-inf-20,True
+C_20_in_1_3,Gradual Rise,-inf-20,False
+D_rapid_expansion,Gradual Rise,-inf-20,False
+A_10_from_low,No Significant Move,35-40,False
+B_20_from_low,Temporary Spike,35-40,False
+C_20_in_1_3,Temporary Spike,35-40,False
+D_rapid_expansion,No Significant Move,35-40,False
+A_10_from_low,No Significant Move,50-inf,False
+B_20_from_low,No Significant Move,50-inf,False
+C_20_in_1_3,No Significant Move,50-inf,False
+A_10_from_low,Temporary Spike,30-35,False
+B_20_from_low,Gradual Rise,50-inf,False
+C_20_in_1_3,Temporary Spike,50-inf,False
+D_rapid_expansion,Temporary Spike,50-inf,False
+E_base_breakout,Temporary Spike,50-inf,False
+A_10_from_low,No Significant Move,40-50,False
+B_20_from_low,Temporary Spike,35-40,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,Rapid Move,50-inf,True
+B_20_from_low,Rapid Move,50-inf,True
+C_20_in_1_3,Temporary Spike,50-inf,False
+A_10_from_low,No Significant Move,50-inf,False
+B_20_from_low,No Significant Move,50-inf,False
+A_10_from_low,Temporary Spike,30-35,False
+B_20_from_low,Temporary Spike,40-50,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,22-25,False
+B_20_from_low,No Significant Move,27-30,False
+C_20_in_1_3,No Significant Move,27-30,False
+D_rapid_expansion,No Significant Move,27-30,False
+A_10_from_low,No Significant Move,20-22,False
+B_20_from_low,No Significant Move,30-35,False
+E_base_breakout,Temporary Spike,50-inf,False
+A_10_from_low,No Significant Move,35-40,False
+B_20_from_low,No Significant Move,22-25,False
+A_10_from_low,No Significant Move,30-35,False
+B_20_from_low,No Significant Move,30-35,False
+C_20_in_1_3,No Significant Move,30-35,False
+D_rapid_expansion,No Significant Move,30-35,False
+A_10_from_low,Temporary Spike,40-50,False
+B_20_from_low,Temporary Spike,40-50,False
+C_20_in_1_3,No Significant Move,40-50,False
+D_rapid_expansion,No Significant Move,40-50,False
+A_10_from_low,Gradual Rise,30-35,False
+B_20_from_low,Gradual Rise,30-35,False
+C_20_in_1_3,True Explosion,40-50,True
+D_rapid_expansion,True Explosion,40-50,True
+A_10_from_low,Temporary Spike,35-40,False
+B_20_from_low,Temporary Spike,35-40,False
+A_10_from_low,True Explosion,35-40,True
+B_20_from_low,True Explosion,35-40,True
+C_20_in_1_3,True Explosion,50-inf,True
+D_rapid_expansion,True Explosion,50-inf,True
+A_10_from_low,Rapid Move,40-50,True
+B_20_from_low,Temporary Spike,50-inf,False
+C_20_in_1_3,Temporary Spike,50-inf,False
+D_rapid_expansion,Temporary Spike,50-inf,False
+A_10_from_low,True Explosion,25-27,True
+B_20_from_low,True Explosion,25-27,True
+C_20_in_1_3,No Significant Move,30-35,False
+D_rapid_expansion,No Significant Move,30-35,False
+A_10_from_low,Temporary Spike,35-40,False
+B_20_from_low,Temporary Spike,40-50,False
+C_20_in_1_3,No Significant Move,50-inf,False
+A_10_from_low,Gradual Rise,27-30,False
+B_20_from_low,No Significant Move,50-inf,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,27-30,False
+B_20_from_low,No Significant Move,27-30,False
+E_base_breakout,True Explosion,30-35,True
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,-inf-20,False
+B_20_from_low,No Significant Move,-inf-20,False
+A_10_from_low,No Significant Move,27-30,False
+B_20_from_low,Temporary Spike,22-25,False
+C_20_in_1_3,No Significant Move,30-35,False
+D_rapid_expansion,No Significant Move,30-35,False
+A_10_from_low,No Significant Move,35-40,False
+B_20_from_low,Rapid Move,27-30,True
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,40-50,False
+B_20_from_low,No Significant Move,40-50,False
+C_20_in_1_3,No Significant Move,40-50,False
+A_10_from_low,Rapid Move,40-50,True
+B_20_from_low,True Explosion,40-50,True
+C_20_in_1_3,Temporary Spike,40-50,False
+D_rapid_expansion,Temporary Spike,40-50,False
+A_10_from_low,No Significant Move,27-30,False
+B_20_from_low,No Significant Move,30-35,False
+A_10_from_low,No Significant Move,40-50,False
+B_20_from_low,No Significant Move,40-50,False
+A_10_from_low,Rapid Move,27-30,True
+B_20_from_low,Rapid Move,30-35,True
+A_10_from_low,No Significant Move,25-27,False
+B_20_from_low,No Significant Move,22-25,False
+A_10_from_low,Temporary Spike,25-27,False
+B_20_from_low,Gradual Rise,35-40,False
+C_20_in_1_3,Temporary Spike,40-50,False
+D_rapid_expansion,Temporary Spike,40-50,False
+A_10_from_low,No Significant Move,27-30,False
+B_20_from_low,No Significant Move,22-25,False
+C_20_in_1_3,No Significant Move,35-40,False
+D_rapid_expansion,No Significant Move,35-40,False
+E_base_breakout,No Significant Move,35-40,False
+A_10_from_low,Temporary Spike,30-35,False
+B_20_from_low,No Significant Move,40-50,False
+C_20_in_1_3,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,22-25,False
+B_20_from_low,No Significant Move,22-25,False
+C_20_in_1_3,No Significant Move,22-25,False
+A_10_from_low,No Significant Move,35-40,False
+B_20_from_low,Temporary Spike,35-40,False
+C_20_in_1_3,No Significant Move,40-50,False
+D_rapid_expansion,No Significant Move,40-50,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,30-35,False
+B_20_from_low,True Explosion,25-27,True
+A_10_from_low,Gradual Rise,40-50,False
+B_20_from_low,No Significant Move,50-inf,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,30-35,False
+B_20_from_low,No Significant Move,35-40,False
+A_10_from_low,True Explosion,-inf-20,True
+B_20_from_low,Temporary Spike,22-25,False
+C_20_in_1_3,True Explosion,25-27,True
+D_rapid_expansion,True Explosion,25-27,True
+A_10_from_low,Gradual Rise,35-40,False
+B_20_from_low,Gradual Rise,50-inf,False
+C_20_in_1_3,True Explosion,50-inf,True
+D_rapid_expansion,True Explosion,50-inf,True
+E_base_breakout,True Explosion,50-inf,True
+A_10_from_low,Temporary Spike,50-inf,False
+B_20_from_low,Temporary Spike,50-inf,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+E_base_breakout,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,30-35,False
+B_20_from_low,No Significant Move,30-35,False
+C_20_in_1_3,No Significant Move,40-50,False
+D_rapid_expansion,No Significant Move,40-50,False
+A_10_from_low,No Significant Move,30-35,False
+B_20_from_low,No Significant Move,35-40,False
+A_10_from_low,Rapid Move,22-25,True
+B_20_from_low,Rapid Move,22-25,True
+C_20_in_1_3,True Explosion,40-50,True
+D_rapid_expansion,True Explosion,40-50,True
+A_10_from_low,No Significant Move,50-inf,False
+B_20_from_low,No Significant Move,50-inf,False
+C_20_in_1_3,No Significant Move,50-inf,False
+A_10_from_low,Temporary Spike,30-35,False
+B_20_from_low,Temporary Spike,40-50,False
+C_20_in_1_3,Temporary Spike,40-50,False
+A_10_from_low,Temporary Spike,22-25,False
+B_20_from_low,No Significant Move,30-35,False
+C_20_in_1_3,No Significant Move,40-50,False
+A_10_from_low,Temporary Spike,35-40,False
+B_20_from_low,Temporary Spike,35-40,False
+C_20_in_1_3,Temporary Spike,50-inf,False
+D_rapid_expansion,Temporary Spike,50-inf,False
+E_base_breakout,Temporary Spike,50-inf,False
+A_10_from_low,Temporary Spike,30-35,False
+B_20_from_low,Temporary Spike,30-35,False
+C_20_in_1_3,Rapid Move,50-inf,True
+D_rapid_expansion,Rapid Move,50-inf,True
+E_base_breakout,Rapid Move,50-inf,True
+A_10_from_low,Temporary Spike,35-40,False
+B_20_from_low,Temporary Spike,35-40,False
+E_base_breakout,True Explosion,35-40,True
+C_20_in_1_3,Temporary Spike,40-50,False
+D_rapid_expansion,Temporary Spike,40-50,False
+A_10_from_low,Temporary Spike,30-35,False
+B_20_from_low,No Significant Move,40-50,False
+C_20_in_1_3,No Significant Move,40-50,False
+D_rapid_expansion,No Significant Move,40-50,False
+A_10_from_low,Rapid Move,27-30,True
+B_20_from_low,Rapid Move,27-30,True
+C_20_in_1_3,Temporary Spike,40-50,False
+D_rapid_expansion,Temporary Spike,40-50,False
+A_10_from_low,True Explosion,-inf-20,True
+B_20_from_low,True Explosion,-inf-20,True
+C_20_in_1_3,No Significant Move,20-22,False
+D_rapid_expansion,No Significant Move,20-22,False
+A_10_from_low,Temporary Spike,30-35,False
+B_20_from_low,No Significant Move,50-inf,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,-inf-20,False
+B_20_from_low,Temporary Spike,-inf-20,False
+E_base_breakout,No Significant Move,25-27,False
+A_10_from_low,Gradual Rise,30-35,False
+B_20_from_low,Gradual Rise,30-35,False
+C_20_in_1_3,Temporary Spike,40-50,False
+A_10_from_low,Rapid Move,40-50,True
+B_20_from_low,Rapid Move,50-inf,True
+C_20_in_1_3,Temporary Spike,50-inf,False
+D_rapid_expansion,Temporary Spike,50-inf,False
+A_10_from_low,Rapid Move,50-inf,True
+B_20_from_low,Rapid Move,50-inf,True
+C_20_in_1_3,Rapid Move,50-inf,True
+D_rapid_expansion,Rapid Move,50-inf,True
+A_10_from_low,Temporary Spike,35-40,False
+B_20_from_low,Temporary Spike,35-40,False
+C_20_in_1_3,Temporary Spike,50-inf,False
+A_10_from_low,Temporary Spike,27-30,False
+B_20_from_low,Temporary Spike,27-30,False
+A_10_from_low,Temporary Spike,50-inf,False
+B_20_from_low,Temporary Spike,50-inf,False
+C_20_in_1_3,No Significant Move,50-inf,False
+A_10_from_low,No Significant Move,40-50,False
+B_20_from_low,No Significant Move,40-50,False
+A_10_from_low,Temporary Spike,30-35,False
+B_20_from_low,Temporary Spike,30-35,False
+C_20_in_1_3,Temporary Spike,35-40,False
+D_rapid_expansion,Temporary Spike,35-40,False
+A_10_from_low,Temporary Spike,35-40,False
+B_20_from_low,No Significant Move,35-40,False
+A_10_from_low,Rapid Move,27-30,True
+B_20_from_low,Rapid Move,30-35,True
+C_20_in_1_3,Temporary Spike,50-inf,False
+D_rapid_expansion,Temporary Spike,50-inf,False
+A_10_from_low,No Significant Move,35-40,False
+B_20_from_low,No Significant Move,35-40,False
+C_20_in_1_3,No Significant Move,40-50,False
+A_10_from_low,True Explosion,30-35,True
+B_20_from_low,True Explosion,30-35,True
+A_10_from_low,Rapid Move,22-25,True
+B_20_from_low,Rapid Move,30-35,True
+C_20_in_1_3,Gradual Rise,50-inf,False
+D_rapid_expansion,Gradual Rise,50-inf,False
+A_10_from_low,Temporary Spike,40-50,False
+B_20_from_low,No Significant Move,50-inf,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+A_10_from_low,Gradual Rise,35-40,False
+B_20_from_low,Gradual Rise,35-40,False
+C_20_in_1_3,True Explosion,50-inf,True
+D_rapid_expansion,True Explosion,50-inf,True
+E_base_breakout,True Explosion,50-inf,True
+A_10_from_low,No Significant Move,27-30,False
+B_20_from_low,No Significant Move,35-40,False
+C_20_in_1_3,No Significant Move,40-50,False
+D_rapid_expansion,No Significant Move,40-50,False
+E_base_breakout,No Significant Move,40-50,False
+A_10_from_low,Temporary Spike,50-inf,False
+B_20_from_low,Temporary Spike,50-inf,False
+E_base_breakout,Temporary Spike,50-inf,False
+C_20_in_1_3,No Significant Move,50-inf,False
+D_rapid_expansion,No Significant Move,50-inf,False
+A_10_from_low,Rapid Move,27-30,True
+B_20_from_low,Rapid Move,27-30,True
+C_20_in_1_3,True Explosion,30-35,True
+D_rapid_expansion,True Explosion,30-35,True
+A_10_from_low,No Significant Move,40-50,False

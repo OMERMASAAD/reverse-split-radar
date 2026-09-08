@@ -1,0 +1,1140 @@
+ticker,definition,classification,RSI recovery 20,RSI recovery 25,RSI recovery 30,RSI rising,Volume expansion,MACD improvement,MA20 reclaim
+ELPW,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-1,S-10,S-5,
+ELPW,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-2,S-10,S-5,
+ELPW,C_20_in_1_3,Gradual Rise,S-20,S-20,S-20,S-15,S-20,S-20,
+ELPW,D_rapid_expansion,Gradual Rise,S-20,S-20,S-20,S-15,S-20,S-20,
+ZNB,A_10_from_low,No Significant Move,S-20,S-20,S-15,S-15,S-1,S-7,
+ZNB,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-5,S-10,S-20,
+ZNB,C_20_in_1_3,No Significant Move,S-20,S-1,S,S-20,S-5,S-20,
+KXIN,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-15,S-2,S-15,
+KXIN,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-20,,S-15,
+KXIN,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-20,,S-15,
+KXIN,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S-7,S-20,S-20
+KXIN,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-15,S,S-7,S-3
+PED,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-10,S-15,S-20
+PED,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-10,S-15,S-20
+PED,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-15,S-7,S-10,S
+PED,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-15,S-7,S-10,S
+PED,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-15,S-7,S-10,S
+STFS,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-7,S-3
+STFS,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-7,S-3
+STFS,C_20_in_1_3,True Explosion,S-20,S-20,S-20,S-15,S-15,S-20,S-15
+STFS,D_rapid_expansion,True Explosion,S-20,S-20,S-20,S-15,S-15,S-20,S-15
+STFS,E_base_breakout,True Explosion,S-20,S-20,S-20,S-15,S-15,S-20,S-15
+CLIR,A_10_from_low,Rapid Move,S-20,S-20,S-20,S-3,S-10,,
+CLIR,B_20_from_low,True Explosion,S-20,S-20,S-20,S-15,S-15,S-1,S
+CLIR,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-7,S-20,S-2,S-1
+CLIR,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-3,S-3
+CLIR,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-3,S-3
+DXST,A_10_from_low,No Significant Move,S-20,S-20,S-7,S-20,,S-10,S-5
+DXST,B_20_from_low,No Significant Move,S-20,S-20,S-10,S-20,S-10,S-15,S-10
+DXST,C_20_in_1_3,No Significant Move,S-20,S-20,S-15,S-15,S-15,S-15,S-10
+DXST,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-10,S-1,S-20,S
+DXST,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-10,S-1,S-20,S
+HBIO,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-2,S-2,S-20,S-15
+HBIO,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-5,S-20,S-20
+HBIO,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-20,S-20,S-15,S-7
+HBIO,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-20,S-20,S-15,S-7
+HBIO,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-20,S-5,S-20,S-10
+MASK,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-2,S-5,
+MASK,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-15,S-10,S-15,
+MASK,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-15,S-10,S-15,
+MASK,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-15,S-10,S-15,
+MASK,E_base_breakout,True Explosion,S-20,S-20,S-20,S-7,S-1,S-20,S
+SKYQ,A_10_from_low,Gradual Rise,S-20,S-20,S-20,S-20,S-10,S-20,S-20
+SKYQ,B_20_from_low,Gradual Rise,S-20,S-20,S-20,S-20,S-10,S-20,S-20
+SKYQ,C_20_in_1_3,True Explosion,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+SKYQ,D_rapid_expansion,Rapid Move,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+XLO,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-2,S-20,S
+XLO,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-10,S-2,S-20,S-10
+XLO,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-1,S-7,S,S
+ZJYL,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-7,S-20,S-15
+ZJYL,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-15,S-20,S-20
+ZJYL,E_base_breakout,Gradual Rise,S-20,S-20,S-20,S-20,S-7,S-20,S-15
+ZJYL,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+ZJYL,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+COOK,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-7,S-10,
+COOK,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-7,S-10,
+COOK,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,,S-10,S-7
+COOK,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-10,S-10
+COOK,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-15,S-2,S-20,S-20
+CIIT,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-15,,S-20
+CIIT,B_20_from_low,No Significant Move,S-20,S-20,S-20,S,S-15,,
+CIIT,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-15,S-3,S-10,S
+CIIT,D_rapid_expansion,True Explosion,S-20,S-20,S-20,S-15,S-5,S-20,S
+CIIT,E_base_breakout,True Explosion,S-20,S-20,S-20,S-15,S-5,S-20,S
+AREB,A_10_from_low,No Significant Move,,,,S-20,S,S-20,S
+AREB,B_20_from_low,No Significant Move,,,,S-20,S,S-20,S
+AREB,C_20_in_1_3,No Significant Move,,,,S-20,S,S-20,S
+AREB,D_rapid_expansion,No Significant Move,,,,S-20,S,S-20,S
+AREB,E_base_breakout,No Significant Move,,,,S-20,S,S-20,S
+AZI,A_10_from_low,No Significant Move,S-20,S-15,S-15,S-15,,S-20,S-15
+AZI,E_base_breakout,Gradual Rise,S-20,S-20,S-5,S-7,S,S-20,S
+AZI,B_20_from_low,True Explosion,S-20,S-20,S-20,S-20,S-1,S-20,S-10
+AZI,C_20_in_1_3,True Explosion,S-20,S-20,S-20,S-20,S-1,S-20,S-10
+AZI,D_rapid_expansion,True Explosion,S-20,S-20,S-20,S-20,S-1,S-20,S-10
+EUDA,A_10_from_low,True Explosion,S-20,S-20,S-20,S-7,S-10,S-15,
+EUDA,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-5,S-10,S-20,
+EUDA,C_20_in_1_3,Gradual Rise,S-20,S-20,S-20,S-20,S-5,S-20,
+EUDA,D_rapid_expansion,Gradual Rise,S-20,S-20,S-20,S-20,S-5,S-20,
+EUDA,E_base_breakout,Rapid Move,S-20,S-20,S-20,S-20,S-3,S-20,S
+FCHL,A_10_from_low,True Explosion,S-20,S-20,S-20,S-20,S-3,S-15,
+FCHL,B_20_from_low,True Explosion,S-20,S-20,S-20,S-20,S-3,S-15,
+FCHL,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S-5,S-20,S-7
+FCHL,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S-5,S-20,S-7
+FCHL,E_base_breakout,Temporary Spike,S-20,S-20,S-15,S-15,S,S-20,S-10
+JDZG,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,,S-10,
+JDZG,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-15,S-20,S
+JDZG,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-15,S-15,S-20,S
+JDZG,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-15,S-15,S-20,S
+JDZG,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-15,S-15,S-20,S
+YYGH,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-3,S-15,,
+YYGH,B_20_from_low,Temporary Spike,S-20,,,S-7,S-15,S-5,
+YYGH,C_20_in_1_3,No Significant Move,S-20,S,,S-15,S-20,S-7,S
+YYGH,D_rapid_expansion,No Significant Move,S-20,S-15,S-15,S-20,S-1,S-20,S-15
+YYGH,E_base_breakout,No Significant Move,S-20,S-20,S-10,S-20,S-10,S-20,S-10
+FUBO,A_10_from_low,Temporary Spike,S-20,S-10,,S-20,S-5,S-20,
+FUBO,B_20_from_low,Temporary Spike,S-20,S-15,S,S-20,S-7,S-20,
+FUBO,C_20_in_1_3,Temporary Spike,S-20,S-15,S,S-20,S-7,S-20,
+FUBO,D_rapid_expansion,Temporary Spike,S-20,S-15,S,S-20,S-7,S-20,
+FUBO,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-20,,S-20,S-20
+VIVK,A_10_from_low,Rapid Move,S-20,S-20,S-20,S-15,,S-20,S-20
+VIVK,B_20_from_low,Rapid Move,S-20,S-20,S-20,S-15,,S-20,S-20
+VIVK,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-20,S-2,S-20,S-20
+VIVK,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-20,S-2,S-20,S-20
+ONCO,A_10_from_low,True Explosion,S-20,S-20,S-20,S-15,S-15,S-10,S-3
+ONCO,B_20_from_low,True Explosion,S-20,S-20,S-20,S-20,S-1,S-10,S-3
+ONCO,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-5,S-2,S-20,
+ONCO,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-20,,S-20,S-20
+ONCO,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S,S-20,S-20
+XTLB,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-10,S-1,S-20,S-5
+XTLB,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-10,S-1,S-20,S-5
+XTLB,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-10,S-1,S-20,S-5
+XTLB,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-10,S-1,S-20,S-5
+XTLB,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-10,S-1,S-20,S-5
+RENX,A_10_from_low,True Explosion,S-20,S-20,S-20,S-15,,S-10,S-5
+RENX,B_20_from_low,True Explosion,S-20,S-20,S-20,S-15,,S-10,S-7
+RENX,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-15,S,S-15,S-7
+RENX,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-15,S,S-15,S-7
+RENX,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-20,S-1,S-7,S-1
+ADV,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-5,S-15,S-15
+ADV,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-5,S-15,S-15
+ADV,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-20,S-7,S-20,S-20
+ADV,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-20,,S-20,S-20
+ADV,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S-3,S-20,S-20
+CDT,A_10_from_low,No Significant Move,S-20,S-20,S-15,S-20,S-3,S-15,
+CDT,B_20_from_low,No Significant Move,S-20,S-20,S-15,S-20,S-3,S-15,
+CDT,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-10,S-7,S-20,
+CDT,D_rapid_expansion,True Explosion,S-20,S-15,S,S-15,S-20,S-20,S
+CDT,E_base_breakout,True Explosion,S-20,S-15,S,S-15,S-20,S-20,S
+LBGJ,A_10_from_low,Temporary Spike,S-20,,,S-15,S-20,S-3,
+LBGJ,B_20_from_low,Temporary Spike,S-20,,,S-10,S-20,S-5,
+LBGJ,C_20_in_1_3,No Significant Move,S-20,S,,S-20,S,S-20,S-10
+LBGJ,D_rapid_expansion,No Significant Move,S-20,S,,S-20,S,S-20,S-10
+LBGJ,E_base_breakout,Temporary Spike,S-20,S-20,S-5,S-20,S-15,S-20,S-15
+TRUG,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-10,S-20,S-20
+TRUG,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-5,S-3,,
+TRUG,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S-15,,
+TRUG,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+TRUG,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S-1,S-20,S
+ATXG,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-15,S-10,S-7,S-7
+ATXG,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-15,S-10,S-7,S-7
+ATXG,C_20_in_1_3,No Significant Move,S-20,S-20,S-15,S-20,S-15,S-15,S-15
+EJH,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+EJH,B_20_from_low,Gradual Rise,S-20,S-20,S-2,S-15,S-5,S-20,S
+EJH,E_base_breakout,True Explosion,S-20,S-15,S-10,S-15,,S-20,S-10
+EJH,C_20_in_1_3,No Significant Move,S-20,S-15,S-15,S-15,S-1,S-20,S-10
+EJH,D_rapid_expansion,No Significant Move,S-20,S-15,S-15,S-15,S-1,S-20,S-10
+FBLG,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-2,S-20,S-20
+FBLG,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-2,S-20,S-20
+FBLG,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S-10,S-20,S
+FBLG,D_rapid_expansion,Gradual Rise,S-20,S-20,S-20,S-15,S-5,S-20,S-20
+FBLG,E_base_breakout,Gradual Rise,S-20,S-20,S-20,S-3,S-7,S-20,S-15
+SVRN,A_10_from_low,Rapid Move,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+SVRN,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-10,S-20,S-20
+SVRN,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-10,,S-20,S-3
+SVRN,D_rapid_expansion,True Explosion,S-20,S-20,S-20,S-10,S-3,S-20,S-20
+SVRN,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-15,S-15,S-15,S-10
+AGL,A_10_from_low,True Explosion,S-20,S-20,S-20,S-20,S-2,S-20,S-20
+AGL,B_20_from_low,True Explosion,S-20,S-20,S-20,S-20,S-2,S-20,S-20
+AGL,C_20_in_1_3,Rapid Move,S-20,S-20,S-20,S-20,S-3,S-20,S-20
+AGL,D_rapid_expansion,Rapid Move,S-20,S-20,S-20,S-20,S-3,S-20,S-20
+AGL,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+AKTX,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-15,S-15,S-20,S-15
+AKTX,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-15,S-20,S-20
+AKTX,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-15,S-20,S-2,
+AKTX,D_rapid_expansion,No Significant Move,S-20,S-7,S-5,S-7,S-10,S-5,S-2
+AKTX,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-2,S-5,S-20,S-20
+MODD,A_10_from_low,No Significant Move,S-20,S-15,S-15,S-15,S-20,S-7,
+MODD,B_20_from_low,No Significant Move,S-20,S-15,S-15,S-15,S-20,S-7,
+MODD,C_20_in_1_3,No Significant Move,S-20,S-20,S-10,S-15,,S-20,S
+MODD,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-15,S-3,S-20,S-3
+MODD,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-15,S-3,S-20,S-3
+PAVS,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-15,S-20,S-15
+PAVS,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-7,,S-15,
+PAVS,C_20_in_1_3,Temporary Spike,S-20,,,S-20,S,S-20,S
+PAVS,D_rapid_expansion,Temporary Spike,S-20,,,S-20,S,S-20,S
+AUUD,A_10_from_low,Gradual Rise,S-20,S-20,S-20,S-15,S-2,S-10,S-5
+AUUD,B_20_from_low,Gradual Rise,S-20,S-20,S-20,S-15,S-2,S-10,S-5
+AUUD,C_20_in_1_3,Rapid Move,S-20,S-20,S-20,S-7,S-10,S-20,
+AUUD,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-20,S-15,S-20,S-20
+AUUD,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-20,S-15,S-20,
+BARK,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-15,S-20,S-20
+BARK,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-15,S-20,S-20
+BARK,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S-15,S-20,S-20
+BARK,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-20,S-15,S-20,S-20
+UCAR,A_10_from_low,Rapid Move,S-20,S-20,S-20,S-10,S-15,S-20,S-20
+UCAR,B_20_from_low,True Explosion,S-20,S-20,S-20,S-10,S-15,S-20,
+UCAR,C_20_in_1_3,No Significant Move,S-20,S-20,S-15,S-15,S-20,S-3,S
+UCAR,D_rapid_expansion,No Significant Move,S-20,S-20,S-15,S-15,S-20,S-3,S
+UCAR,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-15,S-20,S-20,S-2
+CNSY,A_10_from_low,Rapid Move,S-20,S-20,S-20,S-20,S-5,S-20,S-20
+CNSY,B_20_from_low,Rapid Move,S-20,S-20,S-20,S-20,S-5,S-20,S-20
+CNSY,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-10,S-7,S-20,
+CNSY,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-10,S-7,S-20,
+CNSY,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-15,S-3,S-20,S-20
+NCT,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-7,S-10,S,
+NCT,B_20_from_low,Gradual Rise,S-20,S-20,S-20,S-15,S-5,S-3,
+NCT,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-15,S-15,S,
+NCT,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-10,S-7,S-20,S-20
+NCT,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-10,S-7,S-20,S-20
+AIIO,A_10_from_low,Gradual Rise,S-20,S-20,S-20,S-20,S-10,S-20,
+AIIO,B_20_from_low,Gradual Rise,S-20,S-20,S-20,S-15,S-10,S-20,
+AIIO,C_20_in_1_3,True Explosion,S-20,S-15,S,S-15,S-1,S-10,S
+AIIO,D_rapid_expansion,True Explosion,S-20,S-15,S,S-15,S-1,S-10,S
+AIIO,E_base_breakout,True Explosion,S-20,S-15,S,S-15,S-1,S-10,S
+BCAB,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-3,S-20,S-20
+BCAB,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-10,S-20,
+BCAB,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S-10,S-20,
+BCAB,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S-10,S-20,
+BCAB,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-20,S-10
+BDRX,A_10_from_low,No Significant Move,S-20,S-1,S-1,S-7,S-5,S-20,S-1
+BDRX,B_20_from_low,No Significant Move,S-20,S-1,S-1,S-7,S-5,S-20,S-1
+BDRX,C_20_in_1_3,No Significant Move,S-15,S-10,S-10,S-15,S-15,S-20,S-10
+BDRX,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S,S-20,S-10
+BDRX,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-20,S,S-20,S-10
+GNLN,A_10_from_low,Rapid Move,S-20,S-20,S-20,S-20,S-1,S-20,S-15
+GNLN,B_20_from_low,Rapid Move,S-20,S-20,S-20,S-20,S-2,S-20,S-20
+GNLN,C_20_in_1_3,True Explosion,S-20,S-20,S-20,S-5,S-5,S-20,S-20
+GNLN,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-10,S-10,S-20,S-1
+GNLN,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-10,S-10,S-20,S-1
+HKIT,A_10_from_low,No Significant Move,S-20,S-15,S-15,S-10,S-10,S-10,
+HKIT,B_20_from_low,Gradual Rise,S-20,,,S-10,S,S-15,
+HKIT,C_20_in_1_3,Gradual Rise,S-20,,,S-20,S-1,S-20,S
+HKIT,D_rapid_expansion,Gradual Rise,S-20,,,S-20,S-1,S-20,S
+HKIT,E_base_breakout,Gradual Rise,S-20,,,S-20,S-1,S-20,S
+HTCR,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-5,,
+HTCR,B_20_from_low,No Significant Move,S-20,S-20,S-15,S-15,S-20,S-10,S
+HTCR,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-10,S-10,S-20,S-7
+HTCR,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S,S,S
+HTCR,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S,S,S
+LNKS,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-10,S-7,,
+LNKS,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-10,S-7,,
+LNKS,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-7,S-15,S,
+LNKS,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-7,S-15,S,
+SKK,A_10_from_low,Gradual Rise,S-20,S-20,S-20,S-10,S-10,S-20,S-10
+SKK,B_20_from_low,Gradual Rise,S-20,S-20,S-20,S-10,S-10,S-20,S-10
+SKK,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S-20,S,S-20
+SKK,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S-20,S,S-20
+SKK,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-20,S-20,S,S-20
+WNW,A_10_from_low,Rapid Move,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+WNW,B_20_from_low,No Significant Move,S-20,,,S-5,S-20,S-5,
+WNW,C_20_in_1_3,No Significant Move,S-20,,,S-5,S-20,S-5,
+WNW,D_rapid_expansion,No Significant Move,S-20,,,S-5,S-20,S-5,
+WNW,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-20,S-15,S-20,S
+XRTX,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-5,S-20,S-20
+XRTX,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-7,S-20,S-20
+XRTX,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-15,S-15,S-15,S-10
+XRTX,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S-15,S-20,S-10
+XRTX,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-20,S-15,S-20,S-10
+CHR,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-15,S-5,
+CHR,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-15,S-5,
+CHR,C_20_in_1_3,Temporary Spike,S-20,S-20,S-15,S-20,S-2,S-15,S-10
+CHR,D_rapid_expansion,Temporary Spike,S-20,S-20,S-15,S-20,S-2,S-15,S-10
+CHR,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-7,S-7,S-20,S-7
+MOBX,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-3,,S-20,S-20
+MOBX,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-5,,S-20,S-20
+MOBX,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S-3,S-15,S
+MOBX,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S-3,S-15,S
+MOBX,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-20,S-3,S-15,S
+JTAI,A_10_from_low,Temporary Spike,S-20,S-10,,S-15,S-15,S-20,
+JTAI,B_20_from_low,Temporary Spike,S-15,S-10,,S-15,S-3,S-20,
+JTAI,C_20_in_1_3,Temporary Spike,S-20,S-15,,S-20,S-20,S-20,
+JTAI,E_base_breakout,Temporary Spike,S-20,S-20,S-15,S-15,S,S-20,S-15
+JTAI,D_rapid_expansion,No Significant Move,S-20,S-20,S-15,S-15,S-1,S-20,S-15
+NXTS,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-3,S-20,
+NXTS,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-3,S-20,
+NXTS,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-20,S-10
+NXTS,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-20,S-10
+NXTS,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-20,S-10
+RDGT,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+RDGT,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+RDGT,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-10,S-10,S-20,S-1
+RDGT,D_rapid_expansion,Gradual Rise,S-20,S-20,S-20,S-15,S-7,S-20,S-7
+RDGT,E_base_breakout,Gradual Rise,S-20,S-20,S-20,S-15,S-7,S-20,S-7
+RUBI,A_10_from_low,No Significant Move,S-3,,,S-10,S-2,S-20,
+RUBI,B_20_from_low,No Significant Move,S-7,,,S-20,S-15,S-20,
+RUBI,C_20_in_1_3,True Explosion,S-20,,,S-5,S-15,S-20,
+RUBI,D_rapid_expansion,True Explosion,S-20,,,S-5,S-15,S-20,
+WORX,A_10_from_low,Temporary Spike,,,,,,,
+WORX,B_20_from_low,No Significant Move,,,,,,,
+WORX,C_20_in_1_3,No Significant Move,S-1,S-1,S,,,S-5,
+AKAN,A_10_from_low,Rapid Move,S-20,S-20,S-20,S-7,,S-20,
+AKAN,B_20_from_low,Rapid Move,S-20,S-20,S-20,S-15,,S-20,S
+AKAN,C_20_in_1_3,Rapid Move,S-20,S-20,S-20,S-20,S-3,S-20,S-5
+AKAN,D_rapid_expansion,Rapid Move,S-20,S-20,S-20,S-20,S-3,S-20,S-5
+AKAN,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-20,S-15,S-7,S
+CENN,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+CENN,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-7,S-10,S-20,S-15
+CENN,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-20,S,S-20,S-7
+HCAI,A_10_from_low,Gradual Rise,S-20,S-20,S-5,S-7,S-5,S-20,S-3
+HCAI,B_20_from_low,Gradual Rise,S-20,S-20,S-5,S-7,S-5,S-20,S-3
+HCAI,C_20_in_1_3,Rapid Move,S-20,S-20,S-20,S-20,S-10,S-10,S-10
+HCAI,D_rapid_expansion,Rapid Move,S-20,S-20,S-15,S-20,S,S-15,S-10
+JEM,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-3,S-20,S-15
+JEM,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-20,S-15
+JEM,C_20_in_1_3,Gradual Rise,S-20,S-20,S-20,S-7,,S-5,S
+JEM,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-10,S,S-7,S-3
+JEM,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-10,S,S-7,S-3
+MSAI,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+MSAI,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+MSAI,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-15,S,S-20,S-15
+MSAI,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,,S-20,S
+NXPL,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,,S-20,S-15
+NXPL,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-20,,S-20,S-20
+NXPL,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S,S-20,S-20
+NXPL,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S,S-20,S-20
+NXPL,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-15,S-10,S-7,S-5
+PN,A_10_from_low,Gradual Rise,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+PN,B_20_from_low,Gradual Rise,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+PN,C_20_in_1_3,True Explosion,S-20,S-20,S-20,S-20,S-15,S-5,S
+PN,D_rapid_expansion,True Explosion,S-20,S-20,S-20,S-20,S-15,S-5,S
+PN,E_base_breakout,True Explosion,S-20,S-20,S-20,S-20,S-15,S-5,S
+QNCX,A_10_from_low,No Significant Move,S-20,S-20,S-7,S-20,S-3,S-20,S-7
+QNCX,B_20_from_low,No Significant Move,S-20,S-20,S-7,S-20,S-3,S-20,S-7
+QNCX,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-15,S-20,S-20,S-10
+QNCX,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-15,S-20,S-20,S-10
+QNCX,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-15,S-20,S-20,S-10
+BNRG,A_10_from_low,Temporary Spike,,,,,,,
+BNRG,B_20_from_low,Temporary Spike,,,,,,,
+BNRG,C_20_in_1_3,Temporary Spike,S-2,S-1,S-1,S-1,,S-15,
+BNRG,D_rapid_expansion,No Significant Move,S-3,S-2,S-2,S-2,S,S-15,
+BRNX,A_10_from_low,Temporary Spike,S-20,S-15,S,S-15,S,S-20,S
+BRNX,B_20_from_low,Temporary Spike,S-20,S-15,S-1,S-15,S-1,S-20,S-1
+BRNX,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-10,S-20,S-20,
+BRNX,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-20,
+NMTC,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-10,S-10,S-15,S-15
+NMTC,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-7,S-15,S-10
+NMTC,C_20_in_1_3,Rapid Move,S-20,S-20,S-1,S-20,S-5,S-7,S-1
+NMTC,E_base_breakout,Temporary Spike,S-20,S-3,S-3,S-7,S-7,S-10,S-3
+PMAX,A_10_from_low,Gradual Rise,S-10,S-5,,S-10,S-7,S-10,
+PMAX,B_20_from_low,Gradual Rise,S-10,S-5,,S-10,S-7,S-10,
+PMAX,C_20_in_1_3,No Significant Move,S-20,S-10,S-2,S-20,S-20,S-20,S
+PMAX,D_rapid_expansion,No Significant Move,S-20,S-10,S-2,S-20,S-20,S-20,S
+EHGO,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-10,S-20,S-20
+EHGO,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-10,,S-20,S-20
+EHGO,C_20_in_1_3,Gradual Rise,S-20,S-20,S-20,S-20,S-5,S-5,S
+EHGO,D_rapid_expansion,Gradual Rise,S-20,S-20,S-20,S-20,S-5,S-5,S
+EHGO,E_base_breakout,Gradual Rise,S-20,S-20,S-20,S-20,S-5,S-5,S
+HUBC,A_10_from_low,No Significant Move,S-20,S-10,S-5,S-20,S-20,S-20,S-5
+HUBC,B_20_from_low,True Explosion,S-20,S-20,S,S-5,S-15,S-20,S
+HUBC,C_20_in_1_3,True Explosion,S-20,S-20,S,S-5,S-15,S-20,S
+HUBC,D_rapid_expansion,True Explosion,S-20,S-20,S,S-5,S-15,S-20,S
+LRHC,A_10_from_low,No Significant Move,S-20,S-7,,S-7,S-7,S-20,
+LRHC,B_20_from_low,No Significant Move,S-20,S-7,,S-7,S-7,S-20,
+LRHC,C_20_in_1_3,No Significant Move,S-20,S-15,S-1,S-20,S-10,S-20,
+LXEH,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-7,S-15,,
+LXEH,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S,,,
+LXEH,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+LXEH,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+LXEH,E_base_breakout,Gradual Rise,S-20,S-20,S-20,S-10,S-10,S-7,S-2
+RAYA,A_10_from_low,Temporary Spike,S-20,S-20,S-7,S-10,S-20,S-20,S-7
+RAYA,B_20_from_low,Temporary Spike,S-20,S-15,S-15,S-20,S-15,S-15,S-10
+RAYA,C_20_in_1_3,No Significant Move,S-20,S-20,S-15,S-20,,S-20,S-15
+RAYA,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-20,S,S-20,S
+RAYA,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-20,S,S-20,S
+TDIC,A_10_from_low,True Explosion,S-20,S-20,S-20,S-7,,S-7,S-2
+TDIC,B_20_from_low,True Explosion,S-20,S-20,S-20,S-10,S-10,S-10,S-10
+TDIC,C_20_in_1_3,Gradual Rise,S-20,S-20,S-20,S-15,S-2,S-10,S-5
+TDIC,D_rapid_expansion,Gradual Rise,S-20,S-20,S-20,S-15,S-2,S-10,S-5
+TDIC,E_base_breakout,True Explosion,S-20,S-20,S-20,S-20,S-15,S-20,S-15
+KITT,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-7,S-7,S-10,
+KITT,B_20_from_low,No Significant Move,S-20,S-20,S-1,S-15,S,S-15,S
+KITT,E_base_breakout,No Significant Move,S-20,S-20,S-1,S-15,S,S-15,S
+KITT,C_20_in_1_3,Temporary Spike,S-20,S-20,S-3,S-10,S,S-20,S
+KITT,D_rapid_expansion,Temporary Spike,S-20,S-20,S-3,S-10,S,S-20,S
+ZSPC,A_10_from_low,Temporary Spike,S-20,S-20,S-7,S-7,S-15,S-20,
+ZSPC,B_20_from_low,Temporary Spike,S-20,S-15,,S-15,S-15,S-20,
+ZSPC,C_20_in_1_3,Temporary Spike,S-20,S-20,,S-20,S-20,S-20,
+ZSPC,D_rapid_expansion,Temporary Spike,S-20,S-10,S,S-15,S,S-20,S-5
+ZSPC,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-20,S-10,S-20,S-7
+KUST,A_10_from_low,No Significant Move,S-20,S-15,S-10,S-15,S-10,S-15,S-7
+KUST,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-20,S-15
+KUST,C_20_in_1_3,Temporary Spike,S-20,S-20,S-2,S-7,S-2,S-5,
+KUST,D_rapid_expansion,Temporary Spike,S-20,S-20,S-2,S-7,S-2,S-5,
+TOUR,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-3,S-20,S-20
+TOUR,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-5,S-7,S-20,S-20
+TOUR,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-20,S-7,S-20,S-20
+IPST,A_10_from_low,Gradual Rise,S-20,S-20,S-10,S-15,,S-20,S-7
+IPST,B_20_from_low,Gradual Rise,S-20,S-20,S-15,S-20,,S-20,S-10
+IPST,C_20_in_1_3,Temporary Spike,S-20,S-20,S-15,S-15,,S-20,S-15
+IPST,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-10,S-1,S-20,S-20
+IPST,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-10,S-1,S-20,S-20
+CUE,A_10_from_low,True Explosion,S-20,S-20,S-20,S-10,S-10,S-10,S-10
+CUE,B_20_from_low,True Explosion,S-20,S-20,S-20,S-10,S-10,S-10,S-10
+CUE,C_20_in_1_3,Temporary Spike,S-20,S-20,S-15,S-15,S-15,S-15,S-15
+CUE,D_rapid_expansion,Temporary Spike,S-20,S-20,S-15,S-15,S-15,S-15,S-15
+CUE,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-20,S-5,S-20,S-20
+MSS,A_10_from_low,Temporary Spike,S-20,S-20,S-15,S-20,S-10,S-15,S-10
+MSS,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-15,S-20,S-15
+MSS,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-20,S-1,S-20,S-1
+MSS,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-20,S-1,S-20,S-1
+MSS,E_base_breakout,True Explosion,S-20,S-20,S-20,S-10,S,S-7,
+OIO,A_10_from_low,Temporary Spike,S-20,S-20,S-20,,S-10,S-15,
+OIO,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-15,S-20,
+OIO,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S-15,S-20,
+OIO,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S-15,S-20,
+SOWG,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-5,S-5,S-20,S-20
+SOWG,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-15,S-15,S,
+SOWG,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-10,S-15,S-1,
+SOWG,D_rapid_expansion,Rapid Move,S-20,S-20,S-20,S-20,S-2,S-20,S-15
+SOWG,E_base_breakout,Rapid Move,S-20,S-20,S-20,S-20,S-3,S-20,S-20
+TDTH,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-15,S-20,S-20
+TDTH,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-2,S-15,S-20,
+TDTH,C_20_in_1_3,Rapid Move,S-15,S-15,S-15,S-15,S-1,S-15,S-1
+TDTH,E_base_breakout,Rapid Move,S-15,S-15,S-15,S-15,S-1,S-15,S-1
+TDTH,D_rapid_expansion,Temporary Spike,S-20,S-15,S-5,S-20,S-5,S-15,S-2
+AIOS,A_10_from_low,Rapid Move,S-20,S-20,S-20,S-7,S-3,S-15,S-5
+AIOS,B_20_from_low,Rapid Move,S-20,S-20,S-20,S-7,S-3,S-15,S-5
+AIOS,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-20,S-7,S-20,S-10
+AIOS,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-20,S-7,S-20,S-10
+AIOS,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-20,S-10,S-7,S-3
+CISS,A_10_from_low,Gradual Rise,S-20,S-20,S-15,S-15,S-2,S-20,S-7
+CISS,B_20_from_low,Gradual Rise,S-20,S-20,S-15,S-15,S-2,S-20,S-7
+CISS,C_20_in_1_3,No Significant Move,S-20,S-20,S-15,S-20,S-5,S-20,
+CISS,D_rapid_expansion,No Significant Move,S-20,S-20,S-15,S-20,S-5,S-20,
+DRCT,A_10_from_low,Rapid Move,S-20,S-20,S-15,S-15,S-15,S-20,
+DRCT,B_20_from_low,Rapid Move,S-20,S-20,S-15,S-20,S-20,S-20,S
+DRCT,C_20_in_1_3,True Explosion,S-20,S-20,S-20,S-20,S-15,S-20,S-2
+IMUX,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-15,S-7,,S-10
+IMUX,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-15,S-3,,S-10
+IMUX,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-20,,S-15,S-15
+OCG,A_10_from_low,Temporary Spike,S-20,S-20,S-15,S-20,S-7,S-20,S-7
+OCG,B_20_from_low,Temporary Spike,S-20,S-20,S-15,S-20,S-7,S-20,S-7
+OCG,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-20,S-7,S-20,S
+OCG,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-20,S-7,S-20,S
+QH,A_10_from_low,No Significant Move,S-20,S-20,S-7,S-20,S-20,S-20,S-20
+QH,B_20_from_low,No Significant Move,S-20,S-20,S-7,S-20,S-20,S-20,S-20
+QH,C_20_in_1_3,True Explosion,S-20,S-20,S-20,S-20,S-2,S-20,S-20
+QH,D_rapid_expansion,True Explosion,S-20,S-20,S-20,S-20,S-2,S-20,S-20
+UP,A_10_from_low,Gradual Rise,S-20,S-20,S-20,S-20,S-7,S-20,S-15
+UP,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-15,S-20,
+UP,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-20,S-15,S-20,
+UP,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S-15,S-10,S-2
+UP,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-3,S-3,S-20,S-20
+DGNX,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S,S-20,S-20
+DGNX,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S,S-20,S-20
+DGNX,C_20_in_1_3,Temporary Spike,S-20,S-2,S-1,S-5,S-5,S-5,S
+DGNX,D_rapid_expansion,Temporary Spike,S-20,S-2,S-1,S-5,S-5,S-5,S
+DGNX,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+ISPC,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-15,S-15,S-7
+ISPC,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-15,S-15,S-7
+ISPC,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S-15,S-15,S-7
+ISPC,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S-15,S-15,S-7
+VNRX,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S,S-20,
+VNRX,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-7,S-15,S-20,
+VNRX,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-10,S-15,S-20,S
+VNRX,D_rapid_expansion,No Significant Move,S-20,S-20,S-7,S-10,S,S-3,S-2
+VNRX,E_base_breakout,No Significant Move,S-20,S-20,S-7,S-10,S,S-3,S-2
+CTNT,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-10,,
+CTNT,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-10,,
+CTNT,C_20_in_1_3,No Significant Move,S-20,S-10,S-2,S-10,S-20,S-20,S-10
+AIRE,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-3,S-15,S-10
+AIRE,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-7,S-15,S-20,S-20
+AIRE,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-7,S-15,S-20,S-20
+AIRE,E_base_breakout,No Significant Move,S-20,S-5,S-5,S-7,S-20,S-7,S-1
+BKYI,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-10,S-10,S-10
+BKYI,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-10,S-10,S-10
+BKYI,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S-3,S-20,S-20
+BKYI,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-20,S,S-20,S
+BKYI,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-10,S-2,S-20,S-7
+JAGX,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-15,S-20,S-10
+JAGX,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-15,S-20,S-10
+JAGX,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-5,S-10,S-20,S-20
+JAGX,E_base_breakout,No Significant Move,S-20,S-20,S-10,S-20,S-5,S-20,S
+JAGX,D_rapid_expansion,No Significant Move,S-20,S-2,S-2,S-15,S-2,S-10,S
+UK,A_10_from_low,True Explosion,S-20,S-20,S-20,S-20,S-10,S-15,S-15
+UK,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-15,S-15,S-15
+GMEX,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-7,S-5,S-15,
+GMEX,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-15,S,S-20,
+GMEX,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-20,
+GMEX,D_rapid_expansion,No Significant Move,S-20,S-20,,S-15,S-15,S-20,
+TLIH,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-2,S-20,S-15
+TLIH,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-2,S-20,S-15
+TLIH,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-15,S-20,S-20,S-15
+TLIH,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-20,S,S-20,S-20
+ERNA,A_10_from_low,True Explosion,S-20,S-20,S-20,S-20,S-2,S-20,
+ERNA,B_20_from_low,True Explosion,S-20,S-20,S-20,S-20,S-15,S-20,
+ERNA,C_20_in_1_3,True Explosion,S-20,S-20,S-20,S-20,S-5,S-20,S-1
+ERNA,D_rapid_expansion,True Explosion,S-20,S-20,S-20,S-20,S-5,S-20,S-1
+ERNA,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-7,S-5,S-20,S-20
+FCHL,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-10,S-15,
+FCHL,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-10,S-15,
+FCHL,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-15,S-2,S-7,
+FCHL,D_rapid_expansion,Temporary Spike,S-20,S-20,S-15,S-15,S,S-20,S-10
+FCHL,E_base_breakout,Temporary Spike,S-20,S-20,S-15,S-15,S,S-20,S-10
+INHD,A_10_from_low,No Significant Move,S-20,,,S-10,S-20,S-5,
+INHD,B_20_from_low,No Significant Move,S-20,,,S-15,S-20,S-7,
+INHD,C_20_in_1_3,No Significant Move,S-20,S-7,S,S-15,S,S-20,S
+INHD,D_rapid_expansion,No Significant Move,S-20,S-7,S,S-15,S,S-20,S
+INHD,E_base_breakout,No Significant Move,S-20,S-7,S,S-15,S,S-20,S
+TRI,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-3,S-20,S-20
+TRI,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-10,S-15,S-10,S-10
+TRI,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-10,S-15,S-10,S-10
+TRI,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S,S-20,S-20
+TRI,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S,S-20,S-20
+VEEE,A_10_from_low,Temporary Spike,S-20,S-20,S-15,S-10,S-1,S-20,
+VEEE,B_20_from_low,Temporary Spike,S-20,S-20,S-15,S-10,S-1,S-20,
+VEEE,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-15,S-5,S-20,S
+VEEE,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-15,S-5,S-20,S
+VEEE,E_base_breakout,True Explosion,S-20,S-20,S-20,S-20,S-3,S-20,S-7
+MIMI,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-15,,S-15,S-15
+MIMI,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-20,,S-15,S-15
+MIMI,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-20,S-5,S-20,S-20
+MIMI,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-15,S-1,S,S
+CHSN,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-20,,
+CHSN,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-15,S-15,,
+CHSN,C_20_in_1_3,No Significant Move,S-7,,,S-7,S-5,S-15,S-2
+CHSN,D_rapid_expansion,No Significant Move,S-7,,,S-7,S-5,S-15,S-2
+CHSN,E_base_breakout,No Significant Move,S-20,,,S-20,S-20,S-20,S-20
+OLOX,A_10_from_low,Gradual Rise,S-20,S-20,S-20,S-15,S-2,S-10,S-7
+OLOX,B_20_from_low,Rapid Move,S-20,S-20,S-20,S-20,S-2,S-15,S-10
+OLOX,C_20_in_1_3,Rapid Move,S-20,S-20,S-20,S-20,S-7,S-15,
+OLOX,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-20,S-1,S-20,S-20
+OLOX,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-20,S-1,S-20,S-20
+PARA,A_10_from_low,Temporary Spike,S-20,S-15,S-15,S-3,S-10,S,
+PARA,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-20,S-1,
+PARA,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-5,S-15,S-5,S
+AIXI,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-7,,S-20,S-20
+AIXI,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,,,S-20
+AIXI,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,,,S-20
+ASBP,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-10,S-15,S-20,S-20
+ASBP,B_20_from_low,Temporary Spike,S-20,S-20,S-10,S-10,S-20,S-7,S-3
+ASBP,C_20_in_1_3,No Significant Move,S-20,S-20,S-15,S-15,S-20,S-10,S-5
+ASBP,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-7,S,S,S-20
+ASBP,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-7,S,S,S-20
+DKI,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-10,S-20,S-20
+DKI,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-10,S-20,S-20
+KALA,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-10,S-20,S-20
+KALA,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-10,S-20,S-20
+KALA,E_base_breakout,Temporary Spike,S-20,S-3,S-2,S-15,S,S-15,S-1
+KALA,C_20_in_1_3,No Significant Move,S-10,S-10,S-3,S-10,S-15,S-15,S-3
+KALA,D_rapid_expansion,No Significant Move,S-10,S-10,S-3,S-10,S-15,S-15,S-3
+SMX,A_10_from_low,Temporary Spike,S-20,S-1,S-1,S-7,S-10,S-20,S-1
+SMX,B_20_from_low,No Significant Move,S-20,S-3,S-3,S-20,S-7,S-20,S-3
+SMX,C_20_in_1_3,No Significant Move,S-20,S-15,S-15,S-15,,S-20,S-15
+SMX,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S,S-15,S-7
+SMX,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-20,S,S-15,S-7
+SLMT,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-15,S-20,S-20
+SLMT,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-15,S-20,S-20,
+SLMT,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-15,S-5,S-15,
+SLMT,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-15,S-1,S-15,S-15
+SLMT,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-15,S-1,S-15,S-15
+ADTX,A_10_from_low,No Significant Move,,,,,S-20,S-20,
+ADTX,B_20_from_low,No Significant Move,,,,S-15,S-10,S-20,
+ADTX,C_20_in_1_3,True Explosion,,,,S-1,S-15,S-20,
+ADTX,D_rapid_expansion,True Explosion,,,,S-1,S-15,S-20,
+ADTX,E_base_breakout,True Explosion,,,,S-20,S,S-20,S-20
+EZRA,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-3,S-20,S-20
+EZRA,B_20_from_low,Temporary Spike,S-20,S-20,S,S-7,S-2,S-20,S
+EZRA,C_20_in_1_3,Temporary Spike,S-20,S-20,S,S-7,S-2,S-20,S
+EZRA,D_rapid_expansion,Temporary Spike,S-20,S-20,S,S-7,S-2,S-20,S
+EZRA,E_base_breakout,Temporary Spike,S-20,S-20,S,S-7,S-2,S-20,S
+FRGT,A_10_from_low,Rapid Move,S-20,S-20,S-20,S-20,S-5,S-20,S-20
+FRGT,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-10,S-5,S-20,S-5
+FRGT,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-10,S-7,S-20,S-7
+FRGT,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-20,S-7,S-20,S-20
+MI,A_10_from_low,No Significant Move,S-15,S,S,S-15,S-7,S-20,S
+MI,B_20_from_low,No Significant Move,S-15,S,S,S-15,S-7,S-20,S
+PPCB,A_10_from_low,Gradual Rise,S-20,S-20,S-20,S-20,S-2,S-20,S-20
+PPCB,B_20_from_low,Gradual Rise,S-20,S-20,S-20,S-20,S-2,S-20,S-20
+PPCB,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S,S-20,S
+PPCB,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S,S-20,S
+PPCB,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-20,S,S-20,S
+RETO,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+RETO,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-20,,S-20,S-20
+RETO,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-7,S-5,S-10,S-3
+RETO,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-7,S-5,S-10,S-3
+RETO,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-7,S-5,S-10,S-3
+YMT,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-2,S-20,S-20
+YMT,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-2,S-20,S-20
+YMT,C_20_in_1_3,No Significant Move,S-20,S-15,,S-20,S-10,S-15,
+YMT,D_rapid_expansion,No Significant Move,S-20,S-20,S-10,S-10,S,S-20,S-1
+YYAI,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-7,S-3,S-20,
+YYAI,B_20_from_low,Temporary Spike,S-20,S-20,S-7,S-20,S,S-20,S
+YYAI,E_base_breakout,Temporary Spike,S-20,S-20,S-7,S-20,S,S-20,S
+YYAI,C_20_in_1_3,Temporary Spike,S-20,S-20,S-10,S-20,S,S-20,S-3
+YYAI,D_rapid_expansion,Temporary Spike,S-20,S-20,S-10,S-20,S,S-20,S-3
+EZGO,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+EZGO,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+EZGO,C_20_in_1_3,Rapid Move,S-20,S-20,S-20,S-20,S-15,S-20,S-20
+EZGO,D_rapid_expansion,No Significant Move,S-20,S-20,S-7,S-20,S-20,S-20,S-7
+NCI,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,,S-20,S-15
+NCI,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-2,S-20,S-15
+NCI,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+NCI,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S-7,S-15,S-20
+NCI,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S-7,S-15,S-20
+CMND,A_10_from_low,True Explosion,S-20,S-20,S-20,S-7,S-5,,
+CMND,B_20_from_low,True Explosion,S-20,S-20,S-20,S-7,S-5,,
+CMND,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-10,S,S,
+CMND,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-10,S,S,
+CMND,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-20,S,S-20,S-5
+HAO,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-15,S-20,S-20
+HAO,B_20_from_low,Rapid Move,S-20,S-20,S-20,,S-10,S-20,
+HAO,C_20_in_1_3,Temporary Spike,S-20,S-20,S-15,S-15,S-20,S-2,
+HAO,D_rapid_expansion,Temporary Spike,,,,S-7,S,S-20,S
+HAO,E_base_breakout,Temporary Spike,,,,S-7,S,S-20,S
+ONCO,A_10_from_low,No Significant Move,S-20,S-20,S-15,S-20,S-3,S-20,
+ONCO,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-20,
+ONCO,C_20_in_1_3,No Significant Move,S-20,S-15,S-10,S-10,S-10,S-20,S-10
+ONCO,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-20,,S-20,S-20
+ONCO,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S,S-20,S-20
+IPW,A_10_from_low,No Significant Move,S-20,S-20,S-10,S-20,S-5,S-20,
+IPW,B_20_from_low,No Significant Move,S-20,S-15,S-15,S-15,S-10,S-20,
+LNAI,A_10_from_low,Gradual Rise,S-20,S-20,S-20,S-20,,S-20,S
+LNAI,B_20_from_low,Gradual Rise,S-20,S-20,S-20,S-20,,S-20,S
+LNAI,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-20,,S-20,S-1
+LNAI,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-15,S-1,S-15,S-15
+LNAI,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-15,S-1,S-15,S-15
+LZMH,A_10_from_low,Temporary Spike,S-5,,,S-20,S-20,S-10,
+LZMH,B_20_from_low,Temporary Spike,S-15,,,S-15,S-15,S-20,
+LZMH,C_20_in_1_3,No Significant Move,S-15,S,,S-15,S-1,S-20,S
+LZMH,D_rapid_expansion,No Significant Move,S-15,S,,S-15,S-1,S-20,S
+LZMH,E_base_breakout,Gradual Rise,S-20,S-20,S-20,S-20,S-1,S-20,S-20
+NAKA,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-2,S-20,S
+NAKA,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-2,S-20,S
+NAKA,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-15,S-3,S-20,S-3
+NAKA,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-15,S-5,S-20,S-3
+NAKA,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-15,S-5,S-20,S-3
+MEDS,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-10,S-5,S-20,S-20
+MEDS,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-10,S-10,S-20,S-7
+MEDS,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-10,S-7,S-20,S-7
+MEDS,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-15,S,S-10,S
+MEDS,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-15,S,S-10,S
+PRTS,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-7,S-3,S-20,S-20
+PRTS,B_20_from_low,No Significant Move,S-20,S-15,S-7,S-15,S-20,S-5,S
+PRTS,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-10,S-10,S-7,S-3
+PRTS,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-10,S-10,S-7,S-3
+PRTS,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-10,S-10,S-7,S-3
+TJGC,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-15,S-20,S-20
+TJGC,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-15,S-20,S-20
+TJGC,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-15,S-15,S-20,S-20
+TJGC,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-15,S-15,S-20,S-20
+TJGC,E_base_breakout,Rapid Move,S-20,S-20,S-20,S-20,S-5,S-20,S-20
+VSA,A_10_from_low,Rapid Move,S-20,S-20,S-20,S-20,S,S-20,S-20
+VSA,B_20_from_low,True Explosion,S-20,S-20,S-20,S-20,S,S-20,
+VSA,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-7,S-5,S-20,S
+VSA,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-7,S-5,S-20,S
+VSA,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-15,S,S-15,S
+CUPR,A_10_from_low,Gradual Rise,S-20,S-20,S-20,S-15,,S-7,S-3
+CUPR,B_20_from_low,Gradual Rise,S-20,S-20,S-20,S-15,S-10,S-10,S-7
+CUPR,C_20_in_1_3,Rapid Move,S-20,S-20,S-20,S-15,S-2,S-10,S-5
+CUPR,D_rapid_expansion,True Explosion,S-20,S-20,S-20,S-20,S-2,S-20,S-15
+SDOT,A_10_from_low,Rapid Move,S-20,S-20,S-20,S-15,,S-3,
+SDOT,B_20_from_low,Rapid Move,S-20,S-20,S-20,S-15,,S-3,
+SDOT,C_20_in_1_3,True Explosion,S-20,S,S,S-20,S-20,S-7,S
+SDOT,D_rapid_expansion,True Explosion,S-20,S,S,S-20,S-20,S-7,S
+RPGL,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-5,S-20,S-20
+RPGL,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-20,,S-20,S-20
+RPGL,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-15,S-20,S-20,S
+RPGL,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-15,S-20,S-20,S
+RPGL,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-15,S-20,S-20,S
+HKIT,A_10_from_low,No Significant Move,S-20,S,S,S-10,S-1,S-20,S
+HKIT,B_20_from_low,No Significant Move,S-20,S,S,S-10,S-1,S-20,S
+HKIT,C_20_in_1_3,True Explosion,S-20,S-7,S-7,S-7,S-7,S-20,S-7
+HKIT,D_rapid_expansion,True Explosion,S-20,S-7,S-7,S-7,S-7,S-20,S-7
+SLXN,A_10_from_low,No Significant Move,S-20,S-10,S-5,S-10,S-10,S-10,S
+SLXN,B_20_from_low,No Significant Move,S-20,S-10,S-5,S-10,S-10,S-10,S
+SLXN,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S-5,S-20,
+CDTG,A_10_from_low,True Explosion,S-20,S-20,S-20,S-15,S-15,S-10,S-10
+CDTG,B_20_from_low,True Explosion,S-20,S-20,S-20,S-15,S-15,S-10,S-10
+CDTG,C_20_in_1_3,Rapid Move,S-20,S-20,S-20,S-20,S-10,S-20,S
+CDTG,D_rapid_expansion,Rapid Move,S-20,S-20,S-20,S-20,S-10,S-20,S
+DAIC,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S,S-20,S-20
+DAIC,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S,S-20,S-20
+DAIC,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-15,,S-7,S
+DAIC,D_rapid_expansion,True Explosion,S-20,S-20,S-20,S-15,S-5,S-20,S
+ELOX,A_10_from_low,Temporary Spike,,,,,,,
+ELOX,B_20_from_low,Temporary Spike,,,,,,,
+ELOX,C_20_in_1_3,Temporary Spike,,,,,,S-1,
+ELOX,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-15,S,S-15,S-15
+HODO,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-5,S-20,S-20
+HODO,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-10,,
+HODO,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,,,
+JDZG,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-10,S-20,S-15
+JDZG,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-10,S-20,S-15
+JDZG,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-10,S-7,,
+JDZG,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-7,S-10,,
+SBFM,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+SBFM,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-15,S-20,S-20
+SCYX,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-15,S-20,S-5,
+SCYX,B_20_from_low,No Significant Move,S-20,S-20,S-3,S-7,S-10,S-7,S-1
+SCYX,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+SCYX,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+SCYX,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+SMX,A_10_from_low,No Significant Move,S-20,S-10,S-10,S-20,,S-20,S-10
+SMX,B_20_from_low,No Significant Move,S-20,S-15,S-15,S-15,,S-20,S-15
+SMX,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-7,,S-20,S-2
+SMX,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S,S-15,S-7
+SMX,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-20,S,S-15,S-7
+ZOOZ,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S,S-20,S-5
+ZOOZ,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-7,S-20,S-15
+ZOOZ,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-15,S-7,S-20,S-20
+ZOOZ,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S-10,S-20,S-20
+ZOOZ,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S-10,S-20,S-20
+PRHI,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-15,S-20,S-20
+PRHI,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-15,S-20,S-20
+PRHI,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-7,S,S-20,S-20
+PRHI,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-15,S-10,S-20,S-20
+PRHI,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-15,S-10,S-20,S-20
+WYHG,A_10_from_low,Gradual Rise,S-20,S-20,S-20,S-15,,S-20,S-20
+WYHG,B_20_from_low,Gradual Rise,S-20,S-20,S-20,S-7,S,S-20,S-20
+WYHG,C_20_in_1_3,True Explosion,S-20,S-20,S-20,S-20,S-3,S-20,S-20
+WYHG,D_rapid_expansion,True Explosion,S-20,S-20,S-20,S-20,S-3,S-20,S-20
+WYHG,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-15,S,S,S-15
+PW,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-7,S-20,S-5,S-5
+PW,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-15,S-20,S-7,S-7
+PW,C_20_in_1_3,No Significant Move,S-20,S-20,S-15,S-15,S-15,S-10,S-7
+SILO,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-2,S-3,S-5
+SILO,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-2,S-3,S-5
+SILO,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S-7,S-20,S-20
+ICCM,A_10_from_low,Rapid Move,S-20,S-20,S-20,S-10,S-10,S-20,
+ICCM,B_20_from_low,Rapid Move,S-20,S-20,S-20,S-10,S-10,S-20,
+ICCM,C_20_in_1_3,Temporary Spike,S-20,S-20,S-15,S-20,S-20,S-20,S
+ICCM,D_rapid_expansion,Temporary Spike,S-20,S-20,S-15,S-20,S-20,S-20,S
+WXM,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-15,S-15,S-15
+WXM,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-15,S-15,S-15
+WXM,C_20_in_1_3,True Explosion,S-20,S-20,S-20,S-15,S,S-10,S-10
+WXM,D_rapid_expansion,True Explosion,S-20,S-20,S-20,S-15,S,S-10,S-10
+WXM,E_base_breakout,True Explosion,S-20,S-20,S-20,S-15,S,S-10,S-10
+CETX,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-3,S-10,S-10
+CETX,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-15,S-15,S-10
+SMSI,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-10,S-3,S-7,S-20
+SMSI,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-10,S-3,S-7,S-20
+SMSI,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-10,S-3,S-7,S-20
+SMSI,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-10,S-3,S-7,S-20
+CDLX,A_10_from_low,No Significant Move,S-20,S-20,S-10,S-10,S-20,S-10,
+CDLX,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-5,S-10,
+FEMY,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-15,,S-15,
+FEMY,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-7,,S-20,
+FEMY,C_20_in_1_3,No Significant Move,S-20,S-20,S-10,S-20,S,S-10,S
+FEMY,D_rapid_expansion,No Significant Move,S-20,S-20,S-10,S-20,S,S-10,S
+HUBC,A_10_from_low,Temporary Spike,S-20,S-20,S-7,S-7,S-20,S-20,S-7
+HUBC,B_20_from_low,Temporary Spike,S-20,S-20,S-7,S-7,S-20,S-20,S-7
+HUBC,C_20_in_1_3,No Significant Move,S-20,S-20,S-10,S-10,S-10,S-20,S-10
+KIDZ,A_10_from_low,No Significant Move,S-20,S-20,,S-10,S-10,S-20,
+KIDZ,B_20_from_low,No Significant Move,S-20,S-20,,S-2,S-15,S-20,
+KIDZ,C_20_in_1_3,No Significant Move,S-20,S-20,,S-2,S-15,S-20,
+KIDZ,D_rapid_expansion,No Significant Move,S-20,S-20,,S-2,S-15,S-20,
+ZCMD,A_10_from_low,No Significant Move,S-20,S-20,S-10,S-15,S-20,,
+ZCMD,B_20_from_low,No Significant Move,S-20,S-20,S-10,S-15,S-20,,
+ZCMD,C_20_in_1_3,Gradual Rise,,,,S-10,S-20,S-10,S
+ZCMD,D_rapid_expansion,Gradual Rise,,,,S-10,S-20,S-10,S
+OPAD,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-10,,S-10,S-10
+OPAD,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-10,,S-10,S-10
+OPAD,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-15,S-3,,S-20
+GMM,A_10_from_low,Gradual Rise,S-20,S-20,S-20,S-20,S-20,S-15,S-15
+GMM,B_20_from_low,Gradual Rise,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+GMM,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-20,S-15,S-20,S-20
+GMM,D_rapid_expansion,No Significant Move,S-20,S,S,S-20,S-1,S-15,S
+SHPH,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-15,S-7,,
+SHPH,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-15,S-7,,
+SHPH,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-7,S-1,S-10,S
+SHPH,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-7,S-1,S-10,S
+SHPH,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-7,S-1,S-10,S
+AERT,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-5,S-20,S-20
+AERT,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-5,S-20,S-20
+AERT,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S-5,S-20,S-20
+AIFA,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-15,,S-15,S-15
+AIFA,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,,S-15,S-20
+AIFA,C_20_in_1_3,True Explosion,S-20,S-20,S-20,S-20,S,S-15,S
+AIFA,D_rapid_expansion,True Explosion,S-20,S-20,S-20,S-20,S,S-15,S
+AIFA,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-20,S-1,S-15,S-1
+XXII,A_10_from_low,No Significant Move,S-20,,,S-15,S-10,S-20,
+XXII,B_20_from_low,No Significant Move,S-10,S-10,S,S-10,,S-20,S-2
+AMOD,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-5,S-20,S-15
+AMOD,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-5,S-10,S-20,S-20
+AMOD,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-15,S,S-20,S-2
+AMOD,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-15,S,S-20,S-2
+AMOD,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-15,S,S-20,S-2
+AVX,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-1,S-20,S-20
+AVX,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-7,S-20,S-20
+AVX,C_20_in_1_3,No Significant Move,S-20,S-20,S-10,S-20,S-7,S-10,S-10
+AVX,D_rapid_expansion,No Significant Move,S-20,S-20,S-10,S-20,S-7,S-10,S-10
+AVX,E_base_breakout,No Significant Move,S-20,S-20,S-10,S-20,S-7,S-10,S-10
+TDIC,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-5,S,S-20,
+TDIC,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-5,S,S-20,
+AIFU,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-10,S-5,S-20,S-20
+AIFU,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-7,S-3,S-3,S-1
+AIFU,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-20,S-10,S-15,S-10
+AIFU,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-20,S-10,S-15,S-10
+CREG,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+CREG,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-10,S-1,S-20,
+CREG,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-1,,S-20,
+UPLD,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-15,S-20,S-20
+UPLD,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-10,S-20,S-20
+UPLD,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-20,S-1,S-20,S-15
+UPLD,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S-5,S-20,S-20
+UPLD,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S-5,S-20,S-20
+VMAR,A_10_from_low,No Significant Move,S-20,S,,S-7,S-10,S-20,
+VMAR,B_20_from_low,No Significant Move,S-20,S,,S-7,S-10,S-20,
+VMAR,C_20_in_1_3,Gradual Rise,S-20,S-1,,S-15,S-20,S-20,
+VMAR,D_rapid_expansion,Gradual Rise,S-20,S-1,,S-15,S-20,S-20,
+VMAR,E_base_breakout,No Significant Move,S-20,S-15,S-7,S-20,S-15,S-20,S-7
+WOK,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-7,S-20,S-5,
+WOK,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-7,S-20,S-5,
+WOK,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-20,S,S-20,S-5
+BMGL,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-15,S-10,S-5,S-3
+BMGL,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-10,S-10
+BMGL,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-10,S-10
+BMGL,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-10,S-10
+BMGL,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-20,S-10,S-20,S
+BOXL,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-10,S-20,S-15
+BOXL,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-10,S-20,S-15
+BOXL,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S-3,S-20,S-20
+BOXL,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-7,S-7,S-3,S
+BOXL,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-7,S-7,S-3,S
+FXHO,A_10_from_low,Rapid Move,S-20,S-20,S-15,S-20,,S-20,S-15
+FXHO,B_20_from_low,Rapid Move,S-20,S-20,S-20,S-20,S-15,S-20,S-15
+FXHO,C_20_in_1_3,True Explosion,S-20,S-20,S-20,S-20,S-15,S-20,S-15
+FXHO,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-7,S-15,S-20,S-20
+LABT,A_10_from_low,Gradual Rise,,,,S-20,S-3,S-15,S-5
+LABT,B_20_from_low,Rapid Move,,,,S-20,S-10,S-20,S-15
+LABT,C_20_in_1_3,No Significant Move,S,S,,S-20,S-20,S-20,S
+LABT,D_rapid_expansion,No Significant Move,S,S,,S-20,S-20,S-20,S
+LABT,E_base_breakout,No Significant Move,S-20,S-20,S-15,S-20,S-5,S-20,S-15
+LHSW,A_10_from_low,Rapid Move,S-20,S-20,S-20,S-7,S-15,,
+LHSW,B_20_from_low,True Explosion,S-20,S-20,S-20,S-20,S-20,,
+LHSW,C_20_in_1_3,True Explosion,S-20,S-20,S-20,S-20,S-20,,
+LHSW,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-15,S-7,S-1,S
+LHSW,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-20,S-3,S-15,S-10
+POM,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-1,S-10,S-7
+POM,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-10,S-5,S-15,
+POM,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-1,S-7,S-20,
+POM,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S-15,S-20,S
+WLDS,A_10_from_low,No Significant Move,S-20,S-20,S-15,S-15,S-15,S-15,S-15
+WLDS,B_20_from_low,No Significant Move,S-20,S-20,S-15,S-15,S-15,S-15,S-15
+WLDS,C_20_in_1_3,True Explosion,S-20,S-20,S-20,S-15,S,S-10,S
+WLDS,D_rapid_expansion,True Explosion,S-20,S-20,S-20,S-15,S,S-10,S
+WLDS,E_base_breakout,True Explosion,S-20,S-20,S-20,S-15,S,S-10,S
+FCUV,A_10_from_low,True Explosion,S-20,S-20,S-20,S-20,S-10,S-20,S-7
+FCUV,B_20_from_low,True Explosion,S-20,S-20,S-20,S-20,S-10,S-20,S-7
+FCUV,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-5,S,S-20,S-20
+FCUV,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-5,S,S-20,S-20
+ILLR,A_10_from_low,True Explosion,S-20,S-20,S-20,S-20,S-1,S-15,
+ILLR,B_20_from_low,True Explosion,S-20,S-20,S-20,S-10,S-2,S-10,S-10
+ILLR,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S-3,S-20,S-20
+ILLR,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S-3,S-20,S-20
+YYGH,A_10_from_low,No Significant Move,S-20,,,S-15,S-20,S-20,
+YYGH,B_20_from_low,Temporary Spike,S-20,S-7,,S-15,S-20,S-15,
+YYGH,C_20_in_1_3,No Significant Move,S-20,,,S-20,S-20,S-20,
+YYGH,D_rapid_expansion,No Significant Move,S-20,S-20,S-10,S-20,S-10,S-20,S-10
+YYGH,E_base_breakout,No Significant Move,S-20,S-20,S-10,S-20,S-10,S-20,S-10
+AMIX,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-2,S-20,S-20
+AMIX,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-10,S-7,S-20,S-20
+AMIX,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-10,S-7,S-20,S-20
+AMIX,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-10,S-7,S-20,S-20
+DD,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-20,S-2,S-20,S-10
+DD,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-3,S-10,S-10
+NAMI,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-15,S-20,
+NAMI,B_20_from_low,Gradual Rise,S-20,S-20,S-20,S-20,S-5,S-20,
+NAMI,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S-1,S-20,S
+NAMI,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S-1,S-20,S
+NUWE,A_10_from_low,Gradual Rise,,,,S-3,S-20,S-7,
+NUWE,B_20_from_low,No Significant Move,S-7,S,S,S-20,S-5,S-20,S
+NUWE,C_20_in_1_3,No Significant Move,S-7,S,S,S-20,S-5,S-20,S
+NUWE,D_rapid_expansion,No Significant Move,S-7,S,S,S-20,S-5,S-20,S
+RUBI,A_10_from_low,No Significant Move,S-10,,,S-15,S-10,S-20,
+RUBI,B_20_from_low,No Significant Move,S-10,,,S-15,S-10,S-20,
+VRAX,A_10_from_low,Rapid Move,S-20,S-20,S-20,S-15,S,S-20,S-20
+VRAX,B_20_from_low,Rapid Move,S-20,S-20,S-20,S-20,S-3,,S-20
+VRAX,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-7,S-7,S,S
+VRAX,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-7,S-7,S,S
+VRAX,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-10,S,S-20,S-20
+GDC,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-7,S-20,
+GDC,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-15,S-20,
+GDC,E_base_breakout,Temporary Spike,S-20,S-20,,S-20,S-20,S-20,
+GDC,C_20_in_1_3,Gradual Rise,S-20,S-20,S,S-20,,S-20,S-5
+GIBO,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-15,S,S-20,S-7
+GIBO,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-15,S,S-20,S-7
+GIBO,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-15,S-15,S-20,S-15
+GIBO,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-15,S-15,S-20,S-15
+HON,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-7,,S-20,S-20
+HON,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-7,,S-20,S-20
+MNDR,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-10,,
+MNDR,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-10,,
+MNDR,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S-5,S-20,
+MNDR,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S-5,S-20,
+PAVS,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-15,S-20,
+PAVS,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-15,S-20,
+PAVS,C_20_in_1_3,Temporary Spike,S-20,,,S-20,S,S-20,S
+PAVS,D_rapid_expansion,Temporary Spike,S-20,,,S-20,S,S-20,S
+ZCMD,A_10_from_low,Rapid Move,,,,S-7,S-20,S-7,
+ZCMD,B_20_from_low,Rapid Move,,,,S-7,S-20,S-7,
+ZCMD,C_20_in_1_3,Gradual Rise,,,,S-10,S-20,S-10,S
+ZCMD,D_rapid_expansion,Gradual Rise,,,,S-10,S-20,S-10,S
+HCWB,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-10,,,
+HCWB,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-15,S-7,S,
+HCWB,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-15,S-1,S-1,
+HCWB,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-15,S-2,S-2,
+JBDI,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S,S-15,S-20
+JBDI,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S,S-20,S-20
+JBDI,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-15,S-3,S-20,S-15
+QNCX,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-7,S-1,S-20,
+QNCX,B_20_from_low,Gradual Rise,S-20,S-20,S-20,S-15,S-7,S-15,S
+QNCX,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-15,S-20,S-20,S-10
+QNCX,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-15,S-20,S-20,S-10
+QNCX,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-15,S-20,S-20,S-10
+TRNR,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,,S-15,S
+TRNR,B_20_from_low,Temporary Spike,S-20,S-20,S-15,S-15,S-2,S-15,
+TRNR,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-20,,S-15,S-7
+ALIT,A_10_from_low,Rapid Move,S-20,S-20,S-20,S-5,S-10,S-20,S
+ALIT,B_20_from_low,Rapid Move,S-20,S-20,S-20,S-5,S-10,S-20,S
+ALIT,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-15,,S-3,S-3
+MQ,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,,S-10,S-10
+MQ,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,,S-20,S-20
+RMTI,A_10_from_low,Temporary Spike,S-20,S-20,S-15,S-15,S-20,S-10,
+RMTI,B_20_from_low,Temporary Spike,S-20,S-20,S-10,S-10,S-5,S-10,
+RMTI,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-15,S-5,S-20,S-5
+GMEX,A_10_from_low,No Significant Move,S-20,S-20,,S-15,S-1,S-20,
+GMEX,B_20_from_low,No Significant Move,S-20,S-20,,S-15,S-15,S-20,
+GMEX,C_20_in_1_3,No Significant Move,S-20,S-20,,S-15,S-15,S-20,
+GMEX,D_rapid_expansion,No Significant Move,S-20,S-20,,S-15,S-15,S-20,
+ABTC,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-10,S-10,,
+ABTC,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-7,S-10,S,
+ABTC,E_base_breakout,Temporary Spike,S-15,S-10,S-10,S-20,,S-10,S-5
+CRIS,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-15,S-7,S-7
+CRIS,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-2,S-15,
+HKIT,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-20,S-20,
+HKIT,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-15,,S-20,
+HKIT,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S-3,S-20,S
+HKIT,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S-3,S-20,S
+JZ,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-3,S-7,S-5,
+JZ,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-5,S-1,S-5,
+JZ,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-7,S-10,S-7,
+JZ,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-7,S-10,S-7,
+NIPG,A_10_from_low,Gradual Rise,S-20,S-20,S-15,S-20,S-20,S-15,S-15
+NIPG,B_20_from_low,Gradual Rise,S-20,S-20,S-15,S-20,S-20,S-15,S-15
+NIPG,C_20_in_1_3,True Explosion,S-20,S-20,S-10,S-10,S-20,S-10,S
+NIPG,D_rapid_expansion,True Explosion,S-20,S-20,S-10,S-10,S-20,S-10,S
+NTCL,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-15,S-20,S-20
+NTCL,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-15,S-20,S-20
+NVVE,A_10_from_low,True Explosion,S-20,S-20,S-20,S-20,S-3,S-20,S-20
+NVVE,B_20_from_low,True Explosion,S-20,S-20,S-20,S-20,S-3,S-20,S-20
+NVVE,C_20_in_1_3,True Explosion,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+NVVE,D_rapid_expansion,True Explosion,S-20,S-20,S-20,S-20,S-7,S-20,S-7
+SNAL,A_10_from_low,Rapid Move,S-20,S-20,S-20,S-15,S,,
+SNAL,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-7,S-1,S,S
+SNAL,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-10,S-3,S-2,S-2
+SNAL,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-10,S-3,S-2,S-2
+SRXH,A_10_from_low,True Explosion,S-20,S-20,S-20,S-20,S-10,S-20,S-20
+SRXH,B_20_from_low,True Explosion,S-20,S-20,S-20,S-20,S-10,S-20,S-20
+SRXH,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-15,S-15,S-20,S-15
+SRXH,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-15,S-15,S-20,S-15
+CGTL,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-15,,S-20,S-5
+CGTL,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-20,,S-20,
+CGTL,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S-1,S-20,S-1
+NCRA,A_10_from_low,Gradual Rise,S-20,S-20,S-20,S-15,S-20,S-5,
+NCRA,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-15,S-20,S
+NCRA,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S-15,S-20,S
+NCRA,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S-15,S-20,S
+NCRA,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-20,S-15,S-20,S
+PFSA,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-20,
+PFSA,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-20,
+PFSA,E_base_breakout,True Explosion,S-20,S-20,S,S-20,S-15,S-20,
+PFSA,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S-1,S-20,S
+PFSA,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S-1,S-20,S
+ENLV,A_10_from_low,No Significant Move,S-20,S-20,S-20,S,S-20,,
+ENLV,B_20_from_low,No Significant Move,S-20,S-20,,S-7,S-15,,
+RBNE,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,,S-20,
+RBNE,B_20_from_low,Temporary Spike,S-20,S-10,,S-20,S-2,S-10,
+RBNE,C_20_in_1_3,No Significant Move,S-20,S-15,S,S-20,S-5,S-15,
+RBNE,D_rapid_expansion,No Significant Move,S-20,S-15,S,S-20,S-5,S-15,
+GIPR,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S,S-7,
+GIPR,B_20_from_low,Rapid Move,S-20,S-20,S-20,S-20,S-15,S-20,
+GIPR,C_20_in_1_3,No Significant Move,S-20,S-15,S-10,S-15,S,S-15,S
+GIPR,D_rapid_expansion,No Significant Move,S-20,S-15,S-10,S-15,S,S-15,S
+YMAT,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-15,,
+YMAT,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-15,,
+YMAT,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S-20,S,
+BIYA,A_10_from_low,Rapid Move,S-20,S-20,S-20,S-20,S-3,S-20,S-20
+BIYA,B_20_from_low,True Explosion,S-20,S-20,S-20,S-15,S-7,S-10,S-10
+BIYA,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-5,S-7,S-15,S
+BIYA,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-5,S-7,S-15,S
+CCHH,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+CCHH,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-5,,S-15,S-15
+CPOP,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+CPOP,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-5,S-20,S-20,
+EDBL,A_10_from_low,Rapid Move,S-20,S-20,S-20,S-15,S-10,S-20,
+EDBL,B_20_from_low,Rapid Move,S-20,S-20,S-20,S-20,,S-20,
+FTFT,A_10_from_low,No Significant Move,S-20,S-20,S-15,S-15,S-7,S-10,
+FTFT,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-7,S-20,S-20,
+PSQH,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-3,S-7,
+PSQH,B_20_from_low,Gradual Rise,S-20,S-20,S-20,S-20,S-10,S-15,
+PSQH,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-20,S-10,S-20,
+PSQH,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-20,S-10,S-20,
+PWCM,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-1,,
+PWCM,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-20,,
+PWCM,C_20_in_1_3,No Significant Move,S-20,S-10,S,S-7,S-20,S-10,
+PWCM,D_rapid_expansion,No Significant Move,S-20,S-10,S,S-7,S-20,S-10,
+PWCM,E_base_breakout,No Significant Move,S-20,S-10,S,S-7,S-20,S-10,
+XAIR,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-15,S-15,S-15
+XAIR,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-10,S-15,S-20,S-20
+XAIR,C_20_in_1_3,No Significant Move,S-20,S-20,S-10,S-10,,S-7,S-7
+YHC,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-7,S-15,S-15
+YHC,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-7,S-15,S-15
+YHC,C_20_in_1_3,No Significant Move,S-20,,,S-7,S-20,S-7,
+JEM,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+JEM,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-15,S-15,S-20,S-20
+JEM,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-15,S-1,S-20,S-20
+JEM,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-15,S-1,S-20,S-20
+JEM,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-20,S-1,S-15,S
+LGHL,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-3,,
+LGHL,B_20_from_low,True Explosion,S-20,S-20,,S-15,S-2,S-2,
+YXT,A_10_from_low,Gradual Rise,S-20,S-20,S-20,S-10,,S-10,
+YXT,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-5,S-20,S
+YXT,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-15,S-5,S-20,S
+YXT,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-15,S-5,S-20,S
+GNPX,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-3,S-20,S-10
+GNPX,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-3,S-20,S-10
+VIVK,A_10_from_low,True Explosion,S-20,S-20,,S-20,S-1,S-15,
+VIVK,B_20_from_low,Temporary Spike,S-20,S-5,,S-5,S-10,S-15,
+VIVK,C_20_in_1_3,True Explosion,S-20,S-7,,S-10,S-7,S-20,
+VIVK,D_rapid_expansion,True Explosion,S-20,S-7,,S-10,S-7,S-20,
+BANL,A_10_from_low,Gradual Rise,S-20,S-20,S-20,S-20,S-5,S-20,S-20
+BANL,B_20_from_low,Gradual Rise,S-20,S-20,S-20,S-10,S-3,S-20,S-10
+BANL,C_20_in_1_3,True Explosion,S-20,S-20,S-20,S-15,S,S-20,S-20
+BANL,D_rapid_expansion,True Explosion,S-20,S-20,S-20,S-15,S,S-20,S-20
+BANL,E_base_breakout,True Explosion,S-20,S-20,S-20,S-15,S,S-20,S-20
+CCG,A_10_from_low,Temporary Spike,S-20,S-20,S-15,S-20,S-15,S-15,S-7
+CCG,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-20,S-15,S-15
+CCG,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,,S-20,S-20
+CCG,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S,S-20,S-20
+CCG,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-20,S,S-20,S-20
+CDT,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+CDT,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+CDT,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-10,S-3,S-20,S
+CDT,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-10,S-3,S-20,S
+CIIT,A_10_from_low,No Significant Move,S-20,S-20,S-20,,,S-3,
+CIIT,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-1,
+DFNS,A_10_from_low,Rapid Move,S-20,S-20,,S-15,S-7,S-15,
+DFNS,B_20_from_low,Rapid Move,S-20,S-20,,S-15,S-7,S-15,
+DFNS,C_20_in_1_3,True Explosion,S-20,S-20,S,S-3,S-7,S-20,S
+DFNS,D_rapid_expansion,True Explosion,S-20,S-20,S,S-3,S-7,S-20,S
+NIKI,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-10,S-2,S-5,S-3
+NIKI,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-10,S-2,S-5,S-3
+NIKI,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S-10,S-7,S-7
+PRPL,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-10,S-20,S-20
+PRPL,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-10,S-20,S-20,
+PRPL,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-15,S-7,S-20,S
+TOMZ,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-5,S-15,S-15
+TOMZ,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-7,S-15,S-15
+TOMZ,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,,S-20,S-20
+CANG,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-10,S,S-10,
+CANG,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-10,S,S-10,
+CANG,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-15,S-15,S-20,S-1
+CANG,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-15,S-15,S-20,S-1
+CANG,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-15,S-15,S-20,S-1
+XPON,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-1,S-20,
+XPON,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-1,S-20,
+XPON,C_20_in_1_3,Rapid Move,S-20,S-15,S-15,S-15,S-20,S-10,S-2
+XPON,D_rapid_expansion,Rapid Move,S-20,S-15,S-15,S-15,S-20,S-10,S-2
+XPON,E_base_breakout,Rapid Move,S-20,S-15,S-15,S-15,S-20,S-10,S-2
+MSS,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-15,S,S-10,
+MSS,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-15,S,S-10,
+MSS,E_base_breakout,True Explosion,S-20,S-20,S-20,S-10,S,S-7,
+MSS,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-20,S-20,S-20,S
+MSS,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-20,S-20,S-20,S
+APUS,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-20,S-7,
+APUS,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-10,S
+APUS,C_20_in_1_3,No Significant Move,S-20,S-15,S-15,S-7,S-20,S-20,
+APUS,D_rapid_expansion,No Significant Move,S-20,S-15,S-15,S-7,S-20,S-20,
+DBGI,A_10_from_low,Rapid Move,S-20,S-20,S-20,S-15,S-5,S-20,
+DBGI,B_20_from_low,Rapid Move,S-20,S-20,S-20,S-15,S-5,S-20,
+DBGI,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-20,S-10,S-20,
+DBGI,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-20,S-10,S-20,
+FFAI,A_10_from_low,True Explosion,S-20,S-20,S-20,S-20,S-10,,
+FFAI,B_20_from_low,True Explosion,S-20,S-20,S-20,S-20,S-10,,
+FFAI,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-1,S-15,,
+FFAI,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-1,S-15,,
+TRIB,A_10_from_low,Temporary Spike,S-20,S-15,S-15,S-20,,S-10,
+TRIB,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-20,S-10,S
+TRIB,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S-1,S-10,S-1
+TRIB,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-20,S-1,S-10,S-1
+AMZE,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-20,S-10,S-20,
+AMZE,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-10,S-3,,
+AMZE,E_base_breakout,No Significant Move,S-20,S-20,S-20,S-20,S-10,S-3,
+EDVA,A_10_from_low,Gradual Rise,S-20,S-20,S-20,S-15,S-15,S-15,S-15
+EDVA,B_20_from_low,Gradual Rise,S-20,S-20,S-20,S-15,S-15,S-15,S-15
+EDVA,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-5,S-5,S-20,S-1
+SGLY,A_10_from_low,Rapid Move,S-20,S-20,S-15,S-15,S-10,S-10,S
+SGLY,B_20_from_low,Rapid Move,S-20,S-20,S-7,S-7,S-10,S-5,S-1
+SGLY,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-20,S-15,S-15,S-5
+SGLY,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-20,S-15,S-15,S-5
+STKH,A_10_from_low,Rapid Move,S-20,S-15,S-3,S-15,S,S-15,S
+STKH,B_20_from_low,Rapid Move,S-20,S-15,S-3,S-15,S,S-15,S
+STKH,C_20_in_1_3,Rapid Move,S-20,S-15,S-5,S-20,S-10,S-15,S-2
+STKH,D_rapid_expansion,Rapid Move,S-20,S-15,S-5,S-20,S-10,S-15,S-2
+YARW,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-15,S-10,S-15,S-15
+YARW,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-15,S-10,S-15,S-15
+YARW,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+ZNB,A_10_from_low,Temporary Spike,S-20,S,,S-20,S-15,S-20,
+ZNB,B_20_from_low,Temporary Spike,S-20,S,,S-20,S-15,S-20,
+YAAS,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-15,S,S-15,S-7
+YAAS,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-15,S,S-15,S-7
+YAAS,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-20,S-7,S-20,S-20
+CLDI,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-7,S-7,S-20,S
+CLDI,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-7,S-7,S-20,S
+CSAI,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-10,S-20,S-20
+CSAI,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-5,S-20,S-20
+CSAI,C_20_in_1_3,Temporary Spike,S-20,S-20,S-20,S-20,S-3,S-20,S-20
+CSAI,D_rapid_expansion,Temporary Spike,S-20,S-20,S-20,S-20,S-3,S-20,S-20
+NEXR,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-10,S-3,S-20,
+NEXR,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-2,S-20,
+OFAL,A_10_from_low,Rapid Move,S-20,S-20,S-20,S-20,,S-20,
+OFAL,B_20_from_low,Rapid Move,S-20,S-20,S-20,S-20,,S-20,
+OFAL,C_20_in_1_3,Temporary Spike,S-20,S-20,S-7,S-15,S-2,S-20,S
+OFAL,D_rapid_expansion,Temporary Spike,S-20,S-20,S-7,S-15,S-2,S-20,S
+KWM,A_10_from_low,No Significant Move,S-20,S-20,S-7,S-20,S-10,S-15,
+KWM,B_20_from_low,No Significant Move,S-20,S-20,S-7,S-20,S-10,S-15,
+KWM,C_20_in_1_3,No Significant Move,S-20,S-15,S-15,S-15,S-20,S-20,S
+LBGJ,A_10_from_low,True Explosion,S-20,S-20,S-20,S-20,S-10,S-20,S-20
+LBGJ,B_20_from_low,True Explosion,S-20,S-20,S-20,S-20,S-10,S-20,S-20
+LEXX,A_10_from_low,Rapid Move,S-20,S-20,S-20,S-20,S-5,S-20,S-15
+LEXX,B_20_from_low,Rapid Move,S-20,S-20,S-20,S-10,S-10,S-20,S-15
+LEXX,C_20_in_1_3,Gradual Rise,S-20,S-20,S-20,S-7,S-20,S-20,S
+LEXX,D_rapid_expansion,Gradual Rise,S-20,S-20,S-20,S-7,S-20,S-20,S
+MVIS,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-5,S-5,S-20,S-20
+MVIS,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-15,S-15,S-20,S
+MVIS,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-15,S-15,S-20,S
+MVIS,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-15,S-15,S-20,S
+PMI,A_10_from_low,Gradual Rise,S-20,S-20,S-20,S-20,,S-20,
+PMI,B_20_from_low,Gradual Rise,S-20,S-20,S-20,S-20,,S-20,
+PMI,C_20_in_1_3,True Explosion,S-20,S-20,S-20,S-15,S-1,S-15,S
+PMI,D_rapid_expansion,True Explosion,S-20,S-20,S-20,S-15,S-1,S-15,S
+PMI,E_base_breakout,True Explosion,S-20,S-20,S-20,S-15,S-1,S-15,S
+SEGG,A_10_from_low,No Significant Move,S-20,S-20,S-20,S-10,S-3,S-15,
+SEGG,B_20_from_low,No Significant Move,S-20,S-20,S-20,S-15,,S-20,S
+SEGG,C_20_in_1_3,No Significant Move,S-20,S-20,S-10,S-15,S-20,S-15,S-7
+SEGG,D_rapid_expansion,No Significant Move,S-20,S-20,S-10,S-15,S-20,S-15,S-7
+SEGG,E_base_breakout,No Significant Move,S-20,S-20,S-10,S-15,S-20,S-15,S-7
+TOP,A_10_from_low,Temporary Spike,S-20,S-20,S-20,S-5,,S-20,S-20
+TOP,B_20_from_low,Temporary Spike,S-20,S-20,S-20,S-20,S-20,S-20,S-20
+TOP,E_base_breakout,Temporary Spike,S-20,S-20,S-20,S-10,,S-2,S-20
+TOP,C_20_in_1_3,No Significant Move,S-20,S-20,S-20,S-10,S,S-3,S-20
+TOP,D_rapid_expansion,No Significant Move,S-20,S-20,S-20,S-10,S,S-3,S-20
+WETO,A_10_from_low,Rapid Move,S-20,S-20,S-20,S-10,S-20,,
+WETO,B_20_from_low,Rapid Move,S-20,S-20,S-20,S-10,S-20,,
+WETO,C_20_in_1_3,True Explosion,S-20,S-20,S-20,S-20,S-15,S-3,
+WETO,D_rapid_expansion,True Explosion,S-20,S-20,S-20,S-20,S-15,S-3,
+AEMD,A_10_from_low,No Significant Move,S-20,S-15,S-2,S-20,S-2,S-15,S-2

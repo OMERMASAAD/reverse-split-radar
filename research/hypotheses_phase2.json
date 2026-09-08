@@ -1,0 +1,42 @@
+[
+  {
+    "id": "H1",
+    "name": "RSI Recovery + Volume Expansion",
+    "status": "hypothesis_only",
+    "features": [
+      "RSI recovery before signal",
+      "volume ratio expansion"
+    ],
+    "not_tested_as_strategy": true
+  },
+  {
+    "id": "H2",
+    "name": "RSI Rising + Base + Price Confirmation",
+    "status": "hypothesis_only",
+    "features": [
+      "positive RSI slope",
+      "base/consolidation",
+      "price expansion"
+    ],
+    "not_tested_as_strategy": true
+  },
+  {
+    "id": "H3",
+    "name": "Oversold Recovery + Price Confirmation",
+    "status": "hypothesis_only",
+    "features": [
+      "RSI recovery from below 30",
+      "positive price structure"
+    ],
+    "not_tested_as_strategy": true
+  },
+  {
+    "id": "H4",
+    "name": "Volume Leads RSI",
+    "status": "hypothesis_only",
+    "features": [
+      "first volume expansion precedes RSI recovery"
+    ],
+    "not_tested_as_strategy": true
+  }
+]
