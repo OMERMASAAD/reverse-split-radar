@@ -26,9 +26,11 @@ jobs:
         run: python reverse_split_source.py
       - name: Scan daily paper signals
         run: python daily_signal_scanner.py
+      - name: Run statistical strategy discovery
+        run: python research_engine.py
       - name: Validate monitor outputs
         run: |
-          python -m py_compile daily_signal_scanner.py reverse_split_source.py
+          python -m py_compile daily_signal_scanner.py reverse_split_source.py research_engine.py
           python - <<'PY'
           import json
           from pathlib import Path
@@ -39,12 +41,15 @@ jobs:
           assert "paper_entries" in x["summary"]
           assert "base_watches" in x["summary"]
           assert "أول 40 جلسة" in x["methodology"]["base"]
+          for name in ["research/statistical_analysis.json", "research/research_report.md", "research/enriched_cases.json"]:
+              p=Path(name)
+              assert p.exists() and p.stat().st_size > 0, name
           print(x["summary"])
           PY
       - name: Commit monitor data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add reverse_split_candidates.json daily_signals.json paper_signal_history.json
+          git add reverse_split_candidates.json daily_signals.json paper_signal_history.json research/
           git diff --cached --quiet || git commit -m "Update daily paper signal monitor"
           git push

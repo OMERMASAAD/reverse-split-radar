@@ -1,0 +1,147 @@
+{
+  "rule": "drawdown <= -30% AND volume_ratio_20d >= 1.05",
+  "all": {
+    "20": {
+      "trades": 134,
+      "wins": 47,
+      "win_rate": 0.35074626865671643,
+      "avg_return": -0.03973987833224932,
+      "median_return": -0.1543050819285149,
+      "profit_factor": 0.6441528706125336,
+      "max_holding_sessions": 12
+    },
+    "50": {
+      "trades": 138,
+      "wins": 19,
+      "win_rate": 0.13768115942028986,
+      "avg_return": -0.038486910596147166,
+      "median_return": -0.2,
+      "profit_factor": 0.7000191289419667,
+      "max_holding_sessions": 12
+    },
+    "70": {
+      "trades": 140,
+      "wins": 17,
+      "win_rate": 0.12142857142857143,
+      "avg_return": -0.021279552084836745,
+      "median_return": -0.2,
+      "profit_factor": 0.8350876308301535,
+      "max_holding_sessions": 12
+    },
+    "100": {
+      "trades": 140,
+      "wins": 13,
+      "win_rate": 0.09285714285714286,
+      "avg_return": -0.010976756584472698,
+      "median_return": -0.2,
+      "profit_factor": 0.9167750732670584,
+      "max_holding_sessions": 12
+    },
+    "200": {
+      "trades": 143,
+      "wins": 5,
+      "win_rate": 0.03496503496503497,
+      "avg_return": -0.0017226341349592638,
+      "median_return": -0.2,
+      "profit_factor": 0.9870790954004981,
+      "max_holding_sessions": 12
+    }
+  },
+  "train": {
+    "20": {
+      "trades": 92,
+      "wins": 39,
+      "win_rate": 0.42391304347826086,
+      "avg_return": -0.015709890742600766,
+      "median_return": -0.05741501719217196,
+      "profit_factor": 0.8463706197655423,
+      "max_holding_sessions": 12
+    },
+    "50": {
+      "trades": 96,
+      "wins": 16,
+      "win_rate": 0.16666666666666666,
+      "avg_return": -0.014938691585851899,
+      "median_return": -0.2,
+      "profit_factor": 0.8769241376089069,
+      "max_holding_sessions": 12
+    },
+    "70": {
+      "trades": 97,
+      "wins": 13,
+      "win_rate": 0.13402061855670103,
+      "avg_return": -0.004144928060315639,
+      "median_return": -0.2,
+      "profit_factor": 0.9665290369286507,
+      "max_holding_sessions": 12
+    },
+    "100": {
+      "trades": 98,
+      "wins": 11,
+      "win_rate": 0.11224489795918367,
+      "avg_return": 0.014697278303005502,
+      "median_return": -0.2,
+      "profit_factor": 1.116042264399894,
+      "max_holding_sessions": 12
+    },
+    "200": {
+      "trades": 100,
+      "wins": 3,
+      "win_rate": 0.03,
+      "avg_return": -0.008538727876292068,
+      "median_return": -0.2,
+      "profit_factor": 0.9343787772299748,
+      "max_holding_sessions": 12
+    }
+  },
+  "out_of_sample": {
+    "20": {
+      "trades": 42,
+      "wins": 8,
+      "win_rate": 0.19047619047619047,
+      "avg_return": -0.09237699400481285,
+      "median_return": -0.2,
+      "profit_factor": 0.30180194906574165,
+      "max_holding_sessions": 12
+    },
+    "50": {
+      "trades": 42,
+      "wins": 3,
+      "win_rate": 0.07142857142857142,
+      "avg_return": -0.09231141119110779,
+      "median_return": -0.2,
+      "profit_factor": 0.359459858790467,
+      "max_holding_sessions": 12
+    },
+    "70": {
+      "trades": 43,
+      "wins": 4,
+      "win_rate": 0.09302325581395349,
+      "avg_return": -0.05993207604712857,
+      "median_return": -0.2,
+      "profit_factor": 0.5742354993119194,
+      "max_holding_sessions": 12
+    },
+    "100": {
+      "trades": 42,
+      "wins": 2,
+      "win_rate": 0.047619047619047616,
+      "avg_return": -0.07088283798858856,
+      "median_return": -0.2,
+      "profit_factor": 0.5081506991530361,
+      "max_holding_sessions": 12
+    },
+    "200": {
+      "trades": 43,
+      "wins": 2,
+      "win_rate": 0.046511627906976744,
+      "avg_return": 0.014128746658837956,
+      "median_return": -0.2,
+      "profit_factor": 1.100372274136109,
+      "max_holding_sessions": 12
+    }
+  },
+  "eligible_trades": 143,
+  "train_cutoff": "2026-08-11",
+  "note": "Entry is next available session open. Stop/target ordering is conservative; this is not a broker fill simulation."
+}
