@@ -1,0 +1,86 @@
+# WALK-FORWARD REPORT — Phase 3
+
+Three chronological folds were run. Each fold selected from its training period and evaluated the next period without changing the rule after seeing its test period.
+
+```json
+[
+  {
+    "fold": 1,
+    "train_end": "2026-06-08",
+    "test_end": "2026-07-14",
+    "train_signals": 532,
+    "test_signals": 247,
+    "selected_hypothesis": "H2_RSI_Rising_Base_Price",
+    "test_metrics": {
+      "signals": 47,
+      "successes": 4,
+      "failures": 43,
+      "success_rate": 0.0851063829787234,
+      "success_rate_ci95_clustered": [
+        0.0,
+        0.19154083733699379
+      ],
+      "base_rate_all_rows": 0.17813765182186234,
+      "lift": 0.47775628626692457,
+      "odds_ratio": 0.37209302325581395,
+      "fisher_p_value": 0.088224633032736,
+      "relative_risk": 0.47775628626692457,
+      "median_return_20": 15.124155807139484,
+      "mean_return_20": 34.64775396891942,
+      "tickers": 36
+    }
+  },
+  {
+    "fold": 2,
+    "train_end": "2026-06-25",
+    "test_end": "2026-07-30",
+    "train_signals": 636,
+    "test_signals": 294,
+    "selected_hypothesis": "H2_RSI_Rising_Base_Price",
+    "test_metrics": {
+      "signals": 79,
+      "successes": 4,
+      "failures": 75,
+      "success_rate": 0.05063291139240506,
+      "success_rate_ci95_clustered": [
+        0.0,
+        0.12660399602879124
+      ],
+      "base_rate_all_rows": 0.15306122448979592,
+      "lift": 0.33080168776371305,
+      "odds_ratio": 0.22634146341463415,
+      "fisher_p_value": 0.0029682110184529806,
+      "relative_risk": 0.33080168776371305,
+      "median_return_20": 13.28527246946547,
+      "mean_return_20": 28.68950667964445,
+      "tickers": 47
+    }
+  },
+  {
+    "fold": 3,
+    "train_end": "2026-07-14",
+    "test_end": "2026-08-17",
+    "train_signals": 779,
+    "test_signals": 302,
+    "selected_hypothesis": "H2_RSI_Rising_Base_Price",
+    "test_metrics": {
+      "signals": 107,
+      "successes": 12,
+      "failures": 95,
+      "success_rate": 0.11214953271028037,
+      "success_rate_ci95_clustered": [
+        0.03091221493283349,
+        0.21482078853046596
+      ],
+      "base_rate_all_rows": 0.17218543046357615,
+      "lift": 0.6513299784327822,
+      "odds_ratio": 0.48947368421052634,
+      "fisher_p_value": 0.054998330705458016,
+      "relative_risk": 0.6513299784327822,
+      "median_return_20": 13.28527246946547,
+      "mean_return_20": 43.94216427733228,
+      "tickers": 59
+    }
+  }
+]
+```

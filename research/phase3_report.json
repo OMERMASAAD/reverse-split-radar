@@ -1,0 +1,482 @@
+{
+  "generated_at": "2026-09-09T20:20:32+00:00",
+  "status": "NO VALIDATED EDGE YET",
+  "universe": {
+    "phase2_rows": 1136,
+    "unique_tickers": 255,
+    "definitions": 5
+  },
+  "methods": {
+    "features_use_pre_signal_only": true,
+    "pre_signal_cutoff": "S-1 or earlier; S is excluded from Phase 3 rules",
+    "target_primary": "+70% within 10 sessions",
+    "clustered_bootstrap": "1,000 ticker-level resamples; deterministic seed 20260909",
+    "multiple_testing": "Benjamini-Hochberg FDR on feature/hypothesis p-values",
+    "temporal_split": "60% train / 20% validation / 20% OOS"
+  },
+  "definition_summary": [
+    {
+      "definition": "A_10_from_low",
+      "signals": 276,
+      "unique_tickers": 255,
+      "true_explosion": 18,
+      "rapid_move": 29,
+      "gradual_rise": 24,
+      "temporary_spike": 82,
+      "pump_and_fade": 0,
+      "no_significant_move": 123,
+      "median_sessions_to_20": 5.0,
+      "median_sessions_to_50": 10.0,
+      "median_sessions_to_70": 10.0,
+      "median_sessions_to_100": 10.0,
+      "median_sessions_to_200": 10.0
+    },
+    {
+      "definition": "B_20_from_low",
+      "signals": 273,
+      "unique_tickers": 252,
+      "true_explosion": 23,
+      "rapid_move": 24,
+      "gradual_rise": 24,
+      "temporary_spike": 85,
+      "pump_and_fade": 0,
+      "no_significant_move": 117,
+      "median_sessions_to_20": 5.0,
+      "median_sessions_to_50": 10.0,
+      "median_sessions_to_70": 10.0,
+      "median_sessions_to_100": 10.0,
+      "median_sessions_to_200": 10.0
+    },
+    {
+      "definition": "C_20_in_1_3",
+      "signals": 238,
+      "unique_tickers": 222,
+      "true_explosion": 27,
+      "rapid_move": 12,
+      "gradual_rise": 11,
+      "temporary_spike": 69,
+      "pump_and_fade": 0,
+      "no_significant_move": 119,
+      "median_sessions_to_20": 3.0,
+      "median_sessions_to_50": 5.0,
+      "median_sessions_to_70": 3.0,
+      "median_sessions_to_100": 3.0,
+      "median_sessions_to_200": 5.0
+    },
+    {
+      "definition": "D_rapid_expansion",
+      "signals": 202,
+      "unique_tickers": 187,
+      "true_explosion": 27,
+      "rapid_move": 8,
+      "gradual_rise": 11,
+      "temporary_spike": 53,
+      "pump_and_fade": 0,
+      "no_significant_move": 103,
+      "median_sessions_to_20": 3.0,
+      "median_sessions_to_50": 3.0,
+      "median_sessions_to_70": 3.0,
+      "median_sessions_to_100": 3.0,
+      "median_sessions_to_200": 5.0
+    },
+    {
+      "definition": "E_base_breakout",
+      "signals": 147,
+      "unique_tickers": 140,
+      "true_explosion": 17,
+      "rapid_move": 5,
+      "gradual_rise": 8,
+      "temporary_spike": 45,
+      "pump_and_fade": 0,
+      "no_significant_move": 72,
+      "median_sessions_to_20": 3.0,
+      "median_sessions_to_50": 3.0,
+      "median_sessions_to_70": 3.0,
+      "median_sessions_to_100": 5.0,
+      "median_sessions_to_200": 20.0
+    }
+  ],
+  "hypotheses": [
+    {
+      "hypothesis": "H1_RSI_Recovery_Volume_Expansion",
+      "thresholds": {
+        "base_max": 87.68852270184526
+      },
+      "p_value": 0.0038732731219138427,
+      "signals": 174,
+      "successes": 43,
+      "failures": 131,
+      "success_rate": 0.2471264367816092,
+      "success_rate_ci95_clustered": [
+        0.15957283644432843,
+        0.3433734939759036
+      ],
+      "base_rate_all_rows": 0.16725352112676056,
+      "lift": 1.4775559588626739,
+      "odds_ratio": 1.8198577140779977,
+      "fisher_p_value": 0.0038732731219138427,
+      "relative_risk": 1.4775559588626739,
+      "median_return_20": 33.551794521977115,
+      "mean_return_20": 89.9824629770139,
+      "tickers": 93,
+      "q_value_bh": 0.0077465462438276855,
+      "significant_bh_05": true
+    },
+    {
+      "hypothesis": "H2_RSI_Rising_Base_Price",
+      "thresholds": {
+        "base_max": 87.68852270184526
+      },
+      "p_value": 6.738781857978495e-05,
+      "signals": 282,
+      "successes": 26,
+      "failures": 256,
+      "success_rate": 0.09219858156028368,
+      "success_rate_ci95_clustered": [
+        0.050536367601095145,
+        0.1400140562248996
+      ],
+      "base_rate_all_rows": 0.16725352112676056,
+      "lift": 0.5512504665920119,
+      "odds_ratio": 0.42730564024390244,
+      "fisher_p_value": 6.738781857978495e-05,
+      "relative_risk": 0.5512504665920119,
+      "median_return_20": 14.285710115126982,
+      "mean_return_20": 44.2437922693213,
+      "tickers": 137,
+      "q_value_bh": 0.0002695512743191398,
+      "significant_bh_05": true
+    },
+    {
+      "hypothesis": "H3_Oversold_Recovery_Price",
+      "thresholds": {
+        "base_max": 87.68852270184526
+      },
+      "p_value": 0.4729405099008346,
+      "signals": 209,
+      "successes": 31,
+      "failures": 178,
+      "success_rate": 0.14832535885167464,
+      "success_rate_ci95_clustered": [
+        0.0828642117684922,
+        0.21782178217821782
+      ],
+      "base_rate_all_rows": 0.16725352112676056,
+      "lift": 0.8868295139763284,
+      "odds_ratio": 0.8412126351494594,
+      "fisher_p_value": 0.4729405099008346,
+      "relative_risk": 0.8868295139763284,
+      "median_return_20": 17.328520663488778,
+      "mean_return_20": 65.53840916770501,
+      "tickers": 105,
+      "q_value_bh": 0.6305873465344461,
+      "significant_bh_05": false
+    },
+    {
+      "hypothesis": "H4_Volume_Leads_RSI",
+      "thresholds": {
+        "base_max": 87.68852270184526
+      },
+      "p_value": 1.0,
+      "signals": 62,
+      "successes": 10,
+      "failures": 52,
+      "success_rate": 0.16129032258064516,
+      "success_rate_ci95_clustered": [
+        0.04542929292929293,
+        0.29411764705882354
+      ],
+      "base_rate_all_rows": 0.16725352112676056,
+      "lift": 0.9643463497453311,
+      "odds_ratio": 0.9551282051282052,
+      "fisher_p_value": 1.0,
+      "relative_risk": 0.9643463497453311,
+      "median_return_20": 17.74069208651646,
+      "mean_return_20": 52.916653180329796,
+      "tickers": 37,
+      "q_value_bh": 1.0,
+      "significant_bh_05": false
+    }
+  ],
+  "freeze": {
+    "cutoffs": {
+      "train_end": "2026-07-02",
+      "validation_end": "2026-07-29"
+    },
+    "counts": {
+      "train": 689,
+      "validation": 228,
+      "oos": 219
+    },
+    "discovery_hypotheses": [
+      {
+        "hypothesis": "H1_RSI_Recovery_Volume_Expansion",
+        "thresholds": {
+          "base_max": 94.9999916111983
+        },
+        "p_value": 0.0038732731219138427,
+        "signals": 174,
+        "successes": 43,
+        "failures": 131,
+        "success_rate": 0.2471264367816092,
+        "success_rate_ci95_clustered": [
+          0.15957283644432843,
+          0.3433734939759036
+        ],
+        "base_rate_all_rows": 0.16725352112676056,
+        "lift": 1.4775559588626739,
+        "odds_ratio": 1.8198577140779977,
+        "fisher_p_value": 0.0038732731219138427,
+        "relative_risk": 1.4775559588626739,
+        "median_return_20": 33.551794521977115,
+        "mean_return_20": 89.9824629770139,
+        "tickers": 93,
+        "q_value_bh": 0.0077465462438276855,
+        "significant_bh_05": true
+      },
+      {
+        "hypothesis": "H2_RSI_Rising_Base_Price",
+        "thresholds": {
+          "base_max": 94.9999916111983
+        },
+        "p_value": 0.00041628296910629047,
+        "signals": 300,
+        "successes": 31,
+        "failures": 269,
+        "success_rate": 0.10333333333333333,
+        "success_rate_ci95_clustered": [
+          0.06080811242552457,
+          0.15002697841726614
+        ],
+        "base_rate_all_rows": 0.16725352112676056,
+        "lift": 0.6178245614035087,
+        "odds_ratio": 0.49068293937481006,
+        "fisher_p_value": 0.00041628296910629047,
+        "relative_risk": 0.6178245614035087,
+        "median_return_20": 15.948979551123909,
+        "mean_return_20": 47.38958428278434,
+        "tickers": 144,
+        "q_value_bh": 0.0016651318764251619,
+        "significant_bh_05": true
+      },
+      {
+        "hypothesis": "H3_Oversold_Recovery_Price",
+        "thresholds": {
+          "base_max": 94.9999916111983
+        },
+        "p_value": 0.4729405099008346,
+        "signals": 209,
+        "successes": 31,
+        "failures": 178,
+        "success_rate": 0.14832535885167464,
+        "success_rate_ci95_clustered": [
+          0.0828642117684922,
+          0.21782178217821782
+        ],
+        "base_rate_all_rows": 0.16725352112676056,
+        "lift": 0.8868295139763284,
+        "odds_ratio": 0.8412126351494594,
+        "fisher_p_value": 0.4729405099008346,
+        "relative_risk": 0.8868295139763284,
+        "median_return_20": 17.328520663488778,
+        "mean_return_20": 65.53840916770501,
+        "tickers": 105,
+        "q_value_bh": 0.6305873465344461,
+        "significant_bh_05": false
+      },
+      {
+        "hypothesis": "H4_Volume_Leads_RSI",
+        "thresholds": {
+          "base_max": 94.9999916111983
+        },
+        "p_value": 1.0,
+        "signals": 62,
+        "successes": 10,
+        "failures": 52,
+        "success_rate": 0.16129032258064516,
+        "success_rate_ci95_clustered": [
+          0.04542929292929293,
+          0.29411764705882354
+        ],
+        "base_rate_all_rows": 0.16725352112676056,
+        "lift": 0.9643463497453311,
+        "odds_ratio": 0.9551282051282052,
+        "fisher_p_value": 1.0,
+        "relative_risk": 0.9643463497453311,
+        "median_return_20": 17.74069208651646,
+        "mean_return_20": 52.916653180329796,
+        "tickers": 37,
+        "q_value_bh": 1.0,
+        "significant_bh_05": false
+      }
+    ],
+    "selected_on_train_validation": {
+      "hypothesis": "H1_RSI_Recovery_Volume_Expansion",
+      "thresholds": {
+        "base_max": 90.90908685238199
+      },
+      "p_value": 0.0038732731219138427,
+      "signals": 174,
+      "successes": 43,
+      "failures": 131,
+      "success_rate": 0.2471264367816092,
+      "success_rate_ci95_clustered": [
+        0.15957283644432843,
+        0.3433734939759036
+      ],
+      "base_rate_all_rows": 0.16725352112676056,
+      "lift": 1.4775559588626739,
+      "odds_ratio": 1.8198577140779977,
+      "fisher_p_value": 0.0038732731219138427,
+      "relative_risk": 1.4775559588626739,
+      "median_return_20": 33.551794521977115,
+      "mean_return_20": 89.9824629770139,
+      "tickers": 93,
+      "q_value_bh": 0.0077465462438276855,
+      "significant_bh_05": true
+    },
+    "frozen_rule": "H1_RSI_Recovery_Volume_Expansion",
+    "train_metrics": {
+      "signals": 105,
+      "successes": 29,
+      "failures": 76,
+      "success_rate": 0.2761904761904762,
+      "success_rate_ci95_clustered": [
+        0.16662844036697247,
+        0.39475853094274144
+      ],
+      "base_rate_all_rows": 0.1741654571843251,
+      "lift": 1.585793650793651,
+      "odds_ratio": 2.0672353961827645,
+      "fisher_p_value": 0.004804809783033023,
+      "relative_risk": 1.585793650793651,
+      "median_return_20": 35.714279989950356,
+      "mean_return_20": 86.17660780666047,
+      "tickers": 59
+    },
+    "validation_metrics": {
+      "signals": 23,
+      "successes": 3,
+      "failures": 20,
+      "success_rate": 0.13043478260869565,
+      "success_rate_ci95_clustered": [
+        0.0,
+        0.3480590062111799
+      ],
+      "base_rate_all_rows": 0.14912280701754385,
+      "lift": 0.8746803069053709,
+      "odds_ratio": 0.8419354838709677,
+      "fisher_p_value": 1.0,
+      "relative_risk": 0.8746803069053709,
+      "median_return_20": 51.79487003925838,
+      "mean_return_20": 162.93036207324252,
+      "tickers": 13
+    },
+    "oos_metrics": {
+      "signals": 46,
+      "successes": 11,
+      "failures": 35,
+      "success_rate": 0.2391304347826087,
+      "success_rate_ci95_clustered": [
+        0.06059090909090909,
+        0.4313836898395722
+      ],
+      "base_rate_all_rows": 0.1643835616438356,
+      "lift": 1.4547101449275364,
+      "odds_ratio": 1.8605714285714285,
+      "fisher_p_value": 0.17708143522338474,
+      "relative_risk": 1.4547101449275364,
+      "median_return_20": 22.043008788608674,
+      "mean_return_20": 62.19579153514115,
+      "tickers": 29
+    },
+    "no_validated_edge": true
+  },
+  "walk_forward": [
+    {
+      "fold": 1,
+      "train_end": "2026-06-08",
+      "test_end": "2026-07-14",
+      "train_signals": 532,
+      "test_signals": 247,
+      "selected_hypothesis": "H2_RSI_Rising_Base_Price",
+      "test_metrics": {
+        "signals": 47,
+        "successes": 4,
+        "failures": 43,
+        "success_rate": 0.0851063829787234,
+        "success_rate_ci95_clustered": [
+          0.0,
+          0.19154083733699379
+        ],
+        "base_rate_all_rows": 0.17813765182186234,
+        "lift": 0.47775628626692457,
+        "odds_ratio": 0.37209302325581395,
+        "fisher_p_value": 0.088224633032736,
+        "relative_risk": 0.47775628626692457,
+        "median_return_20": 15.124155807139484,
+        "mean_return_20": 34.64775396891942,
+        "tickers": 36
+      }
+    },
+    {
+      "fold": 2,
+      "train_end": "2026-06-25",
+      "test_end": "2026-07-30",
+      "train_signals": 636,
+      "test_signals": 294,
+      "selected_hypothesis": "H2_RSI_Rising_Base_Price",
+      "test_metrics": {
+        "signals": 79,
+        "successes": 4,
+        "failures": 75,
+        "success_rate": 0.05063291139240506,
+        "success_rate_ci95_clustered": [
+          0.0,
+          0.12660399602879124
+        ],
+        "base_rate_all_rows": 0.15306122448979592,
+        "lift": 0.33080168776371305,
+        "odds_ratio": 0.22634146341463415,
+        "fisher_p_value": 0.0029682110184529806,
+        "relative_risk": 0.33080168776371305,
+        "median_return_20": 13.28527246946547,
+        "mean_return_20": 28.68950667964445,
+        "tickers": 47
+      }
+    },
+    {
+      "fold": 3,
+      "train_end": "2026-07-14",
+      "test_end": "2026-08-17",
+      "train_signals": 779,
+      "test_signals": 302,
+      "selected_hypothesis": "H2_RSI_Rising_Base_Price",
+      "test_metrics": {
+        "signals": 107,
+        "successes": 12,
+        "failures": 95,
+        "success_rate": 0.11214953271028037,
+        "success_rate_ci95_clustered": [
+          0.03091221493283349,
+          0.21482078853046596
+        ],
+        "base_rate_all_rows": 0.17218543046357615,
+        "lift": 0.6513299784327822,
+        "odds_ratio": 0.48947368421052634,
+        "fisher_p_value": 0.054998330705458016,
+        "relative_risk": 0.6513299784327822,
+        "median_return_20": 13.28527246946547,
+        "mean_return_20": 43.94216427733228,
+        "tickers": 59
+      }
+    }
+  ],
+  "limitations": [
+    "Phase 2 candidate dates are discovery event dates, not independently generated live entries.",
+    "The archive has no point-in-time historical Float, Short Interest, borrow, spread, or order-book data.",
+    "Outcome labels are high/low excursion labels from archived OHLCV; they are not guaranteed executable fills.",
+    "The available Phase 2 feature grid is S-20 through S-1; finer intraday timing is not available.",
+    "Repeated rows per ticker are clustered for confidence intervals, but event definitions can still overlap economically."
+  ]
+}

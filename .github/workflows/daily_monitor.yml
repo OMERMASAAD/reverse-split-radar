@@ -28,9 +28,11 @@ jobs:
         run: python daily_signal_scanner.py
       - name: Run statistical strategy discovery
         run: python research_engine.py
+      - name: Run Phase 3 hypothesis and OOS validation
+        run: python phase3_engine.py
       - name: Validate monitor outputs
         run: |
-          python -m py_compile daily_signal_scanner.py reverse_split_source.py research_engine.py
+          python -m py_compile daily_signal_scanner.py reverse_split_source.py research_engine.py phase3_engine.py
           python - <<'PY'
           import json
           from pathlib import Path
@@ -44,12 +46,19 @@ jobs:
           for name in ["research/statistical_analysis.json", "research/research_report.md", "research/enriched_cases.json"]:
               p=Path(name)
               assert p.exists() and p.stat().st_size > 0, name
+          for name in ["research/PHASE3_REPORT.md", "research/STRATEGY_FREEZE.md", "research/OOS_REPORT.md", "research/WALK_FORWARD_REPORT.md", "research/FINAL_BACKTEST_REPORT.md", "research/HYPOTHESIS_RESULTS.csv", "research/FEATURE_STATISTICS.csv", "research/OOS_RESULTS.csv", "research/WALK_FORWARD_RESULTS.csv", "research/FINAL_SIGNALS.csv"]:
+              p=Path(name)
+              assert p.exists() and p.stat().st_size > 0, name
+          phase3=json.loads(Path("research/phase3_report.json").read_text(encoding="utf-8"))
+          assert phase3["status"] == "NO VALIDATED EDGE YET"
+          assert phase3["methods"]["features_use_pre_signal_only"] is True
+          print("phase3:", phase3["status"], phase3["freeze"]["frozen_rule"])
           print(x["summary"])
           PY
       - name: Commit monitor data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add reverse_split_candidates.json daily_signals.json paper_signal_history.json research/
+          git add reverse_split_candidates.json daily_signals.json paper_signal_history.json research/ phase3_engine.py .github/workflows/daily_monitor.yml
           git diff --cached --quiet || git commit -m "Update daily paper signal monitor"
           git push
