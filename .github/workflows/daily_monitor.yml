@@ -30,9 +30,11 @@ jobs:
         run: python research_engine.py
       - name: Run Phase 3 hypothesis and OOS validation
         run: python phase3_engine.py
+      - name: Run Phase 4 timing and edge validation
+        run: python phase4_engine.py
       - name: Validate monitor outputs
         run: |
-          python -m py_compile daily_signal_scanner.py reverse_split_source.py research_engine.py phase3_engine.py
+          python -m py_compile daily_signal_scanner.py reverse_split_source.py research_engine.py phase3_engine.py phase4_engine.py
           python - <<'PY'
           import json
           from pathlib import Path
@@ -53,12 +55,18 @@ jobs:
           assert phase3["status"] == "NO VALIDATED EDGE YET"
           assert phase3["methods"]["features_use_pre_signal_only"] is True
           print("phase3:", phase3["status"], phase3["freeze"]["frozen_rule"])
+          for name in ["research/PHASE4_REPORT.md", "research/PHASE4_FREEZE.md", "research/PHASE4_OOS_REPORT.md", "research/PHASE4_WALK_FORWARD.md", "research/RSI_RECOVERY_TIMING.csv", "research/RSI_DIRECTION_RESULTS.csv", "research/VOLUME_RSI_SEQUENCE.csv", "research/H1_RESULTS.csv", "research/TRUE_EXPLOSION_VS_TEMPORARY.csv", "research/CLUSTERED_BOOTSTRAP_RESULTS.csv", "research/FDR_RESULTS.csv", "research/PHASE4_FINAL_RESULTS.csv"]:
+              p=Path(name)
+              assert p.exists() and p.stat().st_size > 0, name
+          phase4=json.loads(Path("research/phase4_report.json").read_text(encoding="utf-8"))
+          assert phase4["decision"] == "PROMISING BUT NOT VALIDATED"
+          print("phase4:", phase4["decision"])
           print(x["summary"])
           PY
       - name: Commit monitor data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add reverse_split_candidates.json daily_signals.json paper_signal_history.json research/ phase3_engine.py .github/workflows/daily_monitor.yml
+          git add reverse_split_candidates.json daily_signals.json paper_signal_history.json research/ phase3_engine.py phase4_engine.py .github/workflows/daily_monitor.yml
           git diff --cached --quiet || git commit -m "Update daily paper signal monitor"
           git push

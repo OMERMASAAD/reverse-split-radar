@@ -1,0 +1,6 @@
+classification,h1_signals,class_rows,h1_rate,h1_success_rate
+true_explosion,28,112,0.25,1.0
+temporary_spike,46,334,0.1377245508982036,0.0
+gradual_rise,15,78,0.19230769230769232,0.0
+no_significant_move,70,534,0.13108614232209737,0.0
+rapid_move,15,78,0.19230769230769232,1.0

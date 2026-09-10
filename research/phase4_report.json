@@ -1,0 +1,78 @@
+{
+  "generated_at": "2026-09-10T22:49:20+00:00",
+  "decision": "PROMISING BUT NOT VALIDATED",
+  "h1": {
+    "all": {
+      "signals": 174,
+      "successes": 43,
+      "failures": 131,
+      "success_rate": 0.2471264367816092,
+      "base_rate": 0.16725352112676056,
+      "lift": 1.4775559588626739,
+      "odds_ratio": 1.8198577140779977,
+      "p_value": 0.0038732731219138427,
+      "ci95": [
+        0.188958,
+        0.316219
+      ],
+      "tickers": 93
+    },
+    "oos": {
+      "signals": 46,
+      "successes": 11,
+      "failures": 35,
+      "success_rate": 0.2391304347826087,
+      "base_rate": 0.1643835616438356,
+      "lift": 1.4547101449275364,
+      "odds_ratio": 1.8605714285714285,
+      "p_value": 0.17708143522338474,
+      "ci95": [
+        0.13912,
+        0.379354
+      ],
+      "tickers": 29
+    },
+    "train": {
+      "signals": 105,
+      "successes": 29,
+      "failures": 76,
+      "success_rate": 0.2761904761904762,
+      "base_rate": 0.1741654571843251,
+      "lift": 1.585793650793651,
+      "odds_ratio": 2.0672353961827645,
+      "p_value": 0.004804809783033023,
+      "ci95": [
+        0.19972,
+        0.36846
+      ],
+      "tickers": 59
+    },
+    "validation": {
+      "signals": 23,
+      "successes": 3,
+      "failures": 20,
+      "success_rate": 0.13043478260869565,
+      "base_rate": 0.14912280701754385,
+      "lift": 0.8746803069053709,
+      "odds_ratio": 0.8419354838709677,
+      "p_value": 1.0,
+      "ci95": [
+        0.045376,
+        0.321279
+      ],
+      "tickers": 13
+    }
+  },
+  "cutoffs": {
+    "train_end": "2026-07-02",
+    "validation_end": "2026-07-29"
+  },
+  "rows": 1136,
+  "tickers": 255,
+  "limitations": [
+    "Only sparse Phase 2 snapshots S-20 through S-1 are available; no full daily event timeline can be reconstructed.",
+    "S is an independently generated candidate start date, not a tradable order timestamp.",
+    "Historical Float, Short Interest, spread, borrow, and point-in-time news are unavailable.",
+    "4H timing was not activated because daily H1 has not shown a validated edge."
+  ]
+}
