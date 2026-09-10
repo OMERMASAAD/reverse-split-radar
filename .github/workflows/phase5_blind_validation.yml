@@ -1,0 +1,60 @@
+name: Phase 5 Blind OOS Validation
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  phase5:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Refresh US reverse-split universe
+        env:
+          BUSINESSQUANT_API_KEY: ${{ secrets.BUSINESSQUANT_API_KEY }}
+        run: python reverse_split_source.py
+      - name: Run frozen Phase 5 gate
+        run: python phase5_engine.py
+      - name: Validate frozen candidates and blind gate
+        run: |
+          python -m py_compile phase5_engine.py reverse_split_source.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          required = [
+              "research/PHASE5_FREEZE.md",
+              "research/PHASE5_REPORT.md",
+              "research/PHASE5_OOS_RESULTS.md",
+              "research/PHASE5_WALK_FORWARD.md",
+              "research/PHASE5_CLUSTERED_BOOTSTRAP.csv",
+              "research/PHASE5_RESULTS.csv",
+              "research/PHASE5_FINAL_RESULTS.csv",
+          ]
+          for name in required:
+              p = Path(name)
+              assert p.exists() and p.stat().st_size > 0, name
+          report = json.loads(Path("research/phase5_report.json").read_text())
+          assert report["old_oos_not_reused"] is True
+          assert report["candidates"] == [
+              "A_Volume_Ratio_20D_ge_2",
+              "B_RSI_Recovery_plus_Volume_Expansion",
+              "C_RSI_Volume_Price_Confirmation",
+          ]
+          print("phase5:", report["status"], "blind rows:", report["blind_rows"])
+          PY
+      - name: Commit Phase 5 outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reverse_split_candidates.json research/ phase5_engine.py .github/workflows/phase5_blind_validation.yml
+          git diff --cached --quiet || git commit -m "Run frozen Phase 5 blind validation gate"
+          git push

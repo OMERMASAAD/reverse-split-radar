@@ -1,0 +1,16 @@
+{
+  "generated_at": "2026-09-10T23:02:15+00:00",
+  "status": "INSUFFICIENT NEW OOS DATA",
+  "freeze_date": "2026-09-10",
+  "dataset_end_date": "2026-09-04",
+  "requested_oos_start": "2026-09-05",
+  "blind_rows": 0,
+  "candidates": [
+    "A_Volume_Ratio_20D_ge_2",
+    "B_RSI_Recovery_plus_Volume_Expansion",
+    "C_RSI_Volume_Price_Confirmation"
+  ],
+  "old_oos_not_reused": true,
+  "reason": "The archived dataset ends before the Phase 5 freeze boundary; no new post-freeze signal/outcome rows are available.",
+  "next_step": "DATA COLLECTION PHASE — collect new US reverse-split OHLCV and outcomes after the freeze."
+}

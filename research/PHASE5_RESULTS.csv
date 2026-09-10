@@ -1,0 +1,4 @@
+candidate,status,signals,plus20,plus50,plus70,plus100,plus200,success_rate,base_rate,lift,odds_ratio,clustered_ci95,p_value,expectancy,profit_factor,walk_forward_stable
+A_Volume_Ratio_20D_ge_2,INSUFFICIENT NEW OOS DATA,0,0,0,0,0,0,,,,,,,,,False
+B_RSI_Recovery_plus_Volume_Expansion,INSUFFICIENT NEW OOS DATA,0,0,0,0,0,0,,,,,,,,,False
+C_RSI_Volume_Price_Confirmation,INSUFFICIENT NEW OOS DATA,0,0,0,0,0,0,,,,,,,,,False
