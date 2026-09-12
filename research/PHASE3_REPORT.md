@@ -1,6 +1,6 @@
 # Phase 3 — Hypothesis Testing, Strategy Freeze, OOS & Walk-forward
 
-Generated: 2026-09-11T01:13:41+00:00
+Generated: 2026-09-12T01:15:05+00:00
 
 ## Decision: NO VALIDATED EDGE YET
 
