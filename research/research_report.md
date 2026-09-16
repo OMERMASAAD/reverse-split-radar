@@ -1,6 +1,6 @@
 # Reverse Split Explosion Radar — Statistical Strategy Discovery
 
-Generated: 2026-09-15T01:34:57+00:00
+Generated: 2026-09-16T01:30:11+00:00
 
 ## Executive conclusion
 
@@ -18,19 +18,19 @@ The research universe contains **102 +70% success windows** and **1254 control w
 
 ## RSI14 analysis
 
-RSI D-1 coverage: 102 successful windows and 1254 controls. Historical OHLCV coverage determines whether earlier snapshots D-20 through D-2 are populated.
+RSI D-1 coverage: 101 successful windows and 1247 controls. Historical OHLCV coverage determines whether earlier snapshots D-20 through D-2 are populated.
 
 | Snapshot | Success mean | Success median | Control mean | Control median |
 |---|---:|---:|---:|---:|
-| D-20 | 34.99 | 34.02 | 42.12026726415406 | 41.78383350071807 |
-| D-15 | 36.02 | 33.25 | 41.793131690785394 | 41.84958912069446 |
-| D-10 | 36.56 | 34.74 | 41.73552058182246 | 42.055026925026986 |
-| D-7 | 34.79 | 33.47 | 42.02107515352177 | 42.449589569081354 |
-| D-5 | 34.86 | 34.41 | 42.09453191058228 | 42.44146357734298 |
-| D-4 | 35.50 | 35.52 | 41.93830141282269 | 42.3990499097532 |
-| D-3 | 36.47 | 36.11 | 42.04116060971654 | 42.447424979137665 |
-| D-2 | 38.00 | 37.06 | 42.06673767748823 | 42.62166435113546 |
-| D-1 | 51.39 | 51.53 | 41.96816449586991 | 42.50975389706697 |
+| D-20 | 35.12 | 34.25 | 42.22819846624683 | 41.947051460583296 |
+| D-15 | 36.06 | 33.37 | 41.90156136494968 | 41.969433606877764 |
+| D-10 | 36.61 | 34.82 | 41.866159571017626 | 42.06825672956141 |
+| D-7 | 34.84 | 33.53 | 42.14981454584849 | 42.44183348488574 |
+| D-5 | 34.94 | 34.78 | 42.22172235030211 | 42.44183348488574 |
+| D-4 | 35.61 | 35.88 | 42.064171380735765 | 42.378115032197464 |
+| D-3 | 36.61 | 36.67 | 42.16486891254069 | 42.44183348488574 |
+| D-2 | 38.05 | 37.17 | 42.18522531791291 | 42.60234327666866 |
+| D-1 | 51.55 | 51.68 | 42.072991847025875 | 42.51502790204361 |
 
 ### RSI 22–27 test
 
@@ -38,13 +38,13 @@ RSI D-1 coverage: 102 successful windows and 1254 controls. Historical OHLCV cov
 |---|---:|---:|---:|
 | <20 | 5 | 62 | 7.5% |
 | 20-22 | 1 | 23 | 4.2% |
-| 22-25 | 3 | 38 | 7.3% |
+| 22-25 | 3 | 34 | 8.1% |
 | 25-27 | 2 | 24 | 7.7% |
-| 27-30 | 7 | 60 | 10.4% |
-| 30-35 | 5 | 151 | 3.2% |
-| 35-40 | 12 | 152 | 7.3% |
+| 27-30 | 7 | 58 | 10.8% |
+| 30-35 | 5 | 149 | 3.2% |
+| 35-40 | 11 | 152 | 6.7% |
 | 40-50 | 13 | 445 | 2.8% |
-| 50-+ | 54 | 299 | 15.3% |
+| 50-+ | 54 | 300 | 15.3% |
 
 ## Feature comparison
 
@@ -62,15 +62,15 @@ Feature statistics, p-values, effect proxies, and median lift are in `statistica
 
 ## Candidate next-session backtest
 
-Rule tested: `drawdown <= -30% AND volume_ratio_20d >= 1.05`. Eligible windows: **142**; train cutoff: **2026-08-10**. Entry is the next available session open, with a conservative -20% stop and target exits.
+Rule tested: `drawdown <= -30% AND volume_ratio_20d >= 1.05`. Eligible windows: **144**; train cutoff: **2026-08-10**. Entry is the next available session open, with a conservative -20% stop and target exits.
 
 | Target | Trades | Win rate | Avg return | Profit factor | OOS win rate |
 |---|---:|---:|---:|---:|---:|
-| +20% | 133 | 35.3% | -4.1% | 0.6400116652480052 | 21.4% |
-| +50% | 137 | 13.9% | -3.9% | 0.6965189031781966 | 7.1% |
-| +70% | 139 | 12.2% | -2.2% | 0.8316571314459035 | 9.3% |
-| +100% | 139 | 9.4% | -1.2% | 0.9134188875493316 | 4.8% |
-| +200% | 142 | 3.5% | -0.2% | 0.9838285333079212 | 4.7% |
+| +20% | 135 | 36.3% | -3.5% | 0.6799701076297143 | 20.9% |
+| +50% | 139 | 13.7% | -3.2% | 0.7459185008955314 | 7.0% |
+| +70% | 141 | 12.1% | -1.5% | 0.8831104067648238 | 9.1% |
+| +100% | 141 | 9.2% | -0.4% | 0.9655432623017343 | 4.7% |
+| +200% | 144 | 3.5% | 0.5% | 1.035786244719599 | 4.5% |
 
 ## Final status
 
