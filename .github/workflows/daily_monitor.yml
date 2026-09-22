@@ -3,7 +3,12 @@ name: Daily Paper Signal Monitor
 on:
   workflow_dispatch:
   schedule:
-    - cron: "20 23 * * 1-5"
+    # UTC windows: pre-market, regular session, close, and overnight.
+    # GitHub Actions may delay scheduled jobs by a few minutes.
+    - cron: "0 13 * * 1-5"
+    - cron: "0 17 * * 1-5"
+    - cron: "0 21 * * 1-5"
+    - cron: "0 1 * * 2-6"
 
 permissions:
   contents: write
@@ -36,8 +41,10 @@ jobs:
               p = Path(name)
               assert p.exists() and p.stat().st_size > 0, name
           x = json.loads(Path("daily_signals.json").read_text(encoding="utf-8"))
-          assert "paper_entries" in x["summary"]
-          assert "base_watches" in x["summary"]
+          for key in ["ready_entry", "almost_ready", "follow_up", "watchlist"]:
+              assert key in x["summary"], key
+          for key in ["ready_entry", "almost_ready", "follow_up", "watchlist"]:
+              assert key in x, key
           print(x["summary"])
           PY
       - name: Commit monitor data
