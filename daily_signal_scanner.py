@@ -1,10 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Experimental daily signal scanner.
-
-This is a paper-signal layer: it does not place orders. It uses the research
-pattern (early post-split weakness, support/base, then daily positivity) and
-records every signal so the next month can be evaluated honestly.
-"""
+"""Four-stage paper radar for post reverse-split double-bottom setups."""
 from __future__ import annotations
 import json
 from datetime import datetime, timezone
@@ -13,74 +8,145 @@ import numpy as np
 import pandas as pd
 import yfinance as yf
 
-CANDIDATES='reverse_split_candidates.json'
-OUTPUT='daily_signals.json'
-HISTORY='paper_signal_history.json'
+CANDIDATES = "reverse_split_candidates.json"
+OUTPUT = "daily_signals.json"
+HISTORY = "paper_signal_history.json"
+STAGES = {"WATCHLIST": "قائمة مرصودة", "FOLLOW_UP": "مرحلة متابعة", "ALMOST_READY": "شبه جاهزة", "READY_ENTRY": "جاهزة فنيًا · فرصة دخول"}
 
-
-def f(v):
+def num(value):
     try:
-        v=float(v); return None if np.isnan(v) else v
-    except Exception: return None
+        value = float(value)
+        return None if np.isnan(value) else value
+    except (TypeError, ValueError):
+        return None
 
-def rsi(s,n=14):
-    d=s.diff(); up=d.clip(lower=0).rolling(n).mean(); dn=(-d.clip(upper=0)).rolling(n).mean()
-    return 100-(100/(1+(up/dn.replace(0,np.nan))))
+def rsi(series, period=14):
+    delta = series.diff()
+    gain = delta.clip(lower=0).rolling(period, min_periods=period).mean()
+    loss = (-delta.clip(upper=0)).rolling(period, min_periods=period).mean()
+    return 100 - 100 / (1 + gain / loss.replace(0, np.nan))
+
+def fetch_data(ticker, split_date):
+    data = yf.Ticker(ticker).history(start=pd.Timestamp(split_date)-pd.Timedelta(days=5), end=pd.Timestamp.now(tz="UTC").tz_localize(None)+pd.Timedelta(days=1), interval="1d", auto_adjust=False, actions=False)
+    if data is None or data.empty:
+        return pd.DataFrame()
+    if isinstance(data.columns, pd.MultiIndex):
+        data.columns = data.columns.get_level_values(0)
+    data.index = pd.to_datetime(data.index).tz_localize(None)
+    return data[data.index >= pd.Timestamp(split_date)].copy()
+
+def fetch_4h_data(ticker, split_date):
+    data = yf.Ticker(ticker).history(start=pd.Timestamp(split_date), end=pd.Timestamp.now(tz="UTC").tz_localize(None)+pd.Timedelta(days=1), interval="4h", auto_adjust=False, actions=False)
+    if data is None or data.empty:
+        return pd.DataFrame()
+    if isinstance(data.columns, pd.MultiIndex):
+        data.columns = data.columns.get_level_values(0)
+    data.index = pd.to_datetime(data.index).tz_localize(None)
+    return data
+
+def support_info(data):
+    recent = data.tail(min(12, len(data)))
+    support = float(recent.Low.min())
+    tol = max(abs(support) * 0.05, 0.0001)
+    touches = int((recent.Low <= support + tol).sum())
+    last5 = data.tail(5)
+    stable = len(last5) >= 5 and float(last5.Low.max()) - float(last5.Low.min()) <= tol
+    return support, touches, stable
+
+def find_double_bottom(data):
+    if len(data) < 9:
+        return {"formed": False, "breakout": False, "neckline": None}
+    lows, highs, closes = data.Low.astype(float).to_numpy(), data.High.astype(float).to_numpy(), data.Close.astype(float).to_numpy()
+    best = None
+    start = max(0, len(data) - 30)
+    for left in range(start, len(data)-4):
+        for right in range(left+3, len(data)-1):
+            a, b = lows[left], lows[right]
+            if a <= 0 or abs(a-b)/min(a,b) > 0.12:
+                continue
+            neckline = float(highs[left+1:right].max())
+            if neckline < max(a,b) * 1.05:
+                continue
+            if best is None or right > best[0]:
+                best = (right, a, b, neckline)
+    if best is None:
+        return {"formed": False, "breakout": False, "neckline": None}
+    right, left_low, right_low, neckline = best
+    breakout = right < len(closes)-1 and len(closes) >= 2 and bool((closes[-2:] > neckline).all())
+    return {"formed": True, "breakout": breakout, "neckline": neckline, "left_trough": left_low, "right_trough": right_low}
+
+def resistance_targets(daily, entry_price, split_day_high):
+    """Return ascending resistance levels, ending at the split-day high."""
+    if entry_price is None:
+        return []
+    levels = []
+    highs = daily.High.astype(float).tail(50).to_numpy()
+    for level in sorted(set(round(float(x), 4) for x in highs if float(x) > entry_price * 1.03)):
+        if not levels or level > levels[-1] * 1.03:
+            levels.append(level)
+    final = float(split_day_high)
+    levels = [x for x in levels if x < final * 0.995]
+    levels.append(round(final, 4))
+    return [{"number": i + 1, "price": level, "type": "split_day_high" if level == round(final, 4) else "resistance"} for i, level in enumerate(levels)]
 
 def analyze(row):
-    ticker=row['ticker']; split=row['split_date']
+    ticker, split_date = row["ticker"], row["split_date"]
     try:
-        x=yf.Ticker(ticker).history(start=pd.Timestamp(split)-pd.Timedelta(days=5), end=pd.Timestamp.now(tz='UTC').tz_localize(None)+pd.Timedelta(days=1), interval='1d', auto_adjust=False, actions=False)
-        if x is None or x.empty: return {'ticker':ticker,'status':'unavailable','reason':'no_daily_data'}
-        if isinstance(x.columns,pd.MultiIndex): x.columns=x.columns.get_level_values(0)
-        x.index=pd.to_datetime(x.index).tz_localize(None); x=x[x.index>=pd.Timestamp(split)].copy()
-        if len(x)<12: return {'ticker':ticker,'status':'insufficient','reason':'أقل من 12 جلسة بعد التقسيم'}
-        x['rsi']=rsi(x.Close); x['vol20']=x.Volume.rolling(20,min_periods=5).mean(); x['vr']=x.Volume/x.vol20
-        x['ema12']=x.Close.ewm(span=12,adjust=False).mean(); x['ema26']=x.Close.ewm(span=26,adjust=False).mean(); x['macd']=x.ema12-x.ema26; x['macd_signal']=x.macd.ewm(span=9,adjust=False).mean(); x['hist']=x.macd-x.macd_signal
-        last=x.iloc[-1]; prev=x.iloc[-2]
-        recent=x.tail(min(40,len(x))); support=float(recent.Low.quantile(.20)); tol=max(support*.05,.0001)
-        tests=0; last_test=None
-        for idx,v in recent.Low.items():
-            if abs(float(v)-support)<=tol and (last_test is None or (idx-last_test).days>=2): tests+=1; last_test=idx
-        peak=float(x.High.max()); drawdown=(float(last.Low)/peak-1)*100 if peak else 0
-        base_range=(float(recent.High.max())/float(recent.Low.min())-1)*100 if float(recent.Low.min()) else 0
-        age=len(x)-1
-        positive=bool(last['Close']>last['Open'] and last['Close']>prev['Close'])
-        momentum=bool((f(last['vr']) or 0)>=1.05 or (f(last['hist']) is not None and f(prev['hist']) is not None and last['hist']>prev['hist']))
-        near_support=bool(float(last.Close)<=support*1.12)
-        # Operational window is deliberately limited to the first 40 trading
-        # sessions: the historical study median was 19 sessions and its
-        # upper quartile was about 39 sessions. No legacy 20-50 filter.
-        base=bool(age<=40 and drawdown<=-30 and tests>=2 and base_range<=80)
-        entry=bool(base and positive and momentum and not near_support)
-        state='ENTRY_PAPER' if entry else ('BASE_WATCH' if base else 'OBSERVE')
-        score=sum([age<=60,drawdown<=-40,tests>=3,near_support,positive,momentum])
-        return {'ticker':ticker,'company':row.get('company'),'split_date':split,'status':'ok','state':state,'paper_signal':entry,'signal_date':last.name.date().isoformat() if entry else None,'signal_price':f(last['Close']) if entry else None,'price':f(last['Close']),'days_since_split':age,'drawdown_percent':round(drawdown,2),'support_price':f(support),'support_tests':tests,'base_range_percent':round(base_range,2),'rsi':f(last['rsi']),'rsi_previous':f(prev['rsi']),'rsi_improving':bool(last['rsi']>prev['rsi']) if pd.notna(last['rsi']) and pd.notna(prev['rsi']) else False,'volume_ratio':f(last['vr']),'macd_histogram':f(last['hist']),'macd_histogram_improving':bool(last['hist']>prev['hist']) if pd.notna(last['hist']) and pd.notna(prev['hist']) else False,'daily_positive':positive,'momentum_confirmed':momentum,'near_support':near_support,'score':score,'max_score':6,'research_note':'إشارة تجريبية يومية؛ لا تنفذ صفقة تلقائية'}
-    except Exception as e: return {'ticker':ticker,'status':'error','reason':str(e)[:180]}
+        data = fetch_data(ticker, split_date)
+        if data.empty:
+            return {"ticker": ticker, "status": "unavailable", "reason": "no_daily_data"}
+        if len(data) < 20:
+            return {"ticker": ticker, "status": "insufficient", "reason": "أقل من 20 جلسة بعد التقسيم"}
+        data["rsi"] = rsi(data.Close)
+        for period in (20, 30, 50):
+            data[f"sma{period}"] = data.Close.rolling(period, min_periods=period).mean()
+        data["volume_ratio"] = data.Volume / data.Volume.rolling(20, min_periods=5).mean()
+        age, first, last = len(data)-1, data.iloc[0], data.iloc[-1]
+        split_open, split_gain = float(first.Open), (float(first.High)/float(first.Open)-1)*100
+        drawdown = (float(last.Close)/split_open-1)*100 if split_open else 0
+        support, touches, stable = support_info(data)
+        oversold = pd.notna(last.rsi) and float(last.rsi) < 30
+        below_mas = all(pd.notna(last[f"sma{p}"]) and float(last.Close) < float(last[f"sma{p}"]) for p in (20,30,50))
+        intraday = fetch_4h_data(ticker, split_date)
+        pattern_daily = find_double_bottom(data)
+        pattern_4h = find_double_bottom(intraday) if not intraday.empty else {"formed": False, "breakout": False, "neckline": None}
+        pattern = pattern_4h if pattern_4h["formed"] else pattern_daily
+        age_ok, split_ok, drop_ok = 20 <= age <= 50, split_gain <= 20, -60 <= drawdown <= -40
+        follow = age_ok and split_ok and drop_ok
+        multi_tf_pattern = pattern_daily["formed"] and pattern_4h["formed"]
+        multi_tf_breakout = pattern_daily["breakout"] and pattern_4h["breakout"]
+        almost = follow and stable and oversold and below_mas and multi_tf_pattern
+        ready = almost and multi_tf_breakout
+        stage = "READY_ENTRY" if ready else "ALMOST_READY" if almost else "FOLLOW_UP" if follow else "WATCHLIST"
+        missing = [label for ok,label in [(age_ok,"العمر 20–50 جلسة"),(split_ok,"صعود يوم التقسيم <=20%"),(drop_ok,"هبوط 40–60% من افتتاح التقسيم"),(stable,"ثبات الدعم 5 جلسات"),(oversold,"RSI تحت 30"),(below_mas,"السعر تحت SMA20/30/50"),(pattern_daily["formed"],"قاع مزدوج على اليومي"),(pattern_4h["formed"],"قاع مزدوج على 4 ساعات"),(multi_tf_breakout,"اختراق خط العنق والثبات على الفريمين")] if not ok]
+        entry_price = num(last.Close) if ready else num(pattern.get("neckline"))
+        targets = resistance_targets(data, entry_price, float(first.High)) if entry_price is not None else []
+        return {"ticker":ticker,"company":row.get("company"),"split_date":split_date,"status":"ok","stage":stage,"stage_label":STAGES[stage],"paper_signal":ready,"signal_date":last.name.date().isoformat() if ready else None,"signal_price":num(last.Close) if ready else None,"price":num(last.Close),"days_since_split":age,"split_day_open":num(split_open),"split_day_high":num(first.High),"split_day_gain_percent":round(split_gain,2),"drawdown_from_split_open_percent":round(drawdown,2),"support_price":num(support),"support_touches":touches,"support_stable_5_sessions":stable,"rsi":num(last.rsi),"oversold_under_30":bool(oversold),"below_sma20":bool(pd.notna(last.sma20) and last.Close < last.sma20),"below_sma30":bool(pd.notna(last.sma30) and last.Close < last.sma30),"below_sma50":bool(pd.notna(last.sma50) and last.Close < last.sma50),"below_all_moving_averages":bool(below_mas),"volume_ratio":num(last.volume_ratio),"daily_double_bottom_formed":pattern_daily["formed"],"four_hour_double_bottom_formed":pattern_4h["formed"],"double_bottom_formed":multi_tf_pattern,"neckline_price":num(pattern.get("neckline")),"left_trough":num(pattern.get("left_trough")),"right_trough":num(pattern.get("right_trough")),"daily_breakout_confirmed":pattern_daily["breakout"],"four_hour_breakout_confirmed":pattern_4h["breakout"],"neckline_breakout_confirmed":multi_tf_breakout,"resistance_targets":targets,"missing_conditions":missing,"research_note":"Paper Signals فقط؛ التحليل اليومي للأهلية و4 ساعات لتأكيد النموذج والاختراق. آخر هدف قمة شمعة يوم التقسيم."}
+    except Exception as exc:
+        return {"ticker":ticker,"status":"error","reason":str(exc)[:180]}
 
 def main():
-    rows=json.loads(Path(CANDIDATES).read_text(encoding='utf-8')); out=[]
-    for i,row in enumerate(rows,1): print(f'[{i}/{len(rows)}] {row["ticker"]}',flush=True); out.append(analyze(row))
-    ok=[x for x in out if x.get('status')=='ok']
-    # A ticker can appear more than once in the source universe. Keep the
-    # strongest/latest observation only so the dashboard does not duplicate it.
-    unique={}
-    for x in ok:
-        key=x['ticker']; old=unique.get(key)
-        if old is None or (x.get('paper_signal'), x.get('score',0), x.get('days_since_split',0)) > (old.get('paper_signal'), old.get('score',0), old.get('days_since_split',0)):
-            unique[key]=x
-    ok=list(unique.values()); entries=[x for x in ok if x.get('paper_signal')]; watches=[x for x in ok if x.get('state')=='BASE_WATCH']
-    try: history=json.loads(Path(HISTORY).read_text(encoding='utf-8'))
-    except Exception: history=[]
-    now=datetime.now(timezone.utc).replace(microsecond=0).isoformat()
-    by_id={h.get('id'):h for h in history if isinstance(h,dict) and h.get('id')}
-    for item in entries:
-        key=f"{item['ticker']}|{item['signal_date']}"
-        old=by_id.get(key, {'id':key,'ticker':item['ticker'],'signal_date':item['signal_date'],'signal_price':item['signal_price'],'first_seen':now,'status':'monitoring','success':False})
-        old.update({'last_seen':now,'latest_price':item['price'],'latest_state':item['state']})
-        by_id[key]=old
-    history=list(by_id.values())
-    Path(HISTORY).write_text(json.dumps(history,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-    payload={'generated_at':now,'methodology':{'purpose':'مراقبة تجريبية فقط بلا تنفيذ صفقات','base':'Reverse Split خلال أول 40 جلسة تداول فقط (بدون حد أدنى)، هبوط >=30%، اختبارات دعم >=2، نطاق قاعدة <=80%','entry':'إيجابية يومية (Close>Open وClose>Previous Close) مع تأكيد حجم أو تحسن MACD، والخروج التجريبي عند +70% من سعر الإشارة','status_definitions':{'ENTRY_PAPER':'إشارة يومية تجريبية','BASE_WATCH':'قاعدة/دعم للمراقبة','OBSERVE':'لا يطابق مرحلة القاعدة حالياً'}},'summary':{'candidates':len(rows),'ok':len(ok),'paper_entries':len(entries),'base_watches':len(watches),'unavailable':len(rows)-len(ok),'history_records':len(history)},'signals':entries,'watchlist':watches,'history':history,'all':out}
-    Path(OUTPUT).write_text(json.dumps(payload,ensure_ascii=False,indent=2,default=str)+'\n',encoding='utf-8'); print(json.dumps(payload['summary'],ensure_ascii=False))
-if __name__=='__main__': main()
+    rows = json.loads(Path(CANDIDATES).read_text(encoding="utf-8"))
+    results = [analyze(row) for row in rows]
+    ok = {item["ticker"]: item for item in results if item.get("status") == "ok"}
+    ok = list(ok.values())
+    groups = {key: [item for item in ok if item.get("stage") == key] for key in STAGES}
+    try: history = json.loads(Path(HISTORY).read_text(encoding="utf-8"))
+    except (FileNotFoundError, json.JSONDecodeError): history = []
+    now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+    by_id = {item.get("id"): item for item in history if isinstance(item,dict) and item.get("id")}
+    for item in groups["READY_ENTRY"]:
+        key = f"{item['ticker']}|{item['signal_date']}"
+        old = by_id.get(key, {"id":key,"ticker":item["ticker"],"signal_date":item["signal_date"],"signal_price":item["signal_price"],"first_seen":now,"status":"monitoring","success":False})
+        old.update({"last_seen":now,"latest_price":item["price"],"latest_stage":item["stage"]})
+        by_id[key] = old
+    history = list(by_id.values())
+    payload = {"generated_at":now,"methodology":{"purpose":"مراقبة تجريبية فقط بلا تنفيذ صفقات","stages":STAGES,"entry":"قاع مزدوج مكتمل ثم اختراق خط العنق مع الثبات بإغلاقين متتاليين فوقه","rules":"Reverse Split بعمر 20–50 جلسة، ارتفاع يوم التقسيم <=20%، هبوط 40–60% من افتتاحه، دعم ثابت 5 جلسات، RSI<30، والسعر تحت SMA20/30/50"},"summary":{"candidates":len(rows),"ok":len(ok),"ready_entry":len(groups["READY_ENTRY"]),"almost_ready":len(groups["ALMOST_READY"]),"follow_up":len(groups["FOLLOW_UP"]),"watchlist":len(groups["WATCHLIST"]),"paper_entries":len(groups["READY_ENTRY"]),"base_watches":len(groups["FOLLOW_UP"]),"unavailable":len(rows)-len(ok),"history_records":len(history)},"ready_entry":groups["READY_ENTRY"],"almost_ready":groups["ALMOST_READY"],"follow_up":groups["FOLLOW_UP"],"watchlist":groups["WATCHLIST"],"signals":groups["READY_ENTRY"],"history":history,"all":results}
+    Path(HISTORY).write_text(json.dumps(history,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    Path(OUTPUT).write_text(json.dumps(payload,ensure_ascii=False,indent=2,default=str)+"\n",encoding="utf-8")
+    print(json.dumps(payload["summary"],ensure_ascii=False))
+
+if __name__ == "__main__": main()
+
+# deterministic test hook
+analyze_row_for_test = find_double_bottom
