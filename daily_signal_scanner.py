@@ -20,6 +20,14 @@ def num(value):
     except (TypeError, ValueError):
         return None
 
+def candle_rows(data, limit):
+    rows = []
+    for stamp, row in data.tail(limit).iterrows():
+        values = {"date": stamp.isoformat(), "open": num(row.get("Open")), "high": num(row.get("High")), "low": num(row.get("Low")), "close": num(row.get("Close"))}
+        if all(values[key] is not None for key in ("open", "high", "low", "close")):
+            rows.append(values)
+    return rows
+
 def rsi(series, period=14):
     delta = series.diff()
     gain = delta.clip(lower=0).rolling(period, min_periods=period).mean()
@@ -121,7 +129,7 @@ def analyze(row):
         missing = [label for ok,label in [(age_ok,"العمر 20–50 جلسة"),(split_ok,"صعود يوم التقسيم <=20%"),(drop_ok,"هبوط 40–60% من افتتاح التقسيم"),(stable,"ثبات الدعم 5 جلسات"),(oversold,"RSI تحت 30"),(below_mas,"السعر تحت SMA20/30/50"),(pattern_daily["formed"],"قاع مزدوج على اليومي"),(pattern_4h["formed"],"قاع مزدوج على 4 ساعات"),(multi_tf_breakout,"اختراق خط العنق والثبات على الفريمين")] if not ok]
         entry_price = num(last.Close) if ready else num(pattern.get("neckline"))
         targets = resistance_targets(data, entry_price, float(first.High)) if entry_price is not None else []
-        return {"ticker":ticker,"company":row.get("company"),"split_date":split_date,"status":"ok","stage":stage,"stage_label":STAGES[stage],"paper_signal":ready,"signal_date":last.name.date().isoformat() if ready else None,"signal_price":num(last.Close) if ready else None,"price":num(last.Close),"days_since_split":age,"split_day_open":num(split_open),"split_day_high":num(first.High),"split_day_gain_percent":round(split_gain,2),"drawdown_from_split_open_percent":round(drawdown,2),"support_price":num(support),"support_touches":touches,"support_stable_5_sessions":stable,"rsi":num(last.rsi),"oversold_under_30":bool(oversold),"below_sma20":bool(pd.notna(last.sma20) and last.Close < last.sma20),"below_sma30":bool(pd.notna(last.sma30) and last.Close < last.sma30),"below_sma50":bool(pd.notna(last.sma50) and last.Close < last.sma50),"below_all_moving_averages":bool(below_mas),"volume_ratio":num(last.volume_ratio),"daily_double_bottom_formed":pattern_daily["formed"],"four_hour_double_bottom_formed":pattern_4h["formed"],"double_bottom_formed":multi_tf_pattern,"neckline_price":num(pattern.get("neckline")),"left_trough":num(pattern.get("left_trough")),"right_trough":num(pattern.get("right_trough")),"daily_breakout_confirmed":pattern_daily["breakout"],"four_hour_breakout_confirmed":pattern_4h["breakout"],"neckline_breakout_confirmed":multi_tf_breakout,"resistance_targets":targets,"missing_conditions":missing,"research_note":"Paper Signals فقط؛ التحليل اليومي للأهلية و4 ساعات لتأكيد النموذج والاختراق. آخر هدف قمة شمعة يوم التقسيم."}
+        return {"ticker":ticker,"company":row.get("company"),"split_date":split_date,"status":"ok","stage":stage,"stage_label":STAGES[stage],"paper_signal":ready,"signal_date":last.name.date().isoformat() if ready else None,"signal_price":num(last.Close) if ready else None,"price":num(last.Close),"days_since_split":age,"split_day_open":num(split_open),"split_day_high":num(first.High),"split_day_gain_percent":round(split_gain,2),"drawdown_from_split_open_percent":round(drawdown,2),"support_price":num(support),"support_touches":touches,"support_stable_5_sessions":stable,"rsi":num(last.rsi),"oversold_under_30":bool(oversold),"below_sma20":bool(pd.notna(last.sma20) and last.Close < last.sma20),"below_sma30":bool(pd.notna(last.sma30) and last.Close < last.sma30),"below_sma50":bool(pd.notna(last.sma50) and last.Close < last.sma50),"below_all_moving_averages":bool(below_mas),"volume_ratio":num(last.volume_ratio),"daily_double_bottom_formed":pattern_daily["formed"],"four_hour_double_bottom_formed":pattern_4h["formed"],"double_bottom_formed":multi_tf_pattern,"neckline_price":num(pattern.get("neckline")),"left_trough":num(pattern.get("left_trough")),"right_trough":num(pattern.get("right_trough")),"daily_breakout_confirmed":pattern_daily["breakout"],"four_hour_breakout_confirmed":pattern_4h["breakout"],"neckline_breakout_confirmed":multi_tf_breakout,"resistance_targets":targets,"daily_candles":candle_rows(data,60),"four_hour_candles":candle_rows(intraday,96),"missing_conditions":missing,"research_note":"التحليل اليومي للأهلية و4 ساعات لتأكيد النموذج والاختراق. آخر هدف قمة شمعة يوم التقسيم."}
     except Exception as exc:
         return {"ticker":ticker,"status":"error","reason":str(exc)[:180]}
 
