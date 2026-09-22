@@ -268,7 +268,7 @@
     "symbol": "RDGT",
     "split_date": "2026-04-08",
     "days": 167,
-    "reverse_split": "149.93:1 Reverse split",
+    "reverse_split": "150:1 Reverse split",
     "company": "Ridgetech Inc"
   },
   {
@@ -292,7 +292,7 @@
     "symbol": "AKAN",
     "split_date": "2026-04-13",
     "days": 162,
-    "reverse_split": "5:1 Reverse split",
+    "reverse_split": "4.5:1 Reverse split",
     "company": "Akanda Corp"
   },
   {
@@ -844,7 +844,7 @@
     "symbol": "EZGO",
     "split_date": "2026-05-19",
     "days": 126,
-    "reverse_split": "149.93:1 Reverse split",
+    "reverse_split": "150:1 Reverse split",
     "company": "Ezgo Technologies Ltd."
   },
   {
@@ -1389,7 +1389,7 @@
     "split_date": "2026-06-23",
     "days": 91,
     "reverse_split": "30:1 Reverse split",
-    "company": "Yy Group Holding Ltd."
+    "company": "Yyforce Inc"
   },
   {
     "ticker": "YYGH",
@@ -2148,7 +2148,7 @@
     "symbol": "JUNS",
     "split_date": "2026-08-07",
     "days": 46,
-    "reverse_split": "75.02:1 Reverse split",
+    "reverse_split": "75:1 Reverse split",
     "company": "Jupiter Neurosciences Inc"
   },
   {
@@ -2245,7 +2245,7 @@
     "split_date": "2026-08-13",
     "days": 40,
     "reverse_split": "7:1 Reverse split",
-    "company": "Check-cap Ltd."
+    "company": "Mbody Ai Ltd."
   },
   {
     "ticker": "MYSZ",
@@ -2552,6 +2552,14 @@
     "company": "Healthy Choice Wellness Corp"
   },
   {
+    "ticker": "HOST",
+    "symbol": "HOST",
+    "split_date": "2026-08-31",
+    "days": 22,
+    "reverse_split": "35:1 Reverse split",
+    "company": "Host Digital Inc"
+  },
+  {
     "ticker": "NXL",
     "symbol": "NXL",
     "split_date": "2026-08-31",
@@ -2725,7 +2733,7 @@
     "split_date": "2026-09-09",
     "days": 13,
     "reverse_split": "10:1 Reverse split",
-    "company": "Tessera Defense And Homeland Security Inc"
+    "company": "Tessera Defense & Homeland Security Inc"
   },
   {
     "ticker": "KRSA",
@@ -2870,5 +2878,21 @@
     "days": 4,
     "reverse_split": "25:1 Reverse split",
     "company": "E-power Inc"
+  },
+  {
+    "ticker": "UZX",
+    "symbol": "UZX",
+    "split_date": "2026-09-21",
+    "days": 1,
+    "reverse_split": "23:1 Reverse split",
+    "company": "Linkage Global Inc"
+  },
+  {
+    "ticker": "VWAV",
+    "symbol": "VWAV",
+    "split_date": "2026-09-22",
+    "days": 0,
+    "reverse_split": "20:1 Reverse split",
+    "company": "Visionwave Holdings Inc"
   }
 ]
