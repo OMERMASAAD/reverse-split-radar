@@ -20,6 +20,18 @@ def num(value):
     except (TypeError, ValueError):
         return None
 
+def json_safe(value):
+    """Convert NumPy/Pandas values and non-finite floats to strict JSON values."""
+    if isinstance(value, dict):
+        return {str(key): json_safe(item) for key, item in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [json_safe(item) for item in value]
+    if isinstance(value, (float, np.floating)):
+        return float(value) if np.isfinite(value) else None
+    if isinstance(value, (int, str, bool)) or value is None:
+        return value
+    return str(value)
+
 def candle_rows(data, limit):
     rows = []
     for stamp, row in data.tail(limit).iterrows():
@@ -159,8 +171,8 @@ def main():
     excluded = sum(item.get("status") == "excluded" for item in results)
     unavailable = sum(item.get("status") in {"unavailable", "insufficient", "error"} for item in results)
     payload = {"generated_at":now,"methodology":{"purpose":"مراقبة تجريبية فقط بلا تنفيذ صفقات","stages":STAGES,"entry":"قاع مزدوج مكتمل ثم اختراق خط العنق مع الثبات بإغلاقين متتاليين فوقه","rules":"Reverse Split بعمر 20–50 جلسة، السعر الحالي >= 1.00 دولار، ارتفاع يوم التقسيم <=20%، هبوط 40–60% من افتتاحه، ثبات فوق الدعم 5 جلسات، RSI<30، والسعر تحت EMA20/30/50"},"summary":{"candidates":len(rows),"ok":len(ok),"ready_entry":len(groups["READY_ENTRY"]),"almost_ready":len(groups["ALMOST_READY"]),"follow_up":len(groups["FOLLOW_UP"]),"watchlist":len(groups["WATCHLIST"]),"paper_entries":len(groups["READY_ENTRY"]),"base_watches":len(groups["FOLLOW_UP"]),"unavailable":unavailable,"excluded_under_1":excluded,"history_records":len(history)},"ready_entry":groups["READY_ENTRY"],"almost_ready":groups["ALMOST_READY"],"follow_up":groups["FOLLOW_UP"],"watchlist":groups["WATCHLIST"],"signals":groups["READY_ENTRY"],"history":history,"all":results}
-    Path(HISTORY).write_text(json.dumps(history,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-    Path(OUTPUT).write_text(json.dumps(payload,ensure_ascii=False,indent=2,default=str)+"\n",encoding="utf-8")
+    Path(HISTORY).write_text(json.dumps(json_safe(history),ensure_ascii=False,indent=2,allow_nan=False)+"\n",encoding="utf-8")
+    Path(OUTPUT).write_text(json.dumps(json_safe(payload),ensure_ascii=False,indent=2,allow_nan=False)+"\n",encoding="utf-8")
     print(json.dumps(payload["summary"],ensure_ascii=False))
 
 if __name__ == "__main__": main()
