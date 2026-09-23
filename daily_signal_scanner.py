@@ -53,12 +53,14 @@ def fetch_4h_data(ticker, split_date):
     return data
 
 def support_info(data):
-    recent = data.tail(min(12, len(data)))
+    recent = data.tail(min(20, len(data)))
     support = float(recent.Low.min())
     tol = max(abs(support) * 0.05, 0.0001)
     touches = int((recent.Low <= support + tol).sum())
     last5 = data.tail(5)
-    stable = len(last5) >= 5 and float(last5.Low.max()) - float(last5.Low.min()) <= tol
+    # ثبات الدعم يعني أن السعر أمضى 5 جلسات متتالية فوق أرضية الدعم
+    # حتى لو ارتفعت القمم؛ لا نقارن نطاق القمم/القيعان ببعضه.
+    stable = len(last5) >= 5 and bool((last5.Low >= support - tol).all()) and bool((last5.Close >= support - tol).all())
     return support, touches, stable
 
 def find_double_bottom(data):
@@ -83,17 +85,19 @@ def find_double_bottom(data):
     breakout = right < len(closes)-1 and len(closes) >= 2 and bool((closes[-2:] > neckline).all())
     return {"formed": True, "breakout": breakout, "neckline": neckline, "left_trough": left_low, "right_trough": right_low}
 
-def resistance_targets(daily, entry_price, split_day_high):
+def resistance_targets(daily, entry_price, split_day_high, max_levels=4):
     """Return ascending resistance levels, ending at the split-day high."""
     if entry_price is None:
         return []
     levels = []
-    highs = daily.High.astype(float).tail(50).to_numpy()
+    highs = daily.High.astype(float).tail(60).to_numpy()
     for level in sorted(set(round(float(x), 4) for x in highs if float(x) > entry_price * 1.03)):
         if not levels or level > levels[-1] * 1.03:
             levels.append(level)
     final = float(split_day_high)
     levels = [x for x in levels if x < final * 0.995]
+    # نحتفظ بأوضح المستويات فقط، ثم نضيف قمة يوم التقسيم كهدف نهائي.
+    levels = levels[-max(1, max_levels - 1):]
     levels.append(round(final, 4))
     return [{"number": i + 1, "price": level, "type": "split_day_high" if level == round(final, 4) else "resistance"} for i, level in enumerate(levels)]
 
@@ -107,14 +111,16 @@ def analyze(row):
             return {"ticker": ticker, "status": "insufficient", "reason": "أقل من 20 جلسة بعد التقسيم"}
         data["rsi"] = rsi(data.Close)
         for period in (20, 30, 50):
-            data[f"sma{period}"] = data.Close.rolling(period, min_periods=period).mean()
+            data[f"ema{period}"] = data.Close.ewm(span=period, adjust=False, min_periods=period).mean()
         data["volume_ratio"] = data.Volume / data.Volume.rolling(20, min_periods=5).mean()
         age, first, last = len(data)-1, data.iloc[0], data.iloc[-1]
+        if float(last.Close) < 1.0:
+            return {"ticker": ticker, "company": row.get("company"), "status": "excluded", "reason": "السعر الحالي أقل من 1.00 دولار", "price": num(last.Close)}
         split_open, split_gain = float(first.Open), (float(first.High)/float(first.Open)-1)*100
         drawdown = (float(last.Close)/split_open-1)*100 if split_open else 0
         support, touches, stable = support_info(data)
         oversold = pd.notna(last.rsi) and float(last.rsi) < 30
-        below_mas = all(pd.notna(last[f"sma{p}"]) and float(last.Close) < float(last[f"sma{p}"]) for p in (20,30,50))
+        below_emas = all(pd.notna(last[f"ema{p}"]) and float(last.Close) < float(last[f"ema{p}"]) for p in (20,30,50))
         intraday = fetch_4h_data(ticker, split_date)
         pattern_daily = find_double_bottom(data)
         pattern_4h = find_double_bottom(intraday) if not intraday.empty else {"formed": False, "breakout": False, "neckline": None}
@@ -123,13 +129,14 @@ def analyze(row):
         follow = age_ok and split_ok and drop_ok
         multi_tf_pattern = pattern_daily["formed"] and pattern_4h["formed"]
         multi_tf_breakout = pattern_daily["breakout"] and pattern_4h["breakout"]
-        almost = follow and stable and oversold and below_mas and multi_tf_pattern
+        almost = follow and stable and oversold and below_emas and multi_tf_pattern
         ready = almost and multi_tf_breakout
         stage = "READY_ENTRY" if ready else "ALMOST_READY" if almost else "FOLLOW_UP" if follow else "WATCHLIST"
-        missing = [label for ok,label in [(age_ok,"العمر 20–50 جلسة"),(split_ok,"صعود يوم التقسيم <=20%"),(drop_ok,"هبوط 40–60% من افتتاح التقسيم"),(stable,"ثبات الدعم 5 جلسات"),(oversold,"RSI تحت 30"),(below_mas,"السعر تحت SMA20/30/50"),(pattern_daily["formed"],"قاع مزدوج على اليومي"),(pattern_4h["formed"],"قاع مزدوج على 4 ساعات"),(multi_tf_breakout,"اختراق خط العنق والثبات على الفريمين")] if not ok]
+        missing = [label for ok,label in [(age_ok,"العمر 20–50 جلسة"),(split_ok,"صعود يوم التقسيم <=20%"),(drop_ok,"هبوط 40–60% من افتتاح التقسيم"),(stable,"ثبات فوق الدعم 5 جلسات"),(oversold,"RSI تحت 30"),(below_emas,"السعر تحت EMA20/30/50"),(pattern_daily["formed"],"قاع مزدوج على اليومي"),(pattern_4h["formed"],"قاع مزدوج على 4 ساعات"),(multi_tf_breakout,"اختراق خط العنق والثبات على الفريمين")] if not ok]
         entry_price = num(last.Close) if ready else num(pattern.get("neckline"))
-        targets = resistance_targets(data, entry_price, float(first.High)) if entry_price is not None else []
-        return {"ticker":ticker,"company":row.get("company"),"split_date":split_date,"status":"ok","stage":stage,"stage_label":STAGES[stage],"paper_signal":ready,"signal_date":last.name.date().isoformat() if ready else None,"signal_price":num(last.Close) if ready else None,"price":num(last.Close),"days_since_split":age,"split_day_open":num(split_open),"split_day_high":num(first.High),"split_day_gain_percent":round(split_gain,2),"drawdown_from_split_open_percent":round(drawdown,2),"support_price":num(support),"support_touches":touches,"support_stable_5_sessions":stable,"rsi":num(last.rsi),"oversold_under_30":bool(oversold),"below_sma20":bool(pd.notna(last.sma20) and last.Close < last.sma20),"below_sma30":bool(pd.notna(last.sma30) and last.Close < last.sma30),"below_sma50":bool(pd.notna(last.sma50) and last.Close < last.sma50),"below_all_moving_averages":bool(below_mas),"volume_ratio":num(last.volume_ratio),"daily_double_bottom_formed":pattern_daily["formed"],"four_hour_double_bottom_formed":pattern_4h["formed"],"double_bottom_formed":multi_tf_pattern,"neckline_price":num(pattern.get("neckline")),"left_trough":num(pattern.get("left_trough")),"right_trough":num(pattern.get("right_trough")),"daily_breakout_confirmed":pattern_daily["breakout"],"four_hour_breakout_confirmed":pattern_4h["breakout"],"neckline_breakout_confirmed":multi_tf_breakout,"resistance_targets":targets,"daily_candles":candle_rows(data,60),"four_hour_candles":candle_rows(intraday,96),"missing_conditions":missing,"research_note":"التحليل اليومي للأهلية و4 ساعات لتأكيد النموذج والاختراق. آخر هدف قمة شمعة يوم التقسيم."}
+        daily_targets = resistance_targets(data, entry_price, float(first.High), 4) if entry_price is not None else []
+        four_hour_targets = resistance_targets(intraday, entry_price, float(first.High), 5) if entry_price is not None and not intraday.empty else []
+        return {"ticker":ticker,"company":row.get("company"),"split_date":split_date,"status":"ok","stage":stage,"stage_label":STAGES[stage],"paper_signal":ready,"signal_date":last.name.date().isoformat() if ready else None,"signal_price":num(last.Close) if ready else None,"price":num(last.Close),"days_since_split":age,"split_day_open":num(split_open),"split_day_high":num(first.High),"split_day_gain_percent":round(split_gain,2),"drawdown_from_split_open_percent":round(drawdown,2),"support_price":num(support),"support_touches":touches,"support_stable_5_sessions":stable,"rsi":num(last.rsi),"oversold_under_30":bool(oversold),"below_ema20":bool(pd.notna(last.ema20) and last.Close < last.ema20),"below_ema30":bool(pd.notna(last.ema30) and last.Close < last.ema30),"below_ema50":bool(pd.notna(last.ema50) and last.Close < last.ema50),"below_all_ema":bool(below_emas),"volume_ratio":num(last.volume_ratio),"daily_double_bottom_formed":pattern_daily["formed"],"four_hour_double_bottom_formed":pattern_4h["formed"],"double_bottom_formed":multi_tf_pattern,"neckline_price":num(pattern.get("neckline")),"left_trough":num(pattern.get("left_trough")),"right_trough":num(pattern.get("right_trough")),"daily_breakout_confirmed":pattern_daily["breakout"],"four_hour_breakout_confirmed":pattern_4h["breakout"],"neckline_breakout_confirmed":multi_tf_breakout,"resistance_targets":daily_targets,"daily_resistance_targets":daily_targets,"four_hour_resistance_targets":four_hour_targets,"daily_candles":candle_rows(data,60),"four_hour_candles":candle_rows(intraday,96),"missing_conditions":missing,"research_note":"التحليل اليومي للأهلية و4 ساعات لتأكيد النموذج، مع عرض 4 مقاومات يومية و5 مقاومات على 4 ساعات كحد أقصى. المتوسطات EMA20/30/50. آخر هدف قمة يوم التقسيم."}
     except Exception as exc:
         return {"ticker":ticker,"status":"error","reason":str(exc)[:180]}
 
@@ -149,7 +156,9 @@ def main():
         old.update({"last_seen":now,"latest_price":item["price"],"latest_stage":item["stage"]})
         by_id[key] = old
     history = list(by_id.values())
-    payload = {"generated_at":now,"methodology":{"purpose":"مراقبة تجريبية فقط بلا تنفيذ صفقات","stages":STAGES,"entry":"قاع مزدوج مكتمل ثم اختراق خط العنق مع الثبات بإغلاقين متتاليين فوقه","rules":"Reverse Split بعمر 20–50 جلسة، ارتفاع يوم التقسيم <=20%، هبوط 40–60% من افتتاحه، دعم ثابت 5 جلسات، RSI<30، والسعر تحت SMA20/30/50"},"summary":{"candidates":len(rows),"ok":len(ok),"ready_entry":len(groups["READY_ENTRY"]),"almost_ready":len(groups["ALMOST_READY"]),"follow_up":len(groups["FOLLOW_UP"]),"watchlist":len(groups["WATCHLIST"]),"paper_entries":len(groups["READY_ENTRY"]),"base_watches":len(groups["FOLLOW_UP"]),"unavailable":len(rows)-len(ok),"history_records":len(history)},"ready_entry":groups["READY_ENTRY"],"almost_ready":groups["ALMOST_READY"],"follow_up":groups["FOLLOW_UP"],"watchlist":groups["WATCHLIST"],"signals":groups["READY_ENTRY"],"history":history,"all":results}
+    excluded = sum(item.get("status") == "excluded" for item in results)
+    unavailable = sum(item.get("status") in {"unavailable", "insufficient", "error"} for item in results)
+    payload = {"generated_at":now,"methodology":{"purpose":"مراقبة تجريبية فقط بلا تنفيذ صفقات","stages":STAGES,"entry":"قاع مزدوج مكتمل ثم اختراق خط العنق مع الثبات بإغلاقين متتاليين فوقه","rules":"Reverse Split بعمر 20–50 جلسة، السعر الحالي >= 1.00 دولار، ارتفاع يوم التقسيم <=20%، هبوط 40–60% من افتتاحه، ثبات فوق الدعم 5 جلسات، RSI<30، والسعر تحت EMA20/30/50"},"summary":{"candidates":len(rows),"ok":len(ok),"ready_entry":len(groups["READY_ENTRY"]),"almost_ready":len(groups["ALMOST_READY"]),"follow_up":len(groups["FOLLOW_UP"]),"watchlist":len(groups["WATCHLIST"]),"paper_entries":len(groups["READY_ENTRY"]),"base_watches":len(groups["FOLLOW_UP"]),"unavailable":unavailable,"excluded_under_1":excluded,"history_records":len(history)},"ready_entry":groups["READY_ENTRY"],"almost_ready":groups["ALMOST_READY"],"follow_up":groups["FOLLOW_UP"],"watchlist":groups["WATCHLIST"],"signals":groups["READY_ENTRY"],"history":history,"all":results}
     Path(HISTORY).write_text(json.dumps(history,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     Path(OUTPUT).write_text(json.dumps(payload,ensure_ascii=False,indent=2,default=str)+"\n",encoding="utf-8")
     print(json.dumps(payload["summary"],ensure_ascii=False))
