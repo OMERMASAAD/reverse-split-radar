@@ -1,7 +1,7 @@
 "use client";
 
 import { FlaskConical } from "lucide-react";
-import type { AnalysisResult } from "@/lib/types";
+import { TIMEFRAME_AR, type AnalysisResult } from "@/lib/types";
 import StatusCard from "./StatusCard";
 import VwapCard from "./VwapCard";
 import ObvCard from "./ObvCard";
@@ -12,12 +12,12 @@ import TradePlanCard from "./TradePlanCard";
 
 export default function AnalysisPanel({ analysis }: { analysis: AnalysisResult }) {
   return (
-    <aside className="flex min-h-0 w-full flex-col gap-3 overflow-y-auto pb-1 xl:w-[400px] xl:shrink-0 xl:pr-1">
-      <div className="num flex items-center gap-2 px-1 pt-1 text-[10px] tracking-[0.28em] text-faint">
+    <aside className="flex min-h-0 w-full flex-col gap-3 overflow-y-auto pb-1 xl:w-[400px] xl:shrink-0 xl:pe-1">
+      <div className="flex items-center gap-2 px-1 pt-1 text-[11px] font-bold tracking-wide text-faint">
         <FlaskConical className="h-3.5 w-3.5 text-violet/80" />
-        TECHNICAL ANALYSIS ENGINE — FRAME BY FRAME
-        <span className="ml-auto rounded border border-line bg-well px-1.5 py-0.5 text-[9px] text-muted">
-          {analysis.symbol} · {analysis.timeframe}
+        محرك التحليل الفني — قاعدة بقاعدة
+        <span className="num ms-auto rounded border border-line bg-well px-1.5 py-0.5 text-[9px] font-semibold text-muted">
+          {analysis.symbol} · {TIMEFRAME_AR[analysis.timeframe]}
         </span>
       </div>
 

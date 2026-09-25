@@ -68,9 +68,9 @@ function detectInvertedHS(ctx: Ctx): PatternResult | null {
 
   return {
     kind: "INVERTED_HEAD_SHOULDERS",
-    label: "Inverted Head & Shoulders",
+    label: "رأس وكتفين مقلوب",
     emoji: "🏔️",
-    description: `Head at ${l2.price.toFixed(3)} carved between symmetric shoulders. Neckline ${neckline.toFixed(2)} is the breakout trigger — measured move projects the full head depth above it.`,
+    description: `الرأس (أدنى قاع) عند ${l2.price.toFixed(3)} بين كتفين متماثلين. خط الرقبة ${neckline.toFixed(2)} هو نقطة التفعيل — الحركة المقيسة تتوقع امتدادًا بعمق الرأس كاملًا فوقه.`,
     confidence,
     neckline,
     pivotLow: l2.price,
@@ -108,9 +108,9 @@ function detectDoubleBottom(ctx: Ctx): PatternResult | null {
 
   return {
     kind: "DOUBLE_BOTTOM",
-    label: "Double Bottom",
+    label: "قاع مزدوج",
     emoji: "🩻",
-    description: `Two tests of ${pivotLow.toFixed(3)} held within ${(diff * 100).toFixed(1)}% — sellers exhausted. A close through ${neckline.toFixed(2)} confirms the reversal and opens the measured move.`,
+    description: `اختباران للقاع ${pivotLow.toFixed(3)} صمدا بفارق ${(diff * 100).toFixed(1)}% فقط — البائعون استُنفدوا. إغلاقٌ فوق ${neckline.toFixed(2)} يؤكد الانعكاس ويفتح الحركة المقيسة للأعلى.`,
     confidence,
     neckline,
     pivotLow,
@@ -154,9 +154,9 @@ function detectHigherLows(ctx: Ctx): PatternResult | null {
 
   return {
     kind: "HIGHER_LOWS",
-    label: "Higher-Lows Ladder",
+    label: "سلّم قيعان صاعدة",
     emoji: "🪜",
-    description: `Buyers stepped up on every dip (${last3.map((l) => l.price.toFixed(2)).join(" → ")}). Demand ladder intact — pressure above ${neckline.toFixed(2)} extends the sequence.`,
+    description: `المشترون رفعوا القاع مع كل تصحيح (${last3.map((l) => l.price.toFixed(2)).join(" ← ")}). سلّم الطلب سليم — الضغط فوق ${neckline.toFixed(2)} يمدّد التسلسل الصاعد.`,
     confidence,
     neckline,
     pivotLow,
@@ -174,11 +174,11 @@ function fallbackRange(ctx: Ctx): PatternResult {
   const brokeUp = ctx.lastClose >= neckline * 0.998;
   return {
     kind: "RANGE",
-    label: brokeUp ? "Range Breakout (No Classic Pattern)" : "Consolidation Range",
+    label: brokeUp ? "اختراق نطاق (بدون نموذج كلاسيكي)" : "نطاق تجميع",
     emoji: brokeUp ? "💥" : "📦",
     description: brokeUp
-      ? `No classic reversal structure — price is breaking out of the ${pivotLow.toFixed(2)} – ${neckline.toFixed(2)} box on raw momentum. Trade the level reclaim, not the extension.`
-      : `No confirmed reversal structure yet. Price is coiling inside ${pivotLow.toFixed(2)} – ${neckline.toFixed(2)}; wait for an accepted breakout before committing risk.`,
+      ? `لا يوجد نموذج انعكاسي كلاسيكي — السعر يخترق صندوق ${pivotLow.toFixed(2)} – ${neckline.toFixed(2)} على قوة الزخم الخام. تداول استعادة المستوى ولا تطارد الامتداد.`
+      : `لا يوجد هيكل انعكاسي مؤكد بعد. السعر ينضغط داخل ${pivotLow.toFixed(2)} – ${neckline.toFixed(2)}؛ انتظر اختراقًا مقبولًا قبل المخاطرة.`,
     confidence: 40,
     neckline,
     pivotLow,

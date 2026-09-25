@@ -6,6 +6,15 @@ export type Timeframe = "5m" | "15m" | "1h" | "4h" | "1D";
 
 export const TIMEFRAMES: Timeframe[] = ["5m", "15m", "1h", "4h", "1D"];
 
+/** Arabic labels for the timeframe toggle / chips */
+export const TIMEFRAME_AR: Record<Timeframe, string> = {
+  "5m": "5د",
+  "15m": "15د",
+  "1h": "ساعة",
+  "4h": "4س",
+  "1D": "يومي",
+};
+
 export interface Candle {
   /** unix seconds */
   time: number;

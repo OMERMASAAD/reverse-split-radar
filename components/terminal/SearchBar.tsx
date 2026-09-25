@@ -89,10 +89,11 @@ export default function SearchBar({
               setOpen(false);
             }
           }}
-          placeholder="Search ticker — THH, ELPW, MSGY, AAPL…"
+          placeholder="ابحث عن رمز السهم — THH، ELPW، MSGY، AAPL…"
           spellCheck={false}
           autoComplete="off"
-          className="num w-full bg-transparent text-[12.5px] tracking-wide text-ink placeholder:text-faint focus:outline-none"
+          dir="rtl"
+          className="w-full bg-transparent text-[12.5px] tracking-wide text-ink placeholder:text-faint focus:outline-none"
         />
         <kbd className="num hidden shrink-0 rounded-md border border-line bg-panel-2 px-1.5 py-0.5 text-[10px] text-faint md:block">
           /
@@ -101,10 +102,10 @@ export default function SearchBar({
 
       {open && results.length > 0 && (
         <div className="absolute left-0 right-0 top-[calc(100%+8px)] z-50 overflow-hidden rounded-xl border border-line bg-panel-2/98 shadow-2xl shadow-black/60 backdrop-blur-xl">
-          <div className="num flex items-center justify-between border-b border-line-soft px-3.5 py-2 text-[10px] tracking-[0.18em] text-faint">
-            <span>WATCHLIST UNIVERSE</span>
-            <span className="flex items-center gap-1">
-              ENTER <CornerDownLeft className="h-3 w-3" /> TO LOAD
+          <div className="flex items-center justify-between border-b border-line-soft px-3.5 py-2 text-[10px] font-semibold tracking-wide text-faint">
+            <span>قائمة المتابعة — اختر سهمًا للتحميل</span>
+            <span className="num flex items-center gap-1 text-[9px]">
+              ENTER <CornerDownLeft className="h-3 w-3" />
             </span>
           </div>
           <ul className="max-h-80 overflow-y-auto py-1">
@@ -115,9 +116,9 @@ export default function SearchBar({
                   <button
                     onClick={() => commit(r.symbol)}
                     onMouseEnter={() => setCursor(i)}
-                    className={`flex w-full items-center gap-3 px-3.5 py-2.5 text-left transition-colors ${
+                    className={`flex w-full items-center gap-3 px-3.5 py-2.5 text-start transition-colors ${
                       i === cursor ? "bg-sky/10" : "hover:bg-panel/60"
-                    } ${r.symbol === active ? "border-l-2 border-sky" : "border-l-2 border-transparent"}`}
+                    } ${r.symbol === active ? "border-s-2 border-sky" : "border-s-2 border-transparent"}`}
                   >
                     <span className="num w-14 text-[13px] font-bold tracking-wider text-ink">
                       {r.symbol}
@@ -125,7 +126,7 @@ export default function SearchBar({
                     <span className="flex-1 truncate text-[12px] text-muted">{r.name}</span>
                     <span className="num text-[12px] text-ink">{fmtPrice(r.last)}</span>
                     <span
-                      className={`num w-16 text-right text-[11.5px] font-semibold ${
+                      className={`num w-16 text-end text-[11.5px] font-semibold ${
                         up ? "text-bull-soft" : "text-bear-soft"
                       }`}
                     >

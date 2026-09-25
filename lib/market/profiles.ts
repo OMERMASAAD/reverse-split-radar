@@ -52,7 +52,7 @@ const A = (d: number, v: number): Key => ({ d, v });
 const THH: SymbolProfile = {
   symbol: "THH",
   name: "TutuHealth Holdings",
-  sector: "Biotech · Small Cap",
+  sector: "تقنية حيوية · سهم صغير",
   anchor: [
     A(-134, 4.1), A(-112, 3.62), A(-88, 2.92), A(-64, 2.28), A(-50, 2.6),
     A(-37, 2.33), A(-23, 2.64), A(-15, 2.47), A(-9, 2.66), A(-6, 2.72),
@@ -82,7 +82,7 @@ const THH: SymbolProfile = {
 const ELPW: SymbolProfile = {
   symbol: "ELPW",
   name: "Elpwire Networks",
-  sector: "Telecom · Micro Cap",
+  sector: "اتصالات · سهم متناهي الصغر",
   anchor: [
     A(-134, 0.88), A(-118, 0.96), A(-106, 0.9), A(-94, 1.0), A(-88, 1.18),
     A(-84, 1.42), A(-79, 2.08), A(-75, 2.44), A(-71, 1.92), A(-66, 1.4),
@@ -108,7 +108,7 @@ const ELPW: SymbolProfile = {
 const MSGY: SymbolProfile = {
   symbol: "MSGY",
   name: "MessageYard Inc",
-  sector: "SaaS · Mid Cap",
+  sector: "برمجيات SaaS · سهم متوسط",
   anchor: [
     A(-134, 5.18), A(-112, 5.62), A(-92, 6.48), A(-78, 7.42), A(-68, 7.82),
     A(-58, 7.15), A(-48, 6.44), A(-38, 6.72), A(-30, 6.5), A(-20, 6.86),
@@ -134,7 +134,7 @@ const MSGY: SymbolProfile = {
 const AAPL: SymbolProfile = {
   symbol: "AAPL",
   name: "Apple Inc.",
-  sector: "Mega Cap Tech",
+  sector: "تقنية · شركة عملاقة",
   anchor: [
     A(-134, 196.5), A(-118, 201), A(-100, 208.5), A(-84, 216), A(-70, 226.5),
     A(-58, 219.5), A(-46, 228), A(-34, 237.5), A(-22, 241.5), A(-14, 236.5),
@@ -233,27 +233,27 @@ function procedural(spec: ProceduralSpec): SymbolProfile {
 }
 
 const NVDA = procedural({
-  symbol: "NVDA", name: "NVIDIA Corp.", sector: "Semiconductors",
+  symbol: "NVDA", name: "NVIDIA Corp.", sector: "أشباه موصلات",
   start: 128, drift: 0.62, minuteVol: 0.00095, baseVolume: 64000, tick: 0.01, chop: 0.5,
 });
 const TSLA = procedural({
-  symbol: "TSLA", name: "Tesla Inc.", sector: "EV · Auto",
+  symbol: "TSLA", name: "Tesla Inc.", sector: "سيارات كهربائية",
   start: 242, drift: 0.08, minuteVol: 0.00125, baseVolume: 51000, tick: 0.01, chop: 0.95,
 });
 const AMD = procedural({
-  symbol: "AMD", name: "Advanced Micro Devices", sector: "Semiconductors",
+  symbol: "AMD", name: "Advanced Micro Devices", sector: "أشباه موصلات",
   start: 138, drift: 0.3, minuteVol: 0.00105, baseVolume: 33000, tick: 0.01, chop: 0.65,
 });
 const GME = procedural({
-  symbol: "GME", name: "GameStop Corp.", sector: "Retail · Meme",
+  symbol: "GME", name: "GameStop Corp.", sector: "تجزئة · سهم ميمي",
   start: 24.5, drift: -0.12, minuteVol: 0.00165, baseVolume: 21000, tick: 0.01, chop: 0.9,
 });
 const PLTR = procedural({
-  symbol: "PLTR", name: "Palantir Technologies", sector: "Defense AI",
+  symbol: "PLTR", name: "Palantir Technologies", sector: "ذكاء اصطناعي دفاعي",
   start: 32, drift: 0.85, minuteVol: 0.00115, baseVolume: 48000, tick: 0.01, chop: 0.6,
 });
 const SOFI = procedural({
-  symbol: "SOFI", name: "SoFi Technologies", sector: "Fintech",
+  symbol: "SOFI", name: "SoFi Technologies", sector: "تقنية مالية",
   start: 8.4, drift: 0.4, minuteVol: 0.00135, baseVolume: 39000, tick: 0.01, chop: 0.75,
 });
 

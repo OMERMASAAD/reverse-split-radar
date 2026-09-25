@@ -9,12 +9,12 @@ const STATE_META: Record<
   string,
   { label: string; tone: "bull" | "bear" | "gold" | "muted" }
 > = {
-  BULLISH_CROSS: { label: "▲ BULLISH CROSS", tone: "bull" },
-  BULLISH_EXPANSION: { label: "▲ BULLISH EXPANSION", tone: "bull" },
-  BULLISH_FADE: { label: "▲ BULLISH · FADING", tone: "gold" },
-  BEARISH_CROSS: { label: "▼ BEARISH CROSS", tone: "bear" },
-  BEARISH_EXPANSION: { label: "▼ BEARISH EXPANSION", tone: "bear" },
-  NEUTRAL: { label: "≈ NEUTRAL / RECOVERING", tone: "muted" },
+  BULLISH_CROSS: { label: "▲ تقاطع صاعد", tone: "bull" },
+  BULLISH_EXPANSION: { label: "▲ توسع صاعد", tone: "bull" },
+  BULLISH_FADE: { label: "▲ صاعد يخفت", tone: "gold" },
+  BEARISH_CROSS: { label: "▼ تقاطع هابط", tone: "bear" },
+  BEARISH_EXPANSION: { label: "▼ توسع هابط", tone: "bear" },
+  NEUTRAL: { label: "≈ محايد يتعافى", tone: "muted" },
 };
 
 export default function MacdCard({ analysis }: { analysis: AnalysisResult }) {
@@ -33,41 +33,47 @@ export default function MacdCard({ analysis }: { analysis: AnalysisResult }) {
   return (
     <CardShell
       icon={Zap}
-      title="MACD MOMENTUM"
-      step="RULE 03 · 12 / 26 / 9 CROSSOVER"
+      title="زخم MACD"
+      step="القاعدة 03 · تقاطع 12 / 26 / 9"
       accent="#f59e0b"
       right={<StatePill tone={meta.tone}>{meta.label}</StatePill>}
     >
-      <div className="h-14 w-full">
+      <div dir="ltr" className="h-14 w-full">
         <HistogramChart hist={hist} macdLine={macdLine} signalLine={sigLine} height={56} />
       </div>
-      <div className="num mt-1 flex justify-between text-[9px] tracking-widest text-faint">
+      <div dir="ltr" className="num mt-1 flex justify-between text-[9px] tracking-widest text-faint">
         <span className="text-sky">— MACD</span>
         <span className="text-gold">- - SIGNAL</span>
-        <span>HISTOGRAM {macd.expanding ? "EXPANDING ⏩" : "STEADY"}</span>
+        <span>الهستوجرام {macd.expanding ? "يتوسع ⏩" : "مستقر"}</span>
       </div>
 
       <div className="mt-2 border-t border-line-soft/60 pt-1.5">
         <StatRow
-          label="HISTOGRAM"
+          label="الهستوجرام"
           value={`${last >= 0 ? "+" : ""}${last.toFixed(4)} (${last >= prev ? "▲" : "▼"} ${(last - prev).toFixed(4)})`}
           valueClass={last >= 0 ? "text-bull-soft" : "text-bear-soft"}
         />
         <StatRow
-          label="CROSSOVER"
-          value={macd.freshCross ? "FRESH SIGNAL-LINE CROSS ≤ 3 BARS" : last >= 0 ? "ABOVE SIGNAL LINE" : "BELOW SIGNAL LINE"}
+          label="التقاطع"
+          value={
+            macd.freshCross
+              ? "تقاطع جديد مع خط الإشارة ≤ 3 شموع"
+              : last >= 0
+                ? "فوق خط الإشارة"
+                : "تحت خط الإشارة"
+          }
           valueClass={macd.freshCross ? "text-bull-soft" : last >= 0 ? "text-ink" : "text-bear-soft"}
         />
         <StatRow
-          label="MOMENTUM VERDICT"
+          label="الحكم على الزخم"
           value={
             macd.state.startsWith("BULLISH")
               ? macd.expanding
-                ? "ACCELERATING UP"
-                : "UP, LOSING STEAM"
+                ? "تسارع للأعلى"
+                : "صاعد يفقد قوته"
               : macd.state === "NEUTRAL"
-                ? "COILING"
-                : "DOWN SIDE PRESSURE"
+                ? "تجميع"
+                : "ضغط هابط"
           }
           valueClass={
             macd.state === "BULLISH_EXPANSION" || macd.state === "BULLISH_CROSS"

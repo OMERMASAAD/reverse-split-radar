@@ -1,4 +1,7 @@
-/** Display formatting helpers */
+/** Display formatting helpers — Arabic UI, Gregorian calendar, Latin numerals */
+
+/** ar-SA + Gregorian calendar + Latin digits (the standard trading-terminal combo) */
+export const AR_LOCALE = "ar-SA-u-ca-gregory-nu-latn";
 
 export function fmtPrice(v: number, digits?: number): string {
   if (!isFinite(v)) return "—";
@@ -31,30 +34,28 @@ export function fmtCompactVolume(v: number): string {
 }
 
 export function fmtClock(d: Date): string {
-  return d
-    .toLocaleTimeString("en-US", {
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-      hour12: false,
-      timeZone: "America/New_York",
-    })
-    .replace(/:/g, ":");
+  return d.toLocaleTimeString(AR_LOCALE, {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+    timeZone: "America/New_York",
+  });
 }
 
 export function fmtDay(time: number): string {
   const d = new Date(time * 1000);
-  return d.toLocaleDateString("en-US", {
+  return d.toLocaleDateString(AR_LOCALE, {
     month: "short",
     day: "numeric",
-    timeZone: "UTC",
+    timeZone: "America/New_York",
   });
 }
 
 export function fmtBarTime(time: number, intraday: boolean): string {
   const d = new Date(time * 1000);
   if (intraday) {
-    return d.toLocaleString("en-US", {
+    return d.toLocaleString(AR_LOCALE, {
       month: "short",
       day: "numeric",
       hour: "2-digit",
@@ -63,7 +64,7 @@ export function fmtBarTime(time: number, intraday: boolean): string {
       timeZone: "America/New_York",
     });
   }
-  return d.toLocaleDateString("en-US", {
+  return d.toLocaleDateString(AR_LOCALE, {
     year: "numeric",
     month: "short",
     day: "numeric",

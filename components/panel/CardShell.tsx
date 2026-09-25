@@ -30,14 +30,14 @@ export function CardShell({
           <Icon className="h-3.5 w-3.5" style={{ color: accent ?? "#8ba0bd" }} />
         </div>
         <div className="min-w-0">
-          <div className="num text-[11px] font-bold tracking-[0.16em] text-ink">
+          <div className="text-[12px] font-extrabold tracking-wide text-ink">
             {title}
           </div>
           {step && (
-            <div className="num text-[9px] tracking-[0.22em] text-faint">{step}</div>
+            <div className="text-[9.5px] font-semibold tracking-wide text-faint">{step}</div>
           )}
         </div>
-        <div className="ml-auto flex items-center gap-2">{right}</div>
+        <div className="ms-auto flex items-center gap-2">{right}</div>
       </div>
       <div className="px-3.5 py-3">{children}</div>
     </div>
@@ -61,7 +61,7 @@ export function StatePill({
   } as const;
   return (
     <span
-      className={`num rounded-md border px-2 py-0.5 text-[9.5px] font-bold tracking-[0.14em] ${map[tone]}`}
+      className={`rounded-md border px-2 py-0.5 text-[10px] font-bold tracking-wide ${map[tone]}`}
     >
       {children}
     </span>
@@ -79,7 +79,7 @@ export function StatRow({
 }) {
   return (
     <div className="flex items-center justify-between py-1">
-      <span className="num text-[10px] tracking-[0.14em] text-faint">{label}</span>
+      <span className="text-[10.5px] font-semibold tracking-wide text-faint">{label}</span>
       <span className={`num text-[12px] font-semibold ${valueClass}`}>{value}</span>
     </div>
   );

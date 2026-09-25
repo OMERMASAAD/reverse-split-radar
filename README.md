@@ -1,7 +1,11 @@
-# APEX Terminal — Professional Automated Trading Terminal
+# APEX Terminal — منصة التداول الآلي الاحترافية
 
 A high-end, production-ready trading desk web app built with **Next.js 15 (App Router)**,
 **Tailwind CSS v4**, **Lucide icons** and the **TradingView Lightweight Charts v5** engine.
+
+**واجهة عربية بالكامل (RTL)** — all terminology, status badges, analysis cards and chart
+levels are rendered in Arabic; ticker symbols and universal indicator names (VWAP, RSI,
+MACD, OBV) stay in Latin script, as is standard on Arabic trading desks.
 
 ![stack](https://img.shields.io/badge/Next.js-15-black) ![lwc](https://img.shields.io/badge/Lightweight--Charts-5-2962ff) ![tailwind](https://img.shields.io/badge/Tailwind-4-38bdf8)
 

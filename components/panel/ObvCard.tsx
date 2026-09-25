@@ -19,39 +19,43 @@ export default function ObvCard({ analysis }: { analysis: AnalysisResult }) {
   return (
     <CardShell
       icon={Waves}
-      title="OBV FLOW ENGINE"
-      step="RULE 02 · ACCUMULATION / DISTRIBUTION"
+      title="محرك تدفق OBV — الحجم التراكمي"
+      step="القاعدة 02 · التجميع / التوزيع"
       accent="#38bdf8"
-      right={<StatePill tone={tone}>{obv.flow === "INFLOW" ? "▲ INFLOW" : obv.flow === "OUTFLOW" ? "▼ OUTFLOW" : "≈ MIXED"}</StatePill>}
+      right={
+        <StatePill tone={tone}>
+          {obv.flow === "INFLOW" ? "▲ تدفق شراء" : obv.flow === "OUTFLOW" ? "▼ تدفق بيع" : "≈ تدفق مختلط"}
+        </StatePill>
+      }
     >
-      <div className="h-14 w-full">
+      <div dir="ltr" className="h-14 w-full">
         <LinePairChart a={a} b={b} colorA="#38bdf8" colorB="#f59e0b" height={56} />
       </div>
-      <div className="num mt-1 flex justify-between text-[9px] tracking-widest text-faint">
+      <div dir="ltr" className="num mt-1 flex justify-between text-[9px] tracking-widest text-faint">
         <span className="text-sky">— OBV</span>
         <span className="text-gold">- - OBV 20 EMA</span>
-        <span>LAST {fmtCompactVolume(Math.abs(obv.series[n - 1]))}</span>
+        <span>الأخير {fmtCompactVolume(Math.abs(obv.series[n - 1]))}</span>
       </div>
 
       <div className="mt-2 border-t border-line-soft/60 pt-1.5">
         <StatRow
-          label="TRAJECTORY (10 BARS)"
+          label="المسار (آخر 10 شموع)"
           value={fmtPct(obv.slopePct, 1)}
           valueClass={obv.slopePct >= 0 ? "text-bull-soft" : "text-bear-soft"}
         />
         <StatRow
-          label="OBV vs 20 EMA"
+          label="OBV مقابل EMA20"
           value={`${obv.vsEmaPct >= 0 ? "+" : ""}${obv.vsEmaPct.toFixed(1)}%`}
           valueClass={obv.vsEmaPct >= 0 ? "text-bull-soft" : "text-bear-soft"}
         />
         <StatRow
-          label="READ"
+          label="القراءة"
           value={
             obv.flow === "INFLOW"
-              ? "VOLUME CONFIRMS THE MOVE"
+              ? "الحجم يؤكد الحركة"
               : obv.flow === "OUTFLOW"
-                ? "SMART MONEY EXITING"
-                : "NO CLEAR COMMITMENT"
+                ? "الأموال الذكية تخرج"
+                : "لا التزام واضح"
           }
           valueClass={
             obv.flow === "INFLOW" ? "text-bull-soft" : obv.flow === "OUTFLOW" ? "text-bear-soft" : "text-gold"

@@ -22,9 +22,10 @@ import {
   type UTCTimestamp,
 } from "lightweight-charts";
 import { Boxes, Gauge } from "lucide-react";
-import type { AnalysisResult } from "@/lib/types";
+import { TIMEFRAME_AR, type AnalysisResult } from "@/lib/types";
 import { getProfile } from "@/lib/market/profiles";
 import {
+  AR_LOCALE,
   fmtBarTime,
   fmtCompactVolume,
   fmtPct,
@@ -43,7 +44,7 @@ const STOP = "#f87171";
 
 function LegendChip({ color, label, dashed }: { color: string; label: string; dashed?: boolean }) {
   return (
-    <span className="num flex items-center gap-1.5 text-[9.5px] tracking-[0.14em] text-muted">
+    <span className="flex items-center gap-1.5 text-[10px] font-semibold tracking-wide text-muted">
       <span
         className="inline-block h-0 w-4 border-t-2"
         style={{
@@ -93,6 +94,10 @@ export default function ChartCanvas({ analysis }: { analysis: AnalysisResult }) 
         fontFamily:
           "'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace",
         attributionLogo: false,
+      },
+      localization: {
+        locale: AR_LOCALE,
+        dateFormat: "dd MMMM",
       },
       grid: {
         vertLines: { color: "rgba(139,160,189,0.05)" },
@@ -302,7 +307,7 @@ export default function ChartCanvas({ analysis }: { analysis: AnalysisResult }) 
         lineWidth: 2,
         lineStyle: LineStyle.Solid,
         axisLabelVisible: true,
-        title: `▲ SUPPORT ${fmtPrice(pattern.pivotLow, precision)}`,
+        title: `▲ الدعم ${fmtPrice(pattern.pivotLow, precision)}`,
       }),
       cs.createPriceLine({
         price: pattern.neckline,
@@ -310,7 +315,7 @@ export default function ChartCanvas({ analysis }: { analysis: AnalysisResult }) 
         lineWidth: 2,
         lineStyle: LineStyle.Solid,
         axisLabelVisible: true,
-        title: `⛔ NECKLINE ${fmtPrice(pattern.neckline, precision)}`,
+        title: `⛔ خط الرقبة ${fmtPrice(pattern.neckline, precision)}`,
       }),
       cs.createPriceLine({
         price: plan.t1,
@@ -318,7 +323,7 @@ export default function ChartCanvas({ analysis }: { analysis: AnalysisResult }) 
         lineWidth: 2,
         lineStyle: LineStyle.Dashed,
         axisLabelVisible: true,
-        title: `🎯 TARGET 1 ${fmtPrice(plan.t1, precision)}`,
+        title: `🎯 هدف 1 ${fmtPrice(plan.t1, precision)}`,
       }),
       cs.createPriceLine({
         price: plan.t2,
@@ -326,7 +331,7 @@ export default function ChartCanvas({ analysis }: { analysis: AnalysisResult }) 
         lineWidth: 2,
         lineStyle: LineStyle.Dashed,
         axisLabelVisible: true,
-        title: `🎯 TARGET 2 ${fmtPrice(plan.t2, precision)}`,
+        title: `🎯 هدف 2 ${fmtPrice(plan.t2, precision)}`,
       }),
       cs.createPriceLine({
         price: plan.stop,
@@ -334,7 +339,7 @@ export default function ChartCanvas({ analysis }: { analysis: AnalysisResult }) 
         lineWidth: 2,
         lineStyle: LineStyle.Dashed,
         axisLabelVisible: true,
-        title: `🛑 STOP ${fmtPrice(plan.stop, precision)}`,
+        title: `🛑 وقف الخسارة ${fmtPrice(plan.stop, precision)}`,
       }),
     );
     priceLinesRef.current = lines;
@@ -346,7 +351,7 @@ export default function ChartCanvas({ analysis }: { analysis: AnalysisResult }) 
         position: "belowBar" as const,
         color: "#34d399",
         shape: "arrowUp" as const,
-        text: "BUY",
+        text: "شراء",
         size: 0.9,
       })),
     );
@@ -388,11 +393,11 @@ export default function ChartCanvas({ analysis }: { analysis: AnalysisResult }) 
           <div>
             <div className="num text-lg font-black tracking-[0.18em] text-ink">
               {analysis.symbol}
-              <span className="ml-2 rounded-md border border-line bg-well px-1.5 py-0.5 align-middle text-[10px] font-bold tracking-widest text-sky">
-                {analysis.timeframe}
+              <span className="ms-2 rounded-md border border-line bg-well px-1.5 py-0.5 align-middle text-[10px] font-bold text-sky">
+                {TIMEFRAME_AR[analysis.timeframe]}
               </span>
             </div>
-            <div className="text-[11px] text-muted">
+            <div className="text-[11.5px] text-muted">
               {analysis.symbolName} · {profile.sector}
             </div>
           </div>
@@ -413,74 +418,75 @@ export default function ChartCanvas({ analysis }: { analysis: AnalysisResult }) 
           </span>
         </div>
 
-        <div className="num hidden items-center gap-4 text-[10.5px] text-faint md:flex">
+        <div className="hidden items-center gap-4 text-[11px] text-faint md:flex">
           <span>
-            O <b className="text-muted">{fmtPrice(q.open, precision)}</b>
+            افتتاح <b className="num text-muted">{fmtPrice(q.open, precision)}</b>
           </span>
           <span>
-            H <b className="text-bull-soft">{fmtPrice(q.high, precision)}</b>
+            أعلى <b className="num text-bull-soft">{fmtPrice(q.high, precision)}</b>
           </span>
           <span>
-            L <b className="text-bear-soft">{fmtPrice(q.low, precision)}</b>
+            أدنى <b className="num text-bear-soft">{fmtPrice(q.low, precision)}</b>
           </span>
           <span>
-            V <b className="text-muted">{fmtCompactVolume(q.volume)}</b>
+            الحجم <b className="num text-muted">{fmtCompactVolume(q.volume)}</b>
           </span>
         </div>
 
-        <div className="ml-auto hidden items-center gap-3.5 lg:flex">
+        <div className="ms-auto hidden items-center gap-3.5 lg:flex">
           <LegendChip color={VWAP_COLOR} label="VWAP" />
-          <LegendChip color={SUPPORT} label="SUPPORT" />
-          <LegendChip color={NECKLINE} label="NECKLINE" />
-          <LegendChip color={TARGET} label="T1 / T2" dashed />
-          <LegendChip color={STOP} label="STOP" dashed />
+          <LegendChip color={SUPPORT} label="الدعم" />
+          <LegendChip color={NECKLINE} label="خط الرقبة" />
+          <LegendChip color={TARGET} label="هدف 1 / 2" dashed />
+          <LegendChip color={STOP} label="وقف الخسارة" dashed />
         </div>
       </div>
 
       {/* canvas */}
       <div className="relative min-h-0 flex-1">
-        <div ref={containerRef} className="absolute inset-0" />
+        <div ref={containerRef} dir="ltr" className="absolute inset-0" />
 
         {/* hover legend */}
         <div className="pointer-events-none absolute left-4 top-3 z-10">
-          <div className="num flex items-center gap-2 text-[10px] tracking-[0.22em] text-faint">
+          <div className="flex items-center gap-2 text-[10.5px] font-semibold tracking-wide text-faint">
             <Boxes className="h-3.5 w-3.5 text-sky/70" />
-            {analysis.symbol} · {analysis.timeframe} · SIMULATED FEED
+            <span className="num">{analysis.symbol}</span>
+            <span>· {TIMEFRAME_AR[analysis.timeframe]} · تغذية محاكاة</span>
           </div>
-          <div className="num mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 rounded-lg border border-line-soft/60 bg-abyss/75 px-2.5 py-1.5 text-[11px] backdrop-blur-sm">
+          <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 rounded-lg border border-line-soft/60 bg-abyss/75 px-2.5 py-1.5 text-[11px] backdrop-blur-sm">
             <span className="text-faint" ref={lTime}>—</span>
             <span className="text-muted">
-              O <b className="text-ink" ref={lO}>—</b>
+              افتتاح <b className="num text-ink" ref={lO}>—</b>
             </span>
             <span className="text-muted">
-              H <b className="text-ink" ref={lH}>—</b>
+              أعلى <b className="num text-ink" ref={lH}>—</b>
             </span>
             <span className="text-muted">
-              L <b className="text-ink" ref={lL}>—</b>
+              أدنى <b className="num text-ink" ref={lL}>—</b>
             </span>
             <span className="text-muted">
-              C <b ref={lC}>—</b>
+              إغلاق <b className="num" ref={lC}>—</b>
             </span>
             <span className="text-muted">
-              VOL <b className="text-ink" ref={lV}>—</b>
+              الحجم <b className="num text-ink" ref={lV}>—</b>
             </span>
             <span className="text-muted">
-              VWAP <b style={{ color: VWAP_COLOR }} ref={lVwap}>—</b>
+              VWAP <b className="num" style={{ color: VWAP_COLOR }} ref={lVwap}>—</b>
             </span>
           </div>
         </div>
 
         {/* squeeze gauge chip */}
         <div className="pointer-events-none absolute right-3 top-3 z-10">
-          <div className="num flex items-center gap-2 rounded-lg border border-line-soft/60 bg-abyss/75 px-2.5 py-1.5 text-[10px] tracking-wider backdrop-blur-sm">
+          <div className="flex items-center gap-2 rounded-lg border border-line-soft/60 bg-abyss/75 px-2.5 py-1.5 text-[10.5px] font-semibold backdrop-blur-sm">
             <Gauge className={`h-3.5 w-3.5 ${analysis.squeeze.squeezing ? "text-gold" : "text-faint"}`} />
-            <span className="text-faint">BB-WIDTH</span>
-            <b className={analysis.squeeze.squeezing ? "text-gold" : "text-muted"}>
-              {analysis.squeeze.percentile.toFixed(0)}th PCT
+            <span className="text-faint">عرض بولنجر</span>
+            <b className={`num ${analysis.squeeze.squeezing ? "text-gold" : "text-muted"}`}>
+              المئين {analysis.squeeze.percentile.toFixed(0)}
             </b>
             {analysis.squeeze.fired && (
               <span className="rounded bg-bull/15 px-1.5 py-0.5 font-bold text-bull-soft">
-                FIRED
+                انطلق 🚀
               </span>
             )}
           </div>

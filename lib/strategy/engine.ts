@@ -35,6 +35,14 @@ import {
 import { detectPattern } from "./patterns";
 import { getProfile } from "../market/profiles";
 
+const RSI_ZONE_AR: Record<RsiZone, string> = {
+  OVERBOUGHT: "التشبع الشرائي",
+  STRONG: "القوي الساخن",
+  BULLISH: "الصاعد",
+  WEAK: "الضعيف",
+  OVERSOLD: "التشبع البيعي",
+};
+
 function lastValid(arr: number[]): number {
   for (let i = arr.length - 1; i >= 0; i--) if (!isNaN(arr[i])) return arr[i];
   return NaN;
@@ -259,32 +267,32 @@ export function analyze(
   if (!vwapAbove) {
     status = {
       code: "RISKY",
-      label: "RISKY / BELOW VWAP",
+      label: "منطقة خطر — أدنى VWAP",
       emoji: "⚠️",
-      detail: `Price is ${Math.abs(vwapDistPct).toFixed(2)}% under VWAP — institutions are selling into the tape. Stand aside until reclaimed.`,
+      detail: `السعر أدنى VWAP بنسبة ${Math.abs(vwapDistPct).toFixed(2)}% — المؤسسات تبيع داخل الشريط. ابتعد حتى تتم استعادة VWAP بإغلاق واضح فوقه.`,
     };
   } else if (fired) {
     status = {
       code: "SQUEEZE",
-      label: "SQUEEZE CONFIRMED",
+      label: "انضغاط مُؤكَّد — انطلاق",
       emoji: "🚀",
-      detail: `Volatility compression (BB-width ${compressionPct.toFixed(0)}th percentile) released to the upside — MACD + volume confirm the expansion leg is live.`,
+      detail: `انضغاط التذبذب (عرض بولنجر عند المئين ${compressionPct.toFixed(0)}) تحرر للأعلى — MACD والحجم يؤكدان أن موجة التوسع قيد التنفيذ.`,
     };
   } else if (squeezing || last.close < pattern.neckline) {
     status = {
       code: "BASE",
-      label: "BASE BUILDING",
+      label: "قيد بناء القاعدة",
       emoji: "⏳",
       detail: squeezing
-        ? `Bands pinched to the ${pctLast.toFixed(0)}th percentile — energy loading inside the ${pattern.label}. Trigger at ${pattern.neckline.toFixed(2)}.`
-        : `Structure forming below the ${pattern.neckline.toFixed(2)} neckline. Let the breakout prove itself before entry.`,
+        ? `العصابات انضغطت إلى المئين ${pctLast.toFixed(0)} — الطاقة تتجمع داخل ${pattern.label}. نقطة التفعيل عند ${pattern.neckline.toFixed(2)}.`
+        : `الهيكل يتكوّن أسفل خط الرقبة ${pattern.neckline.toFixed(2)}. دع الاختراق يثبت نفسه قبل الدخول.`,
     };
   } else {
     status = {
       code: "MOMENTUM",
-      label: "MOMENTUM RUN",
+      label: "اندفاع زخمي صاعد",
       emoji: "⚡",
-      detail: "Trending above VWAP with the pattern neckline already reclaimed — manage trailing stops, do not chase extended entries.",
+      detail: "السعر يتداول فوق VWAP وخط الرقبة تم اختراقه بالفعل — أدر وقفًا متحركًا ولا تطارد الدخول بعد الامتداد.",
     };
   }
 
@@ -330,55 +338,63 @@ export function analyze(
   };
 
   /* ---------------- Checklist ---------------- */
+  const macdStateAr: Record<MacdState, string> = {
+    BULLISH_CROSS: "تقاطع صاعد",
+    BULLISH_EXPANSION: "توسع صاعد",
+    BULLISH_FADE: "صاعد يخفت",
+    BEARISH_CROSS: "تقاطع هابط",
+    BEARISH_EXPANSION: "توسع هابط",
+    NEUTRAL: "محايد يتعافى",
+  };
   const checklist: ChecklistItem[] = [
     {
       id: "vwap",
-      label: "VWAP Condition",
+      label: "شرط VWAP (متوسط السعر المرجّح)",
       state: vwapAbove ? (vwapDistPct > 0.4 ? "pass" : "warn") : "fail",
       detail: vwapAbove
-        ? `${vwapDistPct.toFixed(2)}% above ${vwapMode === "ANCHORED" ? "AVWAP" : "VWAP"} (${vwapValue.toFixed(2)})`
-        : `${Math.abs(vwapDistPct).toFixed(2)}% below VWAP (${vwapValue.toFixed(2)})`,
+        ? `أعلى ${vwapMode === "ANCHORED" ? "VWAP المرساة" : "VWAP الجلسة"} بنسبة ${vwapDistPct.toFixed(2)}% (المستوى ${vwapValue.toFixed(2)})`
+        : `أدنى VWAP بنسبة ${Math.abs(vwapDistPct).toFixed(2)}% (المستوى ${vwapValue.toFixed(2)})`,
     },
     {
       id: "obv",
-      label: "OBV Flow Engine",
+      label: "محرك تدفق OBV (الحجم التراكمي)",
       state: obvFlow === "INFLOW" ? "pass" : obvFlow === "MIXED" ? "warn" : "fail",
       detail:
         obvFlow === "INFLOW"
-          ? `Accumulation — OBV riding above its 20 EMA (+${obvSlopePct.toFixed(1)}% / 10 bars)`
+          ? `تجميع — OBV يعتلي متوسطه EMA20 (+${obvSlopePct.toFixed(1)}% / 10 شموع)`
           : obvFlow === "OUTFLOW"
-            ? `Distribution — OBV below 20 EMA and rolling over (${obvSlopePct.toFixed(1)}% / 10 bars)`
-            : `Indecision — OBV tangled with its 20 EMA (${obvSlopePct.toFixed(1)}% / 10 bars)`,
+            ? `توزيع — OBV أسفل EMA20 وينحدر (${obvSlopePct.toFixed(1)}% / 10 شموع)`
+            : `تردد — OBV متشابك مع EMA20 (${obvSlopePct.toFixed(1)}% / 10 شموع)`,
     },
     {
       id: "macd",
-      label: "MACD Momentum",
+      label: "زخم MACD (12/26/9)",
       state:
         macdState === "BULLISH_CROSS" || macdState === "BULLISH_EXPANSION"
           ? "pass"
           : macdState === "BULLISH_FADE" || macdState === "NEUTRAL"
             ? "warn"
             : "fail",
-      detail: `${macdState.replace("_", " ").toLowerCase()} · hist ${histLast >= 0 ? "+" : ""}${histLast.toFixed(4)}${expanding ? " · expanding" : ""}`,
+      detail: `${macdStateAr[macdState]} · الهستوجرام ${histLast >= 0 ? "+" : ""}${histLast.toFixed(4)}${expanding ? " · يتوسع" : ""}`,
     },
     {
       id: "rsi",
-      label: "RSI Range Meter",
+      label: "مقياس نطاق RSI",
       state: rsiWarning ? "warn" : rsiValue >= 50 && rsiValue < 78 ? "pass" : rsiValue >= 45 ? "warn" : "fail",
       detail: rsiWarning
-        ? `RSI ${rsiValue.toFixed(1)} ≥ 80 — OVEREXTENDED, entry risk elevated`
-        : `RSI ${rsiValue.toFixed(1)} in the ${rsiZone.toLowerCase()} band`,
+        ? `RSI عند ${rsiValue.toFixed(1)} ≥ 80 — تمدد رأسي، مخاطر الدخول مرتفعة`
+        : `RSI عند ${rsiValue.toFixed(1)} ضمن نطاق ${RSI_ZONE_AR[rsiZone]}`,
     },
     {
       id: "pattern",
-      label: "Pattern Recognition",
+      label: "محرك التعرف على النماذج",
       state:
         pattern.kind === "RANGE"
           ? "fail"
           : pattern.confidence >= 60
             ? "pass"
             : "warn",
-      detail: `${pattern.label} · ${pattern.confidence}% confidence · neckline ${pattern.neckline.toFixed(2)}`,
+      detail: `${pattern.label} · ثقة ${pattern.confidence}% · خط الرقبة ${pattern.neckline.toFixed(2)}`,
     },
   ];
 

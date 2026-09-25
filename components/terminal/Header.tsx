@@ -47,8 +47,8 @@ export default function Header({
             <div className="num text-[15px] font-black tracking-[0.22em] text-ink">
               APEX<span className="text-sky">·</span>TERMINAL
             </div>
-            <div className="num flex items-center gap-1.5 text-[9.5px] tracking-[0.3em] text-faint">
-              <Cpu className="h-3 w-3" /> AUTOMATED TRADING DESK
+            <div className="flex items-center gap-1.5 text-[10px] font-semibold tracking-wide text-faint">
+              <Cpu className="h-3 w-3" /> مكتب التداول الآلي
             </div>
           </div>
         </div>
@@ -58,7 +58,7 @@ export default function Header({
           <SearchBar universe={universe} active={symbol} onSelect={onSymbol} />
         </div>
 
-        <div className="ml-auto flex items-center gap-4">
+        <div className="ms-auto flex items-center gap-4">
           {/* timeframes */}
           <TimeframeToggle value={timeframe} onChange={onTimeframe} />
 
@@ -66,16 +66,16 @@ export default function Header({
           <StatusBadge status={status} />
 
           {/* clock */}
-          <div className="hidden flex-col items-end leading-tight xl:flex">
+          <div className="hidden flex-col items-start leading-tight xl:flex">
             <div className="num text-[15px] font-bold text-ink">
               {clock ? fmtClock(clock) : "--:--:--"}
             </div>
-            <div className="num flex items-center gap-1.5 text-[9.5px] tracking-[0.22em]">
+            <div className="flex items-center gap-1.5 text-[10px] font-semibold tracking-wide">
               <Radio
                 className={`h-3 w-3 ${marketOpen ? "text-bull" : "text-faint"}`}
               />
               <span className={marketOpen ? "text-bull-soft" : "text-faint"}>
-                {marketOpen ? "MARKET OPEN · NY" : "CLOSED · SIM FEED"}
+                {marketOpen ? "السوق مفتوح · نيويورك" : "مغلق · تغذية محاكاة"}
               </span>
             </div>
           </div>

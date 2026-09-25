@@ -15,14 +15,14 @@ export default function VwapCard({ analysis }: { analysis: AnalysisResult }) {
   return (
     <CardShell
       icon={Anchor}
-      title="VWAP CONDITION"
-      step="RULE 01 · INSTITUTIONAL BIAS"
+      title="شرط VWAP — متوسط السعر المرجّح"
+      step="القاعدة 01 · انحياز المؤسسات"
       accent="#fb923c"
       right={
         vwap.above ? (
-          <StatePill tone="bull">▲ ABOVE</StatePill>
+          <StatePill tone="bull">▲ فوق VWAP</StatePill>
         ) : (
-          <StatePill tone="bear">▼ BELOW</StatePill>
+          <StatePill tone="bear">▼ تحت VWAP</StatePill>
         )
       }
     >
@@ -30,14 +30,15 @@ export default function VwapCard({ analysis }: { analysis: AnalysisResult }) {
         <span className="num text-[22px] font-black" style={{ color: vwap.distancePct >= 0 ? "#34d399" : "#f87171" }}>
           {fmtPct(vwap.distancePct)}
         </span>
-        <span className="num text-[10.5px] text-faint">
-          PRICE {fmtPrice(quote.last, precision)} vs {vwap.mode === "ANCHORED" ? "AVWAP" : "VWAP"}{" "}
-          <b className="text-vwap">{fmtPrice(vwap.value, precision)}</b>
+        <span className="text-[10.5px] text-faint">
+          السعر <b className="num">{fmtPrice(quote.last, precision)}</b> مقابل{" "}
+          {vwap.mode === "ANCHORED" ? "VWAP المرساة" : "VWAP الجلسة"}{" "}
+          <b className="num" style={{ color: "#fb923c" }}>{fmtPrice(vwap.value, precision)}</b>
         </span>
       </div>
 
       {/* distance meter — centre = VWAP */}
-      <div className="relative mt-3 h-2 rounded-full bg-gradient-to-r from-bear/35 via-well to-bull/35">
+      <div dir="ltr" className="relative mt-3 h-2 rounded-full bg-gradient-to-r from-bear/35 via-well to-bull/35">
         <div className="absolute left-1/2 top-1/2 h-4 w-px -translate-y-1/2 bg-vwap/80" />
         <div
           className="absolute top-1/2 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-abyss transition-all duration-500"
@@ -48,7 +49,7 @@ export default function VwapCard({ analysis }: { analysis: AnalysisResult }) {
           }}
         />
       </div>
-      <div className="num mt-1.5 flex justify-between text-[9px] tracking-widest text-faint">
+      <div dir="ltr" className="num mt-1.5 flex justify-between text-[9px] tracking-widest text-faint">
         <span>-3%</span>
         <span className="text-vwap">VWAP</span>
         <span>+3%</span>
@@ -56,13 +57,13 @@ export default function VwapCard({ analysis }: { analysis: AnalysisResult }) {
 
       <div className="mt-2 border-t border-line-soft/60 pt-1.5">
         <StatRow
-          label={vwap.mode === "ANCHORED" ? "ANCHOR" : "SESSION RESET"}
-          value={vwap.mode === "ANCHORED" ? "STRUCTURAL PIVOT LOW" : "DAILY 09:30 NY"}
+          label={vwap.mode === "ANCHORED" ? "نقطة الترسية" : "إعادة ضبط الجلسة"}
+          value={vwap.mode === "ANCHORED" ? "القاع الهيكلي" : "يوميًا 09:30 نيويورك"}
           valueClass="text-muted"
         />
         <StatRow
-          label="VERDICT"
-          value={vwap.above ? "BUYERS IN CONTROL" : "SELLERS IN CONTROL"}
+          label="الخلاصة"
+          value={vwap.above ? "المشترون يسيطرون" : "البائعون يسيطرون"}
           valueClass={vwap.above ? "text-bull-soft" : "text-bear-soft"}
         />
       </div>

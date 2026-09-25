@@ -27,7 +27,7 @@ function ScoreRing({ score }: { score: number }) {
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         <span className="num text-[14px] font-black leading-none text-ink">{score}</span>
-        <span className="num text-[7px] tracking-[0.2em] text-faint">SCORE</span>
+        <span className="text-[8px] font-bold tracking-wide text-faint">التقييم</span>
       </div>
     </div>
   );
@@ -48,8 +48,8 @@ export default function StatusCard({ analysis }: { analysis: AnalysisResult }) {
       <div className="flex items-center gap-3 border-b border-line-soft/70 bg-well/40 px-3.5 py-3">
         <ScoreRing score={analysis.score} />
         <div className="min-w-0 flex-1">
-          <div className="num text-[10px] tracking-[0.24em] text-faint">
-            SETUP READINESS
+          <div className="text-[10.5px] font-bold tracking-wide text-faint">
+            جاهزية الفرصة
           </div>
           <div className="mt-1.5">
             <StatusBadge status={analysis.status} />
@@ -68,17 +68,17 @@ export default function StatusCard({ analysis }: { analysis: AnalysisResult }) {
           <li key={item.id} className="flex items-start gap-2.5 px-3.5 py-2.5">
             {iconFor(item.state)}
             <div className="min-w-0 flex-1">
-              <div className="flex items-center gap-2">
-                <span className="num text-[10.5px] font-bold tracking-[0.12em] text-ink">
-                  {String(i + 1).padStart(2, "0")} · {item.label.toUpperCase()}
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="num text-[11px] font-extrabold tracking-wide text-ink">
+                  {String(i + 1).padStart(2, "0")} · {item.label}
                 </span>
                 {item.state === "warn" && item.id === "rsi" && analysis.rsi.warning && (
-                  <span className="num rounded border border-violet/50 bg-violet/10 px-1.5 py-px text-[8.5px] font-bold tracking-widest text-violet">
-                    ≥80 WARNING
+                  <span className="rounded border border-violet/50 bg-violet/10 px-1.5 py-px text-[9px] font-bold tracking-wide text-violet">
+                    تحذير تشبع ≥ 80
                   </span>
                 )}
               </div>
-              <p className="num mt-0.5 truncate text-[11px] text-muted">{item.detail}</p>
+              <p className="mt-0.5 truncate text-[11px] text-muted">{item.detail}</p>
             </div>
           </li>
         ))}

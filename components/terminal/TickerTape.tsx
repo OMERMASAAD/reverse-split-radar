@@ -54,7 +54,10 @@ export default function TickerTape({
 }) {
   const doubled = [...quotes, ...quotes];
   return (
-    <div className="tape-mask relative overflow-hidden border-b border-line-soft bg-abyss-2/70">
+    <div
+      dir="ltr"
+      className="tape-mask relative overflow-hidden border-b border-line-soft bg-abyss-2/70"
+    >
       <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
         {doubled.map((q, i) => (
           <TapeItem

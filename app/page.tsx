@@ -19,11 +19,11 @@ function BootSkeleton() {
       <div className="flex flex-1 gap-3 p-3">
         <div className="card relative flex-1 overflow-hidden">
           <div className="absolute inset-x-0 top-0 h-24 animate-scan bg-gradient-to-b from-transparent via-sky/5 to-transparent" />
-          <div className="num absolute inset-0 flex flex-col items-center justify-center gap-3 text-faint">
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-faint">
             <div className="h-10 w-10 animate-spin rounded-full border-2 border-line border-t-sky" />
-            <div className="text-[11px] tracking-[0.3em]">INITIALIZING MARKET ENGINE…</div>
-            <div className="text-[9px] tracking-[0.2em] text-line">
-              GENERATING DETERMINISTIC TAPE · 135 SESSIONS · 1-MIN RESOLUTION
+            <div className="text-[12px] font-bold tracking-wide">جارٍ تهيئة محرك السوق…</div>
+            <div className="text-[10px] tracking-wide text-line">
+              توليد تغذية حتمية · 135 جلسة · دقة الدقيقة الواحدة
             </div>
           </div>
         </div>

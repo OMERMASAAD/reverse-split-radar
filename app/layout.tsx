@@ -2,9 +2,9 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "APEX Terminal — Automated Trading Desk",
+  title: "منصة APEX — مكتب التداول الآلي",
   description:
-    "Professional automated trading terminal. VWAP · OBV · MACD · RSI squeeze-breakout engine with pattern recognition and automated trade plans.",
+    "منصة تداول احترافية آلية: محرك VWAP · OBV · MACD · RSI مع كشف الانضغاط والاختراق، التعرف على النماذج السعرية، وخطط تداول مولّدة آليًا.",
 };
 
 export const viewport: Viewport = {
@@ -17,7 +17,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="ar" dir="rtl" className="dark">
       <body className="font-sans antialiased">{children}</body>
     </html>
   );

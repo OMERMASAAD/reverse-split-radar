@@ -45,7 +45,7 @@ export default function StatusBadge({
         className={`h-2 w-2 shrink-0 rounded-full animate-pulse-dot ${tone.dot}`}
       />
       <span
-        className={`num text-[11px] font-bold tracking-[0.14em] ${tone.text} ${
+        className={`text-[11.5px] font-extrabold tracking-wide ${tone.text} ${
           compact ? "" : "whitespace-nowrap"
         }`}
       >
