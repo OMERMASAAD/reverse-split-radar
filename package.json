@@ -1,0 +1,43 @@
+{
+  "name": "apex-trading-terminal",
+  "version": "1.0.0",
+  "description": "Professional Automated Trading Terminal — VWAP / OBV / MACD / RSI squeeze-breakout engine",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "next dev -H 0.0.0.0 -p 3000",
+    "build": "next build",
+    "start": "next start -H 0.0.0.0 -p 3000",
+    "lint": "next lint",
+    "smoke": "tsx scripts/smoke.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OMERMASAAD/reverse-split-radar.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OMERMASAAD/reverse-split-radar/issues"
+  },
+  "homepage": "https://github.com/OMERMASAAD/reverse-split-radar#readme",
+  "private": "true",
+  "dependencies": {
+    "lightweight-charts": "^5.2.1",
+    "lucide-react": "^1.48.0",
+    "next": "^15.5.26",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^26.6.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "postcss": "^8.5.28",
+    "tailwindcss": "^4.3.3",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3"
+  }
+}
