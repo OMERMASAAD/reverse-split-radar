@@ -1,6 +1,6 @@
 /* Engine smoke test — anchor-strategy summary per symbol × timeframe. */
 import { aggregate, generateMinutes, getSessionWindow } from "../lib/market/generator";
-import { getProfile } from "../lib/market/profiles";
+import { UNIVERSE, getProfile } from "../lib/market/profiles";
 import { analyzeStock } from "../lib/strategy/engine";
 import type { Timeframe } from "../lib/types";
 
@@ -11,7 +11,7 @@ console.log(
 );
 
 const tfs: Timeframe[] = ["4h", "1D"];
-const symbols = ["THH", "ELPW", "MSGY", "AAPL", "GME"];
+const symbols = UNIVERSE.map((p) => p.symbol);
 
 for (const sym of symbols) {
   const profile = getProfile(sym);
@@ -41,4 +41,25 @@ for (const sym of symbols) {
     );
   }
   console.log();
+}
+
+/* reference-model narrative check on THH */
+{
+  const profile = getProfile("THH");
+  const minutes = generateMinutes(profile, win);
+  const daily = aggregate(minutes, "1D");
+  const a = analyzeStock("THH", "1D", daily, daily, minutes);
+  console.log("── THH · سرد النموذج المرجعي ──");
+  console.log("الحكم:", a.verdict.code, "·", a.verdict.label);
+  if (a.structure.pattern) {
+    console.log("النموذج:", a.structure.pattern.description);
+    if (a.structure.pattern.headNote) console.log("الرأس:", a.structure.pattern.headNote);
+  }
+  console.log("العنق:", a.structure.testRetest.neckRetestDetail);
+  console.log(
+    "أحداث الشارت: اختراق=",
+    a.events.breakTime ? new Date(a.events.breakTime * 1000).toISOString().slice(0, 10) : "-",
+    "· إعادة اختبار=",
+    a.events.retestTime ? new Date(a.events.retestTime * 1000).toISOString().slice(0, 10) : "-",
+  );
 }
