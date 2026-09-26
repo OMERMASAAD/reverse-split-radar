@@ -10,6 +10,8 @@ const nextConfig: NextConfig = {
   ...(process.env.PAGES_BUILD
     ? { basePath: "/reverse-split-radar", assetPrefix: "/reverse-split-radar" }
     : {}),
+  /** بناء محمول بمسارات نسبية — يعمل عبر CDN (jsDelivr) أو أي مضيف */
+  ...(process.env.RELATIVE_BUILD ? { assetPrefix: "./" } : {}),
 };
 
 export default nextConfig;
