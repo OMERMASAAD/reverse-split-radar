@@ -6,6 +6,10 @@ const nextConfig: NextConfig = {
   /** تصدير ثابت كامل — يُخزَّن في site/ ويُقدَّم بخادم ملفات بسيط resilient */
   output: "export",
   images: { unoptimized: true },
+  /** بناء GitHub Pages يحتاج بادئة مسار المشروع */
+  ...(process.env.PAGES_BUILD
+    ? { basePath: "/reverse-split-radar", assetPrefix: "/reverse-split-radar" }
+    : {}),
 };
 
 export default nextConfig;
