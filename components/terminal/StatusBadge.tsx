@@ -6,25 +6,25 @@ const TONES: Record<
   StatusResult["code"],
   { wrap: string; dot: string; text: string }
 > = {
-  SQUEEZE: {
+  BREAKOUT: {
     wrap: "border-bull/50 bg-bull/10 glow-bull",
     dot: "bg-bull text-bull",
     text: "text-bull-soft",
   },
-  BASE: {
+  ANCHORED: {
+    wrap: "border-sky/50 bg-sky/10",
+    dot: "bg-sky text-sky",
+    text: "text-sky",
+  },
+  BUILDING: {
     wrap: "border-gold/50 bg-gold/10 glow-gold",
     dot: "bg-gold text-gold",
     text: "text-gold",
   },
-  RISKY: {
+  BROKEN: {
     wrap: "border-bear/60 bg-bear/10 glow-bear",
     dot: "bg-bear text-bear",
     text: "text-bear-soft",
-  },
-  MOMENTUM: {
-    wrap: "border-sky/50 bg-sky/10",
-    dot: "bg-sky text-sky",
-    text: "text-sky",
   },
 };
 

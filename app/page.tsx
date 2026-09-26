@@ -6,10 +6,17 @@ import TickerTape from "@/components/terminal/TickerTape";
 import Footer from "@/components/terminal/Footer";
 import ChartCanvas from "@/components/chart/ChartCanvas";
 import AnalysisPanel from "@/components/panel/AnalysisPanel";
-import { aggregate, generateMinutes, getCandles, getSessionWindow, getTape, type TapeQuote } from "@/lib/market/generator";
+import {
+  aggregate,
+  generateMinutes,
+  getCandles,
+  getSessionWindow,
+  getTape,
+  type TapeQuote,
+} from "@/lib/market/generator";
 import { UNIVERSE, getProfile } from "@/lib/market/profiles";
-import { analyze } from "@/lib/strategy/engine";
-import type { Timeframe } from "@/lib/types";
+import { analyzeStock } from "@/lib/strategy/engine";
+import { TIMEFRAMES, type Timeframe } from "@/lib/types";
 
 function BootSkeleton() {
   return (
@@ -23,7 +30,7 @@ function BootSkeleton() {
             <div className="h-10 w-10 animate-spin rounded-full border-2 border-line border-t-sky" />
             <div className="text-[12px] font-bold tracking-wide">جارٍ تهيئة محرك السوق…</div>
             <div className="text-[10px] tracking-wide text-line">
-              توليد تغذية حتمية · 135 جلسة · دقة الدقيقة الواحدة
+              توليد تغذية حتمية · 135 جلسة · فحص هيكلي وأهداف فورية
             </div>
           </div>
         </div>
@@ -40,16 +47,14 @@ function BootSkeleton() {
 export default function TerminalPage() {
   const [mounted, setMounted] = useState(false);
   const [symbol, setSymbol] = useState("THH");
-  const [timeframe, setTimeframe] = useState<Timeframe>("15m");
+  const [timeframe, setTimeframe] = useState<Timeframe>("1D");
   const [tape, setTape] = useState<TapeQuote[]>([]);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  /* freeze "now" once on the client — the tape is deterministic per session */
   const now = useMemo(() => (mounted ? new Date() : null), [mounted]);
-
   const win = useMemo(() => (now ? getSessionWindow(now) : null), [now]);
 
   const minutes = useMemo(() => {
@@ -57,17 +62,21 @@ export default function TerminalPage() {
     return generateMinutes(getProfile(symbol), win);
   }, [symbol, win]);
 
-  const candles = useMemo(() => {
+  const daily = useMemo(() => {
     if (!minutes) return null;
-    return aggregate(minutes, timeframe);
-  }, [minutes, timeframe]);
+    return aggregate(minutes, "1D");
+  }, [minutes]);
+
+  const candles = useMemo(() => {
+    if (!minutes || !daily) return null;
+    return timeframe === "1D" ? daily : aggregate(minutes, timeframe);
+  }, [minutes, daily, timeframe]);
 
   const analysis = useMemo(() => {
-    if (!candles || !minutes || candles.length < 60) return null;
-    return analyze(symbol, timeframe, candles, minutes);
-  }, [symbol, timeframe, candles, minutes]);
+    if (!candles || !daily || !minutes || candles.length < 60) return null;
+    return analyzeStock(symbol, timeframe, candles, daily, minutes);
+  }, [symbol, timeframe, candles, daily, minutes]);
 
-  /* warm the shared candle cache + ticker tape in the background */
   useEffect(() => {
     if (!now) return;
     const id = setTimeout(() => {
@@ -78,10 +87,7 @@ export default function TerminalPage() {
 
   useEffect(() => {
     if (!now) return;
-    // pre-warm the active symbol across timeframes so toggling is instant
-    for (const tf of ["5m", "15m", "1h", "4h", "1D"] as Timeframe[]) {
-      getCandles(symbol, tf, now);
-    }
+    for (const tf of TIMEFRAMES) getCandles(symbol, tf, now);
   }, [symbol, now]);
 
   if (!mounted || !analysis || !win) return <BootSkeleton />;
@@ -94,13 +100,13 @@ export default function TerminalPage() {
         onSymbol={setSymbol}
         timeframe={timeframe}
         onTimeframe={setTimeframe}
-        status={analysis.status}
+        status={analysis.verdict}
         marketOpen={win.marketOpen}
       />
       <TickerTape quotes={tape} active={symbol} onSelect={setSymbol} />
 
       <main className="grid-noise flex min-h-0 flex-1 flex-col gap-3 p-3 xl:flex-row">
-        <div className="flex min-h-[480px] flex-col xl:min-h-0 xl:flex-1">
+        <div className="flex min-h-[520px] flex-col xl:min-h-0 xl:flex-1">
           <ChartCanvas analysis={analysis} />
         </div>
         <AnalysisPanel analysis={analysis} />

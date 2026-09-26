@@ -1,47 +1,30 @@
 /**
- * APEX Strategy Engine
+ * APEX Strategy Engine — استراتيجية الارتكاز لأسهم التقسيم العكسي والهابطة
  *
- * Runs the full rulebook over a candle series and produces every artefact the
- * terminal renders: VWAP condition, OBV flow, MACD momentum state, RSI zone,
- * squeeze percentile, pattern recognition, buy-signal markers, trade plan and
- * the headline status badge.
+ * Orchestrates the single-stock dashboard:
+ *  · EMA 20 / 30 / 50 (mandatory overlays)
+ *  · VWAP anchored at the strategy floor — MONITOR ONLY (never a reject rule)
+ *  · RSI pane + positive exit-oversold signal (30 → 40+)
+ *  · market-structure checks (floor hold, bottoms behaviour, test & re-test,
+ *    liquidity sweep, H&S family + neckline)
+ *  · reverse-split targets (spike-candle pivotal target + staged resistances)
+ *  · verdict badge, weighted score, short-interest & news wire
  */
 
 import type {
   AnalysisResult,
-  BuySignal,
   Candle,
   ChecklistItem,
-  MacdState,
-  ObvFlow,
-  PatternResult,
+  NewsItem,
   Quote,
   RsiZone,
+  StatusCode,
   StatusResult,
   Timeframe,
-  TradePlan,
 } from "../types";
-import {
-  anchoredVwap,
-  atr,
-  bollinger,
-  ema,
-  macd as macdCalc,
-  obv as obvCalc,
-  rsi as rsiCalc,
-  sessionVwap,
-  sma,
-} from "../indicators";
-import { detectPattern } from "./patterns";
+import { anchoredVwap, ema, rsi as rsiCalc } from "../indicators";
+import { analyzeStructure } from "./structure";
 import { getProfile } from "../market/profiles";
-
-const RSI_ZONE_AR: Record<RsiZone, string> = {
-  OVERBOUGHT: "التشبع الشرائي",
-  STRONG: "القوي الساخن",
-  BULLISH: "الصاعد",
-  WEAK: "الضعيف",
-  OVERSOLD: "التشبع البيعي",
-};
 
 function lastValid(arr: number[]): number {
   for (let i = arr.length - 1; i >= 0; i--) if (!isNaN(arr[i])) return arr[i];
@@ -51,29 +34,6 @@ function lastValid(arr: number[]): number {
 function lastValidIdx(arr: (number | null)[], from: number): number {
   for (let i = from; i >= 0; i--) if (arr[i] != null && !isNaN(arr[i] as number)) return i;
   return -1;
-}
-
-function mean(arr: number[]): number {
-  if (!arr.length) return 0;
-  return arr.reduce((a, b) => a + b, 0) / arr.length;
-}
-
-/** Rolling percentile rank of each width value within its trailing window. */
-function rollingPercentile(values: number[], lookback: number): number[] {
-  const out = new Array<number>(values.length).fill(NaN);
-  for (let i = 0; i < values.length; i++) {
-    if (isNaN(values[i])) continue;
-    const from = Math.max(0, i - lookback + 1);
-    let below = 0;
-    let total = 0;
-    for (let j = from; j <= i; j++) {
-      if (isNaN(values[j])) continue;
-      total++;
-      if (values[j] < values[i]) below++;
-    }
-    out[i] = total > 0 ? (below / total) * 100 : NaN;
-  }
-  return out;
 }
 
 function dayKeyOf(time: number): number {
@@ -93,14 +53,8 @@ function buildQuote(minutes: Candle[], candles: Candle[]): Quote {
   const low = Math.min(...today.map((c) => c.low));
   const close = today[today.length - 1].close;
   const volume = today.reduce((a, c) => a + c.volume, 0);
-  // previous session close
   let prevClose = open;
-  if (start > 0) {
-    const prevKey = dayKeyOf(source[start - 1].time);
-    let i = start - 1;
-    while (i > 0 && dayKeyOf(source[i - 1].time) === prevKey) i--;
-    prevClose = source[i].close;
-  }
+  if (start > 0) prevClose = source[start - 1].close;
   return {
     last: close,
     open,
@@ -113,94 +67,82 @@ function buildQuote(minutes: Candle[], candles: Candle[]): Quote {
   };
 }
 
-export function analyze(
+/** neckline break + re-test on the CHART timeframe (drives on-chart markers) */
+function tfNecklineEvents(candles: Candle[], neckline: number | null) {
+  if (neckline == null) return { breakTime: null as number | null, retestTime: null as number | null };
+  const n = candles.length;
+  let breakIdx = -1;
+  let breakTime: number | null = null;
+  let retestTime: number | null = null;
+  const from = Math.max(1, n - 80);
+  for (let i = from; i < n; i++) {
+    if (breakIdx < 0) {
+      if (candles[i].close > neckline && candles[i - 1].close <= neckline) {
+        breakIdx = i;
+        breakTime = candles[i].time;
+      }
+    } else if (
+      i > breakIdx + 1 &&
+      candles[i].low <= neckline * 1.015 &&
+      candles[i].close >= neckline * 0.99
+    ) {
+      retestTime = candles[i].time;
+      break;
+    }
+  }
+  return { breakTime, retestTime };
+}
+
+export function analyzeStock(
   symbol: string,
   timeframe: Timeframe,
   candles: Candle[],
+  daily: Candle[],
   minutes: Candle[],
 ): AnalysisResult {
   const profile = getProfile(symbol);
   const n = candles.length;
+  const dn = daily.length;
   const closes = candles.map((c) => c.close);
-  const volumes = candles.map((c) => c.volume);
   const last = candles[n - 1];
+  const dLast = daily[dn - 1];
 
-  /* ---------------- VWAP ---------------- */
-  let vwapSeries: (number | null)[];
-  let vwapMode: "SESSION" | "ANCHORED" = "SESSION";
-  if (timeframe === "1D") {
-    vwapMode = "ANCHORED";
-    // anchor to the structural pivot low of the last 90 sessions
-    const lookback = Math.min(90, n);
-    let anchorIdx = n - lookback;
-    let lowest = Infinity;
-    for (let i = n - lookback; i < n; i++) {
-      if (candles[i].low < lowest) {
-        lowest = candles[i].low;
+  /* ---------------- structure on the daily frame ---------------- */
+  const structure = analyzeStructure(daily, profile);
+  const floor = structure.bottom.level;
+
+  /* ---------------- mandatory EMAs ---------------- */
+  const emas = {
+    ema20: ema(closes, 20),
+    ema30: ema(closes, 30),
+    ema50: ema(closes, 50),
+  };
+
+  /* ---------------- VWAP — anchored at the strategy floor (monitor only) */
+  let anchorIdx = -1;
+  for (let i = n - 1; i >= 0; i--) {
+    if (candles[i].low <= floor * 1.01) {
+      anchorIdx = i;
+      break;
+    }
+  }
+  if (anchorIdx < 0) {
+    anchorIdx = Math.max(0, n - 90);
+    let lo = Infinity;
+    for (let i = anchorIdx; i < n; i++) {
+      if (candles[i].low < lo) {
+        lo = candles[i].low;
         anchorIdx = i;
       }
     }
-    vwapSeries = anchoredVwap(candles, anchorIdx);
-  } else {
-    vwapSeries = sessionVwap(candles);
   }
-  const vwapIdx = lastValidIdx(vwapSeries, n - 1);
-  const vwapValue = vwapIdx >= 0 ? (vwapSeries[vwapIdx] as number) : last.close;
+  const vwapSeries = anchoredVwap(candles, anchorIdx);
+  const vIdx = lastValidIdx(vwapSeries, n - 1);
+  const vwapValue = vIdx >= 0 ? (vwapSeries[vIdx] as number) : last.close;
   const vwapAbove = last.close >= vwapValue;
   const vwapDistPct = vwapValue ? ((last.close - vwapValue) / vwapValue) * 100 : 0;
 
-  /* ---------------- OBV flow ---------------- */
-  const obvSeries = obvCalc(candles);
-  const obvEma = ema(obvSeries, 20);
-  const obvLast = obvSeries[n - 1];
-  const obvEmaLast = lastValid(obvEma);
-  const obvPrev = obvSeries[Math.max(0, n - 11)];
-  const obvEmaPrev = obvEma[Math.max(0, n - 11)];
-  const obvTrajectoryUp = obvLast > obvPrev && obvEmaLast > (isNaN(obvEmaPrev) ? obvEmaLast : obvEmaPrev);
-  const obvAboveEma = obvLast >= obvEmaLast;
-  let obvFlow: ObvFlow = "MIXED";
-  if (obvAboveEma && obvTrajectoryUp) obvFlow = "INFLOW";
-  else if (!obvAboveEma && !obvTrajectoryUp) obvFlow = "OUTFLOW";
-  const obvRange = Math.max(1e-9, Math.abs(obvEmaLast) || 1);
-  const obvVsEmaPct = ((obvLast - obvEmaLast) / obvRange) * 100;
-  const obvSlopePct = obvPrev !== 0 ? ((obvLast - obvPrev) / Math.abs(obvPrev)) * 100 : 0;
-
-  /* ---------------- MACD ---------------- */
-  const m = macdCalc(closes);
-  const histLast = lastValid(m.hist);
-  let macdState: MacdState = "NEUTRAL";
-  let freshCross = false;
-  let expanding = false;
-  {
-    let crossIdx = -1;
-    for (let i = n - 1; i >= Math.max(1, n - 4); i--) {
-      if (!isNaN(m.hist[i]) && !isNaN(m.hist[i - 1]) && m.hist[i - 1] <= 0 && m.hist[i] > 0) {
-        crossIdx = i;
-        break;
-      }
-    }
-    const bearCross =
-      !isNaN(m.hist[n - 1]) && !isNaN(m.hist[n - 2]) && m.hist[n - 2] >= 0 && m.hist[n - 1] < 0;
-    expanding =
-      n >= 3 &&
-      !isNaN(m.hist[n - 1]) && !isNaN(m.hist[n - 2]) && !isNaN(m.hist[n - 3]) &&
-      Math.abs(m.hist[n - 1]) > Math.abs(m.hist[n - 2]) &&
-      Math.abs(m.hist[n - 2]) > Math.abs(m.hist[n - 3]);
-    if (crossIdx >= 0) {
-      macdState = "BULLISH_CROSS";
-      freshCross = crossIdx >= n - 3;
-    } else if (bearCross) {
-      macdState = "BEARISH_CROSS";
-    } else if (histLast > 0) {
-      macdState = expanding ? "BULLISH_EXPANSION" : "BULLISH_FADE";
-    } else if (histLast < 0) {
-      const recovering =
-        n >= 2 && !isNaN(m.hist[n - 1]) && !isNaN(m.hist[n - 2]) && m.hist[n - 1] > m.hist[n - 2];
-      macdState = recovering ? "NEUTRAL" : "BEARISH_EXPANSION";
-    }
-  }
-
-  /* ---------------- RSI ---------------- */
+  /* ---------------- RSI: chart pane + daily strategy signal ---------------- */
   const rsiSeries = rsiCalc(closes, 14);
   const rsiValue = lastValid(rsiSeries);
   let rsiZone: RsiZone = "BULLISH";
@@ -209,237 +151,199 @@ export function analyze(
   else if (rsiValue >= 50) rsiZone = "BULLISH";
   else if (rsiValue >= 30) rsiZone = "WEAK";
   else rsiZone = "OVERSOLD";
-  const rsiWarning = rsiValue >= 80;
 
-  /* ---------------- Squeeze ---------------- */
-  const bb = bollinger(closes, 20, 2);
-  const pctRank = rollingPercentile(bb.widthPct, 120);
-  const pctLast = lastValid(pctRank);
-  const squeezing = pctLast <= 20;
-  const bandwidthPct = lastValid(bb.widthPct);
+  /* ---------------- verdict (no VWAP rejection anywhere) ---------------- */
+  const brokenRecently =
+    daily[dn - 1].close < floor * 0.99 ||
+    daily[dn - 2]?.close < floor * 0.99 ||
+    daily[dn - 3]?.close < floor * 0.99;
 
-  /* ---------------- ATR ---------------- */
-  const atrSeries = atr(candles, 14);
-  const atrLast = lastValid(atrSeries) || last.close * 0.01;
+  const nlNow = structure.targets.neckline;
+  const breakoutValid =
+    structure.testRetest.neckBreak && (nlNow === null || daily[dn - 1].close > nlNow);
 
-  /* ---------------- Pattern ---------------- */
-  const volRecent = mean(volumes.slice(-20));
-  const volPrior = mean(volumes.slice(-40, -20));
-  const rightVolRatio = volPrior > 0 ? volRecent / volPrior : 1;
-  const fractalK = timeframe === "1D" ? 2 : timeframe === "4h" ? 3 : 3;
-  const pattern: PatternResult = detectPattern({
-    candles,
-    obvRising: obvFlow === "INFLOW",
-    rightVolRatio,
-    squeezeActive: squeezing,
-    rsiValue,
-    fractalK,
-  });
+  /* ---------------- events on the chart timeframe ---------------- */
+  const events = breakoutValid
+    ? tfNecklineEvents(candles, nlNow)
+    : { breakTime: null, retestTime: null };
 
-  /* ---------------- Squeeze fire + status ---------------- */
-  let fired = false;
-  let compressionPct = pctLast;
-  {
-    // compression window scales with the timeframe (~1.5 sessions)
-    const barsPerSession =
-      timeframe === "5m" ? 78 : timeframe === "15m" ? 26 : timeframe === "1h" ? 7 : timeframe === "4h" ? 2 : 1;
-    const firedLookback = Math.max(8, Math.ceil(barsPerSession * 1.5));
-    const from = Math.max(0, n - firedLookback);
-    for (let i = from; i < n; i++) {
-      if (!isNaN(pctRank[i]) && pctRank[i] <= 26) {
-        const brokeNeck = last.close > pattern.neckline;
-        const brokeBand = !isNaN(bb.upper[i]) && last.close > bb.upper[i];
-        const thrust =
-          vwapAbove &&
-          expanding &&
-          histLast > 0 &&
-          n >= 4 &&
-          last.close / candles[n - 4].close - 1 > 0.01;
-        if (brokeNeck || brokeBand || thrust) {
-          fired = true;
-          compressionPct = Math.min(compressionPct, pctRank[i]);
-        }
-      }
-    }
-  }
+  let code: StatusCode;
+  if (brokenRecently) code = "BROKEN";
+  else if (structure.bottom.held && structure.behavior.ok && breakoutValid)
+    code = "BREAKOUT";
+  else if (structure.bottom.held && structure.behavior.ok) code = "ANCHORED";
+  else code = "BUILDING";
 
-  let status: StatusResult;
-  if (!vwapAbove) {
-    status = {
-      code: "RISKY",
-      label: "منطقة خطر — أدنى VWAP",
-      emoji: "⚠️",
-      detail: `السعر أدنى VWAP بنسبة ${Math.abs(vwapDistPct).toFixed(2)}% — المؤسسات تبيع داخل الشريط. ابتعد حتى تتم استعادة VWAP بإغلاق واضح فوقه.`,
-    };
-  } else if (fired) {
-    status = {
-      code: "SQUEEZE",
-      label: "انضغاط مُؤكَّد — انطلاق",
+  const verdictByCode: Record<StatusCode, StatusResult> = {
+    BREAKOUT: {
+      code: "BREAKOUT",
+      label: "اختراق مؤكد — النموذج فعّال",
       emoji: "🚀",
-      detail: `انضغاط التذبذب (عرض بولنجر عند المئين ${compressionPct.toFixed(0)}) تحرر للأعلى — MACD والحجم يؤكدان أن موجة التوسع قيد التنفيذ.`,
-    };
-  } else if (squeezing || last.close < pattern.neckline) {
-    status = {
-      code: "BASE",
-      label: "قيد بناء القاعدة",
+      detail: `القاع المعتمد ${floor.toFixed(3)} صامد، وسلوك القيعان إيجابي، وخط العنق ${structure.targets.neckline?.toFixed(2)} تم اختراقه. التسلسل المرجعي مكتمل: اختراق ← إعادة اختبار ← امتداد صاعد نحو الأهداف المرحلية ثم الهدف المحوري.`,
+    },
+    ANCHORED: {
+      code: "ANCHORED",
+      label: "ارتكاز مؤكد — بانتظار التفعيل",
+      emoji: "⚓",
+      detail: `السعر مرتكز فوق القاع المعتمد ${floor.toFixed(3)} لـ ${structure.bottom.holdsSessions} جلسة متتالية بسلوك قيعان إيجابي. المراقبة: اختراق خط العنق ${structure.targets.neckline ? structure.targets.neckline.toFixed(2) : (structure.testRetest.resistanceLevel ?? dLast.close).toFixed(2)} ثم إعادة اختباره.`,
+    },
+    BUILDING: {
+      code: "BUILDING",
+      label: "قيد بناء الارتكاز",
       emoji: "⏳",
-      detail: squeezing
-        ? `العصابات انضغطت إلى المئين ${pctLast.toFixed(0)} — الطاقة تتجمع داخل ${pattern.label}. نقطة التفعيل عند ${pattern.neckline.toFixed(2)}.`
-        : `الهيكل يتكوّن أسفل خط الرقبة ${pattern.neckline.toFixed(2)}. دع الاختراق يثبت نفسه قبل الدخول.`,
-    };
-  } else {
-    status = {
-      code: "MOMENTUM",
-      label: "اندفاع زخمي صاعد",
-      emoji: "⚡",
-      detail: "السعر يتداول فوق VWAP وخط الرقبة تم اختراقه بالفعل — أدر وقفًا متحركًا ولا تطارد الدخول بعد الامتداد.",
-    };
-  }
-
-  /* ---------------- Buy signals ---------------- */
-  const volSma20 = sma(volumes, 20);
-  const signals: BuySignal[] = [];
-  const scanFrom = Math.max(60, n - 400);
-  for (let i = scanFrom; i < n; i++) {
-    const v = vwapSeries[i];
-    if (v == null || isNaN(v)) continue;
-    if (isNaN(m.hist[i]) || isNaN(m.hist[i - 1])) continue;
-    if (isNaN(rsiSeries[i]) || isNaN(obvEma[i]) || isNaN(volSma20[i])) continue;
-    const crossed = m.hist[i - 1] <= 0 && m.hist[i] > 0;
-    const aboveVwap = candles[i].close > v;
-    const rsiOk = rsiSeries[i] >= 50 && rsiSeries[i] <= 78;
-    const obvOk = obvSeries[i] > obvEma[i];
-    const volOk = volumes[i] >= 1.15 * volSma20[i];
-    if (crossed && aboveVwap && rsiOk && obvOk && volOk) {
-      signals.push({ time: candles[i].time, price: candles[i].low });
-    }
-  }
-  const signalMarkers = signals.slice(-14);
-
-  /* ---------------- Trade plan ---------------- */
-  const breakoutMode = last.close < pattern.neckline;
-  let entry = breakoutMode ? pattern.neckline * 1.002 : last.close;
-  let stop = pattern.pivotLow;
-  if (stop >= entry) stop = entry - 2 * atrLast;
-  let t1 = pattern.neckline + pattern.depth;
-  let t2 = pattern.neckline + 1.618 * pattern.depth;
-  if (t1 <= entry) t1 = entry + Math.max(pattern.depth * 0.75, atrLast * 1.5);
-  if (t2 <= t1) t2 = entry + (t1 - entry) * 2;
-  const risk = entry - stop;
-  const plan: TradePlan = {
-    entry,
-    stop,
-    t1,
-    t2,
-    rr1: risk > 0 ? (t1 - entry) / risk : 0,
-    rr2: risk > 0 ? (t2 - entry) / risk : 0,
-    riskPct: entry > 0 ? (risk / entry) * 100 : 0,
-    breakoutMode,
+      detail: `القاع المعتمد ${floor.toFixed(3)} مرصود لكن شروط الثبات/سلوك القيعان لم تكتمل بعد (${structure.bottom.holdsSessions} جلسة ثبات). لا دخول قبل خمسة جلسات ثبات على الأقل فوق الأرضية.`,
+    },
+    BROKEN: {
+      code: "BROKEN",
+      label: "كسر القاع — خارج الاستراتيجية",
+      emoji: "⚠️",
+      detail: `الإغلاق تحت القاع المعتمد ${floor.toFixed(3)} — فرضية الارتكاز ملغية حتى إشعار آخر. أي ارتداد حالي مجرد تصحيح داخل الاتجاه الهابط.`,
+    },
   };
+  const verdict = verdictByCode[code];
 
-  /* ---------------- Checklist ---------------- */
-  const macdStateAr: Record<MacdState, string> = {
-    BULLISH_CROSS: "تقاطع صاعد",
-    BULLISH_EXPANSION: "توسع صاعد",
-    BULLISH_FADE: "صاعد يخفت",
-    BEARISH_CROSS: "تقاطع هابط",
-    BEARISH_EXPANSION: "توسع هابط",
-    NEUTRAL: "محايد يتعافى",
-  };
+  /* ---------------- checklist (نعم / لا) ---------------- */
+  const tr = structure.testRetest;
+  const neckConfirmed = tr.neckBreak && tr.neckRetest;
+  const subYes =
+    [tr.testedResistance, tr.retestedBottom, tr.sweep].filter(Boolean).length +
+    (tr.neckBreak ? 1 : 0) +
+    (tr.neckRetest ? 1 : 0);
   const checklist: ChecklistItem[] = [
     {
-      id: "vwap",
-      label: "شرط VWAP (متوسط السعر المرجّح)",
-      state: vwapAbove ? (vwapDistPct > 0.4 ? "pass" : "warn") : "fail",
-      detail: vwapAbove
-        ? `أعلى ${vwapMode === "ANCHORED" ? "VWAP المرساة" : "VWAP الجلسة"} بنسبة ${vwapDistPct.toFixed(2)}% (المستوى ${vwapValue.toFixed(2)})`
-        : `أدنى VWAP بنسبة ${Math.abs(vwapDistPct).toFixed(2)}% (المستوى ${vwapValue.toFixed(2)})`,
+      id: "floor",
+      label: "ثبات القاع — ≥ 5 جلسات فوق القاع المعتمد",
+      state: structure.bottom.held ? "yes" : "no",
+      detail: `${structure.bottom.holdsSessions} جلسة إغلاق متتالية فوق ${floor.toFixed(3)} (القاع محفور قبل ${dn - 1 - structure.bottom.index} جلسة).`,
     },
     {
-      id: "obv",
-      label: "محرك تدفق OBV (الحجم التراكمي)",
-      state: obvFlow === "INFLOW" ? "pass" : obvFlow === "MIXED" ? "warn" : "fail",
-      detail:
-        obvFlow === "INFLOW"
-          ? `تجميع — OBV يعتلي متوسطه EMA20 (+${obvSlopePct.toFixed(1)}% / 10 شموع)`
-          : obvFlow === "OUTFLOW"
-            ? `توزيع — OBV أسفل EMA20 وينحدر (${obvSlopePct.toFixed(1)}% / 10 شموع)`
-            : `تردد — OBV متشابك مع EMA20 (${obvSlopePct.toFixed(1)}% / 10 شموع)`,
+      id: "behavior",
+      label: "سلوك القيعان — قاع ثابت أو قاع أعلى",
+      state: structure.behavior.ok ? "yes" : "no",
+      detail: structure.behavior.detail,
     },
     {
-      id: "macd",
-      label: "زخم MACD (12/26/9)",
-      state:
-        macdState === "BULLISH_CROSS" || macdState === "BULLISH_EXPANSION"
-          ? "pass"
-          : macdState === "BULLISH_FADE" || macdState === "NEUTRAL"
-            ? "warn"
-            : "fail",
-      detail: `${macdStateAr[macdState]} · الهستوجرام ${histLast >= 0 ? "+" : ""}${histLast.toFixed(4)}${expanding ? " · يتوسع" : ""}`,
-    },
-    {
-      id: "rsi",
-      label: "مقياس نطاق RSI",
-      state: rsiWarning ? "warn" : rsiValue >= 50 && rsiValue < 78 ? "pass" : rsiValue >= 45 ? "warn" : "fail",
-      detail: rsiWarning
-        ? `RSI عند ${rsiValue.toFixed(1)} ≥ 80 — تمدد رأسي، مخاطر الدخول مرتفعة`
-        : `RSI عند ${rsiValue.toFixed(1)} ضمن نطاق ${RSI_ZONE_AR[rsiZone]}`,
+      id: "testretest",
+      label: "الاختبار والاختبار المضاد + سحب السيولة",
+      state: neckConfirmed || subYes >= 2 ? "yes" : subYes === 1 ? "partial" : "no",
+      detail: `اختبار المقاومة: ${tr.testedResistance ? "نعم" : "لا"} · إعادة اختبار القاع: ${tr.retestedBottom ? "نعم" : "لا"} · سحب سيولة: ${tr.sweep ? "نعم" : "لا"} · اختراق العنق: ${tr.neckBreak ? "نعم" : "لا"} · إعادة اختبار العنق: ${tr.neckRetest ? "نعم" : "لا"}`,
     },
     {
       id: "pattern",
-      label: "محرك التعرف على النماذج",
-      state:
-        pattern.kind === "RANGE"
-          ? "fail"
-          : pattern.confidence >= 60
-            ? "pass"
-            : "warn",
-      detail: `${pattern.label} · ثقة ${pattern.confidence}% · خط الرقبة ${pattern.neckline.toFixed(2)}`,
+      label: "نماذج الحركة السعرية — رأس وكتفين (أو مقلوب) وخط العنق",
+      state: !structure.pattern
+        ? "no"
+        : structure.pattern.kind === "INVERTED_HEAD_SHOULDERS"
+          ? structure.pattern.confidence >= 60
+            ? "yes"
+            : "partial"
+          : "no",
+      detail: structure.pattern
+        ? structure.pattern.kind === "INVERTED_HEAD_SHOULDERS"
+          ? `${structure.pattern.label} · ثقة ${structure.pattern.confidence}% · خط العنق ${structure.pattern.neckline.toFixed(3)}${structure.pattern.headNote ? " · الرأس قاع مزدوج" : ""}`
+          : `تنبيه: ${structure.pattern.label} (هابط) · خط العنق ${structure.pattern.neckline.toFixed(3)} — لا يدعم اتجاه الارتكاز الصاعد.`
+        : "لا يوجد نموذج رأس وكتفين مؤكد حاليًا على اليومي.",
+    },
+    {
+      id: "rsi-signal",
+      label: "إشارة RSI — الخروج من التشبع البيعي (30 ← 40+)",
+      state: structure.rsi.exitOversold
+        ? structure.rsi.value >= 40
+          ? "yes"
+          : "partial"
+        : "no",
+      detail: structure.rsi.exitOversold
+        ? `RSI اليومي ${structure.rsi.value.toFixed(1)} — خرج من تحت 30 وصعد ${structure.rsi.value >= 40 ? "فوق 40 (إشارة إيجابية مكتملة)" : "نحو 40 (إيجابية قيد التكوين)"}.`
+        : `RSI اليومي ${structure.rsi.value.toFixed(1)} — لم يُرصد خروج من التشبع البيعي خلال آخر 40 جلسة.`,
+    },
+    {
+      id: "vwap-monitor",
+      label: "مراقبة VWAP (إيجابية ممتازة — غير مانعة)",
+      state: vwapAbove ? "yes" : "no",
+      detail: vwapAbove
+        ? `السعر أعلى VWAP المرساة بالقاع بنسبة +${vwapDistPct.toFixed(2)}% — استعادة إيجابية ممتازة تُعزز الارتكاز.`
+        : `السعر أدنى VWAP المرساة بنسبة ${vwapDistPct.toFixed(2)}% — ملاحظة مراقبة فقط، لا ترفض السهم وفق الاستراتيجية.`,
     },
   ];
 
-  const score = Math.round(
-    Math.min(
-      99,
-      mean(
-        checklist.map((c) => (c.state === "pass" ? 100 : c.state === "warn" ? 55 : 8)),
-      ) * 0.7 + pattern.confidence * 0.3,
-    ),
-  );
+  /* ---------------- weighted score ---------------- */
+  const weights: Record<string, number> = {
+    floor: 25,
+    behavior: 20,
+    testretest: 20,
+    pattern: 15,
+    "rsi-signal": 10,
+    "vwap-monitor": 10,
+  };
+  let acc = 0;
+  let total = 0;
+  for (const item of checklist) {
+    const w = weights[item.id] ?? 10;
+    total += w;
+    acc += w * (item.state === "yes" ? 1 : item.state === "partial" ? 0.5 : 0);
+  }
+  const score = Math.round((acc / total) * 100);
+
+  /* ---------------- split + news + short ---------------- */
+  const rs = profile.reverseSplit;
+  const splitIdx = rs ? dn - 1 + rs.d : -1;
+  const split =
+    rs && splitIdx >= 0 && splitIdx < dn
+      ? {
+          ratioLabel: rs.ratioLabel,
+          time: daily[splitIdx].time,
+          spikeHigh: structure.targets.main.price,
+        }
+      : null;
+
+  const newsTime = dLast.time;
+  const news: NewsItem[] = profile.news.map((seed) => ({
+    d: seed.d,
+    time: newsTime + seed.d * 86400,
+    title: seed.title,
+    source: seed.source,
+    sentiment: seed.sentiment,
+    upcoming: seed.d > 0,
+  }));
 
   const quote = buildQuote(minutes, candles);
 
   return {
     symbol,
     symbolName: profile.name,
+    sector: profile.sector,
     timeframe,
     candles,
+    daily,
     quote,
+    hasSplit: split != null,
+    split,
+    emas,
     vwap: {
       series: vwapSeries,
       value: vwapValue,
       distancePct: vwapDistPct,
       above: vwapAbove,
-      mode: vwapMode,
+      mode: "ANCHORED",
     },
-    obv: { series: obvSeries, ema: obvEma, flow: obvFlow, slopePct: obvSlopePct, vsEmaPct: obvVsEmaPct },
-    macd: {
-      macd: m.macd,
-      signal: m.signal,
-      hist: m.hist,
-      state: macdState,
-      freshCross,
-      expanding,
-      histValue: histLast,
+    rsi: {
+      series: rsiSeries,
+      value: rsiValue,
+      zone: rsiZone,
+      dailyValue: structure.rsi.value,
+      dailySeries: structure.rsi.series,
+      exitOversold: structure.rsi.exitOversold,
+      crossRecent: structure.rsi.crossRecent,
+      signalTime: structure.rsi.signalTime,
     },
-    rsi: { series: rsiSeries, value: rsiValue, zone: rsiZone, warning: rsiWarning },
-    squeeze: { bandwidthPct, percentile: pctLast, squeezing, fired, compressionPct },
-    atr: atrLast,
-    pattern,
-    plan,
-    status,
-    signals: signalMarkers,
+    structure,
+    targets: structure.targets,
     checklist,
+    verdict,
     score,
+    events,
+    short: profile.short,
+    news,
+    newsTime,
   };
 }

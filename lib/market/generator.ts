@@ -179,27 +179,44 @@ export function generateMinutes(profile: SymbolProfile, win: SessionWindow): Can
 
     const anchorOpen = prevClose;
     const anchorClose = sampleKeys(profile.anchor, dRel);
+    const rs =
+      profile.reverseSplit && dRel === profile.reverseSplit.d
+        ? profile.reverseSplit
+        : null;
     const scripted = sampleGap(profile.gaps, dRel);
     const dayVolMul = sampleKeys(profile.volatility, dRel);
     const dayVolumeMul = sampleKeys(profile.volume, dRel);
-    const gap = scripted ?? gauss() * 0.0022 * dayVolMul;
+    const gap = rs ? rs.gapUp : (scripted ?? gauss() * 0.0022 * dayVolMul);
 
     const openMs = sessionOpenUtcMs(day);
     let p = anchorOpen * (1 + gap);
+    const dayOpen = p;
+    // reverse-split spike candle: vertical surge then exponential decay
+    const spikeHigh = rs ? dayOpen * rs.spikeMult : 0;
     const sigmaBase = profile.minuteVol;
 
     for (let m = 0; m < minutes; m++) {
       const f = minutes > 1 ? m / (minutes - 1) : 1;
-      const sf =
-        isFinal && profile.intraday?.length
-          ? sampleKeys(profile.intraday, f * 100, f)
-          : f * f * (3 - 2 * f);
-      const anchor = anchorOpen * Math.pow(anchorClose / anchorOpen, sf);
+      let anchor: number;
+      if (rs) {
+        if (f <= 0.03) anchor = dayOpen + (spikeHigh - dayOpen) * (f / 0.03);
+        else
+          anchor =
+            anchorClose +
+            (spikeHigh - anchorClose) * Math.exp(-5.5 * (f - 0.03));
+      } else {
+        const sf =
+          isFinal && profile.intraday?.length
+            ? sampleKeys(profile.intraday, f * 100, f)
+            : f * f * (3 - 2 * f);
+        anchor = anchorOpen * Math.pow(anchorClose / anchorOpen, sf);
+      }
+      // track the split-day surge tightly; OU elsewhere
+      const kappa = rs ? (f <= 0.04 ? 0.5 : KAPPA) : KAPPA;
       const sigma = sigmaBase * dayVolMul * (1 + 0.45 * (Math.exp(-6 * f) + Math.exp(-6 * (1 - f))));
 
       const o = p;
-      // OU step in log-space toward the anchor path
-      const drift = KAPPA * (Math.log(anchor) - Math.log(Math.max(p, 1e-6)));
+      const drift = kappa * (Math.log(anchor) - Math.log(Math.max(p, 1e-6)));
       p = p * Math.exp(drift + sigma * gauss());
       if (p < profile.tick * 2) p = profile.tick * 2;
       const c = p;

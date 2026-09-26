@@ -1,10 +1,12 @@
 /**
  * APEX Terminal — core domain types
+ * "Reverse-Split Anchor Strategy" (استراتيجية الارتكاز لأسهم التقسيم العكسي والهابطة)
  */
 
 export type Timeframe = "5m" | "15m" | "1h" | "4h" | "1D";
 
-export const TIMEFRAMES: Timeframe[] = ["5m", "15m", "1h", "4h", "1D"];
+/** The strategy dashboard works on the daily + 4-hour frames only. */
+export const TIMEFRAMES: Timeframe[] = ["4h", "1D"];
 
 /** Arabic labels for the timeframe toggle / chips */
 export const TIMEFRAME_AR: Record<Timeframe, string> = {
@@ -25,23 +27,9 @@ export interface Candle {
   volume: number;
 }
 
-export type MacdState =
-  | "BULLISH_CROSS"
-  | "BULLISH_EXPANSION"
-  | "BULLISH_FADE"
-  | "BEARISH_CROSS"
-  | "BEARISH_EXPANSION"
-  | "NEUTRAL";
-
-export type ObvFlow = "INFLOW" | "OUTFLOW" | "MIXED";
-
 export type RsiZone = "OVERBOUGHT" | "STRONG" | "BULLISH" | "WEAK" | "OVERSOLD";
 
-export type PatternKind =
-  | "INVERTED_HEAD_SHOULDERS"
-  | "DOUBLE_BOTTOM"
-  | "HIGHER_LOWS"
-  | "RANGE";
+export type PatternKind = "INVERTED_HEAD_SHOULDERS" | "HEAD_SHOULDERS";
 
 export interface SwingPoint {
   index: number;
@@ -58,13 +46,16 @@ export interface PatternResult {
   /** 0..100 */
   confidence: number;
   neckline: number;
-  pivotLow: number;
   depth: number;
   points: SwingPoint[];
   startIndex: number;
+  /** when the head itself is a double bottom (as in the reference model) */
+  headNote?: string | null;
+  /** sessions from left shoulder to right shoulder */
+  spanBars?: number;
 }
 
-export type StatusCode = "SQUEEZE" | "BASE" | "RISKY" | "MOMENTUM";
+export type StatusCode = "ANCHORED" | "BUILDING" | "BREAKOUT" | "BROKEN";
 
 export interface StatusResult {
   code: StatusCode;
@@ -73,27 +64,46 @@ export interface StatusResult {
   detail: string;
 }
 
-export interface BuySignal {
+export interface BottomInfo {
+  level: number;
+  index: number;
   time: number;
+  /** consecutive sessions holding above the approved floor */
+  holdsSessions: number;
+  held: boolean;
+}
+
+export type BottomBehavior = "HIGHER_LOW" | "FLAT_BOTTOM" | "LOWER_LOW" | "NONE";
+
+export interface TargetLevel {
   price: number;
+  label: string;
+  time: number | null;
+  kind: "main" | "stage" | "support" | "neckline";
+}
+
+export interface ShortInfo {
+  floatPct: number;
+  daysToCover: number;
+  trend: "rising" | "falling" | "flat";
+  deltaPct: number;
+}
+
+export interface NewsItem {
+  /** session offset from today (negative = past, positive = upcoming) */
+  d: number;
+  time: number;
+  title: string;
+  source: string;
+  sentiment: "positive" | "negative" | "neutral";
+  upcoming?: boolean;
 }
 
 export interface ChecklistItem {
   id: string;
   label: string;
-  state: "pass" | "warn" | "fail";
+  state: "yes" | "no" | "partial";
   detail: string;
-}
-
-export interface TradePlan {
-  entry: number;
-  stop: number;
-  t1: number;
-  t2: number;
-  rr1: number;
-  rr2: number;
-  riskPct: number;
-  breakoutMode: boolean;
 }
 
 export interface Quote {
@@ -110,52 +120,67 @@ export interface Quote {
 export interface AnalysisResult {
   symbol: string;
   symbolName: string;
+  sector: string;
   timeframe: Timeframe;
   candles: Candle[];
+  /** daily frame — the strategy reference series */
+  daily: Candle[];
   quote: Quote;
+  hasSplit: boolean;
+  split: { ratioLabel: string; time: number | null; spikeHigh: number } | null;
+  emas: { ema20: number[]; ema30: number[]; ema50: number[] };
   vwap: {
     series: (number | null)[];
     value: number;
     distancePct: number;
     above: boolean;
-    mode: "SESSION" | "ANCHORED";
-  };
-  obv: {
-    series: number[];
-    ema: number[];
-    flow: ObvFlow;
-    slopePct: number;
-    vsEmaPct: number;
-  };
-  macd: {
-    macd: number[];
-    signal: number[];
-    hist: number[];
-    state: MacdState;
-    freshCross: boolean;
-    expanding: boolean;
-    histValue: number;
+    mode: "ANCHORED" | "SESSION";
   };
   rsi: {
+    /** RSI of the chart timeframe (pane display) */
     series: number[];
     value: number;
     zone: RsiZone;
-    warning: boolean;
+    /** daily-frame exit-oversold signal (strategy rule) */
+    dailyValue: number;
+    dailySeries: number[];
+    exitOversold: boolean;
+    crossRecent: boolean;
+    signalTime: number | null;
   };
-  squeeze: {
-    bandwidthPct: number;
-    percentile: number;
-    squeezing: boolean;
-    fired: boolean;
-    /** lowest BB-width percentile seen during the compression window */
-    compressionPct: number;
+  structure: {
+    bottom: BottomInfo;
+    behavior: { kind: BottomBehavior; label: string; ok: boolean; detail: string; points: SwingPoint[] };
+    testRetest: {
+      testedResistance: boolean;
+      resistanceLevel: number | null;
+      testDetail: string;
+      retestedBottom: boolean;
+      retestDetail: string;
+      sweep: boolean;
+      sweepDetail: string;
+      sweepTime: number | null;
+      /** neckline breakout & its re-test (the reference model sequence) */
+      neckBreak: boolean;
+      neckBreakTime: number | null;
+      neckRetest: boolean;
+      neckRetestTime: number | null;
+      neckRetestDetail: string;
+    };
+    pattern: PatternResult | null;
   };
-  atr: number;
-  pattern: PatternResult;
-  plan: TradePlan;
-  status: StatusResult;
-  signals: BuySignal[];
+  targets: {
+    main: TargetLevel;
+    stages: TargetLevel[];
+    supports: TargetLevel[];
+    neckline: number | null;
+  };
   checklist: ChecklistItem[];
-  /** normalized 0..100 composite score */
+  verdict: StatusResult;
   score: number;
+  /** chart-timeframe neckline events → on-chart markers */
+  events: { breakTime: number | null; retestTime: number | null };
+  short: ShortInfo;
+  news: NewsItem[];
+  newsTime: number;
 }
