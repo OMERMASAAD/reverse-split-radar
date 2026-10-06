@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-06T01:43:22+00:00",
+  "generated_at": "2026-10-06T07:02:57+00:00",
   "methodology": {
     "purpose": "مراقبة تجريبية فقط بلا تنفيذ صفقات",
     "stages": {
@@ -20,8 +20,8 @@
     "watchlist": 202,
     "paper_entries": 0,
     "base_watches": 13,
-    "unavailable": 72,
-    "excluded_under_1": 48,
+    "unavailable": 70,
+    "excluded_under_1": 50,
     "history_records": 0
   },
   "ready_entry": [],
@@ -225784,8 +225784,10 @@
   "all": [
     {
       "ticker": "RUBI",
-      "status": "insufficient",
-      "reason": "أقل من 20 جلسة بعد التقسيم"
+      "company": "Rubico Inc",
+      "status": "excluded",
+      "reason": "السعر الحالي أقل من 1.00 دولار",
+      "price": 0.699999988079071
     },
     {
       "ticker": "WORX",
@@ -352088,8 +352090,10 @@
     },
     {
       "ticker": "RUBI",
-      "status": "insufficient",
-      "reason": "أقل من 20 جلسة بعد التقسيم"
+      "company": "Rubico Inc",
+      "status": "excluded",
+      "reason": "السعر الحالي أقل من 1.00 دولار",
+      "price": 0.699999988079071
     },
     {
       "ticker": "VRAX",
