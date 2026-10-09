@@ -36,7 +36,8 @@ def _universe_age_days(universe: dict, now) -> int:
 def run_once(tickers=None, limit: int | None = None, force_universe: bool = False,
              downloader=None, universe_path: str = C.UNIVERSE_FILE,
              out_path: str = C.OUT_FILE, stats_path: str = C.STATS_FILE,
-             now: datetime | None = None, allow_demo_universe: bool = False) -> dict:
+             now: datetime | None = None, allow_demo_universe: bool = False,
+             rebuild_universe: bool = True) -> dict:
     """دورة مسح واحدة — قابلة للاستدعاء من الاختبارات مع حقن البيانات."""
     started = time.time()
     now = now or now_utc()
@@ -46,7 +47,7 @@ def run_once(tickers=None, limit: int | None = None, force_universe: bool = Fals
 
     demo_universe = bool(universe.get("demo")) and not allow_demo_universe
     stale = demo_universe or _universe_age_days(universe, now) > C.UNIVERSE_MAX_AGE_DAYS
-    if force_universe or not universe.get("tickers") or stale:
+    if rebuild_universe and (force_universe or not universe.get("tickers") or stale):
         if stale and universe.get("tickers"):
             print("::warning title=Universe stale::الكون عمره %d يومًا — محاولة إعادة البناء"
                   % _universe_age_days(universe, now))

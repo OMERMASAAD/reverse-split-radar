@@ -512,7 +512,7 @@ def test_run_once_without_universe():
         payload = run_once(downloader=lambda tickers, **kw: {},
                            universe_path=os.path.join(tmp, "missing.json"),
                            out_path=out_path, stats_path=os.path.join(tmp, "s.json"),
-                           now=datetime.now(timezone.utc))
+                           now=datetime.now(timezone.utc), rebuild_universe=False)
         assert payload["last_scan"]["skipped"] == "no_universe"
 
 
@@ -532,7 +532,8 @@ def test_demo_universe_is_never_scanned_live():
         persist.save(uni_path, stub)
         kwargs = dict(downloader=downloader, universe_path=uni_path,
                       out_path=os.path.join(tmp, "panic_data.json"),
-                      stats_path=os.path.join(tmp, "panic_stats.json"), now=now)
+                      stats_path=os.path.join(tmp, "panic_stats.json"), now=now,
+                      rebuild_universe=False)
 
         payload = run_once(**kwargs)
         assert payload["last_scan"]["ok"] is False
@@ -551,7 +552,8 @@ def test_scan_log_accumulates_across_runs():
         kwargs = dict(downloader=lambda tickers, **kw: {"AAA": frame},
                       universe_path=os.path.join(tmp, "universe.json"),
                       out_path=os.path.join(tmp, "panic_data.json"),
-                      stats_path=os.path.join(tmp, "panic_stats.json"))
+                      stats_path=os.path.join(tmp, "panic_stats.json"),
+                      rebuild_universe=False)
         persist.save(kwargs["universe_path"], synthetic.universe_stub(("AAA",)))
 
         first = run_once(now=now, **kwargs)
@@ -714,6 +716,39 @@ def test_validate_premise_on_real_cases():
     assert validate_premise.summarize(cases, 500.0)["qualifying"] <= out["qualifying"]
     assert 0 <= out["qualifying_pct"] <= 100
     assert out["by_classification"], out
+
+
+def test_run_once_never_builds_a_real_universe_in_tests():
+    """
+    حارس انحدار: كون مفقود أو تجريبي **يجب ألا** يطلق بناءً حقيقيًا (شبكة + 600 ثانية).
+
+    هذا ما علّق CI عشر دقائق: محليًا تفشل الشبكة فورًا فلا يظهر الخلل.
+    """
+    import sniper.universe as uni_mod
+    original = uni_mod.cli
+    # لا نرمي استثناء: run_once يبتلعه كتحذير، فالحارس لن يرى شيئًا. نسجّل المحاولة.
+    attempts = []
+    uni_mod.cli = lambda *a, **k: (attempts.append((a, k)), {})[1]
+    try:
+        frame, now = synthetic.make()
+        with tempfile.TemporaryDirectory() as tmp:
+            common = dict(downloader=lambda tickers, **kw: {"AAA": frame},
+                          out_path=os.path.join(tmp, "p.json"),
+                          stats_path=os.path.join(tmp, "s.json"), now=now,
+                          rebuild_universe=False)
+            # 1) كون مفقود
+            payload = run_once(universe_path=os.path.join(tmp, "missing.json"), **common)
+            assert payload["last_scan"]["skipped"] == "no_universe"
+            # 2) كون تجريبي
+            uni_path = os.path.join(tmp, "universe.json")
+            stub = synthetic.universe_stub(("AAA",))
+            stub["demo"] = True
+            persist.save(uni_path, stub)
+            payload = run_once(universe_path=uni_path, **common)
+            assert payload["last_scan"]["skipped"] == "demo_universe"
+        assert attempts == [], "run_once حاول بناء كون حقيقي %d مرة" % len(attempts)
+    finally:
+        uni_mod.cli = original
 
 
 TESTS = [value for key, value in sorted(globals().items()) if key.startswith("test_") and callable(value)]
