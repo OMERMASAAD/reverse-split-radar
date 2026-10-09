@@ -1,0 +1,82 @@
+name: Panic Sniper (15m)
+
+on:
+  workflow_dispatch:
+    inputs:
+      rebuild_universe:
+        description: "أعد بناء الكون قبل المسح"
+        type: boolean
+        default: false
+  schedule:
+    # مسح واحد كل 15 دقيقة خلال ما قبل الافتتاح + الجلسة + ما بعد الإغلاق
+    # (08:00–21:45 UTC ≈ 04:00–17:45 بتوقيت نيويورك) أيام التداول فقط.
+    # لا نستخدم حلقة sleep داخل الوظيفة: الوظائف الطويلة تمنع GitHub من إطلاق
+    # الجدولة التالية فيتوقف الجدول لساعات.
+    - cron: "*/15 8-21 * * 1-5"
+
+concurrency:
+  group: panic-sniper-scan
+  cancel-in-progress: true
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: اختبارات المحرك (بلا إنترنت)
+        run: python tests/test_sniper.py
+
+      - name: مسح قنص الذعر
+        env:
+          SEC_CONTACT: ${{ vars.SEC_CONTACT }}
+          FLOAT_MODE: ${{ vars.FLOAT_MODE || 'auto' }}
+        run: |
+          if [ "${{ inputs.rebuild_universe }}" = "true" ]; then
+            python panic_sniper.py --rebuild-universe
+          else
+            python panic_sniper.py
+          fi
+
+      - name: تحقق من المخرجات
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path("panic_data.json")
+          assert p.exists() and p.stat().st_size > 0, "panic_data.json"
+          d = json.loads(p.read_text(encoding="utf-8"))
+          for key in ("summary", "items", "purged", "diagnostics", "scan_log",
+                      "clock", "rules", "conditions", "uptime"):
+              assert key in d, key
+          assert isinstance(d["summary"]["universe"], int)
+          print(d["summary"])
+          PY
+
+      - name: رفع البيانات
+        run: |
+          git config user.name "panic-radar[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add panic_data.json panic_stats.json universe.json float_cache.json
+          if git diff --cached --quiet; then
+            echo "no changes"
+            exit 0
+          fi
+          git commit -m "⚡ تحديث قنص الذعر"
+          for i in 1 2 3; do
+            git pull --rebase -X theirs origin main && git push && exit 0
+            sleep 3
+          done
+          exit 1

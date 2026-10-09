@@ -1,0 +1,66 @@
+name: Build Low-Float Universe
+
+on:
+  workflow_dispatch:
+  schedule:
+    # مرة يوميًا قبل افتتاح نيويورك (12:20 UTC ≈ 08:20 بتوقيت نيويورك).
+    - cron: "20 12 * * 1-5"
+
+concurrency:
+  group: universe-build
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: بناء الكون (سعر $0.50–$10 · Float < 5M · حجم ≥ 100k)
+        env:
+          SEC_CONTACT: ${{ vars.SEC_CONTACT }}
+          FLOAT_MODE: ${{ vars.FLOAT_MODE || 'auto' }}
+        run: python build_universe.py --force
+
+      - name: تحقق من الكون
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          u = json.loads(Path("universe.json").read_text(encoding="utf-8"))
+          assert u["tickers"], "الكون فارغ"
+          assert u["count"] == len(u["tickers"])
+          for row in u["tickers"]:
+              assert 0.50 <= row["price"] <= 10.00, row
+              assert row["avg_vol"] >= 100_000, row
+          print("universe:", u["count"], "| confirmed:", u["confirmed"],
+                "| unverified:", u["unverified"], "| reverse-split tagged:", u.get("reverse_split_tagged"))
+          PY
+
+      - name: رفع الكون
+        run: |
+          git config user.name "panic-radar[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add universe.json float_cache.json
+          if git diff --cached --quiet; then
+            echo "no changes"
+            exit 0
+          fi
+          git commit -m "🌐 تحديث كون الأسهم منخفضة الفلوت"
+          for i in 1 2 3; do
+            git pull --rebase -X theirs origin main && git push && exit 0
+            sleep 3
+          done
+          exit 1

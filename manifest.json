@@ -1,15 +1,16 @@
 {
-  "name": "Reverse Split Radar - داشبورد متابعة الأسهم",
-  "short_name": "Radar",
-  "description": "متابعة أسهم التقسيم العكسي الإيجابية - تحديث تلقائي من الماسح",
+  "name": "رادار قنص الذعر — Panic Sniper Terminal",
+  "short_name": "قنص الذعر",
+  "description": "مراقبة لحظية كل 15 دقيقة للأسهم منخفضة الفلوت بعد هبوط ≥30% وثبات أفقي قرب القاع — إشارات ورقية فقط.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "orientation": "portrait",
-  "background_color": "#07101f",
-  "theme_color": "#07101f",
+  "orientation": "any",
+  "background_color": "#0a0e17",
+  "theme_color": "#0a0e17",
   "lang": "ar",
   "dir": "rtl",
+  "categories": ["finance", "productivity"],
   "icons": [
     {
       "src": "icon-192.jpeg",
