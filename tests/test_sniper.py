@@ -361,10 +361,15 @@ def test_update_stats_opens_once_per_signal():
     frame, now = synthetic.make()
     item = _complete_item(frame, now)
     stats = tracker.update_stats({}, [item], {"AAA": frame}, now, item["signal_date"])
-    assert len(stats["open"]) == 1 and len(stats["alerts"]) == 1
+    # إشارة واحدة ⇒ صفقة فورية مفتوحة + أمر اختراق معلّق، ولا تكرار
+    assert len(stats["open"]) == 2, len(stats["open"])
+    assert len([t for t in stats["open"] if t["status"] == "open"]) == 1
+    assert len(stats["pending"]) == 1 and stats["pending"][0]["mode"] == "breakout"
+    assert len(stats["alerts"]) == 2
     again = tracker.update_stats(stats, [item], {"AAA": frame}, now + timedelta(minutes=15),
                                  item["signal_date"])
-    assert len(again["open"]) == 1
+    assert len(again["open"]) == 2, "لا يجوز فتح الصفقة نفسها مرتين"
+    assert len({t["id"] for t in again["open"]}) == 2
     assert again["summary"]["trades"] == 0
 
 
@@ -478,7 +483,10 @@ def test_run_once_end_to_end():
         assert on_disk["items"][0]["chart"], "الشموع مطلوبة للرسم"
         assert on_disk["diagnostics"]["coverage_pct"] == 50.0
         stats = json.loads(Path(stats_path).read_text(encoding="utf-8"))
-        assert len(stats["open"]) == 1
+        # صفقة فورية + أمر اختراق معلّق لإشارة واحدة
+        assert len(stats["open"]) == 2, len(stats["open"])
+        assert len(stats["pending"]) == 1
+        assert sorted(t["mode"] for t in stats["open"]) == ["breakout", "market"]
         assert payload["summary"]["complete"] == 1
 
 
@@ -601,6 +609,111 @@ def test_vwap_is_support_when_price_above_it():
     assert plan["targets_capped"] == 0
     assert all(t["capped"] is False for t in plan["targets"])
     assert "فلم يعد الخط سقفًا" in plan["vwap_note"], plan["vwap_note"]
+
+
+def _bar_frame(rows, start="2026-10-06 10:00", tz="America/New_York"):
+    """شموع 5m من قوائم (high, low, close)."""
+    idx = pd.date_range(start, periods=len(rows), freq="5min", tz=tz)
+    return pd.DataFrame({"Open": [r[2] for r in rows], "High": [r[0] for r in rows],
+                         "Low": [r[1] for r in rows], "Close": [r[2] for r in rows],
+                         "Volume": [100_000] * len(rows)}, index=idx)
+
+
+def test_stop_moves_to_break_even_after_t1():
+    """بعد تحقق T1 ينتقل الوقف إلى الدخول، فالهبوط اللاحق يخرج عند الصفر لا عند −1R."""
+    entry, stop = 2.00, 1.90
+    t1, t2 = 2.40, 2.60
+    trade = {"id": "BE", "ticker": "AAA", "session_date": "2026-10-06", "mode": "market",
+             "entry": entry, "entry_ts": "2026-10-06T09:55:00-04:00", "stop": stop,
+             "current_stop": stop, "status": "open",
+             "targets": [{"label": "T1", "price": t1, "pct": 20.0, "hit": False, "at": None},
+                         {"label": "T2", "price": t2, "pct": 30.0, "hit": False, "at": None}],
+             "targets_hit": [], "stop_hit": False}
+    # يصعد إلى T1 ثم يرتد إلى الدخول (فوق الوقف الأصلي 1.90 وتحت 2.00)
+    df = _bar_frame([(2.10, 1.99, 2.05), (2.45, 2.30, 2.42), (2.44, 2.20, 2.30),
+                     (2.30, 1.95, 1.98)])
+    now = datetime(2026, 10, 6, 14, 30, tzinfo=timezone.utc)
+    out = tracker.update_trade(trade, df, now)
+    assert out["status"] == "closed", out
+    assert out["stop_at_break_even"] is True
+    assert out["exit_reason"] == tracker.EXIT_BREAK_EVEN, out["exit_reason"]
+    assert out["exit_price"] == entry, out["exit_price"]
+    assert out["r_multiple"] == 0.0, out["r_multiple"]
+    assert out["result_pct"] == 0.0
+
+
+def test_break_even_disabled_keeps_original_stop():
+    """مع تعطيل النقل يبقى الوقف الأصلي فيخرج بـ −1R."""
+    original = C.MOVE_STOP_TO_BREAK_EVEN
+    C.MOVE_STOP_TO_BREAK_EVEN = False
+    try:
+        entry, stop = 2.00, 1.90
+        trade = {"id": "NOBE", "ticker": "AAA", "session_date": "2026-10-06", "mode": "market",
+                 "entry": entry, "entry_ts": "2026-10-06T09:55:00-04:00", "stop": stop,
+                 "current_stop": stop, "status": "open",
+                 "targets": [{"label": "T1", "price": 2.40, "pct": 20.0, "hit": False, "at": None},
+                             {"label": "T2", "price": 2.60, "pct": 30.0, "hit": False, "at": None}],
+                 "targets_hit": [], "stop_hit": False}
+        df = _bar_frame([(2.10, 1.99, 2.05), (2.45, 2.30, 2.42), (2.30, 1.88, 1.89)])
+        out = tracker.update_trade(trade, df, datetime(2026, 10, 6, 14, 30, tzinfo=timezone.utc))
+        assert out["exit_reason"] == tracker.EXIT_STOP, out["exit_reason"]
+        assert out["r_multiple"] == -1.0, out["r_multiple"]
+    finally:
+        C.MOVE_STOP_TO_BREAK_EVEN = original
+
+
+def test_breakout_order_waits_then_fills():
+    """أمر الاختراق يبقى معلّقًا حتى يخترق السعر قمة القاعدة، ثم يُنفَّذ عند القمة."""
+    frame, now = synthetic.make(base_trend=0.0)
+    item = _complete_item(frame, now)
+    pending = tracker.open_trade(item, now, mode="breakout")
+    assert pending["status"] == "pending" and pending["entry"] is None
+    trigger = pending["trigger"]
+    assert abs(trigger - item["risk"]["breakout_trigger"]) < 1e-9
+
+    # شمعة لم تصل القمة ← يبقى معلّقًا
+    flat = _bar_frame([(trigger * 0.99, trigger * 0.97, trigger * 0.98)] * 3)
+    still = tracker.update_trade(dict(pending), flat, now + timedelta(minutes=15))
+    assert still["status"] == "pending"
+
+    # شمعة تخترق ← يُنفَّذ عند سعر القمة لا عند الإغلاق
+    cross = _bar_frame([(trigger * 0.99, trigger * 0.97, trigger * 0.98),
+                        (trigger * 1.05, trigger * 0.99, trigger * 1.03)])
+    filled = tracker.update_trade(dict(pending), cross, now + timedelta(minutes=20))
+    assert filled["status"] in ("open", "closed")
+    assert filled["entry"] == trigger, filled["entry"]
+    assert filled["mode"] == "breakout"
+
+
+def test_pending_order_expires_without_counting_as_trade():
+    """أمر لم يُنفَّذ في جلسته يسقط ولا يدخل في نسبة النجاح."""
+    now = datetime(2026, 10, 6, 14, 30, tzinfo=timezone.utc)
+    trade = {"id": "AAA#2026-10-06:bk", "signal_id": "AAA#2026-10-06", "ticker": "AAA",
+             "session_date": "2026-10-06", "mode": "breakout", "status": "pending",
+             "entry": None, "stop": 1.9, "trigger": 2.10, "targets": []}
+    out = tracker.expire_open([trade], "2026-10-07", now)
+    assert out[0]["status"] == "expired"
+    stats = tracker.update_stats({"open": out, "closed": []}, [], {}, now, "2026-10-07")
+    assert stats["expired_pending"] == 1
+    assert stats["summary"]["trades"] == 0, "الأمر غير المُنفَّذ لا يُحسب صفقة"
+
+
+def test_validate_premise_on_real_cases():
+    """فرضية الرجل الأولى على الحالات التاريخية الحقيقية (بيانات يومية)."""
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "tools"))
+    import validate_premise
+    if not validate_premise.DATA.exists():
+        return                                    # research/ غير متاحة في هذه البيئة
+    cases = validate_premise.load_cases()
+    assert cases, "يجب أن توجد حالات حقيقية"
+    out = validate_premise.summarize(cases, 100.0)
+    assert out["cases"] == len(cases)
+    assert out["qualifying"] > 0, "لا حالة حقيقية صعدت 100%؟"
+    assert out["min_runup_pct"] == 100.0
+    # عتبة أعلى ⇒ عدد أقل (اتساق داخلي)
+    assert validate_premise.summarize(cases, 500.0)["qualifying"] <= out["qualifying"]
+    assert 0 <= out["qualifying_pct"] <= 100
+    assert out["by_classification"], out
 
 
 TESTS = [value for key, value in sorted(globals().items()) if key.startswith("test_") and callable(value)]

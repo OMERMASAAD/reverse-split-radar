@@ -1081,18 +1081,28 @@ function renderStats() {
     || '<div class="dim">—</div>';
   $("hourBars").innerHTML = bars(s.by_hour || {}, v => `${n(v.win_rate_pct, 0)}% <span class="dim">(${i0(v.trades)})</span>`)
     || '<div class="dim">—</div>';
-  $("openHint").textContent = `متوسط غير المحقَّق ${pct(os.avg_unrealized_pct, 2)} · أهداف محققة ${i0(os.targets_hit)}`;
-  $("openTable").innerHTML = open.length ? `<div class="table-wrap" style="max-height:320px"><table style="min-width:640px">
-    <thead><tr>${["الرمز", "الدخول", "السعر الآن", "غير المحقَّق", "أقصى ربح", "أقصى خسارة", "R", "المدة", "أهداف", "الحالة"].map(h => `<th style="cursor:default">${h}</th>`).join("")}</tr></thead>
-    <tbody>${open.map(t => `<tr style="cursor:default">
-      <td class="tick">${esc(t.ticker)}</td><td class="num">${money(t.entry)}</td>
+  const pend = ((S || {}).pending || []).length;
+  $("openHint").textContent = `متوسط غير المحقَّق ${pct(os.avg_unrealized_pct, 2)} · أهداف محققة ${i0(os.targets_hit)}` +
+    (pend ? ` · ${i0(pend)} أمر اختراق معلّق` : "") +
+    ((S || {}).expired_pending ? ` · ${i0(S.expired_pending)} أمر لم يُنفَّذ` : "");
+  $("openTable").innerHTML = open.length ? `<div class="table-wrap" style="max-height:320px"><table style="min-width:720px">
+    <thead><tr>${["الرمز", "الوضع", "الدخول", "السعر الآن", "غير المحقَّق", "أقصى ربح", "أقصى خسارة", "R", "الوقف الحالي", "المدة", "أهداف", "الحالة"].map(h => `<th style="cursor:default">${h}</th>`).join("")}</tr></thead>
+    <tbody>${open.map(t => {
+      const pending = t.status === "pending";
+      const riskPct = (!pending && t.entry) ? Math.max(0.01, (t.entry - t.stop) / t.entry * 100) : 0;
+      return `<tr style="cursor:default${pending ? ";opacity:.72" : ""}">
+      <td class="tick">${esc(t.ticker)}</td>
+      <td class="dim" style="font-size:10px">${esc(t.mode_label || "دخول فوري أعلى القاع")}</td>
+      <td class="num">${pending ? "<span class='dim'>معلّق @ </span>" + money(t.trigger) : money(t.entry)}</td>
       <td class="num">${money(t.last_price)}</td>
-      <td class="num ${cls(t.unrealized_pct)}">${pct(t.unrealized_pct, 2)}</td>
+      <td class="num ${cls(t.unrealized_pct)}">${pending ? "—" : pct(t.unrealized_pct, 2)}</td>
       <td class="num pos">${pct(t.mfe_pct, 1)}</td><td class="num neg">${pct(t.mae_pct, 1)}</td>
-      <td class="num">${n((t.unrealized_pct || 0) / Math.max(0.01, (t.entry - t.stop) / t.entry * 100), 2)}</td>
-      <td class="num">${i0(t.hold_min)} د</td>
+      <td class="num">${pending ? "—" : n((t.unrealized_pct || 0) / riskPct, 2)}</td>
+      <td class="num">${money(t.current_stop || t.stop)}${t.stop_at_break_even ? " <span class='pos' title='نُقل إلى التعادل بعد T1'>⟲</span>" : ""}</td>
+      <td class="num">${pending ? "—" : i0(t.hold_min) + " د"}</td>
       <td class="dim">${esc((t.hit_labels || []).join(" ") || "—")}</td>
-      <td><span class="badge b-building">${esc((t.grade || ""))}</span></td></tr>`).join("")}</tbody></table></div>`
+      <td><span class="badge ${pending ? "b-building" : "b-ready"}">${pending ? "أمر معلّق" : esc((t.grade || ""))}</span></td></tr>`;
+    }).join("")}</tbody></table></div>`
     : '<div class="dim" style="padding:8px 0">لا توجد إشارات قيد الرصد حاليًا.</div>';
 }
 

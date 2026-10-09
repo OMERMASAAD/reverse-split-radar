@@ -81,7 +81,12 @@ STOP_BUFFER_PCT = float(_env("STOP_BUFFER_PCT", 5.0))    # الوقف = قاع �
 STOP_MIN_BUFFER_PCT = STOP_BUFFER_PCT
 # الشطب محاذٍ للوقف: يتوقف الرصد حين يُضرب الوقف فعلًا لا قبله
 PURGE_BREAK_PCT = float(_env("PURGE_BREAK_PCT", STOP_BUFFER_PCT))
-TARGETS_PCT = (20.0, 30.0)            # T1 = +20% · T2 = +30% (كلاهما قبل خط VWAP)
+TARGETS_PCT = (20.0, 30.0)
+
+# إدارة الصفقة بعد تحقق الهدف الأول
+MOVE_STOP_TO_BREAK_EVEN = True    # بعد T1 ينتقل الوقف إلى سعر الدخول (بلا مخاطرة)
+TRAIL_AFTER_T1_PCT = None         # رقم (مثلاً 5.0) يفعّل وقفًا متحركًا تحت أعلى قمة — None = معطّل
+TRACK_BREAKOUT_ENTRY = True       # رصد وضع «اختراق قمة القاعدة» كصفقة ورقية مستقلة            # T1 = +20% · T2 = +30% (كلاهما قبل خط VWAP)
 ACCOUNT_EQUITY = 25_000.0      # حساب ورقي مرجعي لحجم المركز
 RISK_PER_TRADE_PCT = 1.0       # مخاطرة 1% لكل إشارة
 
