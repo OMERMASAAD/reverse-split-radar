@@ -22,7 +22,8 @@ def _quiet_days(rng, start_price, days):
 def make(post_low_bars: int = 30, crash_to: float = 0.60, flat_noise: float = 0.004,
          seed: int = 1, start_price: float = 2.0, base_trend: float = 0.02,
          up_volume: int = 70_000, down_volume: int = 25_000, extra_tail=None,
-         pad_bars: int = 0, pad_noise: float = 0.0006, end_date: str = END_DATE):
+         pad_bars: int = 0, pad_noise: float = 0.0006, end_date: str = END_DATE,
+         end_ts=None):
     """
     يبني 4 أيام: 3 هادئة + يوم انهيار صباحي ثم ثبات أفقي قرب القاع.
     `extra_tail` قائمة أسعار إضافية تُضاف بعد الثبات (اختراق أو كسر).
@@ -32,7 +33,12 @@ def make(post_low_bars: int = 30, crash_to: float = 0.60, flat_noise: float = 0.
     rows = _quiet_days(rng, start_price, days)
 
     day = days[-1]
-    ts0 = day.replace(hour=4)
+    total = 22 + post_low_bars + len(extra_tail or []) + pad_bars
+    if end_ts is not None:
+        # نُرجِع بداية اليوم للوراء حتى تنتهي كل الرموز عند نفس الشمعة (لا «تقادم» زائفًا)
+        ts0 = end_ts - pd.Timedelta(minutes=5 * (total - 1))
+    else:
+        ts0 = day.replace(hour=4)
     path = [start_price * (1 + 0.5 * i / 12) for i in range(12)]      # قفزة صباحية
     peak = path[-1]
     path += list(np.linspace(peak, peak * crash_to, 10))               # انهيار عمودي
@@ -70,6 +76,14 @@ def make_no_history(post_low_bars: int = 30, **kwargs):
     frame, now = make(post_low_bars=post_low_bars, **kwargs)
     last_day = frame.index[-1].date()
     return frame[frame.index.date == last_day], now
+
+
+def make_breakout(step: float = 0.008, post_low_bars: int = 28, flat_noise: float = 0.004, **kwargs):
+    """قاعدة مكتملة ثم 3 شموع انطلاق تكسر قمة الثبات (مع بقاء القاعدة صالحة)."""
+    probe, _ = make(post_low_bars=post_low_bars, flat_noise=flat_noise, **kwargs)
+    start = float(probe["Close"].iloc[-1])
+    tail = [start * (1 + step) ** i for i in range(1, 4)]
+    return make(post_low_bars=post_low_bars, flat_noise=flat_noise, extra_tail=tail, **kwargs)
 
 
 def make_recovered(crash_to: float = 0.60, start_price: float = 2.0, **kwargs):

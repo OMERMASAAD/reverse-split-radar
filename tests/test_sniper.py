@@ -519,6 +519,25 @@ def test_scan_log_accumulates_across_runs():
         assert len(on_disk["scan_log"]) == 3
 
 
+def test_breakout_marks_triggered():
+    """اختراق قمة الثبات مع اكتمال الشروط ⇒ حالة «انطلق فوق القاعدة»."""
+    frame, now = synthetic.make_breakout()
+    res, why = evaluate(frame, now)
+    assert res is not None and res["complete"], (res, why)
+    assert res["levels"]["base"]["broke_base"] is True
+    assert res["price"] > res["levels"]["base"]["base_high_prior"]
+    out = _run({"AAA": frame}, {}, synthetic.universe_stub(("AAA",)), now)
+    assert out["items"][0]["state"] == C.STATE_TRIGGERED
+    assert out["items"][0]["state_label"] == C.STATE_LABELS[C.STATE_TRIGGERED]
+
+
+def test_no_breakout_stays_ready():
+    """قاعدة مكتملة بلا اختراق تبقى «إشارة مكتملة» لا «انطلق»."""
+    frame, now = synthetic.make()
+    out = _run({"AAA": frame}, {}, synthetic.universe_stub(("AAA",)), now)
+    assert out["items"][0]["state"] == C.STATE_READY
+
+
 TESTS = [value for key, value in sorted(globals().items()) if key.startswith("test_") and callable(value)]
 
 if __name__ == "__main__":

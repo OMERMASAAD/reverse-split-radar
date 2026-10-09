@@ -1,11 +1,11 @@
 {
  "demo": true,
  "built_on": "2026-10-09",
- "built_at": "2026-10-09T17:52:25.029403+00:00",
- "count": 10,
- "confirmed": 10,
+ "built_at": "2026-10-09T18:00:28.204138+00:00",
+ "count": 14,
+ "confirmed": 14,
  "unverified": 0,
- "reverse_split_tagged": 3,
+ "reverse_split_tagged": 5,
  "rules": {
   "price": [
    0.5,
@@ -143,6 +143,60 @@
    "float_status": "bound",
    "float_source": "yahoo_outstanding",
    "reverse_split": false
+  },
+  {
+   "ticker": "SNGX",
+   "company": "Soligenix",
+   "price": 1.8,
+   "avg_vol": 850000,
+   "range_pct": 42.0,
+   "rally_pct": 130.0,
+   "float": 2700000,
+   "float_status": "bound",
+   "float_source": "yahoo_outstanding",
+   "reverse_split": true,
+   "split_date": "2026-04-13",
+   "split_ratio": "10:1 Reverse split",
+   "days_since_split": 179
+  },
+  {
+   "ticker": "ONCT",
+   "company": "Oncternal Therapeutics",
+   "price": 1.8,
+   "avg_vol": 850000,
+   "range_pct": 42.0,
+   "rally_pct": 130.0,
+   "float": 1500000,
+   "float_status": "bound",
+   "float_source": "yahoo_outstanding",
+   "reverse_split": false
+  },
+  {
+   "ticker": "BRTX",
+   "company": "BioRestorative",
+   "price": 1.8,
+   "avg_vol": 850000,
+   "range_pct": 42.0,
+   "rally_pct": 130.0,
+   "float": 2050000,
+   "float_status": "bound",
+   "float_source": "yahoo_outstanding",
+   "reverse_split": false
+  },
+  {
+   "ticker": "KALA",
+   "company": "Kala Bio",
+   "price": 1.8,
+   "avg_vol": 850000,
+   "range_pct": 42.0,
+   "rally_pct": 130.0,
+   "float": 3200000,
+   "float_status": "bound",
+   "float_source": "yahoo_outstanding",
+   "reverse_split": true,
+   "split_date": "2026-04-13",
+   "split_ratio": "15:1 Reverse split",
+   "days_since_split": 179
   }
  ]
 }

@@ -56,9 +56,13 @@ def base_metrics(win: pd.DataFrame, day: pd.DataFrame, start_ts, last_ts) -> dic
     if slope is not None and len(closes) and float(closes.mean()) > 0:
         slope_pct = round(slope / float(closes.mean()) * 100.0, 4)
     price = float(win["Close"].astype(float).iloc[-1])
+    prior = win["High"].astype(float).iloc[:-1]
+    base_high_prior = float(prior.max()) if len(prior) else base_high
     return {
         "base_low": round(base_low, 4),
         "base_high": round(base_high, 4),
+        "base_high_prior": round(base_high_prior, 4),
+        "broke_base": bool(price > base_high_prior),
         "base_mid": round((base_low + base_high) / 2.0, 4),
         "base_bars": int(len(win)),
         "base_range_pct": round((base_high - base_low) / base_low * 100.0, 2) if base_low else None,

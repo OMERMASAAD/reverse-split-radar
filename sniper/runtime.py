@@ -101,8 +101,10 @@ def merge(universe: dict, prev: dict, frames: dict, now: datetime) -> dict:
         had_base = bool(old.get("had_base") or res["checks"]["base"])
         detected = old.get("detected_at") or now.isoformat()
         price = float(res["price"])
-        base_high = float((res.get("levels") or {}).get("base", {}).get("base_high") or 0.0)
-        broke_out = bool(base_high and price > base_high)
+        base = (res.get("levels") or {}).get("base", {}) or {}
+        # المقارنة مع قمة الثبات *قبل* الشمعة الحالية، وإلا فشمعة الاختراق ترفع القمة بنفسها
+        reference = float(base.get("base_high_prior") or base.get("base_high") or 0.0)
+        broke_out = bool(reference and price > reference)
         if res["complete"] and broke_out:
             state = C.STATE_TRIGGERED
         elif res["complete"]:

@@ -521,8 +521,10 @@ function renderFunnel() {
     return `<div class="fstep ${kind}"><div class="fn">${i0(v)}</div>
       <div class="fbar" style="height:${h}px"></div><div class="fl">${label}</div></div>`;
   }).join("");
-  $("funnelHint").textContent = "التغطية " + n((D.diagnostics || {}).coverage_pct, 0) +
-    "% · لا بيانات " + i0(f.no_data) + " · متقادم " + i0(f.stale) + " · بلا هبوط " + i0(f.no_drop);
+  // أرقام القمع تخصّ آخر مسح فقط، بينما البطاقات تعرض القائمة الحالية (تشمل المحمول من مسوحات سابقة)
+  $("funnelHint").textContent = "آخر مسح · التغطية " + n((D.diagnostics || {}).coverage_pct, 0) +
+    "% · القائمة الآن " + i0((D.summary || {}).monitored) + " سهم · لا بيانات " + i0(f.no_data) +
+    " · متقادم " + i0(f.stale) + " · بلا هبوط " + i0(f.no_drop);
 }
 
 /* ── الجدول ────────────────────────────────────── */
