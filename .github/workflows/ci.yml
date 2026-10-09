@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches: [main]
+    paths:
+      - "sniper/**"
+      - "tests/**"
+      - "tools/**"
+      - "index.html"
+      - "panic_sniper.py"
+      - "build_universe.py"
+      - "requirements.txt"
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  engine:
+    name: محرك التحليل (Python)
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: فحص الصياغة
+        run: python -m compileall -q sniper panic_sniper.py build_universe.py tests tools/make_demo.py
+      - name: الاختبارات (بلا إنترنت)
+        run: python tests/test_sniper.py
+
+  dashboard:
+    name: الداشبورد (DOM)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: npm install --no-save --no-fund --no-audit jsdom
+      - name: توليد بيانات عرض عبر محرك المسح نفسه
+        run: python tools/make_demo.py
+      - name: فحص الواجهة في jsdom
+        run: node tools/verify_dashboard.mjs

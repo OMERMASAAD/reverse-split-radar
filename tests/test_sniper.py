@@ -1,0 +1,511 @@
+# -*- coding: utf-8 -*-
+"""
+اختبارات «رادار قنص الذعر» — تعمل بلا إنترنت على بيانات اصطناعية.
+تشغيل: python tests/test_sniper.py   أو   pytest tests/
+"""
+from __future__ import annotations
+
+import json
+import math
+import os
+import sys
+import tempfile
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+import pandas as pd  # noqa: E402
+
+from sniper import config as C  # noqa: E402
+from sniper import float_lookup, indicators, persist, risk, runtime, scoring, tracker, universe  # noqa: E402
+from sniper.cli import run_once  # noqa: E402
+from sniper.core import evaluate, mtf_confirmation  # noqa: E402
+from tests import synthetic  # noqa: E402
+
+
+# ---------------------------------------------------------------- الشروط الأصلية
+def test_pass_complete_signal():
+    frame, now = synthetic.make()
+    res, why = evaluate(frame, now)
+    assert res is not None, why
+    assert res["drop_pct"] <= C.DROP_MAX_PCT, res["drop_pct"]
+    assert res["hold_min"] >= C.CONS_MIN_MIN, res["hold_min"]
+    assert abs(res["target"] / res["price"] - (1 + C.TARGET_PCT / 100.0)) < 1e-3
+    assert all(res["checks"].values()), res["checks"]
+    assert res["complete"] is True
+    assert res["strength_score"] == 100, res["strength_score"]          # نفس معادلة الأصل
+    assert res["grade"] in ("A+", "A", "B", "C", "D")
+    assert res["risk"]["stop"] < res["base_low"] <= res["price"]
+    assert [t["price"] for t in res["risk"]["targets"]] == sorted(t["price"] for t in res["risk"]["targets"])
+
+
+def test_short_base_is_visible_but_not_complete():
+    frame, now = synthetic.make(post_low_bars=8)
+    res, why = evaluate(frame, now)
+    assert res is not None and why == "ok"
+    assert res["checks"]["base"] is False
+    assert res["complete"] is False
+    assert res["state"] == C.STATE_NEW
+
+
+def test_no_drop():
+    frame, now = synthetic.make(crash_to=0.90)
+    res, why = evaluate(frame, now)
+    assert res is None and why == "no_drop"
+
+
+def test_stale_data():
+    frame, now = synthetic.make()
+    res, why = evaluate(frame, now + timedelta(hours=3))
+    assert res is None and why == "stale"
+
+
+def test_insufficient_bars():
+    frame, now = synthetic.make()
+    last_day = frame.index[-1].date()
+    res, why = evaluate(frame[frame.index.date == last_day].head(10), now)
+    assert res is None and why == "no_data"
+
+
+def test_single_day_has_no_indicator_warmup():
+    frame, now = synthetic.make_no_history()
+    res, why = evaluate(frame, now)
+    assert why == "ok" and res is not None
+    assert res["checks"]["rsi"] is False, "بلا تسخين لا يجوز تأكيد RSI"
+
+
+# ---------------------------------------------------------------- التطويرات
+def test_extra_layers_present():
+    frame, now = synthetic.make()
+    res, _ = evaluate(frame, now)
+    for key in ("risk", "levels", "volume", "mtf", "indicators_now", "chart",
+                "confirmations", "confirmation_details", "missing_conditions"):
+        assert key in res, key
+    assert res["levels"]["day_high"] >= res["levels"]["day_low"] > 0
+    assert res["volume"]["rvol"] is not None
+    assert len(res["chart"]) <= C.CHART_BARS
+    assert res["risk"]["shares"] > 0
+    assert res["risk"]["rr_t2"] is not None
+    assert res["levels"]["base"]["base_touches"] >= 1
+    assert res["score"] == scoring.combine(res["strength_score"], res["confirm_score"])
+
+
+def test_mtf_returns_dict_without_enough_bars():
+    frame, _ = synthetic.make(post_low_bars=2)
+    out = mtf_confirmation(frame.head(20))
+    assert out["aligned"] is False and "note" in out
+
+
+def test_round_numbers_and_gap():
+    frame, now = synthetic.make()
+    res, _ = evaluate(frame, now)
+    lv = res["levels"]
+    assert lv["round_number_below"] <= lv["price"] <= lv["round_number_above"]
+    assert "gap_pct" in lv and "phase" in lv
+
+
+# ---------------------------------------------------------------- محرك المخاطر
+def test_risk_plan_math():
+    plan = risk.risk_plan(price=1.00, base_low=0.90, base_high=1.06, atr_value=0.03)
+    assert plan["stop"] < 0.90
+    assert plan["risk_pct"] > 0
+    assert plan["targets"][1]["pct"] == C.TARGET_PCT
+    assert plan["rr_t1"] < plan["rr_t2"] < plan["rr_t3"]
+    assert plan["shares"] == int(math.floor(C.ACCOUNT_EQUITY * C.RISK_PER_TRADE_PCT / 100
+                                            / plan["risk_per_share"]))
+    assert plan["measured_projection"] > plan["entry"]
+
+
+def test_risk_plan_never_stops_above_price():
+    plan = risk.risk_plan(price=1.00, base_low=1.02, base_high=1.05, atr_value=None)
+    assert plan["stop"] < plan["entry"]
+
+
+# ---------------------------------------------------------------- الدمج والشطب
+def _run(frames, prev, universe_obj, now):
+    return runtime.merge(universe_obj, prev, frames, now)
+
+
+def test_purge_on_base_break():
+    frame, now = synthetic.make()
+    uni = synthetic.universe_stub(("AAA",))
+    first = _run({"AAA": frame}, {}, uni, now)
+    assert len(first["items"]) == 1
+    base_low = first["items"][0]["base_low"]
+
+    broken = frame.copy()
+    broken.iloc[-1, broken.columns.get_loc("Close")] = base_low * 0.96      # -4% < -3%
+    second = _run({"AAA": broken}, first, uni, now + timedelta(minutes=15))
+    assert not second["items"]
+    assert second["purged"][0]["ticker"] == "AAA"
+    assert second["diagnostics"]["funnel"]["purged_new"] == 1
+
+    third = _run({"AAA": frame}, second, uni, now + timedelta(minutes=30))  # لا يعود
+    assert not third["items"]
+
+
+def test_weakened_keeps_item():
+    """سهم كان ثابتًا ثم ارتد فوق -30%: يبقى في القائمة بعلامة «ضعفت»."""
+    frame, now = synthetic.make()
+    uni = synthetic.universe_stub(("AAA",))
+    first = _run({"AAA": frame}, {}, uni, now)
+    assert first["items"][0]["had_base"] is True
+    recovered, later = synthetic.make_recovered()
+    assert evaluate(recovered, later)[1] == "no_drop"
+    second = _run({"AAA": recovered}, first, uni, later)
+    assert len(second["items"]) == 1
+    item = second["items"][0]
+    assert item["still_valid"] is False and item["state"] == C.STATE_WEAKENED
+    assert item["complete"] is False
+    assert second["diagnostics"]["funnel"]["weakened"] == 1
+
+
+def test_item_without_base_is_dropped():
+    """ارتد فوق -30% قبل أن يكوّن قاعدة ⇒ لم يعد مرشحًا ويُحذف."""
+    frame, now = synthetic.make(post_low_bars=4)
+    uni = synthetic.universe_stub(("AAA",))
+    first = _run({"AAA": frame}, {}, uni, now)
+    assert len(first["items"]) == 1 and first["items"][0]["had_base"] is False
+    recovered, later = synthetic.make_recovered()
+    second = _run({"AAA": recovered}, first, uni, later)
+    assert not second["items"]
+    assert second["diagnostics"]["funnel"]["dropped_no_base"] == 1
+
+
+def test_missing_frame_is_flagged_then_dead():
+    """انقطاع البيانات لا يحذف السهم فورًا، بل يعلّمه ثم يحوّله إلى «متوقف»."""
+    frame, now = synthetic.make()
+    uni = synthetic.universe_stub(("AAA",))
+    state = _run({"AAA": frame}, {}, uni, now)
+    assert state["items"][0]["data_missing"] is False
+    for step in range(1, C.DEAD_AFTER_MISSES + 1):
+        state = _run({}, state, uni, now + timedelta(minutes=15 * step))
+        assert len(state["items"]) == 1, step
+        assert state["items"][0]["data_misses"] == step
+    assert state["items"][0]["state"] == C.STATE_DEAD
+    assert state["items"][0]["state_label"] == C.STATE_LABELS[C.STATE_DEAD]
+
+
+def test_data_returns_resets_misses():
+    frame, now = synthetic.make()
+    uni = synthetic.universe_stub(("AAA",))
+    state = _run({"AAA": frame}, {}, uni, now)
+    state = _run({}, state, uni, now + timedelta(minutes=15))
+    assert state["items"][0]["data_misses"] == 1
+    state = _run({"AAA": frame}, state, uni, now + timedelta(minutes=30))
+    assert state["items"][0]["data_misses"] == 0
+    assert state["items"][0]["data_missing"] is False
+
+
+def test_session_reset_clears_previous_day():
+    frame, now = synthetic.make()
+    uni = synthetic.universe_stub(("AAA",))
+    yesterday = {"session_date": "2020-01-01", "items": [{"ticker": "ZZZ", "had_base": True,
+                                                          "base_low": 1.0}], "purged": []}
+    out = _run({"AAA": frame}, yesterday, uni, now)
+    assert [i["ticker"] for i in out["items"]] == ["AAA"]
+    assert out["purged"] == []
+
+
+def test_funnel_counts():
+    frame, now = synthetic.make()
+    uni = synthetic.universe_stub(("AAA", "BBB"))
+    out = _run({"AAA": frame}, {}, uni, now)
+    funnel = out["diagnostics"]["funnel"]
+    assert funnel["universe"] == 2 and funnel["frames"] == 1 and funnel["no_data"] == 1
+    assert funnel["monitored"] == 1 and funnel["complete"] == 1
+    assert funnel["base_ok"] == 1 and funnel["rsi_ok"] == 1
+
+
+def test_summary_and_states():
+    frame, now = synthetic.make()
+    out = _run({"AAA": frame}, {}, synthetic.universe_stub(("AAA",)), now)
+    summary = runtime.session_summary(out)
+    assert summary["complete"] == 1 and summary["ready"] == 1
+    assert summary["states"][C.STATE_READY] >= 1
+    assert summary["grades"]
+
+
+# ---------------------------------------------------------------- سجل المسح
+def test_heartbeat_and_scan_log():
+    now = datetime.now(timezone.utc)
+    prev = {"items": [], "purged": [], "scan_log": []}
+    beat = persist.heartbeat(now, ok=True, coverage_pct=80, frames=10, master=12,
+                             items=1, complete=0, duration_s=42.5)
+    out = persist.stamp_scan_log({"items": prev["items"], "purged": []}, beat, prev)
+    assert out["scan_log"][-1]["ok"] is True
+    assert out["scan_log"][-1]["duration_s"] == 42.5
+    skipped = persist.heartbeat(now + timedelta(minutes=15), ok=False, skipped="low_coverage", items=1)
+    out2 = persist.stamp_scan_log(out, skipped, out)
+    assert out2["scan_log"][-1]["skipped"] == "low_coverage"
+    assert len(out2["scan_log"]) == 2
+    up = persist.uptime(out2["scan_log"])
+    assert up["runs"] == 2 and up["ok_runs"] == 1 and up["failed"] == 1
+    assert up["ok_rate_pct"] == 50.0
+
+
+def test_alerts_are_deduped():
+    payload = {}
+    alert = {"ticker": "AAA", "kind": "signal", "at": "2026-10-06T14:00:00+00:00"}
+    persist.push_alert(payload, alert)
+    persist.push_alert(payload, alert)
+    assert len(payload["alerts"]) == 1
+
+
+# ---------------------------------------------------------------- متتبّع النتائج
+def _complete_item(frame, now, ticker="AAA"):
+    res, _ = evaluate(frame, now)
+    res.update(ticker=ticker, signal_date=now.astimezone(C.MARKET_TZ).date().isoformat())
+    return res
+
+
+def test_tracker_target_hit():
+    frame, now = synthetic.make()
+    item = _complete_item(frame, now)
+    trade = tracker.open_trade(item, now)
+    assert trade is not None and trade["status"] == "open"
+
+    entry = trade["entry"]
+    rally = [entry * (1 + 0.02 * i) for i in range(1, 20)]
+    up_frame, later = synthetic.make(extra_tail=rally)
+    updated = tracker.update_trade(trade, up_frame, later)
+    assert updated["mfe_pct"] > 0
+    assert updated["hit_labels"], updated["targets"]
+    assert updated["status"] in ("open", "closed")
+
+
+def test_tracker_stop_hit():
+    frame, now = synthetic.make()
+    item = _complete_item(frame, now)
+    trade = tracker.open_trade(item, now)
+    stop = trade["stop"]
+    dump = [trade["entry"] * 0.99, stop * 0.98, stop * 0.97, stop * 0.96]
+    down_frame, later = synthetic.make(extra_tail=dump)
+    updated = tracker.update_trade(trade, down_frame, later)
+    assert updated["status"] == "closed"
+    assert updated["exit_reason"] == tracker.EXIT_STOP
+    assert updated["r_multiple"] < 0
+    assert updated["mae_pct"] < 0
+
+
+def test_tracker_expires_previous_session():
+    frame, now = synthetic.make()
+    item = _complete_item(frame, now)
+    trade = tracker.open_trade(item, now)
+    trade["session_date"] = "2020-01-01"
+    trade["last_price"] = trade["entry"] * 1.1
+    tracker.expire_open([trade], "2026-10-06", now)
+    assert trade["status"] == "closed" and trade["exit_reason"] == tracker.EXIT_SESSION
+
+
+def test_summarize_stats():
+    closed = [
+        {"r_multiple": 2.0, "result_pct": 20.0, "mfe_pct": 25.0, "mae_pct": -3.0, "hold_min": 60,
+         "grade": "A", "entry_ts": "2026-10-06T14:00:00-04:00", "drop_pct": -45,
+         "hit_labels": ["T1", "T2"], "exit_reason": tracker.EXIT_TARGET},
+        {"r_multiple": -1.0, "result_pct": -8.0, "mfe_pct": 4.0, "mae_pct": -9.0, "hold_min": 120,
+         "grade": "C", "entry_ts": "2026-10-06T15:00:00-04:00", "drop_pct": -60,
+         "hit_labels": [], "exit_reason": tracker.EXIT_STOP},
+    ]
+    stats = tracker.summarize(closed)
+    assert stats["trades"] == 2 and stats["wins"] == 1 and stats["win_rate_pct"] == 50.0
+    assert stats["profit_factor"] == 2.0
+    assert stats["targets"]["T2"]["hits"] == 1
+    assert stats["by_grade"]["A"]["win_rate_pct"] == 100.0
+    assert stats["by_drop"]["-50% إلى -70%"]["trades"] == 1
+    assert tracker.summarize([]) == {"trades": 0}
+
+
+def test_update_stats_opens_once_per_signal():
+    frame, now = synthetic.make()
+    item = _complete_item(frame, now)
+    stats = tracker.update_stats({}, [item], {"AAA": frame}, now, item["signal_date"])
+    assert len(stats["open"]) == 1 and len(stats["alerts"]) == 1
+    again = tracker.update_stats(stats, [item], {"AAA": frame}, now + timedelta(minutes=15),
+                                 item["signal_date"])
+    assert len(again["open"]) == 1
+    assert again["summary"]["trades"] == 0
+
+
+# ---------------------------------------------------------------- المؤشرات
+def test_indicator_sanity():
+    frame, _ = synthetic.make()
+    close = frame["Close"].astype(float)
+    r = indicators.rsi(close, 14)
+    valid = r.dropna()
+    assert len(valid) and float(valid.min()) >= 0 and float(valid.max()) <= 100
+    line, signal, hist = indicators.macd(close)
+    assert abs(float((line - signal).iloc[-1]) - float(hist.iloc[-1])) < 1e-9
+    a = indicators.atr(frame, 14).dropna()
+    assert len(a) and float(a.min()) > 0
+    v = indicators.vwap(frame).dropna()
+    assert float(v.min()) >= float(frame["Low"].min()) * 0.999
+    assert float(v.max()) <= float(frame["High"].max()) * 1.001
+    o = indicators.obv(close, frame["Volume"].astype(float))
+    assert len(o) == len(frame)
+    higher = indicators.resample_bars(frame, C.MTF_RESAMPLE)
+    assert len(higher) < len(frame) and len(higher) > 0
+
+
+def test_rolling_slope_and_stdev():
+    assert indicators.rolling_slope([1, 2, 3, 4], 4) > 0
+    assert indicators.rolling_slope([4, 3, 2, 1], 4) < 0
+    assert indicators.rolling_slope([1, 2], 4) is None
+
+
+# ---------------------------------------------------------------- الكون والـ Float
+def test_pool_record_filters():
+    good = synthetic.daily_frame(price=2.0, volume=400_000)
+    assert universe.pool_record(good) is not None
+    expensive = synthetic.daily_frame(price=2.0, volume=400_000)
+    expensive.loc[:, "Close"] = 50.0
+    expensive.loc[:, "High"] = 52.0
+    expensive.loc[:, "Low"] = 48.0
+    assert universe.pool_record(expensive) is None
+    illiquid = synthetic.daily_frame(price=2.0, volume=1_000)
+    assert universe.pool_record(illiquid) is None
+
+
+def test_classify_float():
+    assert float_lookup.classify({"value": 2_000_000, "status": "exact"}) == (True, "exact")
+    assert float_lookup.classify({"value": 4_000_000, "status": "bound"}) == (True, "bound")
+    assert float_lookup.classify({"value": 40_000_000, "status": "bound"})[0] is False
+    assert float_lookup.classify({"value": None, "status": "missing"}, unknown_policy="watch") == (True, "unverified")
+    assert float_lookup.classify({"value": None, "status": "missing"}, unknown_policy="exclude")[0] is False
+
+
+def test_build_universe_writes_file(tmpdir=None):
+    with tempfile.TemporaryDirectory() as tmp:
+        path = os.path.join(tmp, "universe.json")
+        cache = os.path.join(tmp, "float_cache.json")
+        os.environ["FLOAT_CACHE_FILE"] = cache
+        try:
+            pool = {"AAA": {"price": 1.5, "avg_vol": 500_000, "range_pct": 40.0, "rally_pct": 120.0},
+                    "BIG": {"price": 1.5, "avg_vol": 500_000, "range_pct": 30.0, "rally_pct": 80.0}}
+
+            def resolver(ticker):
+                if ticker == "BIG":
+                    return {"value": 900_000_000, "status": "bound", "source": "yahoo_outstanding"}
+                return {"value": 2_000_000, "status": "bound", "source": "yahoo_outstanding"}
+
+            out = universe.build_universe(pool, resolver=resolver, path=path, force=True)
+            assert [row["ticker"] for row in out["tickers"]] == ["AAA"]
+            assert json.loads(Path(path).read_text(encoding="utf-8"))["count"] == 1
+        finally:
+            os.environ.pop("FLOAT_CACHE_FILE", None)
+
+
+def test_reverse_split_tags_optional():
+    tags = universe.reverse_split_tags()
+    assert isinstance(tags, dict)
+    for value in tags.values():
+        assert value["reverse_split"] is True
+
+
+# ---------------------------------------------------------------- التسلسل
+def test_json_safe_removes_nan():
+    import numpy as np
+    payload = {"a": float("nan"), "b": np.float64(1.5), "c": np.int64(3),
+               "d": [float("inf"), None], "e": {"f": np.bool_(True)}}
+    cleaned = persist.json_safe(payload)
+    text = json.dumps(cleaned, allow_nan=False)
+    assert cleaned["a"] is None and cleaned["d"][0] is None
+    assert cleaned["b"] == 1.5 and cleaned["e"]["f"] is True
+    assert "NaN" not in text
+
+
+# ---------------------------------------------------------------- دورة كاملة
+def test_run_once_end_to_end():
+    frame, now = synthetic.make()
+    with tempfile.TemporaryDirectory() as tmp:
+        uni_path = os.path.join(tmp, "universe.json")
+        out_path = os.path.join(tmp, "panic_data.json")
+        stats_path = os.path.join(tmp, "panic_stats.json")
+        persist.save(uni_path, synthetic.universe_stub(("AAA", "BBB")))
+
+        payload = run_once(downloader=lambda tickers, **kw: {"AAA": frame},
+                           universe_path=uni_path, out_path=out_path,
+                           stats_path=stats_path, now=now)
+
+        assert Path(out_path).exists() and Path(stats_path).exists()
+        on_disk = json.loads(Path(out_path).read_text(encoding="utf-8"))
+        for key in ("summary", "clock", "rules", "conditions", "states", "scan_log",
+                    "items", "purged", "diagnostics", "uptime", "session_date"):
+            assert key in on_disk, key
+        assert on_disk["summary"]["complete"] == 1
+        assert on_disk["items"][0]["ticker"] == "AAA"
+        assert on_disk["items"][0]["chart"], "الشموع مطلوبة للرسم"
+        assert on_disk["diagnostics"]["coverage_pct"] == 50.0
+        stats = json.loads(Path(stats_path).read_text(encoding="utf-8"))
+        assert len(stats["open"]) == 1
+        assert payload["summary"]["complete"] == 1
+
+
+def test_run_once_low_coverage_only_logs():
+    frame, now = synthetic.make()
+    with tempfile.TemporaryDirectory() as tmp:
+        uni_path = os.path.join(tmp, "universe.json")
+        out_path = os.path.join(tmp, "panic_data.json")
+        stats_path = os.path.join(tmp, "panic_stats.json")
+        many = synthetic.universe_stub(tuple("T%03d" % i for i in range(20)))
+        persist.save(uni_path, many)
+        payload = run_once(downloader=lambda tickers, **kw: {"T000": frame},
+                           universe_path=uni_path, out_path=out_path,
+                           stats_path=stats_path, now=now)
+        assert payload["last_scan"]["ok"] is False
+        assert payload["last_scan"]["skipped"] == "low_coverage"
+        assert payload["scan_log"]
+
+
+def test_run_once_without_universe():
+    with tempfile.TemporaryDirectory() as tmp:
+        out_path = os.path.join(tmp, "panic_data.json")
+        payload = run_once(downloader=lambda tickers, **kw: {},
+                           universe_path=os.path.join(tmp, "missing.json"),
+                           out_path=out_path, stats_path=os.path.join(tmp, "s.json"),
+                           now=datetime.now(timezone.utc))
+        assert payload["last_scan"]["skipped"] == "no_universe"
+
+
+def test_demo_universe_is_never_scanned_live():
+    """حماية: كون تجريبي لا يُمسح في التشغيل الحي، ولا يُنزَّل له أي بيانات."""
+    frame, now = synthetic.make()
+    calls = []
+
+    def downloader(tickers, **kwargs):
+        calls.append(list(tickers))
+        return {"AAA": frame}
+
+    with tempfile.TemporaryDirectory() as tmp:
+        uni_path = os.path.join(tmp, "universe.json")
+        stub = synthetic.universe_stub(("AAA",))
+        stub["demo"] = True
+        persist.save(uni_path, stub)
+        kwargs = dict(downloader=downloader, universe_path=uni_path,
+                      out_path=os.path.join(tmp, "panic_data.json"),
+                      stats_path=os.path.join(tmp, "panic_stats.json"), now=now)
+
+        payload = run_once(**kwargs)
+        assert payload["last_scan"]["ok"] is False
+        assert payload["last_scan"]["skipped"] == "demo_universe"
+        assert calls == [], "لا يجوز تنزيل بيانات لرموز تجريبية"
+
+        live = run_once(allow_demo_universe=True, **kwargs)
+        assert live["summary"]["monitored"] == 1
+        assert len(calls) == 1
+
+
+TESTS = [value for key, value in sorted(globals().items()) if key.startswith("test_") and callable(value)]
+
+if __name__ == "__main__":
+    failures = 0
+    for fn in TESTS:
+        try:
+            fn()
+            print("✅", fn.__name__)
+        except Exception as exc:                              # noqa: BLE001
+            failures += 1
+            print("❌", fn.__name__, repr(exc)[:400])
+    print("\n%d/%d passed" % (len(TESTS) - failures, len(TESTS)))
+    raise SystemExit(1 if failures else 0)

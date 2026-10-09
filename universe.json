@@ -1,0 +1,148 @@
+{
+ "demo": true,
+ "built_on": "2026-10-09",
+ "built_at": "2026-10-09T17:49:32.398414+00:00",
+ "count": 10,
+ "confirmed": 10,
+ "unverified": 0,
+ "reverse_split_tagged": 3,
+ "rules": {
+  "price": [
+   0.5,
+   10.0
+  ],
+  "max_float": 5000000,
+  "min_avg_volume": 100000
+ },
+ "tickers": [
+  {
+   "ticker": "MULN",
+   "company": "Mullen Automotive",
+   "price": 1.8,
+   "avg_vol": 850000,
+   "range_pct": 42.0,
+   "rally_pct": 130.0,
+   "float": 4120000,
+   "float_status": "bound",
+   "float_source": "yahoo_outstanding",
+   "reverse_split": false
+  },
+  {
+   "ticker": "NCI",
+   "company": "Nuvectis Pharma",
+   "price": 1.8,
+   "avg_vol": 850000,
+   "range_pct": 42.0,
+   "rally_pct": 130.0,
+   "float": 2830000,
+   "float_status": "bound",
+   "float_source": "yahoo_outstanding",
+   "reverse_split": false
+  },
+  {
+   "ticker": "HCAI",
+   "company": "Huachen Ai Parking",
+   "price": 1.8,
+   "avg_vol": 850000,
+   "range_pct": 42.0,
+   "rally_pct": 130.0,
+   "float": 1940000,
+   "float_status": "bound",
+   "float_source": "yahoo_outstanding",
+   "reverse_split": true,
+   "split_date": "2026-04-13",
+   "split_ratio": "59.99:1 Reverse split",
+   "days_since_split": 179
+  },
+  {
+   "ticker": "LIXT",
+   "company": "Lixte Biotech",
+   "price": 1.8,
+   "avg_vol": 850000,
+   "range_pct": 42.0,
+   "rally_pct": 130.0,
+   "float": 3450000,
+   "float_status": "bound",
+   "float_source": "yahoo_outstanding",
+   "reverse_split": false
+  },
+  {
+   "ticker": "BSFC",
+   "company": "Blue Star Foods",
+   "price": 1.8,
+   "avg_vol": 850000,
+   "range_pct": 42.0,
+   "rally_pct": 130.0,
+   "float": 4650000,
+   "float_status": "bound",
+   "float_source": "yahoo_outstanding",
+   "reverse_split": false
+  },
+  {
+   "ticker": "AKAN",
+   "company": "Akanda Corp",
+   "price": 1.8,
+   "avg_vol": 850000,
+   "range_pct": 42.0,
+   "rally_pct": 130.0,
+   "float": 4880000,
+   "float_status": "bound",
+   "float_source": "yahoo_outstanding",
+   "reverse_split": true,
+   "split_date": "2026-04-13",
+   "split_ratio": "30:1 Reverse split",
+   "days_since_split": 179
+  },
+  {
+   "ticker": "CTNT",
+   "company": "Cheetah Net Supply",
+   "price": 1.8,
+   "avg_vol": 850000,
+   "range_pct": 42.0,
+   "rally_pct": 130.0,
+   "float": 1333000,
+   "float_status": "bound",
+   "float_source": "yahoo_outstanding",
+   "reverse_split": false
+  },
+  {
+   "ticker": "RETO",
+   "company": "ReTo Eco-Solutions",
+   "price": 1.8,
+   "avg_vol": 850000,
+   "range_pct": 42.0,
+   "rally_pct": 130.0,
+   "float": 2369000,
+   "float_status": "bound",
+   "float_source": "yahoo_outstanding",
+   "reverse_split": true,
+   "split_date": "2026-04-13",
+   "split_ratio": "4.5:1 Reverse split",
+   "days_since_split": 179
+  },
+  {
+   "ticker": "PIXY",
+   "company": "ShiftPixy",
+   "price": 1.8,
+   "avg_vol": 850000,
+   "range_pct": 42.0,
+   "rally_pct": 130.0,
+   "float": 1120000,
+   "float_status": "bound",
+   "float_source": "yahoo_outstanding",
+   "reverse_split": false
+  },
+  {
+   "ticker": "SOPA",
+   "company": "Society Pass",
+   "price": 1.8,
+   "avg_vol": 850000,
+   "range_pct": 42.0,
+   "rally_pct": 130.0,
+   "float": 3900000,
+   "float_status": "bound",
+   "float_source": "yahoo_outstanding",
+   "reverse_split": false
+  }
+ ]
+}

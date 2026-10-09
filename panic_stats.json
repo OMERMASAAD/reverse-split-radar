@@ -1,0 +1,449 @@
+{
+ "updated_at": "2026-10-06T14:00:00+00:00",
+ "session_date": "2026-10-06",
+ "open": [
+  {
+   "id": "HCAI|2026-10-06",
+   "ticker": "HCAI",
+   "session_date": "2026-10-06",
+   "entry_ts": "2026-10-06T13:30:00+00:00",
+   "entry": 1.0428,
+   "stop": 0.9862,
+   "targets": [
+    {
+     "label": "T1",
+     "price": 1.1471,
+     "pct": 10.0,
+     "hit": false,
+     "at": null
+    },
+    {
+     "label": "T2",
+     "price": 1.3035,
+     "pct": 25.0,
+     "hit": false,
+     "at": null
+    },
+    {
+     "label": "T3",
+     "price": 1.5642,
+     "pct": 50.0,
+     "hit": false,
+     "at": null
+    }
+   ],
+   "grade": "A",
+   "core_score": 100,
+   "score": 88,
+   "confirm_score": 60,
+   "drop_pct": -64.4,
+   "rvol": 1.35,
+   "float": 1940000,
+   "reverse_split": true,
+   "mfe_pct": 0.0,
+   "mae_pct": 0.0,
+   "targets_hit": [],
+   "stop_hit": false,
+   "status": "open",
+   "exit_reason": null,
+   "exit_price": null,
+   "exit_ts": null,
+   "r_multiple": 0.0,
+   "hold_min": 0,
+   "bars_seen": 0,
+   "opened_at": "2026-10-06T13:30:00+00:00",
+   "updated_at": "2026-10-06T13:30:00+00:00",
+   "signal_date": "2026-10-06"
+  },
+  {
+   "id": "BSFC|2026-10-06",
+   "ticker": "BSFC",
+   "session_date": "2026-10-06",
+   "entry_ts": "2026-10-06T13:30:00+00:00",
+   "entry": 1.3086,
+   "stop": 1.2367,
+   "targets": [
+    {
+     "label": "T1",
+     "price": 1.4395,
+     "pct": 10.0,
+     "hit": false,
+     "at": null
+    },
+    {
+     "label": "T2",
+     "price": 1.6358,
+     "pct": 25.0,
+     "hit": false,
+     "at": null
+    },
+    {
+     "label": "T3",
+     "price": 1.9629,
+     "pct": 50.0,
+     "hit": false,
+     "at": null
+    }
+   ],
+   "grade": "A",
+   "core_score": 100,
+   "score": 88,
+   "confirm_score": 60,
+   "drop_pct": -55.3,
+   "rvol": 0.52,
+   "float": 4650000,
+   "reverse_split": false,
+   "mfe_pct": 6.81,
+   "mae_pct": 0.0,
+   "targets_hit": [],
+   "stop_hit": false,
+   "status": "open",
+   "exit_reason": null,
+   "exit_price": null,
+   "exit_ts": null,
+   "r_multiple": 0.0,
+   "hold_min": 120,
+   "bars_seen": 24,
+   "opened_at": "2026-10-06T13:30:00+00:00",
+   "updated_at": "2026-10-06T14:00:00+00:00",
+   "signal_date": "2026-10-06",
+   "last_price": 1.3897,
+   "unrealized_pct": 6.2,
+   "hit_labels": []
+  },
+  {
+   "id": "NCI|2026-10-06",
+   "ticker": "NCI",
+   "session_date": "2026-10-06",
+   "entry_ts": "2026-10-06T13:30:00+00:00",
+   "entry": 1.4051,
+   "stop": 1.3134,
+   "targets": [
+    {
+     "label": "T1",
+     "price": 1.5456,
+     "pct": 10.0,
+     "hit": true,
+     "at": "2026-10-06T10:10:00-04:00"
+    },
+    {
+     "label": "T2",
+     "price": 1.7563,
+     "pct": 25.0,
+     "hit": false,
+     "at": null
+    },
+    {
+     "label": "T3",
+     "price": 2.1076,
+     "pct": 50.0,
+     "hit": false,
+     "at": null
+    }
+   ],
+   "grade": "A",
+   "core_score": 100,
+   "score": 88,
+   "confirm_score": 60,
+   "drop_pct": -52.0,
+   "rvol": 0.42,
+   "float": 2830000,
+   "reverse_split": false,
+   "mfe_pct": 16.13,
+   "mae_pct": 0.0,
+   "targets_hit": [
+    {
+     "label": "T1",
+     "at": "2026-10-06T10:10:00-04:00"
+    }
+   ],
+   "stop_hit": false,
+   "status": "open",
+   "exit_reason": null,
+   "exit_price": null,
+   "exit_ts": null,
+   "r_multiple": 0.0,
+   "hold_min": 120,
+   "bars_seen": 24,
+   "opened_at": "2026-10-06T13:30:00+00:00",
+   "updated_at": "2026-10-06T14:00:00+00:00",
+   "signal_date": "2026-10-06",
+   "last_price": 1.6225,
+   "unrealized_pct": 15.47,
+   "hit_labels": [
+    "T1"
+   ]
+  },
+  {
+   "id": "LIXT|2026-10-06",
+   "ticker": "LIXT",
+   "session_date": "2026-10-06",
+   "entry_ts": "2026-10-06T13:30:00+00:00",
+   "entry": 1.7243,
+   "stop": 1.6339,
+   "targets": [
+    {
+     "label": "T1",
+     "price": 1.8967,
+     "pct": 10.0,
+     "hit": false,
+     "at": null
+    },
+    {
+     "label": "T2",
+     "price": 2.1554,
+     "pct": 25.0,
+     "hit": false,
+     "at": null
+    },
+    {
+     "label": "T3",
+     "price": 2.5865,
+     "pct": 50.0,
+     "hit": false,
+     "at": null
+    }
+   ],
+   "grade": "A",
+   "core_score": 100,
+   "score": 88,
+   "confirm_score": 60,
+   "drop_pct": -41.1,
+   "rvol": 0.39,
+   "float": 3450000,
+   "reverse_split": false,
+   "mfe_pct": 6.81,
+   "mae_pct": 0.0,
+   "targets_hit": [],
+   "stop_hit": false,
+   "status": "open",
+   "exit_reason": null,
+   "exit_price": null,
+   "exit_ts": null,
+   "r_multiple": 0.0,
+   "hold_min": 120,
+   "bars_seen": 24,
+   "opened_at": "2026-10-06T13:30:00+00:00",
+   "updated_at": "2026-10-06T14:00:00+00:00",
+   "signal_date": "2026-10-06",
+   "last_price": 1.8313,
+   "unrealized_pct": 6.21,
+   "hit_labels": []
+  }
+ ],
+ "closed": [
+  {
+   "id": "MULN|2026-10-06",
+   "ticker": "MULN",
+   "session_date": "2026-10-06",
+   "entry_ts": "2026-10-06T13:30:00+00:00",
+   "entry": 1.5469,
+   "stop": 1.4582,
+   "targets": [
+    {
+     "label": "T1",
+     "price": 1.7016,
+     "pct": 10.0,
+     "hit": true,
+     "at": "2026-10-06T09:35:00-04:00"
+    },
+    {
+     "label": "T2",
+     "price": 1.9337,
+     "pct": 25.0,
+     "hit": true,
+     "at": "2026-10-06T10:00:00-04:00"
+    },
+    {
+     "label": "T3",
+     "price": 2.3204,
+     "pct": 50.0,
+     "hit": false,
+     "at": null
+    }
+   ],
+   "grade": "A",
+   "core_score": 100,
+   "score": 88,
+   "confirm_score": 60,
+   "drop_pct": -47.2,
+   "rvol": 0.39,
+   "float": 4120000,
+   "reverse_split": false,
+   "mfe_pct": 34.58,
+   "mae_pct": 0.0,
+   "targets_hit": [
+    {
+     "label": "T1",
+     "at": "2026-10-06T09:35:00-04:00"
+    },
+    {
+     "label": "T2",
+     "at": "2026-10-06T10:00:00-04:00"
+    }
+   ],
+   "stop_hit": false,
+   "status": "closed",
+   "exit_reason": "target",
+   "exit_price": 1.9337,
+   "exit_ts": "2026-10-06T13:45:00+00:00",
+   "r_multiple": 4.36,
+   "hold_min": 70,
+   "bars_seen": 14,
+   "opened_at": "2026-10-06T13:30:00+00:00",
+   "updated_at": "2026-10-06T13:45:00+00:00",
+   "signal_date": "2026-10-06",
+   "last_price": 2.0683,
+   "unrealized_pct": 33.71,
+   "exit_label": "تحقق الهدف",
+   "result_pct": 25.0,
+   "hit_labels": [
+    "T1",
+    "T2"
+   ]
+  },
+  {
+   "id": "PIXY|2026-10-06",
+   "ticker": "PIXY",
+   "session_date": "2026-10-06",
+   "entry_ts": "2026-10-06T13:45:00+00:00",
+   "entry": 1.7954,
+   "stop": 1.73,
+   "targets": [
+    {
+     "label": "T1",
+     "price": 1.9749,
+     "pct": 10.0,
+     "hit": false,
+     "at": null
+    },
+    {
+     "label": "T2",
+     "price": 2.2442,
+     "pct": 25.0,
+     "hit": false,
+     "at": null
+    },
+    {
+     "label": "T3",
+     "price": 2.6931,
+     "pct": 50.0,
+     "hit": false,
+     "at": null
+    }
+   ],
+   "grade": "A",
+   "core_score": 100,
+   "score": 84,
+   "confirm_score": 45,
+   "drop_pct": -38.7,
+   "rvol": 0.82,
+   "float": 1120000,
+   "reverse_split": false,
+   "mfe_pct": 0.15,
+   "mae_pct": -5.0,
+   "targets_hit": [],
+   "stop_hit": true,
+   "status": "closed",
+   "exit_reason": "stop",
+   "exit_price": 1.73,
+   "exit_ts": "2026-10-06T14:00:00+00:00",
+   "r_multiple": -1.0,
+   "hold_min": 25,
+   "bars_seen": 5,
+   "opened_at": "2026-10-06T13:45:00+00:00",
+   "updated_at": "2026-10-06T14:00:00+00:00",
+   "signal_date": "2026-10-06",
+   "last_price": 1.7108,
+   "unrealized_pct": -4.71,
+   "hit_labels": [],
+   "stop_at": "2026-10-06T09:50:00-04:00",
+   "exit_label": "ضرب الوقف",
+   "result_pct": -3.64
+  }
+ ],
+ "summary": {
+  "trades": 2,
+  "wins": 1,
+  "losses": 1,
+  "win_rate_pct": 50.0,
+  "avg_r": 1.68,
+  "median_r": 1.68,
+  "best_r": 4.36,
+  "worst_r": -1.0,
+  "expectancy_pct": 10.68,
+  "profit_factor": 4.36,
+  "avg_mfe_pct": 17.36,
+  "avg_mae_pct": -2.5,
+  "avg_hold_min": 47.5,
+  "targets": {
+   "T1": {
+    "hits": 1,
+    "rate_pct": 50.0
+   },
+   "T2": {
+    "hits": 1,
+    "rate_pct": 50.0
+   },
+   "T3": {
+    "hits": 0,
+    "rate_pct": 0.0
+   }
+  },
+  "by_grade": {
+   "A": {
+    "trades": 2,
+    "wins": 1,
+    "r_sum": 3.36,
+    "win_rate_pct": 50.0,
+    "avg_r": 1.68
+   }
+  },
+  "by_hour": {
+   "13:00": {
+    "trades": 2,
+    "wins": 1,
+    "r_sum": 3.36,
+    "win_rate_pct": 50.0,
+    "avg_r": 1.68
+   }
+  },
+  "by_drop": {
+   "-30% إلى -40%": {
+    "trades": 1,
+    "wins": 0,
+    "r_sum": -1.0,
+    "win_rate_pct": 0.0,
+    "avg_r": -1.0
+   },
+   "-40% إلى -50%": {
+    "trades": 1,
+    "wins": 1,
+    "r_sum": 4.36,
+    "win_rate_pct": 100.0,
+    "avg_r": 4.36
+   }
+  },
+  "exits": {
+   "تحقق الهدف": 1,
+   "ضرب الوقف": 1
+  }
+ },
+ "open_summary": {
+  "count": 4,
+  "avg_unrealized_pct": 6.97,
+  "targets_hit": 1
+ },
+ "alerts": [],
+ "uptime": {
+  "runs": 1,
+  "ok_runs": 1,
+  "skipped": 0,
+  "failed": 0,
+  "ok_rate_pct": 100.0,
+  "avg_duration_s": 0.2,
+  "first_at": "2026-10-06T14:00:00+00:00",
+  "last_at": "2026-10-06T14:00:00+00:00"
+ },
+ "demo": true
+}

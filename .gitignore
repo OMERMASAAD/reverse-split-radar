@@ -1,0 +1,14 @@
+# بايثون
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# عقَد (أدوات تطوير الواجهة فقط)
+node_modules/
+package-lock.json
+
+# ملفات مؤقتة
+*.tmp
+*.log
+.DS_Store
