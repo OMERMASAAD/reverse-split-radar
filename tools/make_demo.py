@@ -107,6 +107,8 @@ def main() -> int:
     out_path = OUT_DIR / "panic_data.json"
     stats_path = OUT_DIR / "panic_stats.json"
     persist.save(universe_path, universe())
+    for stale in (out_path, stats_path):          # ابدأ من جلسة نظيفة
+        stale.unlink(missing_ok=True)
 
     # «الآن» = آخر شمعة في البيانات الاصطناعية، وإلا عُدّت كل الشموع متقادمة (stale).
     start = max(frame.index[-1] for frame in build_frames(0).values()).to_pydatetime()

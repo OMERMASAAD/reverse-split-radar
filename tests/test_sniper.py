@@ -496,6 +496,29 @@ def test_demo_universe_is_never_scanned_live():
         assert len(calls) == 1
 
 
+def test_scan_log_accumulates_across_runs():
+    """سجل المسح والتنبيهات تتراكم بين التشغيلات — أساس تبويب «سجل التشغيل»."""
+    frame, now = synthetic.make()
+    with tempfile.TemporaryDirectory() as tmp:
+        kwargs = dict(downloader=lambda tickers, **kw: {"AAA": frame},
+                      universe_path=os.path.join(tmp, "universe.json"),
+                      out_path=os.path.join(tmp, "panic_data.json"),
+                      stats_path=os.path.join(tmp, "panic_stats.json"))
+        persist.save(kwargs["universe_path"], synthetic.universe_stub(("AAA",)))
+
+        first = run_once(now=now, **kwargs)
+        assert len(first["scan_log"]) == 1, len(first["scan_log"])
+        second = run_once(now=now + timedelta(minutes=15), **kwargs)
+        assert len(second["scan_log"]) == 2, len(second["scan_log"])
+        third = run_once(now=now + timedelta(minutes=30), **kwargs)
+        assert len(third["scan_log"]) == 3, len(third["scan_log"])
+        assert third["uptime"]["runs"] == 3 and third["uptime"]["ok_runs"] == 3
+        assert third["uptime"]["ok_rate_pct"] == 100.0
+        assert third["alerts"], "التنبيهات ضاعت بين المسوحات"
+        on_disk = json.loads(Path(kwargs["out_path"]).read_text(encoding="utf-8"))
+        assert len(on_disk["scan_log"]) == 3
+
+
 TESTS = [value for key, value in sorted(globals().items()) if key.startswith("test_") and callable(value)]
 
 if __name__ == "__main__":

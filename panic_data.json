@@ -3625,234 +3625,6 @@
      "rvol": 0.16,
      "rsi": 85.4,
      "relative_volume": 21.01
-    },
-    {
-     "last_bar": "2026-10-06T09:30:00-04:00",
-     "price": 1.7243,
-     "drop_pct": -41.1,
-     "hold_min": 230,
-     "strength_score": 100,
-     "score": 88,
-     "grade": "A",
-     "complete": true,
-     "checks": {
-      "base": true,
-      "rsi": true,
-      "obv": true,
-      "macd": true
-     },
-     "rvol": 0.39,
-     "rsi": 39.0,
-     "relative_volume": 357.25
-    },
-    {
-     "last_bar": "2026-10-06T10:30:00-04:00",
-     "price": 1.7772,
-     "drop_pct": -39.3,
-     "hold_min": 180,
-     "strength_score": 80,
-     "score": 80,
-     "grade": "A",
-     "complete": false,
-     "checks": {
-      "base": true,
-      "rsi": false,
-      "obv": true,
-      "macd": true
-     },
-     "rvol": 0.19,
-     "rsi": 68.3,
-     "relative_volume": 33.94
-    },
-    {
-     "last_bar": "2026-10-06T11:30:00-04:00",
-     "price": 1.8313,
-     "drop_pct": -37.5,
-     "hold_min": 100,
-     "strength_score": 80,
-     "score": 76,
-     "grade": "B",
-     "complete": false,
-     "checks": {
-      "base": true,
-      "rsi": false,
-      "obv": true,
-      "macd": true
-     },
-     "rvol": 0.16,
-     "rsi": 85.4,
-     "relative_volume": 21.01
-    },
-    {
-     "last_bar": "2026-10-06T09:30:00-04:00",
-     "price": 1.7243,
-     "drop_pct": -41.1,
-     "hold_min": 230,
-     "strength_score": 100,
-     "score": 88,
-     "grade": "A",
-     "complete": true,
-     "checks": {
-      "base": true,
-      "rsi": true,
-      "obv": true,
-      "macd": true
-     },
-     "rvol": 0.39,
-     "rsi": 39.0,
-     "relative_volume": 357.25
-    },
-    {
-     "last_bar": "2026-10-06T10:30:00-04:00",
-     "price": 1.7772,
-     "drop_pct": -39.3,
-     "hold_min": 180,
-     "strength_score": 80,
-     "score": 80,
-     "grade": "A",
-     "complete": false,
-     "checks": {
-      "base": true,
-      "rsi": false,
-      "obv": true,
-      "macd": true
-     },
-     "rvol": 0.19,
-     "rsi": 68.3,
-     "relative_volume": 33.94
-    },
-    {
-     "last_bar": "2026-10-06T11:30:00-04:00",
-     "price": 1.8313,
-     "drop_pct": -37.5,
-     "hold_min": 100,
-     "strength_score": 80,
-     "score": 76,
-     "grade": "B",
-     "complete": false,
-     "checks": {
-      "base": true,
-      "rsi": false,
-      "obv": true,
-      "macd": true
-     },
-     "rvol": 0.16,
-     "rsi": 85.4,
-     "relative_volume": 21.01
-    },
-    {
-     "last_bar": "2026-10-06T09:30:00-04:00",
-     "price": 1.7243,
-     "drop_pct": -41.1,
-     "hold_min": 230,
-     "strength_score": 100,
-     "score": 88,
-     "grade": "A",
-     "complete": true,
-     "checks": {
-      "base": true,
-      "rsi": true,
-      "obv": true,
-      "macd": true
-     },
-     "rvol": 0.39,
-     "rsi": 39.0,
-     "relative_volume": 357.25
-    },
-    {
-     "last_bar": "2026-10-06T10:30:00-04:00",
-     "price": 1.7772,
-     "drop_pct": -39.3,
-     "hold_min": 180,
-     "strength_score": 80,
-     "score": 80,
-     "grade": "A",
-     "complete": false,
-     "checks": {
-      "base": true,
-      "rsi": false,
-      "obv": true,
-      "macd": true
-     },
-     "rvol": 0.19,
-     "rsi": 68.3,
-     "relative_volume": 33.94
-    },
-    {
-     "last_bar": "2026-10-06T11:30:00-04:00",
-     "price": 1.8313,
-     "drop_pct": -37.5,
-     "hold_min": 100,
-     "strength_score": 80,
-     "score": 76,
-     "grade": "B",
-     "complete": false,
-     "checks": {
-      "base": true,
-      "rsi": false,
-      "obv": true,
-      "macd": true
-     },
-     "rvol": 0.16,
-     "rsi": 85.4,
-     "relative_volume": 21.01
-    },
-    {
-     "last_bar": "2026-10-06T09:30:00-04:00",
-     "price": 1.7243,
-     "drop_pct": -41.1,
-     "hold_min": 230,
-     "strength_score": 100,
-     "score": 88,
-     "grade": "A",
-     "complete": true,
-     "checks": {
-      "base": true,
-      "rsi": true,
-      "obv": true,
-      "macd": true
-     },
-     "rvol": 0.39,
-     "rsi": 39.0,
-     "relative_volume": 357.25
-    },
-    {
-     "last_bar": "2026-10-06T10:30:00-04:00",
-     "price": 1.7772,
-     "drop_pct": -39.3,
-     "hold_min": 180,
-     "strength_score": 80,
-     "score": 80,
-     "grade": "A",
-     "complete": false,
-     "checks": {
-      "base": true,
-      "rsi": false,
-      "obv": true,
-      "macd": true
-     },
-     "rvol": 0.19,
-     "rsi": 68.3,
-     "relative_volume": 33.94
-    },
-    {
-     "last_bar": "2026-10-06T11:30:00-04:00",
-     "price": 1.8313,
-     "drop_pct": -37.5,
-     "hold_min": 100,
-     "strength_score": 80,
-     "score": 76,
-     "grade": "B",
-     "complete": false,
-     "checks": {
-      "base": true,
-      "rsi": false,
-      "obv": true,
-      "macd": true
-     },
-     "rvol": 0.16,
-     "rsi": 85.4,
-     "relative_volume": 21.01
     }
    ]
   },
@@ -7411,234 +7183,6 @@
    "session_date": "2026-10-06",
    "minutes_on_radar": 30,
    "history": [
-    {
-     "last_bar": "2026-10-06T09:30:00-04:00",
-     "price": 1.3086,
-     "drop_pct": -55.3,
-     "hold_min": 230,
-     "strength_score": 100,
-     "score": 88,
-     "grade": "A",
-     "complete": true,
-     "checks": {
-      "base": true,
-      "rsi": true,
-      "obv": true,
-      "macd": true
-     },
-     "rvol": 0.52,
-     "rsi": 33.2,
-     "relative_volume": 339.4
-    },
-    {
-     "last_bar": "2026-10-06T10:30:00-04:00",
-     "price": 1.3487,
-     "drop_pct": -53.9,
-     "hold_min": 155,
-     "strength_score": 80,
-     "score": 80,
-     "grade": "A",
-     "complete": false,
-     "checks": {
-      "base": true,
-      "rsi": false,
-      "obv": true,
-      "macd": true
-     },
-     "rvol": 0.25,
-     "rsi": 50.7,
-     "relative_volume": 32.57
-    },
-    {
-     "last_bar": "2026-10-06T11:30:00-04:00",
-     "price": 1.3897,
-     "drop_pct": -52.5,
-     "hold_min": 130,
-     "strength_score": 65,
-     "score": 70,
-     "grade": "B",
-     "complete": false,
-     "checks": {
-      "base": true,
-      "rsi": false,
-      "obv": true,
-      "macd": false
-     },
-     "rvol": 0.25,
-     "rsi": 66.3,
-     "relative_volume": 20.3
-    },
-    {
-     "last_bar": "2026-10-06T09:30:00-04:00",
-     "price": 1.3086,
-     "drop_pct": -55.3,
-     "hold_min": 230,
-     "strength_score": 100,
-     "score": 88,
-     "grade": "A",
-     "complete": true,
-     "checks": {
-      "base": true,
-      "rsi": true,
-      "obv": true,
-      "macd": true
-     },
-     "rvol": 0.52,
-     "rsi": 33.2,
-     "relative_volume": 339.4
-    },
-    {
-     "last_bar": "2026-10-06T10:30:00-04:00",
-     "price": 1.3487,
-     "drop_pct": -53.9,
-     "hold_min": 155,
-     "strength_score": 80,
-     "score": 80,
-     "grade": "A",
-     "complete": false,
-     "checks": {
-      "base": true,
-      "rsi": false,
-      "obv": true,
-      "macd": true
-     },
-     "rvol": 0.25,
-     "rsi": 50.7,
-     "relative_volume": 32.57
-    },
-    {
-     "last_bar": "2026-10-06T11:30:00-04:00",
-     "price": 1.3897,
-     "drop_pct": -52.5,
-     "hold_min": 130,
-     "strength_score": 65,
-     "score": 70,
-     "grade": "B",
-     "complete": false,
-     "checks": {
-      "base": true,
-      "rsi": false,
-      "obv": true,
-      "macd": false
-     },
-     "rvol": 0.25,
-     "rsi": 66.3,
-     "relative_volume": 20.3
-    },
-    {
-     "last_bar": "2026-10-06T09:30:00-04:00",
-     "price": 1.3086,
-     "drop_pct": -55.3,
-     "hold_min": 230,
-     "strength_score": 100,
-     "score": 88,
-     "grade": "A",
-     "complete": true,
-     "checks": {
-      "base": true,
-      "rsi": true,
-      "obv": true,
-      "macd": true
-     },
-     "rvol": 0.52,
-     "rsi": 33.2,
-     "relative_volume": 339.4
-    },
-    {
-     "last_bar": "2026-10-06T10:30:00-04:00",
-     "price": 1.3487,
-     "drop_pct": -53.9,
-     "hold_min": 155,
-     "strength_score": 80,
-     "score": 80,
-     "grade": "A",
-     "complete": false,
-     "checks": {
-      "base": true,
-      "rsi": false,
-      "obv": true,
-      "macd": true
-     },
-     "rvol": 0.25,
-     "rsi": 50.7,
-     "relative_volume": 32.57
-    },
-    {
-     "last_bar": "2026-10-06T11:30:00-04:00",
-     "price": 1.3897,
-     "drop_pct": -52.5,
-     "hold_min": 130,
-     "strength_score": 65,
-     "score": 70,
-     "grade": "B",
-     "complete": false,
-     "checks": {
-      "base": true,
-      "rsi": false,
-      "obv": true,
-      "macd": false
-     },
-     "rvol": 0.25,
-     "rsi": 66.3,
-     "relative_volume": 20.3
-    },
-    {
-     "last_bar": "2026-10-06T09:30:00-04:00",
-     "price": 1.3086,
-     "drop_pct": -55.3,
-     "hold_min": 230,
-     "strength_score": 100,
-     "score": 88,
-     "grade": "A",
-     "complete": true,
-     "checks": {
-      "base": true,
-      "rsi": true,
-      "obv": true,
-      "macd": true
-     },
-     "rvol": 0.52,
-     "rsi": 33.2,
-     "relative_volume": 339.4
-    },
-    {
-     "last_bar": "2026-10-06T10:30:00-04:00",
-     "price": 1.3487,
-     "drop_pct": -53.9,
-     "hold_min": 155,
-     "strength_score": 80,
-     "score": 80,
-     "grade": "A",
-     "complete": false,
-     "checks": {
-      "base": true,
-      "rsi": false,
-      "obv": true,
-      "macd": true
-     },
-     "rvol": 0.25,
-     "rsi": 50.7,
-     "relative_volume": 32.57
-    },
-    {
-     "last_bar": "2026-10-06T11:30:00-04:00",
-     "price": 1.3897,
-     "drop_pct": -52.5,
-     "hold_min": 130,
-     "strength_score": 65,
-     "score": 70,
-     "grade": "B",
-     "complete": false,
-     "checks": {
-      "base": true,
-      "rsi": false,
-      "obv": true,
-      "macd": false
-     },
-     "rvol": 0.25,
-     "rsi": 66.3,
-     "relative_volume": 20.3
-    },
     {
      "last_bar": "2026-10-06T09:30:00-04:00",
      "price": 1.3086,
@@ -14886,234 +14430,6 @@
      "rvol": 0.18,
      "rsi": 86.5,
      "relative_volume": 20.44
-    },
-    {
-     "last_bar": "2026-10-06T09:30:00-04:00",
-     "price": 1.4051,
-     "drop_pct": -52.0,
-     "hold_min": 230,
-     "strength_score": 100,
-     "score": 88,
-     "grade": "A",
-     "complete": true,
-     "checks": {
-      "base": true,
-      "rsi": true,
-      "obv": true,
-      "macd": true
-     },
-     "rvol": 0.42,
-     "rsi": 38.7,
-     "relative_volume": 343.05
-    },
-    {
-     "last_bar": "2026-10-06T10:30:00-04:00",
-     "price": 1.5101,
-     "drop_pct": -48.4,
-     "hold_min": 70,
-     "strength_score": 35,
-     "score": 44,
-     "grade": "D",
-     "complete": false,
-     "checks": {
-      "base": false,
-      "rsi": false,
-      "obv": true,
-      "macd": true
-     },
-     "rvol": 0.19,
-     "rsi": 71.0,
-     "relative_volume": 32.85
-    },
-    {
-     "last_bar": "2026-10-06T11:30:00-04:00",
-     "price": 1.6225,
-     "drop_pct": -44.6,
-     "hold_min": 70,
-     "strength_score": 20,
-     "score": 38,
-     "grade": "D",
-     "complete": false,
-     "checks": {
-      "base": false,
-      "rsi": false,
-      "obv": true,
-      "macd": false
-     },
-     "rvol": 0.18,
-     "rsi": 86.5,
-     "relative_volume": 20.44
-    },
-    {
-     "last_bar": "2026-10-06T09:30:00-04:00",
-     "price": 1.4051,
-     "drop_pct": -52.0,
-     "hold_min": 230,
-     "strength_score": 100,
-     "score": 88,
-     "grade": "A",
-     "complete": true,
-     "checks": {
-      "base": true,
-      "rsi": true,
-      "obv": true,
-      "macd": true
-     },
-     "rvol": 0.42,
-     "rsi": 38.7,
-     "relative_volume": 343.05
-    },
-    {
-     "last_bar": "2026-10-06T10:30:00-04:00",
-     "price": 1.5101,
-     "drop_pct": -48.4,
-     "hold_min": 70,
-     "strength_score": 35,
-     "score": 44,
-     "grade": "D",
-     "complete": false,
-     "checks": {
-      "base": false,
-      "rsi": false,
-      "obv": true,
-      "macd": true
-     },
-     "rvol": 0.19,
-     "rsi": 71.0,
-     "relative_volume": 32.85
-    },
-    {
-     "last_bar": "2026-10-06T11:30:00-04:00",
-     "price": 1.6225,
-     "drop_pct": -44.6,
-     "hold_min": 70,
-     "strength_score": 20,
-     "score": 38,
-     "grade": "D",
-     "complete": false,
-     "checks": {
-      "base": false,
-      "rsi": false,
-      "obv": true,
-      "macd": false
-     },
-     "rvol": 0.18,
-     "rsi": 86.5,
-     "relative_volume": 20.44
-    },
-    {
-     "last_bar": "2026-10-06T09:30:00-04:00",
-     "price": 1.4051,
-     "drop_pct": -52.0,
-     "hold_min": 230,
-     "strength_score": 100,
-     "score": 88,
-     "grade": "A",
-     "complete": true,
-     "checks": {
-      "base": true,
-      "rsi": true,
-      "obv": true,
-      "macd": true
-     },
-     "rvol": 0.42,
-     "rsi": 38.7,
-     "relative_volume": 343.05
-    },
-    {
-     "last_bar": "2026-10-06T10:30:00-04:00",
-     "price": 1.5101,
-     "drop_pct": -48.4,
-     "hold_min": 70,
-     "strength_score": 35,
-     "score": 44,
-     "grade": "D",
-     "complete": false,
-     "checks": {
-      "base": false,
-      "rsi": false,
-      "obv": true,
-      "macd": true
-     },
-     "rvol": 0.19,
-     "rsi": 71.0,
-     "relative_volume": 32.85
-    },
-    {
-     "last_bar": "2026-10-06T11:30:00-04:00",
-     "price": 1.6225,
-     "drop_pct": -44.6,
-     "hold_min": 70,
-     "strength_score": 20,
-     "score": 38,
-     "grade": "D",
-     "complete": false,
-     "checks": {
-      "base": false,
-      "rsi": false,
-      "obv": true,
-      "macd": false
-     },
-     "rvol": 0.18,
-     "rsi": 86.5,
-     "relative_volume": 20.44
-    },
-    {
-     "last_bar": "2026-10-06T09:30:00-04:00",
-     "price": 1.4051,
-     "drop_pct": -52.0,
-     "hold_min": 230,
-     "strength_score": 100,
-     "score": 88,
-     "grade": "A",
-     "complete": true,
-     "checks": {
-      "base": true,
-      "rsi": true,
-      "obv": true,
-      "macd": true
-     },
-     "rvol": 0.42,
-     "rsi": 38.7,
-     "relative_volume": 343.05
-    },
-    {
-     "last_bar": "2026-10-06T10:30:00-04:00",
-     "price": 1.5101,
-     "drop_pct": -48.4,
-     "hold_min": 70,
-     "strength_score": 35,
-     "score": 44,
-     "grade": "D",
-     "complete": false,
-     "checks": {
-      "base": false,
-      "rsi": false,
-      "obv": true,
-      "macd": true
-     },
-     "rvol": 0.19,
-     "rsi": 71.0,
-     "relative_volume": 32.85
-    },
-    {
-     "last_bar": "2026-10-06T11:30:00-04:00",
-     "price": 1.6225,
-     "drop_pct": -44.6,
-     "hold_min": 70,
-     "strength_score": 20,
-     "score": 38,
-     "grade": "D",
-     "complete": false,
-     "checks": {
-      "base": false,
-      "rsi": false,
-      "obv": true,
-      "macd": false
-     },
-     "rvol": 0.18,
-     "rsi": 86.5,
-     "relative_volume": 20.44
     }
    ]
   }
@@ -15145,13 +14461,120 @@
    "obv_ok": 5,
    "macd_ok": 4,
    "complete": 1,
-   "purged_new": 0,
+   "purged_new": 1,
    "weakened": 2,
    "dropped_no_base": 0
   },
   "coverage_pct": 100.0
  },
+ "alerts": [
+  {
+   "kind": "signal",
+   "ticker": "MULN",
+   "at": "2026-10-06T13:30:00+00:00",
+   "price": 1.5469,
+   "grade": "A",
+   "score": 88,
+   "drop_pct": -47.2,
+   "text": "إشارة مكتملة (A · 88/100)"
+  },
+  {
+   "kind": "signal",
+   "ticker": "NCI",
+   "at": "2026-10-06T13:30:00+00:00",
+   "price": 1.4051,
+   "grade": "A",
+   "score": 88,
+   "drop_pct": -52.0,
+   "text": "إشارة مكتملة (A · 88/100)"
+  },
+  {
+   "kind": "signal",
+   "ticker": "HCAI",
+   "at": "2026-10-06T13:30:00+00:00",
+   "price": 1.0428,
+   "grade": "A",
+   "score": 88,
+   "drop_pct": -64.4,
+   "text": "إشارة مكتملة (A · 88/100)"
+  },
+  {
+   "kind": "signal",
+   "ticker": "LIXT",
+   "at": "2026-10-06T13:30:00+00:00",
+   "price": 1.7243,
+   "grade": "A",
+   "score": 88,
+   "drop_pct": -41.1,
+   "text": "إشارة مكتملة (A · 88/100)"
+  },
+  {
+   "kind": "signal",
+   "ticker": "BSFC",
+   "at": "2026-10-06T13:30:00+00:00",
+   "price": 1.3086,
+   "grade": "A",
+   "score": 88,
+   "drop_pct": -55.3,
+   "text": "إشارة مكتملة (A · 88/100)"
+  },
+  {
+   "kind": "signal",
+   "ticker": "PIXY",
+   "at": "2026-10-06T13:45:00+00:00",
+   "price": 1.7954,
+   "grade": "A",
+   "score": 84,
+   "drop_pct": -38.7,
+   "text": "إشارة مكتملة (A · 84/100)"
+  },
+  {
+   "kind": "closed",
+   "ticker": "MULN",
+   "at": "2026-10-06T13:45:00+00:00",
+   "price": 1.9337,
+   "reason": "تحقق الهدف",
+   "r": 4.36,
+   "text": "أُغلق الرصد: تحقق الهدف (4.36R)"
+  },
+  {
+   "kind": "purge",
+   "ticker": "PIXY",
+   "at": "2026-10-06T14:00:00+00:00",
+   "price": 1.7108,
+   "text": "شُطب: كسر قاع الثبات بـ -3%"
+  },
+  {
+   "kind": "closed",
+   "ticker": "PIXY",
+   "at": "2026-10-06T14:00:00+00:00",
+   "price": 1.73,
+   "reason": "ضرب الوقف",
+   "r": -1.0,
+   "text": "أُغلق الرصد: ضرب الوقف (-1.0R)"
+  }
+ ],
  "scan_log": [
+  {
+   "at": "2026-10-06T13:30:00+00:00",
+   "ok": true,
+   "coverage_pct": 100.0,
+   "frames": 10,
+   "master": 10,
+   "items": 9,
+   "complete": 5,
+   "duration_s": 0.3
+  },
+  {
+   "at": "2026-10-06T13:45:00+00:00",
+   "ok": true,
+   "coverage_pct": 100.0,
+   "frames": 10,
+   "master": 10,
+   "items": 9,
+   "complete": 2,
+   "duration_s": 0.2
+  },
   {
    "at": "2026-10-06T14:00:00+00:00",
    "ok": true,
@@ -15212,7 +14635,7 @@
    "obv_ok": 5,
    "macd_ok": 4,
    "complete": 1,
-   "purged_new": 0,
+   "purged_new": 1,
    "weakened": 2,
    "dropped_no_base": 0
   },
@@ -15230,13 +14653,13 @@
   "seconds_to_next_scan": 900
  },
  "uptime": {
-  "runs": 1,
-  "ok_runs": 1,
+  "runs": 3,
+  "ok_runs": 3,
   "skipped": 0,
   "failed": 0,
   "ok_rate_pct": 100.0,
   "avg_duration_s": 0.2,
-  "first_at": "2026-10-06T14:00:00+00:00",
+  "first_at": "2026-10-06T13:30:00+00:00",
   "last_at": "2026-10-06T14:00:00+00:00"
  },
  "rules": {

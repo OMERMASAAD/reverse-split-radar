@@ -63,7 +63,7 @@ def run_once(tickers=None, limit: int | None = None, force_universe: bool = Fals
         print("::warning title=Demo universe::universe.json تجريبي — شغّل build_universe.py")
         beat = heartbeat(now, ok=False, skipped="demo_universe",
                          items=len(prev.get("items") or []))
-        return save_all(prev, beat, None, out_path, stats_path)
+        return save_all(prev, beat, None, out_path, stats_path, prev=prev)
 
     meta = [row for row in universe.get("tickers", [])
             if not tickers or row.get("ticker") in set(tickers)]
@@ -74,7 +74,7 @@ def run_once(tickers=None, limit: int | None = None, force_universe: bool = Fals
         print("::warning title=No universe::universe.json فارغ — شغّل build_universe.py أولًا")
         beat = heartbeat(now, ok=False, skipped="no_universe",
                          items=len(prev.get("items") or []))
-        return save_all(prev, beat, None, out_path, stats_path)
+        return save_all(prev, beat, None, out_path, stats_path, prev=prev)
 
     frames = downloader([row["ticker"] for row in meta])
     coverage = len(frames) / max(1, total)
@@ -86,9 +86,11 @@ def run_once(tickers=None, limit: int | None = None, force_universe: bool = Fals
                          items=len(prev.get("items") or []),
                          complete=sum(1 for x in prev.get("items") or [] if x.get("complete")),
                          skipped="low_coverage", duration_s=time.time() - started)
-        return save_all(prev, beat, None, out_path, stats_path)
+        return save_all(prev, beat, None, out_path, stats_path, prev=prev)
 
     payload = merge(universe, prev, frames, now)
+    carried = list(prev.get("alerts") or [])
+    payload["alerts"] = (carried + list(payload.get("alerts") or []))[-C.ALERTS_KEEP:]
     today = payload["session_date"]
     stats = update_stats(load(stats_path, {}), payload["items"], frames, now, today)
     for alert in stats.get("alerts") or []:
@@ -99,13 +101,14 @@ def run_once(tickers=None, limit: int | None = None, force_universe: bool = Fals
                      frames=len(frames), master=total, items=len(payload["items"]),
                      complete=sum(1 for x in payload["items"] if x.get("complete")),
                      duration_s=time.time() - started)
-    return save_all(payload, beat, stats, out_path, stats_path)
+    return save_all(payload, beat, stats, out_path, stats_path, prev=prev)
 
 
 def save_all(payload: dict, beat: dict, stats: dict | None,
-             out_path: str = C.OUT_FILE, stats_path: str = C.STATS_FILE) -> dict:
+             out_path: str = C.OUT_FILE, stats_path: str = C.STATS_FILE,
+             prev: dict | None = None) -> dict:
     """يختم سجل المسح ويضيف الملخص والساعة والقواعد ثم يكتب الملفين."""
-    payload = stamp_scan_log(payload or {"items": [], "purged": []}, beat)
+    payload = stamp_scan_log(payload or {"items": [], "purged": []}, beat, prev)
     payload["summary"] = session_summary(payload)
     payload["clock"] = market_clock(datetime.fromisoformat(beat["at"]))
     payload["uptime"] = uptime(payload.get("scan_log") or [])
