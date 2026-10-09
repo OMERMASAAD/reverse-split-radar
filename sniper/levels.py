@@ -12,7 +12,7 @@ import numpy as np
 import pandas as pd
 
 from .config import (BASE_TOUCH_TOL_PCT, CONS_MIN_MIN, CONS_RANGE_PCT, GAP_MIN_PCT,
-                     NEAR_LOW_PCT, ROUND_NUMBER_STEP)
+                     NEAR_LOW_PCT, ROUND_NUMBER_STEP, RUNUP_MIN_PCT, RUNUP_VOLUME_MIN)
 from .indicators import rolling_slope, stdev_pct
 
 REGULAR_OPEN, REGULAR_CLOSE = dtime(9, 30), dtime(16, 0)
@@ -40,8 +40,15 @@ def detect_base(day: pd.DataFrame):
 
 
 def base_metrics(win: pd.DataFrame, day: pd.DataFrame, start_ts, last_ts) -> dict:
-    """قياسات جودة القاعدة (إضافية) فوق منطق الثبات الأصلي."""
+    """
+    قياسات جودة القاعدة فوق منطق الثبات الأصلي.
+
+    مرجع «قرب القاع» هو **قاع ما بعد القمة** (نهاية موجة الهبوط) لا قاع اليوم المطلق،
+    لأن السهم في هذا النموذج صعد أولًا من قاع بعيد جدًا قبل أن ينهار.
+    """
     day_low = float(day["Low"].astype(float).min())
+    high_ts = day["High"].astype(float).idxmax()
+    after_peak_low = float(day.loc[high_ts:, "Low"].astype(float).min())
     base_low = float(win["Low"].astype(float).min())
     base_high = float(win["High"].astype(float).max())
     tol = abs(base_low) * BASE_TOUCH_TOL_PCT / 100.0
@@ -74,10 +81,59 @@ def base_metrics(win: pd.DataFrame, day: pd.DataFrame, start_ts, last_ts) -> dic
         "base_slope_pct": slope_pct,
         "hold_min": int((last_ts - start_ts).total_seconds() / 60.0) + 5,
         "hold_needed": CONS_MIN_MIN,
-        "near_low": bool(day_low > 0 and (base_low - day_low) / day_low * 100.0 <= NEAR_LOW_PCT),
+        "post_peak_low": round(after_peak_low, 4),
+        "near_low": bool(after_peak_low > 0
+                         and (base_low - after_peak_low) / after_peak_low * 100.0 <= NEAR_LOW_PCT),
+        "near_low_needed_pct": NEAR_LOW_PCT,
         "dist_base_low_pct": round((price / base_low - 1.0) * 100.0, 2) if base_low else None,
         "dist_base_high_pct": round((base_high / price - 1.0) * 100.0, 2) if price else None,
-        "day_low_gap_pct": round((base_low - day_low) / day_low * 100.0, 2) if day_low else None,
+        "gap_from_post_peak_low_pct": round((base_low - after_peak_low) / after_peak_low * 100.0, 2)
+        if after_peak_low else None,
+        "gap_from_day_low_pct": round((base_low - day_low) / day_low * 100.0, 2) if day_low else None,
+    }
+
+
+def runup_metrics(df: pd.DataFrame, day: pd.DataFrame) -> dict:
+    """
+    الرجل الأولى: هل صعد السهم فعلًا بحجم عالي قبل أن ينهار؟
+    الصعود يُقاس من **قاع ما قبل القمة** (لا من قاع اليوم الذي قد يأتي بعد الانهيار).
+    """
+    if day is None or day.empty:
+        return {"ok": False, "reason": "no_data"}
+    high_ts = day["High"].astype(float).idxmax()
+    day_high = float(day["High"].astype(float).max())
+    climb = day.loc[:high_ts]
+    if climb.empty:
+        return {"ok": False, "reason": "no_data"}
+    low_ts = climb["Low"].astype(float).idxmin()
+    launch_low = float(climb["Low"].astype(float).min())
+    runup_pct = (day_high / launch_low - 1.0) * 100.0 if launch_low > 0 else 0.0
+    leg = day.loc[low_ts:high_ts]
+    leg_volume = float(leg["Volume"].astype(float).mean()) if len(leg) else 0.0
+    prior = df.loc[:low_ts].iloc[:-1].tail(20)
+    baseline = float(prior["Volume"].astype(float).mean()) if len(prior) else None
+    ratio = leg_volume / baseline if baseline else None
+    ok_pct = bool(runup_pct >= RUNUP_MIN_PCT)
+    ok_vol = bool(ratio is not None and ratio >= RUNUP_VOLUME_MIN)
+    reason = ("ok" if (ok_pct and ok_vol) else
+              "low_runup" if not ok_pct else "weak_runup_volume")
+    return {
+        "ok": bool(ok_pct and ok_vol),
+        "reason": reason,
+        "launch_low": round(launch_low, 4),
+        "launch_low_ts": low_ts.isoformat(),
+        "day_high": round(day_high, 4),
+        "day_high_ts": high_ts.isoformat(),
+        "runup_pct": round(runup_pct, 1),
+        "runup_needed_pct": RUNUP_MIN_PCT,
+        "runup_bars": int(len(leg)),
+        "runup_min": int((high_ts - low_ts).total_seconds() / 60.0),
+        "runup_avg_volume": int(leg_volume),
+        "baseline_avg_volume": int(baseline) if baseline else None,
+        "runup_volume_ratio": round(ratio, 2) if ratio is not None else None,
+        "runup_volume_needed": RUNUP_VOLUME_MIN,
+        "note": (f"صعود {runup_pct:.0f}% بحجم {ratio:.1f}×" if ratio is not None
+                 else f"صعود {runup_pct:.0f}%"),
     }
 
 

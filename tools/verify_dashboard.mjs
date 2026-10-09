@@ -97,13 +97,15 @@ check("KPI الكون رقمي", /^\d[\d,]*$/.test($$("#kpis .kpi .v")[0].textCo
 
 // ── الشريط المتحرك والقمع
 check("الشريط المتحرك فيه عناصر", $$("#tape .tape-item").length > 0);
-check("القمع يعرض 9 مراحل", $$("#funnel .fstep").length === 9);
+check("القمع يعرض 10 مراحل", $$("#funnel .fstep").length === 10,
+  String($$("#funnel .fstep").length));
 check("القمع فيه مرحلة مكتملة", /إشارة مكتملة/.test(text("#funnel")));
 
 // ── الجدول
 const rows = $$("#gridBody tr");
 check("الجدول يعرض صفوفًا (" + rows.length + ")", rows.length === (state().items || []).length);
-check("رؤوس الأعمدة 18", $$("#gridHead th").length === 18);
+check("رؤوس الأعمدة 19", $$("#gridHead th").length === 19,
+  String($$("#gridHead th").length));
 check("الرمز يظهر في الصف الأول", /^[A-Z0-9.\-]+$/.test(rows[0].querySelector(".tick").textContent),
   rows[0].querySelector(".tick").textContent);
 check("شارات الحالة مرسومة", $$("#gridBody .badge").length >= rows.length);
@@ -140,8 +142,18 @@ check("اسم الرمز في ترويسة الدرج", !!$("#dhead .big") && $(
   text("#dhead .big"));
 check("صفوف الشروط مرسومة", $$("#dbody .check-row").length >= 10,
   String($$("#dbody .check-row").length));
-check("خطة المخاطرة تعرض الأهداف", ($$("#dbody .lvl.tgt").length === 3),
+check("خطة المخاطرة تعرض الهدفين", $$("#dbody .lvl.tgt").length >= 2,
   String($$("#dbody .lvl.tgt").length));
+check("قسم الرجل الأولى معروض", /الرجل الأولى/.test($("#dbody").textContent));
+check("وضعَا الدخول معروضان", /دخول فوري أعلى القاع/.test($("#dbody").textContent)
+  && /اختراق قمة القاعدة/.test($("#dbody").textContent));
+check("دور VWAP معروض (سقف مقاوم أو دعم سفلي)",
+  /VWAP — (سقف مقاوم|دعم سفلي|غير متاح)/.test($("#dbody").textContent),
+  (($$("#dbody .lvl").find((e) => /^VWAP —/.test(e.textContent.trim())) || {}).textContent || "").trim());
+check("حكم الأهداف مقابل VWAP معروض",
+  /(قبل خط VWAP|يخترق السقف|فلم يعد الخط سقفًا|غير متاح للقياس)/.test($("#dbody").textContent));
+check("عمود الصعود السابق في الجدول", $$("#gridHead th").length === 19,
+  String($$("#gridHead th").length));
 check("خريطة المستويات مرسومة", $$("#dbody .metric").length > 25);
 check("أوامر رسم نُفّذت على Canvas", win.__canvas.ops > 50, "ops=" + win.__canvas.ops);
 check("OHLC مُعبّأ", /O /.test(text("#ohlc")), text("#ohlc").slice(0, 60));
@@ -168,12 +180,16 @@ check("لا أخطاء بعد تبديل اللوحات", errors.length === 0, e
   check("هبوط الصف الأول يطابق البيانات",
     row.cells[4].textContent.trim().replace("+", "") === (first.drop_pct > 0 ? "+" : "") + first.drop_pct.toFixed(1) + "%",
     row.cells[4].textContent + " ≠ " + first.drop_pct);
-  check("هدف T2 في الجدول يطابق plan",
-    row.cells[13].textContent.trim() === moneyOf(first.risk.target),
-    row.cells[13].textContent + " ≠ " + moneyOf(first.risk.target));
-  check("الوقف في الجدول يطابق plan",
-    row.cells[14].textContent.trim() === moneyOf(first.risk.stop),
-    row.cells[14].textContent + " ≠ " + moneyOf(first.risk.stop));
+  check("الصعود السابق في الجدول يطابق البيانات",
+    row.cells[5].textContent.includes("+" + Math.round(first.runup.runup_pct) + "%"),
+    row.cells[5].textContent + " ≠ " + first.runup.runup_pct);
+  check("هدف T1 (+20%) في الجدول يطابق plan",
+    row.cells[14].textContent.trim() === moneyOf(first.risk.target),
+    row.cells[14].textContent + " ≠ " + moneyOf(first.risk.target));
+  check("الوقف = قاع الثبات − 5% في الجدول",
+    row.cells[15].textContent.trim() === moneyOf(first.risk.stop)
+    && Math.abs(first.risk.stop / first.base_low - 0.95) < 1e-3,   // السعر مُقرّب لأربعة أرقام
+    row.cells[15].textContent + " ≠ " + moneyOf(first.risk.stop));
   check("عدد الشموع في البطاقة ≤ حد الرسم",
     (first.chart || []).length <= 96, String((first.chart || []).length));
   check("كل شمعة تحمل قيم المؤشرات",

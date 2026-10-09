@@ -7,36 +7,29 @@
    "ticker": "HCAI",
    "session_date": "2026-10-06",
    "entry_ts": "2026-10-06T13:30:00+00:00",
-   "entry": 1.0428,
-   "stop": 0.9862,
+   "entry": 3.0569,
+   "stop": 2.8315,
    "targets": [
     {
      "label": "T1",
-     "price": 1.1471,
-     "pct": 10.0,
+     "price": 3.6683,
+     "pct": 20.0,
      "hit": false,
      "at": null
     },
     {
      "label": "T2",
-     "price": 1.3035,
-     "pct": 25.0,
-     "hit": false,
-     "at": null
-    },
-    {
-     "label": "T3",
-     "price": 1.5642,
-     "pct": 50.0,
+     "price": 3.974,
+     "pct": 30.0,
      "hit": false,
      "at": null
     }
    ],
-   "grade": "A",
+   "grade": "A+",
    "core_score": 100,
-   "score": 88,
-   "confirm_score": 60,
-   "drop_pct": -64.4,
+   "score": 94,
+   "confirm_score": 80,
+   "drop_pct": -35.9,
    "rvol": 1.35,
    "float": 1940000,
    "reverse_split": true,
@@ -54,220 +47,38 @@
    "opened_at": "2026-10-06T13:30:00+00:00",
    "updated_at": "2026-10-06T14:15:00+00:00",
    "signal_date": "2026-10-06",
-   "last_price": 1.0428,
+   "last_price": 3.0569,
    "unrealized_pct": 0.0,
    "hit_labels": []
-  },
-  {
-   "id": "ONCT|2026-10-06",
-   "ticker": "ONCT",
-   "session_date": "2026-10-06",
-   "entry_ts": "2026-10-06T13:30:00+00:00",
-   "entry": 1.2498,
-   "stop": 1.1816,
-   "targets": [
-    {
-     "label": "T1",
-     "price": 1.3748,
-     "pct": 10.0,
-     "hit": false,
-     "at": null
-    },
-    {
-     "label": "T2",
-     "price": 1.5622,
-     "pct": 25.0,
-     "hit": false,
-     "at": null
-    },
-    {
-     "label": "T3",
-     "price": 1.8747,
-     "pct": 50.0,
-     "hit": false,
-     "at": null
-    }
-   ],
-   "grade": "A",
-   "core_score": 100,
-   "score": 88,
-   "confirm_score": 60,
-   "drop_pct": -57.3,
-   "rvol": 0.35,
-   "float": 1500000,
-   "reverse_split": false,
-   "mfe_pct": 0.39,
-   "mae_pct": -0.75,
-   "targets_hit": [],
-   "stop_hit": false,
-   "status": "open",
-   "exit_reason": null,
-   "exit_price": null,
-   "exit_ts": null,
-   "r_multiple": 0.0,
-   "hold_min": 45,
-   "bars_seen": 9,
-   "opened_at": "2026-10-06T13:30:00+00:00",
-   "updated_at": "2026-10-06T14:15:00+00:00",
-   "signal_date": "2026-10-06",
-   "last_price": 1.2498,
-   "unrealized_pct": -0.0,
-   "hit_labels": []
-  },
-  {
-   "id": "BSFC|2026-10-06",
-   "ticker": "BSFC",
-   "session_date": "2026-10-06",
-   "entry_ts": "2026-10-06T13:30:00+00:00",
-   "entry": 1.3086,
-   "stop": 1.2367,
-   "targets": [
-    {
-     "label": "T1",
-     "price": 1.4395,
-     "pct": 10.0,
-     "hit": false,
-     "at": null
-    },
-    {
-     "label": "T2",
-     "price": 1.6358,
-     "pct": 25.0,
-     "hit": false,
-     "at": null
-    },
-    {
-     "label": "T3",
-     "price": 1.9629,
-     "pct": 50.0,
-     "hit": false,
-     "at": null
-    }
-   ],
-   "grade": "A",
-   "core_score": 100,
-   "score": 88,
-   "confirm_score": 60,
-   "drop_pct": -55.3,
-   "rvol": 0.52,
-   "float": 4650000,
-   "reverse_split": false,
-   "mfe_pct": 9.68,
-   "mae_pct": 0.0,
-   "targets_hit": [],
-   "stop_hit": false,
-   "status": "open",
-   "exit_reason": null,
-   "exit_price": null,
-   "exit_ts": null,
-   "r_multiple": 0.0,
-   "hold_min": 45,
-   "bars_seen": 9,
-   "opened_at": "2026-10-06T13:30:00+00:00",
-   "updated_at": "2026-10-06T14:15:00+00:00",
-   "signal_date": "2026-10-06",
-   "last_price": 1.432,
-   "unrealized_pct": 9.43,
-   "hit_labels": []
-  },
-  {
-   "id": "NCI|2026-10-06",
-   "ticker": "NCI",
-   "session_date": "2026-10-06",
-   "entry_ts": "2026-10-06T13:30:00+00:00",
-   "entry": 1.4051,
-   "stop": 1.3134,
-   "targets": [
-    {
-     "label": "T1",
-     "price": 1.5456,
-     "pct": 10.0,
-     "hit": true,
-     "at": "2026-10-06T09:35:00-04:00"
-    },
-    {
-     "label": "T2",
-     "price": 1.7563,
-     "pct": 25.0,
-     "hit": false,
-     "at": null
-    },
-    {
-     "label": "T3",
-     "price": 2.1076,
-     "pct": 50.0,
-     "hit": false,
-     "at": null
-    }
-   ],
-   "grade": "A",
-   "core_score": 100,
-   "score": 88,
-   "confirm_score": 60,
-   "drop_pct": -52.0,
-   "rvol": 0.42,
-   "float": 2830000,
-   "reverse_split": false,
-   "mfe_pct": 24.77,
-   "mae_pct": 0.0,
-   "targets_hit": [
-    {
-     "label": "T1",
-     "at": "2026-10-06T09:35:00-04:00"
-    }
-   ],
-   "stop_hit": false,
-   "status": "open",
-   "exit_reason": null,
-   "exit_price": null,
-   "exit_ts": null,
-   "r_multiple": 0.0,
-   "hold_min": 45,
-   "bars_seen": 9,
-   "opened_at": "2026-10-06T13:30:00+00:00",
-   "updated_at": "2026-10-06T14:15:00+00:00",
-   "signal_date": "2026-10-06",
-   "last_price": 1.7432,
-   "unrealized_pct": 24.06,
-   "hit_labels": [
-    "T1"
-   ]
   },
   {
    "id": "KALA|2026-10-06",
    "ticker": "KALA",
    "session_date": "2026-10-06",
    "entry_ts": "2026-10-06T13:30:00+00:00",
-   "entry": 1.6412,
-   "stop": 1.5461,
+   "entry": 3.0617,
+   "stop": 2.8247,
    "targets": [
     {
      "label": "T1",
-     "price": 1.8054,
-     "pct": 10.0,
+     "price": 3.674,
+     "pct": 20.0,
      "hit": false,
      "at": null
     },
     {
      "label": "T2",
-     "price": 2.0516,
-     "pct": 25.0,
-     "hit": false,
-     "at": null
-    },
-    {
-     "label": "T3",
-     "price": 2.4619,
-     "pct": 50.0,
+     "price": 3.9802,
+     "pct": 30.0,
      "hit": false,
      "at": null
     }
    ],
-   "grade": "A",
+   "grade": "A+",
    "core_score": 100,
-   "score": 88,
-   "confirm_score": 60,
-   "drop_pct": -44.0,
+   "score": 94,
+   "confirm_score": 80,
+   "drop_pct": -35.8,
    "rvol": 0.44,
    "float": 3200000,
    "reverse_split": true,
@@ -287,31 +98,73 @@
    "signal_date": "2026-10-06"
   },
   {
-   "id": "BRTX|2026-10-06",
-   "ticker": "BRTX",
+   "id": "BSFC|2026-10-06",
+   "ticker": "BSFC",
    "session_date": "2026-10-06",
    "entry_ts": "2026-10-06T13:30:00+00:00",
-   "entry": 1.6935,
-   "stop": 1.5948,
+   "entry": 3.2452,
+   "stop": 3.0037,
    "targets": [
     {
      "label": "T1",
-     "price": 1.8628,
-     "pct": 10.0,
-     "hit": true,
-     "at": "2026-10-06T09:35:00-04:00"
-    },
-    {
-     "label": "T2",
-     "price": 2.1169,
-     "pct": 25.0,
+     "price": 3.8942,
+     "pct": 20.0,
      "hit": false,
      "at": null
     },
     {
-     "label": "T3",
-     "price": 2.5402,
-     "pct": 50.0,
+     "label": "T2",
+     "price": 4.2187,
+     "pct": 30.0,
+     "hit": false,
+     "at": null
+    }
+   ],
+   "grade": "A+",
+   "core_score": 100,
+   "score": 94,
+   "confirm_score": 80,
+   "drop_pct": -32.0,
+   "rvol": 0.52,
+   "float": 4650000,
+   "reverse_split": false,
+   "mfe_pct": 9.68,
+   "mae_pct": 0.0,
+   "targets_hit": [],
+   "stop_hit": false,
+   "status": "open",
+   "exit_reason": null,
+   "exit_price": null,
+   "exit_ts": null,
+   "r_multiple": 0.0,
+   "hold_min": 45,
+   "bars_seen": 9,
+   "opened_at": "2026-10-06T13:30:00+00:00",
+   "updated_at": "2026-10-06T14:15:00+00:00",
+   "signal_date": "2026-10-06",
+   "last_price": 3.5512,
+   "unrealized_pct": 9.43,
+   "hit_labels": []
+  },
+  {
+   "id": "ONCT|2026-10-06",
+   "ticker": "ONCT",
+   "session_date": "2026-10-06",
+   "entry_ts": "2026-10-06T13:30:00+00:00",
+   "entry": 2.7138,
+   "stop": 2.5128,
+   "targets": [
+    {
+     "label": "T1",
+     "price": 3.2566,
+     "pct": 20.0,
+     "hit": false,
+     "at": null
+    },
+    {
+     "label": "T2",
+     "price": 3.528,
+     "pct": 30.0,
      "hit": false,
      "at": null
     }
@@ -320,18 +173,62 @@
    "core_score": 100,
    "score": 88,
    "confirm_score": 60,
-   "drop_pct": -42.2,
+   "drop_pct": -43.1,
+   "rvol": 0.35,
+   "float": 1500000,
+   "reverse_split": false,
+   "mfe_pct": 0.39,
+   "mae_pct": -0.74,
+   "targets_hit": [],
+   "stop_hit": false,
+   "status": "open",
+   "exit_reason": null,
+   "exit_price": null,
+   "exit_ts": null,
+   "r_multiple": 0.0,
+   "hold_min": 45,
+   "bars_seen": 9,
+   "opened_at": "2026-10-06T13:30:00+00:00",
+   "updated_at": "2026-10-06T14:15:00+00:00",
+   "signal_date": "2026-10-06",
+   "last_price": 2.7138,
+   "unrealized_pct": 0.0,
+   "hit_labels": []
+  },
+  {
+   "id": "BRTX|2026-10-06",
+   "ticker": "BRTX",
+   "session_date": "2026-10-06",
+   "entry_ts": "2026-10-06T13:30:00+00:00",
+   "entry": 3.1451,
+   "stop": 2.9007,
+   "targets": [
+    {
+     "label": "T1",
+     "price": 3.7741,
+     "pct": 20.0,
+     "hit": false,
+     "at": null
+    },
+    {
+     "label": "T2",
+     "price": 4.0886,
+     "pct": 30.0,
+     "hit": false,
+     "at": null
+    }
+   ],
+   "grade": "A",
+   "core_score": 100,
+   "score": 88,
+   "confirm_score": 60,
+   "drop_pct": -34.1,
    "rvol": 0.58,
    "float": 2050000,
    "reverse_split": false,
    "mfe_pct": 13.01,
    "mae_pct": 0.0,
-   "targets_hit": [
-    {
-     "label": "T1",
-     "at": "2026-10-06T09:35:00-04:00"
-    }
-   ],
+   "targets_hit": [],
    "stop_hit": false,
    "status": "open",
    "exit_reason": null,
@@ -343,110 +240,38 @@
    "opened_at": "2026-10-06T13:30:00+00:00",
    "updated_at": "2026-10-06T14:15:00+00:00",
    "signal_date": "2026-10-06",
-   "last_price": 1.9105,
-   "unrealized_pct": 12.82,
-   "hit_labels": [
-    "T1"
-   ]
-  },
-  {
-   "id": "LIXT|2026-10-06",
-   "ticker": "LIXT",
-   "session_date": "2026-10-06",
-   "entry_ts": "2026-10-06T13:30:00+00:00",
-   "entry": 1.7243,
-   "stop": 1.6339,
-   "targets": [
-    {
-     "label": "T1",
-     "price": 1.8967,
-     "pct": 10.0,
-     "hit": true,
-     "at": "2026-10-06T09:50:00-04:00"
-    },
-    {
-     "label": "T2",
-     "price": 2.1554,
-     "pct": 25.0,
-     "hit": false,
-     "at": null
-    },
-    {
-     "label": "T3",
-     "price": 2.5865,
-     "pct": 50.0,
-     "hit": false,
-     "at": null
-    }
-   ],
-   "grade": "A",
-   "core_score": 100,
-   "score": 88,
-   "confirm_score": 60,
-   "drop_pct": -41.1,
-   "rvol": 0.39,
-   "float": 3450000,
-   "reverse_split": false,
-   "mfe_pct": 10.06,
-   "mae_pct": 0.0,
-   "targets_hit": [
-    {
-     "label": "T1",
-     "at": "2026-10-06T09:50:00-04:00"
-    }
-   ],
-   "stop_hit": false,
-   "status": "open",
-   "exit_reason": null,
-   "exit_price": null,
-   "exit_ts": null,
-   "r_multiple": 0.0,
-   "hold_min": 45,
-   "bars_seen": 9,
-   "opened_at": "2026-10-06T13:30:00+00:00",
-   "updated_at": "2026-10-06T14:15:00+00:00",
-   "signal_date": "2026-10-06",
-   "last_price": 1.887,
-   "unrealized_pct": 9.44,
-   "hit_labels": [
-    "T1"
-   ]
+   "last_price": 3.5481,
+   "unrealized_pct": 12.81,
+   "hit_labels": []
   },
   {
    "id": "SNGX|2026-10-06",
    "ticker": "SNGX",
    "session_date": "2026-10-06",
    "entry_ts": "2026-10-06T13:30:00+00:00",
-   "entry": 1.5004,
-   "stop": 1.3965,
+   "entry": 2.992,
+   "stop": 2.7274,
    "targets": [
     {
      "label": "T1",
-     "price": 1.6504,
-     "pct": 10.0,
+     "price": 3.5904,
+     "pct": 20.0,
      "hit": false,
      "at": null
     },
     {
      "label": "T2",
-     "price": 1.8755,
-     "pct": 25.0,
-     "hit": false,
-     "at": null
-    },
-    {
-     "label": "T3",
-     "price": 2.2506,
-     "pct": 50.0,
+     "price": 3.8896,
+     "pct": 30.0,
      "hit": false,
      "at": null
     }
    ],
-   "grade": "A",
+   "grade": "A+",
    "core_score": 100,
-   "score": 88,
-   "confirm_score": 60,
-   "drop_pct": -48.8,
+   "score": 94,
+   "confirm_score": 80,
+   "drop_pct": -37.3,
    "rvol": 2.16,
    "float": 2700000,
    "reverse_split": true,
@@ -464,7 +289,7 @@
    "opened_at": "2026-10-06T13:30:00+00:00",
    "updated_at": "2026-10-06T14:15:00+00:00",
    "signal_date": "2026-10-06",
-   "last_price": 1.5004,
+   "last_price": 2.992,
    "unrealized_pct": -0.0,
    "hit_labels": []
   }
@@ -475,40 +300,33 @@
    "ticker": "MULN",
    "session_date": "2026-10-06",
    "entry_ts": "2026-10-06T13:30:00+00:00",
-   "entry": 1.5469,
-   "stop": 1.4582,
+   "entry": 3.0038,
+   "stop": 2.7731,
    "targets": [
     {
      "label": "T1",
-     "price": 1.7016,
-     "pct": 10.0,
+     "price": 3.6045,
+     "pct": 20.0,
      "hit": true,
      "at": "2026-10-06T09:35:00-04:00"
     },
     {
      "label": "T2",
-     "price": 1.9337,
-     "pct": 25.0,
+     "price": 3.9049,
+     "pct": 30.0,
      "hit": true,
      "at": "2026-10-06T09:35:00-04:00"
-    },
-    {
-     "label": "T3",
-     "price": 2.3204,
-     "pct": 50.0,
-     "hit": false,
-     "at": null
     }
    ],
    "grade": "A",
    "core_score": 100,
    "score": 88,
    "confirm_score": 60,
-   "drop_pct": -47.2,
+   "drop_pct": -37.0,
    "rvol": 0.39,
    "float": 4120000,
    "reverse_split": false,
-   "mfe_pct": 34.02,
+   "mfe_pct": 34.01,
    "mae_pct": 0.0,
    "targets_hit": [
     {
@@ -523,18 +341,18 @@
    "stop_hit": false,
    "status": "closed",
    "exit_reason": "target",
-   "exit_price": 1.9337,
+   "exit_price": 3.9049,
    "exit_ts": "2026-10-06T13:45:00+00:00",
-   "r_multiple": 4.36,
+   "r_multiple": 3.91,
    "hold_min": 15,
    "bars_seen": 3,
    "opened_at": "2026-10-06T13:30:00+00:00",
    "updated_at": "2026-10-06T13:45:00+00:00",
    "signal_date": "2026-10-06",
-   "last_price": 2.0683,
-   "unrealized_pct": 33.71,
+   "last_price": 4.0162,
+   "unrealized_pct": 33.7,
    "exit_label": "تحقق الهدف",
-   "result_pct": 25.0,
+   "result_pct": 30.0,
    "hit_labels": [
     "T1",
     "T2"
@@ -544,60 +362,53 @@
    "id": "PIXY|2026-10-06",
    "ticker": "PIXY",
    "session_date": "2026-10-06",
-   "entry_ts": "2026-10-06T13:45:00+00:00",
-   "entry": 1.7954,
-   "stop": 1.73,
+   "entry_ts": "2026-10-06T13:30:00+00:00",
+   "entry": 3.3101,
+   "stop": 3.0504,
    "targets": [
     {
      "label": "T1",
-     "price": 1.9749,
-     "pct": 10.0,
+     "price": 3.9722,
+     "pct": 20.0,
      "hit": false,
      "at": null
     },
     {
      "label": "T2",
-     "price": 2.2442,
-     "pct": 25.0,
-     "hit": false,
-     "at": null
-    },
-    {
-     "label": "T3",
-     "price": 2.6931,
-     "pct": 50.0,
+     "price": 4.3032,
+     "pct": 30.0,
      "hit": false,
      "at": null
     }
    ],
-   "grade": "A",
+   "grade": "A+",
    "core_score": 100,
-   "score": 84,
-   "confirm_score": 45,
-   "drop_pct": -38.7,
-   "rvol": 0.82,
+   "score": 94,
+   "confirm_score": 80,
+   "drop_pct": -30.6,
+   "rvol": 0.68,
    "float": 1120000,
    "reverse_split": false,
    "mfe_pct": 0.0,
-   "mae_pct": -4.93,
+   "mae_pct": -9.46,
    "targets_hit": [],
    "stop_hit": true,
    "status": "closed",
    "exit_reason": "stop",
-   "exit_price": 1.73,
+   "exit_price": 3.0504,
    "exit_ts": "2026-10-06T14:00:00+00:00",
    "r_multiple": -1.0,
-   "hold_min": 15,
-   "bars_seen": 3,
-   "opened_at": "2026-10-06T13:45:00+00:00",
+   "hold_min": 30,
+   "bars_seen": 6,
+   "opened_at": "2026-10-06T13:30:00+00:00",
    "updated_at": "2026-10-06T14:00:00+00:00",
    "signal_date": "2026-10-06",
-   "last_price": 1.7108,
-   "unrealized_pct": -4.71,
-   "stop_at": "2026-10-06T09:50:00-04:00",
+   "last_price": 3.0072,
+   "unrealized_pct": -9.15,
+   "hit_labels": [],
+   "stop_at": "2026-10-06T09:35:00-04:00",
    "exit_label": "ضرب الوقف",
-   "result_pct": -3.64,
-   "hit_labels": []
+   "result_pct": -7.85
   }
  ],
  "summary": {
@@ -605,15 +416,15 @@
   "wins": 1,
   "losses": 1,
   "win_rate_pct": 50.0,
-  "avg_r": 1.68,
-  "median_r": 1.68,
-  "best_r": 4.36,
+  "avg_r": 1.46,
+  "median_r": 1.46,
+  "best_r": 3.91,
   "worst_r": -1.0,
-  "expectancy_pct": 10.68,
-  "profit_factor": 4.36,
-  "avg_mfe_pct": 17.01,
-  "avg_mae_pct": -2.46,
-  "avg_hold_min": 15.0,
+  "expectancy_pct": 11.07,
+  "profit_factor": 3.91,
+  "avg_mfe_pct": 17.0,
+  "avg_mae_pct": -4.73,
+  "avg_hold_min": 22.5,
   "targets": {
    "T1": {
     "hits": 1,
@@ -630,36 +441,36 @@
   },
   "by_grade": {
    "A": {
-    "trades": 2,
+    "trades": 1,
     "wins": 1,
-    "r_sum": 3.36,
-    "win_rate_pct": 50.0,
-    "avg_r": 1.68
+    "r_sum": 3.91,
+    "win_rate_pct": 100.0,
+    "avg_r": 3.91
+   },
+   "A+": {
+    "trades": 1,
+    "wins": 0,
+    "r_sum": -1.0,
+    "win_rate_pct": 0.0,
+    "avg_r": -1.0
    }
   },
   "by_hour": {
    "13:00": {
     "trades": 2,
     "wins": 1,
-    "r_sum": 3.36,
+    "r_sum": 2.91,
     "win_rate_pct": 50.0,
-    "avg_r": 1.68
+    "avg_r": 1.46
    }
   },
   "by_drop": {
    "-30% إلى -40%": {
-    "trades": 1,
-    "wins": 0,
-    "r_sum": -1.0,
-    "win_rate_pct": 0.0,
-    "avg_r": -1.0
-   },
-   "-40% إلى -50%": {
-    "trades": 1,
+    "trades": 2,
     "wins": 1,
-    "r_sum": 4.36,
-    "win_rate_pct": 100.0,
-    "avg_r": 4.36
+    "r_sum": 2.91,
+    "win_rate_pct": 50.0,
+    "avg_r": 1.46
    }
   },
   "exits": {
@@ -668,9 +479,9 @@
   }
  },
  "open_summary": {
-  "count": 8,
-  "avg_unrealized_pct": 6.97,
-  "targets_hit": 3
+  "count": 6,
+  "avg_unrealized_pct": 3.71,
+  "targets_hit": 0
  },
  "alerts": [],
  "uptime": {
@@ -679,7 +490,7 @@
   "skipped": 0,
   "failed": 0,
   "ok_rate_pct": 100.0,
-  "avg_duration_s": 0.3,
+  "avg_duration_s": 0.2,
   "first_at": "2026-10-06T13:30:00+00:00",
   "last_at": "2026-10-06T14:15:00+00:00"
  },

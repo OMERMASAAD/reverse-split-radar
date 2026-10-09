@@ -507,8 +507,9 @@ function renderTape() {
   $("tape").innerHTML = bits.join("") + bits.join("");
 }
 const FUNNEL_STEPS = [
-  ["universe", "الكون"], ["frames", "بيانات 5m"], ["monitored", "هبوط ≥30%"],
-  ["near_low", "قرب القاع"], ["base_ok", "ثبات أفقي"], ["rsi_ok", "RSI"],
+  ["universe", "الكون"], ["frames", "بيانات 5m"], ["runup_ok", "صعود + حجم"],
+  ["monitored", "هبوط 30–50%"], ["near_low", "قرب قاع الانهيار"],
+  ["base_ok", "ثبات أفقي ≥60د"], ["rsi_ok", "RSI يتحسن"],
   ["obv_ok", "OBV"], ["macd_ok", "MACD"], ["complete", "إشارة مكتملة"],
 ];
 function renderFunnel() {
@@ -523,14 +524,15 @@ function renderFunnel() {
   }).join("");
   // أرقام القمع تخصّ آخر مسح فقط، بينما البطاقات تعرض القائمة الحالية (تشمل المحمول من مسوحات سابقة)
   $("funnelHint").textContent = "آخر مسح · التغطية " + n((D.diagnostics || {}).coverage_pct, 0) +
-    "% · القائمة الآن " + i0((D.summary || {}).monitored) + " سهم · لا بيانات " + i0(f.no_data) +
-    " · متقادم " + i0(f.stale) + " · بلا هبوط " + i0(f.no_drop);
+    "% · القائمة الآن " + i0((D.summary || {}).monitored) + " سهم · بلا صعود " + i0(f.no_runup) +
+    " · صعود بحجم ضعيف " + i0(f.weak_runup_volume) + " · بلا هبوط " + i0(f.no_drop) +
+    " · أعمق من النطاق " + i0(f.too_deep) + " · لا بيانات " + i0(f.no_data) + " · متقادم " + i0(f.stale);
 }
 
 /* ── الجدول ────────────────────────────────────── */
 const COLS = [
   ["ticker", "الرمز"], ["state", "الحالة"], ["price", "السعر"], ["change", "التغيّر"],
-  ["drop_pct", "الهبوط من القمة"], ["hold", "الثبات"], ["score", "الدرجة"],
+  ["drop_pct", "الهبوط من القمة"], ["runup", "الصعود السابق"], ["hold", "الثبات"], ["score", "الدرجة"],
   ["checks", "الشروط"], ["rsi", "RSI"], ["rvol", "RVOL"], ["rv", "حجم نسبي"],
   ["turn", "دوران الفلوت"], ["float", "الفلوت"], ["target", "الهدف T2"],
   ["stop", "الوقف"], ["rr", "R:R"], ["spark", "المسار"], ["last_bar", "آخر شمعة"],
@@ -540,7 +542,7 @@ function renderGridHead() {
     `<th data-k="${k}">${label} <span class="ar">${sortKey === k ? "▼" : ""}</span></th>`).join("");
   $("gridHead").querySelectorAll("th").forEach((th) => th.onclick = () => {
     const k = th.dataset.k;
-    if (!["price", "drop_pct", "hold", "score", "rsi", "rvol", "rv", "turn", "float", "rr", "last_bar", "ticker"].includes(k)) return;
+    if (!["price", "drop_pct", "runup", "hold", "score", "rsi", "rvol", "rv", "turn", "float", "rr", "last_bar", "ticker"].includes(k)) return;
     sortKey = (sortKey === k) ? "default" : k; $("sortBy").value = "default"; renderGrid();
   });
 }
@@ -559,7 +561,7 @@ function filtered() {
     return true;
   });
   const g = (x, path) => path.split(".").reduce((a, k) => (a == null ? a : a[k]), x);
-  const keys = { price: "price", drop_pct: "drop_pct", hold: "hold_min", score: "score",
+  const keys = { price: "price", drop_pct: "drop_pct", runup: "runup.runup_pct", hold: "hold_min", score: "score",
     rsi: "rsi", rvol: "rvol", rv: "relative_volume", turn: "float_turnover_pct",
     float: "float", rr: "risk.rr_t2", last_bar: "last_bar", ticker: "ticker" };
   if (keys[sortKey]) {
@@ -600,6 +602,8 @@ function renderGrid() {
       <td class="num" style="font-weight:700">${money(x.price)}</td>
       <td class="num ${cls(chg)}">${pct(chg, 2)}</td>
       <td class="num neg" style="font-weight:700">${pct(x.drop_pct, 1)}</td>
+      <td><div class="num pos">+${n((x.runup || {}).runup_pct, 0)}%</div>
+        <div class="dim" style="font-size:9.5px">حجم ${n((x.runup || {}).runup_volume_ratio, 1)}×</div></td>
       <td><div class="num">${i0(x.hold_min)}<span class="dim">/${i0(x.hold_needed)}د</span></div>
         <div class="meter"><i style="width:${holdPct}%;background:${holdPct >= 100 ? "var(--green)" : "var(--amber)"}"></i></div></td>
       <td><div style="display:flex;align-items:center;gap:6px">
@@ -698,6 +702,23 @@ function openDrawer(x, keep) {
       </div>
     </div>
 
+    <div class="sect"><h3>الرجل الأولى — الصعود قبل الانهيار</h3>
+      <div class="grid3">
+        ${[["قاع الانطلاق", money((x.runup || {}).launch_low)],
+           ["قمة اليوم", money((x.runup || {}).day_high)],
+           ["نسبة الصعود", "+" + n((x.runup || {}).runup_pct, 0) + "%"],
+           ["المطلوب", "≥ " + n((x.runup || {}).runup_needed_pct, 0) + "%"],
+           ["مدة الصعود", i0((x.runup || {}).runup_min) + " د"],
+           ["حجم الصعود", n((x.runup || {}).runup_volume_ratio, 2) + "×"],
+           ["متوسط حجم الصعود", compact((x.runup || {}).runup_avg_volume)],
+           ["خط أساس الحجم", compact((x.runup || {}).baseline_avg_volume)]]
+          .map(([k, v]) => `<div class="metric"><div class="k">${k}</div><div class="v" style="font-size:12.5px">${esc(String(v))}</div></div>`).join("")}
+      </div>
+      <div class="lvl" style="margin-top:7px"><span>نطاق الهبوط المستهدف</span>
+        <b>${n(Math.abs((x.drop_band || [0, 0])[0]), 0)}% – ${n(Math.abs((x.drop_band || [0, 0])[1]), 0)}% · الحالي ${n(Math.abs(x.drop_pct), 1)}% ${x.drop_in_band ? "✓ داخل النطاق" : "✗ خارجه"}</b></div>
+      <div class="lvl"><span>قاع ما بعد القمة (مرجع القرب والوقف)</span><b>${money((lv.base || {}).post_peak_low)}</b></div>
+    </div>
+
     <div class="sect"><h3>الشروط — الأساسية وطبقة التأكيد</h3>${checkRows}
       <div class="grid2" style="margin-top:8px">
         <div class="metric"><div class="k">درجة الشروط الأصلية</div><div class="v">${i0(x.strength_score)}<small>/100 · ${esc(x.strength_label || "")}</small></div></div>
@@ -711,6 +732,15 @@ function openDrawer(x, keep) {
       ${(risk.targets || []).map(t => `<div class="lvl tgt"><span>الهدف ${esc(t.label)} · +${n(t.pct, 0)}%</span>
         <b>${money(t.price)} · ${n(t.rr, 1)}:1</b></div>`).join("")}
       <div class="lvl"><span>مستوى الانطلاق فوق القاعدة</span><b>${money(risk.breakout_trigger)}</b></div>
+      <div class="lvl ${risk.vwap_is_ceiling ? "tgt" : ""}"><span>VWAP — ${esc(risk.vwap_role || "")}</span>
+        <b>${money(risk.vwap)} · ${risk.targets_below_vwap}/${(risk.targets || []).length} قبله${risk.dist_to_vwap_pct != null ? " · " + (risk.dist_to_vwap_pct >= 0 ? "+" : "") + n(risk.dist_to_vwap_pct, 1) + "%" : ""}</b></div>
+      <div class="note" style="margin-bottom:7px">${esc(risk.vwap_note || "")}</div>
+      ${(risk.targets || []).filter((t) => t.capped).map((t) => `<div class="lvl warn">
+        <span>${esc(t.label)} مُقيَّد قبل السقف</span>
+        <b>${money(t.capped_price)} بدل ${money(t.price)} · ${n(t.capped_pct, 1)}% · ${n(t.capped_rr, 2)}:1</b></div>`).join("")}
+      ${(risk.entry_modes || []).map((m, k) => `<div class="lvl" style="border-color:${k ? "#6b5416" : "#1c5f8c"};background:${k ? "#1d1a0d" : "#0d1b26"}">
+        <span>${esc(m.label)}${m.distance_pct ? ' <span class="dim">(+' + n(m.distance_pct, 1) + '% من الآن)</span>' : ""}</span>
+        <b>${money(m.entry)} · وقف ${money(m.stop)} · ${n(m.rr_t1, 1)}/${n(m.rr_t2, 1)}:1 · ${i0(m.shares)} سهم</b></div>`).join("")}
       <div class="lvl"><span>الهدف المقاس (ضعف نطاق القاعدة)</span><b>${money(risk.measured_projection)}</b></div>
       <div class="grid2" style="margin-top:8px">
         <div class="metric"><div class="k">ATR(14) على 5m</div><div class="v">${money(risk.atr, 4)} <small>${n(risk.atr_pct, 2)}%</small></div></div>
@@ -798,7 +828,9 @@ function openDrawer(x, keep) {
 }
 function coreHint(c, x) {
   if (c.key === "base") return `ثبات ${i0(x.hold_min)} دقيقة (المطلوب ${i0(x.hold_needed)}) · قرب القاع ${x.near_low ? "نعم" : "لا"}`;
-  if (c.key === "rsi") return `الآن ${n(x.rsi, 1)} · أدنى قيمة خلال ساعتين ${n(x.rsi_min, 1)}`;
+  if (c.key === "rsi") return `${esc(x.rsi_mode || "")} · الآن ${n(x.rsi, 1)} · الأدنى ${n(x.rsi_min, 1)} · القمة ${n(x.rsi_peak, 1)} · التراجع ${n(x.rsi_pullback, 0)} نقطة`;
+  if (c.key === "runup") return `${esc((x.runup || {}).note || "")} · قاع الانطلاق ${money((x.runup || {}).launch_low)}`;
+  if (c.key === "drop") return `الهبوط الحالي ${n(Math.abs(x.drop_pct), 1)}% والنطاق المستهدف ${n(Math.abs((x.drop_band || [0, 0])[0]), 0)}–${n(Math.abs((x.drop_band || [0, 0])[1]), 0)}%`;
   if (c.key === "obv") return "OBV: " + esc(x.obv || "—");
   if (c.key === "macd") return "MACD: " + esc(x.macd || "—");
   return c.hint;
@@ -881,6 +913,7 @@ function drawPrice(x, bars) {
     [risk.stop, "#ea3943", "الوقف", [5, 3]],
     [risk.target, "#2bb3ff", "الهدف", [5, 3]],
     [risk.breakout_trigger, "#f0b90b", "الانطلاق", [2, 3]],
+    [risk.vwap, "#a06bff", "سقف VWAP", [7, 4]],
   ];
   lines.forEach(([v, color, label, dash]) => {
     if (v == null || !isFinite(v) || v < lo || v > hi) return;

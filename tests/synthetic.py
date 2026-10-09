@@ -19,9 +19,10 @@ def _quiet_days(rng, start_price, days):
     return rows
 
 
-def make(post_low_bars: int = 30, crash_to: float = 0.60, flat_noise: float = 0.004,
+def make(post_low_bars: int = 22, crash_to: float = 0.60, flat_noise: float = 0.004,
          seed: int = 1, start_price: float = 2.0, base_trend: float = 0.02,
-         up_volume: int = 70_000, down_volume: int = 25_000, extra_tail=None,
+         up_volume: int = 70_000, down_volume: int = 25_000, runup_to: float = 1.5,
+         extra_tail=None,
          pad_bars: int = 0, pad_noise: float = 0.0006, end_date: str = END_DATE,
          end_ts=None):
     """
@@ -39,7 +40,8 @@ def make(post_low_bars: int = 30, crash_to: float = 0.60, flat_noise: float = 0.
         ts0 = end_ts - pd.Timedelta(minutes=5 * (total - 1))
     else:
         ts0 = day.replace(hour=4)
-    path = [start_price * (1 + 0.5 * i / 12) for i in range(12)]      # قفزة صباحية
+    # الرجل الأولى: قفزة صباحية من القاع (افتراضيًا +150%) بحجم عالي
+    path = [start_price * (1 + runup_to * i / 12) for i in range(12)]
     peak = path[-1]
     path += list(np.linspace(peak, peak * crash_to, 10))               # انهيار عمودي
     low = path[-1]
@@ -91,7 +93,7 @@ def make_recovered(crash_to: float = 0.60, start_price: float = 2.0, **kwargs):
     إطار ارتد فيه السهم فوق حدّ -30% من قمة اليوم (بوابة الدخول لم تعد محققة) —
     يُستخدم لاختبار مسار «ضعفت الإشارة» و«الإسقاط».
     """
-    peak = start_price * 1.5
+    peak = start_price * 2.5
     base_low = peak * crash_to
     recovered = peak * 0.78                        # أي -22% فقط من القمة
     tail = list(np.linspace(base_low * 1.01, recovered, 4))

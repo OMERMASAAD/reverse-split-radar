@@ -49,7 +49,8 @@ def merge(universe: dict, prev: dict, frames: dict, now: datetime) -> dict:
     meta = {m["ticker"]: m for m in universe.get("tickers", []) if isinstance(m, dict) and m.get("ticker")}
 
     funnel = {"universe": len(meta), "frames": len(frames), "no_data": 0, "stale": 0,
-              "no_drop": 0, "monitored": 0, "near_low": 0, "base_ok": 0, "rsi_ok": 0,
+              "no_runup": 0, "weak_runup_volume": 0, "no_drop": 0, "too_deep": 0,
+              "monitored": 0, "near_low": 0, "base_ok": 0, "rsi_ok": 0,
               "obv_ok": 0, "macd_ok": 0, "complete": 0, "purged_new": 0, "weakened": 0,
               "dropped_no_base": 0}
     alerts = []
@@ -163,6 +164,9 @@ def merge(universe: dict, prev: dict, frames: dict, now: datetime) -> dict:
     ordered = sorted(items.values(),
                      key=lambda x: (order.get(x.get("state"), 9), -(x.get("score") or 0),
                                     x.get("drop_pct") or 0))
+    # الرجل الأولى مرحلة فعلية في القمع: كل إطار تجاوز بوابات البيانات والصعود
+    funnel["runup_ok"] = max(0, funnel["frames"] - funnel["no_data"] - funnel["stale"]
+                             - funnel["no_runup"] - funnel["weak_runup_volume"])
     payload = {
         "updated_at": now.isoformat(),
         "session_date": today,

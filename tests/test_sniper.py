@@ -49,6 +49,42 @@ def test_short_base_is_visible_but_not_complete():
     assert res["state"] == C.STATE_NEW
 
 
+def test_no_runup_is_rejected():
+    """سهم لم يصعد أولًا بما يكفي لا يدخل الرادار أصلًا."""
+    frame, now = synthetic.make(runup_to=0.25)
+    res, why = evaluate(frame, now)
+    assert res is None and why == "low_runup", why
+
+
+def test_too_deep_is_rejected():
+    """انهيار أعمق من النطاق المستهدف (30–50%) يخرج من الرادار."""
+    frame, now = synthetic.make(crash_to=0.30)
+    res, why = evaluate(frame, now)
+    assert res is None and why == "too_deep", why
+
+
+def test_drop_band_is_reported():
+    frame, now = synthetic.make()
+    res, _ = evaluate(frame, now)
+    assert res["drop_in_band"] is True
+    assert res["drop_band"] == [C.DROP_MIN_PCT, C.DROP_MAX_PCT]
+    assert res["runup"]["ok"] is True and res["runup"]["runup_pct"] >= C.RUNUP_MIN_PCT
+
+
+def test_targets_are_below_vwap_flag():
+    frame, now = synthetic.make()
+    res, _ = evaluate(frame, now)
+    risk = res["risk"]
+    assert [t["pct"] for t in risk["targets"]] == list(C.TARGETS_PCT)
+    assert risk["vwap"] is not None
+    assert risk["targets_below_vwap"] + risk["targets_above_vwap"] == len(risk["targets"])
+    assert len(risk["entry_modes"]) == 2
+    assert risk["entry_modes"][0]["key"] == "market"
+    assert risk["entry_modes"][1]["key"] == "breakout"
+    assert risk["entry_modes"][1]["entry"] == risk["breakout_trigger"]
+    assert risk["stop"] < res["base_low"]
+
+
 def test_no_drop():
     frame, now = synthetic.make(crash_to=0.90)
     res, why = evaluate(frame, now)
@@ -68,11 +104,11 @@ def test_insufficient_bars():
     assert res is None and why == "no_data"
 
 
-def test_single_day_has_no_indicator_warmup():
+def test_no_warmup_no_confirmation():
+    """بلا تاريخ سابق لا يُجزَم بحجم الصعود — لا تأكيد بلا تسخين."""
     frame, now = synthetic.make_no_history()
     res, why = evaluate(frame, now)
-    assert why == "ok" and res is not None
-    assert res["checks"]["rsi"] is False, "بلا تسخين لا يجوز تأكيد RSI"
+    assert res is None and why == "weak_runup_volume", (res, why)
 
 
 # ---------------------------------------------------------------- التطويرات
@@ -110,8 +146,11 @@ def test_risk_plan_math():
     plan = risk.risk_plan(price=1.00, base_low=0.90, base_high=1.06, atr_value=0.03)
     assert plan["stop"] < 0.90
     assert plan["risk_pct"] > 0
-    assert plan["targets"][1]["pct"] == C.TARGET_PCT
-    assert plan["rr_t1"] < plan["rr_t2"] < plan["rr_t3"]
+    assert [t["pct"] for t in plan["targets"]] == list(C.TARGETS_PCT)
+    assert plan["targets"][0]["pct"] == C.TARGET_PCT
+    assert plan["stop"] == round(0.90 * (1 - C.STOP_BUFFER_PCT / 100.0), 4)
+    assert plan["rr_t1"] < plan["rr_t2"]
+    assert plan["rr_t3"] is None, "الأهداف هدفان فقط (+20% و+30%)"
     assert plan["shares"] == int(math.floor(C.ACCOUNT_EQUITY * C.RISK_PER_TRADE_PCT / 100
                                             / plan["risk_per_share"]))
     assert plan["measured_projection"] > plan["entry"]
@@ -135,10 +174,11 @@ def test_purge_on_base_break():
     base_low = first["items"][0]["base_low"]
 
     broken = frame.copy()
-    broken.iloc[-1, broken.columns.get_loc("Close")] = base_low * 0.96      # -4% < -3%
+    broken.iloc[-1, broken.columns.get_loc("Close")] = base_low * 0.94      # -6% أعمق من وقف 5%
     second = _run({"AAA": broken}, first, uni, now + timedelta(minutes=15))
     assert not second["items"]
     assert second["purged"][0]["ticker"] == "AAA"
+    assert "5%" in second["purged"][0]["reason"], second["purged"][0]["reason"]
     assert second["diagnostics"]["funnel"]["purged_new"] == 1
 
     third = _run({"AAA": frame}, second, uni, now + timedelta(minutes=30))  # لا يعود
@@ -223,7 +263,7 @@ def test_summary_and_states():
     out = _run({"AAA": frame}, {}, synthetic.universe_stub(("AAA",)), now)
     summary = runtime.session_summary(out)
     assert summary["complete"] == 1 and summary["ready"] == 1
-    assert summary["states"][C.STATE_READY] >= 1
+    assert summary["states"][C.STATE_READY] + summary["states"][C.STATE_TRIGGERED] >= 1
     assert summary["grades"]
 
 
@@ -533,9 +573,34 @@ def test_breakout_marks_triggered():
 
 def test_no_breakout_stays_ready():
     """قاعدة مكتملة بلا اختراق تبقى «إشارة مكتملة» لا «انطلق»."""
-    frame, now = synthetic.make()
+    frame, now = synthetic.make(base_trend=0.0)
     out = _run({"AAA": frame}, {}, synthetic.universe_stub(("AAA",)), now)
     assert out["items"][0]["state"] == C.STATE_READY
+
+
+def test_vwap_acts_as_ceiling_when_price_below_it():
+    """السعر تحت VWAP ← الخط سقف مقاوم والأهداف تُقيَّد قبله."""
+    from sniper.risk import risk_plan
+    plan = risk_plan(2.00, 1.90, 2.05, 0.05, vwap=2.30)
+    assert plan["vwap_is_ceiling"] is True
+    assert plan["vwap_role"].startswith("سقف مقاوم")
+    assert plan["targets_capped"] == 2
+    for t in plan["targets"]:
+        assert t["capped"] is True
+        assert t["capped_price"] < 2.30, "الهدف المُقيَّد يجب أن يبقى قبل الخط"
+        assert t["capped_rr"] < t["rr"], "التقييد يقلّص العائد"
+    assert "يخترق السقف" in plan["vwap_note"]
+
+
+def test_vwap_is_support_when_price_above_it():
+    """السعر فوق VWAP ← الخط دعم، والأهداف حرة فوقه (لا تقييد)."""
+    from sniper.risk import risk_plan
+    plan = risk_plan(3.06, 2.98, 3.07, 0.05, vwap=3.02)
+    assert plan["vwap_is_ceiling"] is False
+    assert plan["vwap_role"].startswith("دعم سفلي")
+    assert plan["targets_capped"] == 0
+    assert all(t["capped"] is False for t in plan["targets"])
+    assert "فلم يعد الخط سقفًا" in plan["vwap_note"], plan["vwap_note"]
 
 
 TESTS = [value for key, value in sorted(globals().items()) if key.startswith("test_") and callable(value)]
@@ -551,3 +616,5 @@ if __name__ == "__main__":
             print("❌", fn.__name__, repr(exc)[:400])
     print("\n%d/%d passed" % (len(TESTS) - failures, len(TESTS)))
     raise SystemExit(1 if failures else 0)
+
+

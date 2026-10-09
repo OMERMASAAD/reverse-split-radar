@@ -8,8 +8,17 @@
 """
 from __future__ import annotations
 
+import os
 from dataclasses import dataclass
 from zoneinfo import ZoneInfo
+
+
+def _env(name: str, default: float) -> float:
+    """قراءة رقم من متغير بيئة مع الرجوع للقيمة الافتراضية."""
+    try:
+        return float(os.environ[name])
+    except (KeyError, TypeError, ValueError):
+        return float(default)
 
 # ---------------------------------------------------------------- الملفات
 UNIVERSE_FILE = "universe.json"
@@ -21,7 +30,12 @@ REVERSE_SPLIT_TAG_FILE = "reverse_split_candidates.json"  # اختياري: وس
 MARKET_TZ = ZoneInfo("America/New_York")
 
 # =============================================== الشروط الأصلية (ثابتة)
+# ── الرجل الأولى: السهم يجب أن يكون قد صعد أولًا بحجم عالي قبل أن ينهار
+RUNUP_MIN_PCT = float(_env("RUNUP_MIN_PCT", 100.0))       # من قاع ما قبل القمة إلى قمة اليوم
+RUNUP_VOLUME_MIN = float(_env("RUNUP_VOLUME_MIN", 1.5))   # حجم الصعود ÷ حجم ما قبله
+
 DROP_MAX_PCT = -30.0      # هبوط ≥ 30% من قمة اليوم
+DROP_MIN_PCT = float(_env("DROP_MIN_PCT", -50.0))         # ولا أعمق من 50% (النموذج المستهدف 30–50%)
 CONS_RANGE_PCT = 5.0      # أقصى تذبذب مسموح داخل الثبات الأفقي
 CONS_MIN_MIN = 60         # أقل مدة ثبات (دقيقة)
 NEAR_LOW_PCT = 5.0        # قاع الثبات ضمن 5% من أدنى قاع اليوم
@@ -30,11 +44,15 @@ RSI_OVERSOLD = 30.0       # RSI لامس ≤ 30 خلال النافذة
 RSI_EXIT = 25.0           # RSI الآن ≥ 25 (خرج من التشبع)
 RSI_LOOK = 24             # آخر 24 شمعة 5m = ساعتان
 RSI_RECOVERY_MIN = 3.0    # تحسّن RSI ≥ 3 نقاط
+# في هذا النموذج (صعود 100–400% ثم هبوط) لا يلامس RSI(14) غالبًا مستوى 30، لأن
+# متوسط المكاسب ما زال مرتفعًا. لذلك يُقبل أيضًا «تراجع RSI من قمة اليوم» كدليل ضعف،
+# وهذا مطابق لطلب «راقب هل بدأ RSI يتحسن».
+RSI_PULLBACK_MIN = 25.0   # تراجع RSI ≥ 25 نقطة من قمته خلال اليوم
+RSI_STRENGTH_MAX = 60.0   # ولا يكون قد عاد إلى منطقة القوة
 OBV_LOOK = 12
 MACD_FAST, MACD_SLOW, MACD_SIGNAL = 12, 26, 9
 MACD_CROSS_LOOK = 3       # تقاطع خلال آخر 3 شموع
-PURGE_BREAK_PCT = 3.0     # كسر قاع الثبات بـ 3% إضافية ⇒ شطب نهائي للجلسة
-TARGET_PCT = 25.0         # الهدف الأصلي
+TARGET_PCT = 20.0         # الهدف الأول المعروض
 STALE_MIN = 60            # آخر شمعة أقدم من ساعة ⇒ سهم متوقف
 DEAD_AFTER_MISSES = 3     # انقطاع بيانات 3 مسوحات متتالية ⇒ حالة «متوقف»
 CHUNK = 100               # حجم الدفعة في التحميل الجماعي
@@ -58,9 +76,12 @@ ROUND_NUMBER_STEP = 0.5        # خطوة الأرقام المستديرة (م�
 GAP_MIN_PCT = 1.0              # أقل فجوة تُعدّ فجوة
 
 # --- محرك المخاطر (ورقي)
-ATR_STOP_MULT = 1.0            # الوقف = قاع الثبات − max(3%, 1.0 × ATR)
-STOP_MIN_BUFFER_PCT = PURGE_BREAK_PCT
-TARGETS_PCT = (10.0, 25.0, 50.0)      # T1, T2 (الأصلي), T3
+ATR_STOP_MULT = float(_env("ATR_STOP_MULT", 1.0))
+STOP_BUFFER_PCT = float(_env("STOP_BUFFER_PCT", 5.0))    # الوقف = قاع الثبات − 5% (حسب الطلب)
+STOP_MIN_BUFFER_PCT = STOP_BUFFER_PCT
+# الشطب محاذٍ للوقف: يتوقف الرصد حين يُضرب الوقف فعلًا لا قبله
+PURGE_BREAK_PCT = float(_env("PURGE_BREAK_PCT", STOP_BUFFER_PCT))
+TARGETS_PCT = (20.0, 30.0)            # T1 = +20% · T2 = +30% (كلاهما قبل خط VWAP)
 ACCOUNT_EQUITY = 25_000.0      # حساب ورقي مرجعي لحجم المركز
 RISK_PER_TRADE_PCT = 1.0       # مخاطرة 1% لكل إشارة
 
@@ -106,8 +127,12 @@ class Condition:
 
 
 CORE_CONDITIONS: tuple[Condition, ...] = (
-    Condition("drop", "هبوط ≥ 30% من قمة اليوم", 0,
-              "السعر الحالي ≤ -30% من أعلى سعر اليوم (بوابة الدخول للرصد)", core=False),
+    Condition("runup", "رجل أولى: صعود قوي بحجم عالي", 0,
+              f"صعود ≥ {RUNUP_MIN_PCT:g}% من قاع ما قبل القمة إلى قمة اليوم، بحجم ≥ {RUNUP_VOLUME_MIN:g}× مما قبله",
+              core=False),
+    Condition("drop", "هبوط ضمن النطاق المستهدف", 0,
+              f"هبوط بين {abs(DROP_MIN_PCT):g}% و{abs(DROP_MAX_PCT):g}% من قمة اليوم (بوابة الدخول للرصد)",
+              core=False),
     Condition("base", "ثبات أفقي قرب القاع", WEIGHTS["base"],
               f"تذبذب ≤ {CONS_RANGE_PCT:g}% لمدة ≥ {CONS_MIN_MIN} دقيقة وقاعه ضمن {NEAR_LOW_PCT:g}% من قاع اليوم"),
     Condition("rsi", "RSI يخرج من التشبع البيعي", WEIGHTS["rsi"],
