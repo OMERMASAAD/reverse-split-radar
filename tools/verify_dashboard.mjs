@@ -183,9 +183,9 @@ check("لا أخطاء بعد تبديل اللوحات", errors.length === 0, e
   check("الصعود السابق في الجدول يطابق البيانات",
     row.cells[5].textContent.includes("+" + Math.round(first.runup.runup_pct) + "%"),
     row.cells[5].textContent + " ≠ " + first.runup.runup_pct);
-  check("هدف T1 (+20%) في الجدول يطابق plan",
-    row.cells[14].textContent.trim() === moneyOf(first.risk.target),
-    row.cells[14].textContent + " ≠ " + moneyOf(first.risk.target));
+  check("هدف T2 في الجدول يطابق plan",
+    row.cells[14].textContent.trim() === moneyOf(first.risk.target_2 ?? first.risk.target),
+    row.cells[14].textContent + " ≠ " + moneyOf(first.risk.target_2 ?? first.risk.target));
   // الوقف = قاع الثبات − max(5%, ATR)؛ فالنسبة تُقرأ من stop_method لا تُفترض 5%
   const stopPct = (() => {
     const m = /[−-]\s*([\d.]+)\s*%/.exec(first.risk.stop_method || "");
