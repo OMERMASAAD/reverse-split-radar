@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 مؤشرات فنية خالصة (بلا أي طلبات شبكة) مكتوبة لتكون مطابقة لما يظهر في
-منصات التداول: RSI بطريقة Wilder، EMA، MACD، ATR، OBV، VWAP مرتكز، CLV،
+منصات التداول: RSI بطريقة Wilder، EMA، MACD، ATR، OBV، CMF، VWAP مرتكز، CLV،
 وميل الانحدار الخطي.
 """
 from __future__ import annotations
@@ -9,7 +9,7 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-from .config import (ATR_PERIOD, EMA_FAST, EMA_SLOW, MACD_FAST, MACD_SIGNAL,
+from .config import (ATR_PERIOD, CMF_PERIOD, EMA_FAST, EMA_SLOW, MACD_FAST, MACD_SIGNAL,
                      MACD_SLOW, OBV_LOOK)
 
 
@@ -99,6 +99,17 @@ def clv(df: pd.DataFrame) -> pd.Series:
     return ((close - low) - (high - close)) / rng
 
 
+def cmf(df: pd.DataFrame, period: int = CMF_PERIOD) -> pd.Series:
+    """Chaikin Money Flow: مجموع (CLV × الحجم) ÷ مجموع الحجم على `period` شمعة.
+
+    القيمة بين −1 و +1: فوق الصفر = ضغط شراء / تجميع سيولة (إيجابي)،
+    وتحت الصفر = ضغط بيع / توزيع (سلبي) — مطابق لـ TradingView/Yahoo."""
+    vol = df["Volume"].astype(float)
+    mfv = clv(df).fillna(0.0) * vol          # Money Flow Volume
+    denom = vol.rolling(period, min_periods=period).sum()
+    return mfv.rolling(period, min_periods=period).sum() / denom.replace(0.0, np.nan)
+
+
 def volume_delta(df: pd.DataFrame, look: int = OBV_LOOK) -> float:
     """دلتا حجم تقريبية: CLV × الحجم على النافذة (بديل تدفق الصفقات)."""
     tail = df.tail(look)
@@ -154,12 +165,13 @@ def indicators_frame(df: pd.DataFrame) -> pd.DataFrame:
     line, sig, hist = macd(close)
     out["macd"], out["macd_signal"], out["macd_hist"] = line, sig, hist
     out["obv"] = obv(close, out["Volume"].astype(float))
+    out["cmf"] = cmf(out)
     out["atr"] = atr(out)
     out["vwap"] = vwap(out)
     return out
 
 
 __all__ = [
-    "rsi", "ema", "macd", "atr", "true_range", "obv", "vwap", "anchored_vwap_value",
+    "rsi", "ema", "macd", "atr", "true_range", "obv", "cmf", "vwap", "anchored_vwap_value",
     "clv", "volume_delta", "rolling_slope", "stdev_pct", "resample_bars", "indicators_frame",
 ]

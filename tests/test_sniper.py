@@ -125,6 +125,14 @@ def test_extra_layers_present():
     assert res["risk"]["rr_t2"] is not None
     assert res["levels"]["base"]["base_touches"] >= 1
     assert res["score"] == scoring.combine(res["strength_score"], res["confirm_score"])
+    # CMF: القيمة + الاتجاه (إيجابي فوق الصفر / سلبي تحت الصفر) في المؤشرات
+    ind = res["indicators_now"]
+    assert ind["cmf"] is not None and ind["cmf_period"] == C.CMF_PERIOD
+    assert res["cmf_bias"] in ("إيجابي", "سلبي", "محايد")
+    if res["cmf"] is not None:
+        assert (res["cmf"] > 0) == (res["cmf_bias"] == "إيجابي") or res["cmf"] == 0
+        assert (res["cmf"] < 0) == (res["cmf_bias"] == "سلبي") or res["cmf"] == 0
+        assert "cmf" in res["chart"][-1]
 
 
 def test_mtf_returns_dict_without_enough_bars():
@@ -389,8 +397,19 @@ def test_indicator_sanity():
     assert float(v.max()) <= float(frame["High"].max()) * 1.001
     o = indicators.obv(close, frame["Volume"].astype(float))
     assert len(o) == len(frame)
+    c = indicators.cmf(frame, 20).dropna()
+    assert len(c) and float(c.min()) >= -1.0 and float(c.max()) <= 1.0
     higher = indicators.resample_bars(frame, C.MTF_RESAMPLE)
     assert len(higher) < len(frame) and len(higher) > 0
+
+
+def test_cmf_sign_accumulation_vs_distribution():
+    """فوق الصفر = تجميع (إغلاق قرب القمة) · تحت الصفر = توزيع (إغلاق قرب القاع)."""
+    idx = pd.date_range("2026-10-01 09:30", periods=30, freq="5min")
+    up = pd.DataFrame({"Open": 1.0, "High": 1.10, "Low": 0.95, "Close": 1.09, "Volume": 10_000.0}, index=idx)
+    assert float(indicators.cmf(up, 20).iloc[-1]) > 0
+    down = pd.DataFrame({"Open": 1.0, "High": 1.05, "Low": 0.90, "Close": 0.91, "Volume": 10_000.0}, index=idx)
+    assert float(indicators.cmf(down, 20).iloc[-1]) < 0
 
 
 def test_rolling_slope_and_stdev():

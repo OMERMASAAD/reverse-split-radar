@@ -160,7 +160,7 @@ check("OHLC مُعبّأ", /O /.test(text("#ohlc")), text("#ohlc").slice(0, 60))
 
 // تبديل اللوحات
 const paneTabs = $$("#paneTabs .pane-tab");
-check("لوحات المؤشرات 5", paneTabs.length === 5);
+check("لوحات المؤشرات 6 (RSI/MACD/OBV/CMF/الحجم/بلا)", paneTabs.length === 6, String(paneTabs.length));
 for (const t of paneTabs) {
   const before = win.__canvas.ops;
   t.click();
@@ -200,7 +200,16 @@ check("لا أخطاء بعد تبديل اللوحات", errors.length === 0, e
   check("عدد الشموع في البطاقة ≤ حد الرسم",
     (first.chart || []).length <= 96, String((first.chart || []).length));
   check("كل شمعة تحمل قيم المؤشرات",
-    (first.chart || []).every(b => "rsi" in b && "macd_hist" in b && "vwap" in b && "obv" in b));
+    (first.chart || []).every(b => "rsi" in b && "macd_hist" in b && "vwap" in b && "obv" in b && "cmf" in b));
+  // ── CMF: يظهر في «المؤشرات الآن» باتجاهه (إيجابي فوق الصفر / سلبي تحت الصفر)
+  const drawerText = $("#dbody").textContent;
+  check("CMF يظهر في «المؤشرات الآن»", /CMF\(/.test(drawerText));
+  check("CMF يعرض اتجاهه (فوق/تحت الصفر)",
+    /فوق الصفر · تجميع سيولة|تحت الصفر · توزيع|على الصفر/.test(drawerText));
+  check("CMF في البيانات يطابق اتجاهه",
+    (first.cmf > 0 && first.cmf_bias === "إيجابي") || (first.cmf < 0 && first.cmf_bias === "سلبي")
+    || (first.cmf === 0 && first.cmf_bias === "محايد"),
+    String(first.cmf) + " · " + first.cmf_bias);
   check("الدرج يعرض نفس الرمز المفتوح", $("#dhead .big").textContent === first.ticker,
     $("#dhead .big").textContent + " ≠ " + first.ticker);
 }

@@ -973,9 +973,14 @@ function openDrawer(x, keep) {
       <div class="grid3">
         ${[["EMA9", money(ind.ema_fast)], ["EMA20", money(ind.ema_slow)], ["VWAP المرتكز", money(ind.vwap ?? x.vwap)],
            ["MACD", n(ind.macd_line, 4)], ["خط الإشارة", n(ind.macd_signal, 4)], ["الهيستوجرام", n(ind.macd_hist, 4)],
-           ["OBV", compact(ind.obv)], ["ميل OBV", compact(ind.obv_slope)]]
-          .map(([k, v]) => `<div class="metric"><div class="k">${k}</div><div class="v" style="font-size:12.5px">${esc(String(v))}</div></div>`).join("")}
+           ["OBV", compact(ind.obv)], ["ميل OBV", compact(ind.obv_slope)],
+           ["CMF(" + i0(ind.cmf_period ?? (D.rules || {}).cmf_period ?? 20) + ")",
+            n(ind.cmf, 3) + " · " + (ind.cmf > 0 ? "إيجابي · فوق الصفر" : ind.cmf < 0 ? "سلبي · تحت الصفر" : "محايد"),
+            ind.cmf > 0 ? "var(--green)" : ind.cmf < 0 ? "var(--red)" : ""]]
+          .map(([k, v, c]) => `<div class="metric"><div class="k">${k}</div><div class="v" style="font-size:12.5px${c ? ";color:" + c : ""}">${esc(String(v))}</div></div>`).join("")}
       </div>
+      <div class="lvl" style="margin-top:7px"><span>CMF — تدفق المال (تجميع السيولة)</span>
+        <b class="${ind.cmf > 0 ? "pos" : ind.cmf < 0 ? "neg" : ""}">${n(ind.cmf, 3)} · ${esc(ind.cmf_mode || x.cmf_mode || "—")}</b></div>
     </div>
 
     <div class="sect"><h3>مسار الإشارة</h3>
@@ -1007,7 +1012,7 @@ function closeDrawer() {
 }
 
 /* ── الرسم ─────────────────────────────────────── */
-const PANES = [["rsi", "RSI(14)"], ["macd", "MACD"], ["obv", "OBV"], ["volume", "الحجم"], ["none", "بلا لوحة"]];
+const PANES = [["rsi", "RSI(14)"], ["macd", "MACD"], ["obv", "OBV"], ["cmf", "CMF(20)"], ["volume", "الحجم"], ["none", "بلا لوحة"]];
 function drawPaneTabs() {
   $("paneTabs").innerHTML = PANES.map(([k, l]) =>
     `<button class="pane-tab ${pane === k ? "on" : ""}" data-p="${k}">${l}</button>`).join("");
@@ -1032,7 +1037,9 @@ function drawCharts(x) {
     <span>O <b>${n(last.open, 4)}</b></span><span>H <b>${n(last.high, 4)}</b></span>
     <span>L <b>${n(last.low, 4)}</b></span><span>C <b class="${last.close >= last.open ? "pos" : "neg"}">${n(last.close, 4)}</b></span>
     <span>V <b>${compact(last.volume)}</b></span>
-    <span>RSI <b>${n(last.rsi, 1)}</b></span><span>MACD-H <b>${n(last.macd_hist, 4)}</b></span>`;
+    <span>RSI <b>${n(last.rsi, 1)}</b></span><span>MACD-H <b>${n(last.macd_hist, 4)}</b></span>
+    <span>CMF <b class="${last.cmf > 0 ? "pos" : last.cmf < 0 ? "neg" : ""}">${n(last.cmf, 3)}</b>
+      <span class="dim">${last.cmf > 0 ? "فوق الصفر · تجميع" : last.cmf < 0 ? "تحت الصفر · توزيع" : ""}</span></span>`;
   $("legend").innerHTML = [
     ["#16c784", "صعود"], ["#ea3943", "هبوط"], ["#a06bff", "VWAP"], ["#f0b90b", "EMA9"],
     ["#2bb3ff", "الأهداف"], ["#ea3943", "الوقف"], ["#16c78480", "منطقة الثبات"],
@@ -1158,7 +1165,7 @@ function drawSubPane(x, bars) {
     ctx.moveTo(padL, Y(v)); ctx.lineTo(w - padR, Y(v)); ctx.stroke(); ctx.setLineDash([]);
     ctx.fillStyle = c; ctx.textAlign = "left"; ctx.fillText(String(v), w - padR + 5, Y(v) + 3);
   });
-  if (pane === "volume" || pane === "macd") {
+  if (pane === "volume" || pane === "macd" || pane === "cmf") {
     const base = pane === "volume" ? h - padB : Y(0);
     bars.forEach((r, k) => {
       const v = r[key]; if (v == null) return;
@@ -1308,6 +1315,7 @@ function renderRules() {
     ["RSI", `${i0(r.rsi_period)} · لامس ≤ ${i0(r.rsi_oversold)} · الآن ≥ ${i0(r.rsi_exit)} · تحسّن ≥ ${i0(r.rsi_recovery_min)}`],
     ["نافذة RSI", i0(r.rsi_look) + " شمعة 5m (ساعتان)"],
     ["نافذة OBV", i0(r.obv_look) + " شمعة"],
+    ["CMF (تدفق المال)", "نافذة " + i0(r.cmf_period || 20) + " شمعة · فوق الصفر = تجميع سيولة (إيجابي) · تحت الصفر = توزيع (سلبي)"],
     ["MACD", (r.macd || []).join("/") + " · تقاطع خلال " + i0(r.macd_cross_look) + " شموع"],
     ["الشطب الآلي", "كسر قاع الثبات بـ −" + n(r.purge_break_pct, 0) + "% (لا يعود في الجلسة)"],
     ["البيانات المتقادمة", "أقدم من " + i0(r.stale_min) + " دقيقة ⇒ خارج الرادار"],
@@ -1361,12 +1369,13 @@ function exportCSV() {
   const head = ["ticker", "company", "state", "price", "change_pct", "drop_pct", "hold_min", "score",
     "grade", "core_score", "confirm_score", "base_ok", "rsi_ok", "obv_ok", "macd_ok", "complete",
     "rsi", "rsi_min", "rvol", "relative_volume", "float", "float_turnover_pct", "base_low",
-    "stop", "target_t2", "rr_t2", "atr", "vwap", "last_bar"];
+    "stop", "target_t2", "rr_t2", "atr", "vwap", "cmf", "cmf_bias", "cmf_mode", "last_bar"];
   const get = (x) => [x.ticker, x.company || "", x.state, x.price, (x.levels || {}).change_pct, x.drop_pct,
     x.hold_min, x.score, x.grade, x.strength_score, x.confirm_score,
     (x.checks || {}).base, (x.checks || {}).rsi, (x.checks || {}).obv, (x.checks || {}).macd, x.complete,
     x.rsi, x.rsi_min, x.rvol, x.relative_volume, x.float, x.float_turnover_pct, x.base_low,
-    (x.risk || {}).stop, (x.risk || {}).target_2 ?? (x.risk || {}).target, (x.risk || {}).rr_t2, x.atr, x.vwap, x.last_bar];
+    (x.risk || {}).stop, (x.risk || {}).target_2 ?? (x.risk || {}).target, (x.risk || {}).rr_t2, x.atr, x.vwap,
+    x.cmf, x.cmf_bias, x.cmf_mode, x.last_bar];
   const csv = [head.join(",")].concat(rows.map(r => get(r).map(v => {
     const s = v == null ? "" : String(v); return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
   }).join(","))).join("\n");

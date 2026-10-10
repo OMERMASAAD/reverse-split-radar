@@ -52,6 +52,7 @@ RSI_STRENGTH_MAX = 60.0   # ولا يكون قد عاد إلى منطقة الق
 OBV_LOOK = 12
 MACD_FAST, MACD_SLOW, MACD_SIGNAL = 12, 26, 9
 MACD_CROSS_LOOK = 3       # تقاطع خلال آخر 3 شموع
+CMF_PERIOD = 20           # نافذة Chaikin Money Flow (تدفق المال) — فوق الصفر = تجميع سيولة
 TARGET_PCT = 20.0         # الهدف الأول المعروض
 STALE_MIN = 60            # آخر شمعة أقدم من ساعة ⇒ سهم متوقف
 DEAD_AFTER_MISSES = 3     # انقطاع بيانات 3 مسوحات متتالية ⇒ حالة «متوقف»
@@ -213,6 +214,7 @@ def thresholds() -> dict:
         "rsi_period": RSI_PERIOD, "rsi_oversold": RSI_OVERSOLD, "rsi_exit": RSI_EXIT,
         "rsi_look": RSI_LOOK, "rsi_recovery_min": RSI_RECOVERY_MIN, "obv_look": OBV_LOOK,
         "macd": [MACD_FAST, MACD_SLOW, MACD_SIGNAL], "macd_cross_look": MACD_CROSS_LOOK,
+        "cmf_period": CMF_PERIOD,
         "purge_break_pct": PURGE_BREAK_PCT, "target_pct": TARGET_PCT, "stale_min": STALE_MIN,
         "weights": dict(WEIGHTS), "near_low_bonus": NEAR_LOW_BONUS,
         "targets_pct": list(TARGETS_PCT), "atr_stop_mult": ATR_STOP_MULT,
