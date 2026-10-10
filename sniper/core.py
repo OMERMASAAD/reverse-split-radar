@@ -16,7 +16,7 @@ import pandas as pd
 
 from . import config as C
 from .indicators import (ema, indicators_frame, macd, obv, resample_bars, rsi,
-                         anchored_vwap_value)
+                         anchored_vwap_value, cmf)
 from .levels import base_metrics, detect_base, runup_metrics, session_levels
 from .risk import risk_plan
 from .scoring import combine, confirmations, core_score, grade_payload, missing_conditions
@@ -86,6 +86,7 @@ def chart_payload(df: pd.DataFrame, limit: int = C.CHART_BARS) -> list[dict]:
             "macd_signal": _round(row["macd_signal"], 5),
             "macd_hist": _round(row["macd_hist"], 5),
             "obv": _round(row["obv"], 1),
+            "cmf": _round(row["cmf"], 4),
             "vwap": _round(row["vwap"]),
         })
     return rows
@@ -165,6 +166,17 @@ def evaluate(df, now=None, meta=None):
     cross = bool(((ml.shift(1) <= ms.shift(1)) & (ml > ms)).iloc[-C.MACD_CROSS_LOOK:].any())
     macd_ok = bool(cross or float(mh.iloc[-1]) > 0)
 
+    # ---------------- CMF: تدفق المال — كشف تجميع/توزيع السيولة
+    cmf_series = cmf(df, C.CMF_PERIOD)
+    cmf_val = _round(cmf_series.iloc[-1], 4) if np.isfinite(cmf_series.iloc[-1]) else None
+    if cmf_val == 0:
+        cmf_val = 0.0                      # توحيد −0.0 إلى 0.0 (ناتج دقة عائمة)
+    cmf_bias = ("إيجابي" if (cmf_val is not None and cmf_val > 0) else
+                "سلبي" if (cmf_val is not None and cmf_val < 0) else "محايد")
+    cmf_mode = ("فوق الصفر · تجميع سيولة" if (cmf_val is not None and cmf_val > 0) else
+                "تحت الصفر · توزيع" if (cmf_val is not None and cmf_val < 0) else
+                "على الصفر")
+
     checks = {"base": base_ok, "rsi": rsi_ok, "obv": obv_ok, "macd": macd_ok}
     score, score_label = core_score(checks, bool(base.get("near_low")))
 
@@ -207,6 +219,7 @@ def evaluate(df, now=None, meta=None):
         "rsi_mode": rsi_mode,
         "obv": "صاعد" if obv_rising else ("انحراف إيجابي" if obv_div else "ضعيف"),
         "macd": "تقاطع" if cross else ("هيستوجرام أخضر" if macd_ok else "سلبي"),
+        "cmf": cmf_val, "cmf_bias": cmf_bias, "cmf_mode": cmf_mode,
         "checks": checks, "complete": all(checks.values()),
         "strength_score": score, "strength_label": score_label,
         "volume_last": int(volume_last), "volume_avg": int(volume_avg),
@@ -239,6 +252,8 @@ def evaluate(df, now=None, meta=None):
             "macd_line": _round(ml.iloc[-1], 5), "macd_signal": _round(ms.iloc[-1], 5),
             "macd_hist": _round(mh.iloc[-1], 5),
             "obv": _round(o.iloc[-1], 1), "obv_slope": _round(float(o.iloc[-1] - o.iloc[-C.OBV_LOOK]), 1),
+            "cmf": cmf_val, "cmf_period": C.CMF_PERIOD,
+            "cmf_bias": cmf_bias, "cmf_mode": cmf_mode,
             "vwap": _round(vwap_value), "atr": _round(atr_value),
             "atr_pct": _round(float(atr_value) / price * 100.0, 2) if atr_value and price else None,
         },

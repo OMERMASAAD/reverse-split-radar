@@ -9,13 +9,24 @@ BARS_PER_DAY = 120
 END_DATE = "2026-10-06"
 
 
+def _wick(price: float, up: bool, amp: float = 0.004):
+    """نطاق شمعة غير متماثل: الإغلاق قرب القمة في الصاعدة وقرب القاع في الهابطة —
+    حتى يكون CLV/CMF (تدفق المال) واقعيًا في البيانات الاصطناعية."""
+    if up:
+        return price * (1 + amp * 0.5), price * (1 - amp * 1.5)
+    return price * (1 + amp * 1.5), price * (1 - amp * 0.5)
+
+
 def _quiet_days(rng, start_price, days):
     rows = []
+    prev = start_price
     for day in days[:-1]:
         for k in range(BARS_PER_DAY):
             ts = day.replace(hour=9, minute=30) + pd.Timedelta(minutes=5 * k)
             price = start_price * (1 + rng.normal(0, 0.002))
-            rows.append((ts, price, price * 1.003, price * 0.997, price, 20_000))
+            high, low_bar = _wick(price, price >= prev, amp=0.003)
+            prev = price
+            rows.append((ts, price, high, low_bar, price, 20_000))
     return rows
 
 
@@ -49,8 +60,8 @@ def make(post_low_bars: int = 22, crash_to: float = 0.60, flat_noise: float = 0.
         path.append(low * (1 + base_trend * i / max(1, post_low_bars) + rng.normal(0, flat_noise)))
     volumes = []
     for i, price in enumerate(path):
-        high, low_bar = price * 1.004, price * 0.996
         up = i > 0 and price >= path[i - 1]
+        high, low_bar = _wick(price, up)
         volume = 400_000 if 12 <= i < 22 else (up_volume if up else down_volume)
         volumes.append(volume)
         rows.append((ts0 + pd.Timedelta(minutes=5 * i), price, high, low_bar, price, volume))
@@ -59,15 +70,17 @@ def make(post_low_bars: int = 22, crash_to: float = 0.60, flat_noise: float = 0.
         base_end = rows[-1][0]
         for j, price in enumerate(extra_tail):
             ts = base_end + pd.Timedelta(minutes=5 * (j + 1))
-            high, low_bar = price * 1.006, price * 0.994
-            rows.append((ts, price, high, low_bar, price, up_volume * 2 if price >= rows[-1][1] else down_volume))
+            up = price >= rows[-1][1]
+            high, low_bar = _wick(price, up, amp=0.006)
+            rows.append((ts, price, high, low_bar, price, up_volume * 2 if up else down_volume))
 
     if pad_bars > 0:                                  # شموع هادئة لتوحيد آخر شمعة بين الرموز
         last_ts, last_price = rows[-1][0], float(rows[-1][1])
         for k in range(pad_bars):
             ts = last_ts + pd.Timedelta(minutes=5 * (k + 1))
             price = last_price * (1 + rng.normal(0, pad_noise))
-            rows.append((ts, price, price * 1.0015, price * 0.9985, price, 18_000))
+            high, low_bar = _wick(price, price >= last_price, amp=0.003)
+            rows.append((ts, price, high, low_bar, price, 18_000))
 
     frame = pd.DataFrame(rows, columns=["ts", "Open", "High", "Low", "Close", "Volume"]).set_index("ts")
     return frame, frame.index[-1].to_pydatetime()
