@@ -19,6 +19,24 @@
   --mono:"SF Mono",ui-monospace,"JetBrains Mono",Consolas,"Courier New",monospace;
   --shadow:0 8px 28px rgba(0,0,0,.45);
 }
+/* ── السمة الفاتحة ── */
+:root[data-theme="light"]{
+  --bg:#f2f5fa;--bg-2:#eaeff7;--panel:#ffffff;--panel-2:#f7f9fc;--panel-3:#eef2f9;
+  --border:#dbe2ee;--border-2:#c6d0e0;--text:#141d2c;--muted:#546580;--dim:#7f8ea6;
+  --green:#0d9668;--green-dim:#d5f2e6;--red:#cf2b36;--red-dim:#fbdfe1;
+  --amber:#9a6b00;--amber-dim:#fbeecb;--cyan:#0a72b8;--violet:#6f35e8;--blue:#2b4fd8;
+  --shadow:0 8px 28px rgba(24,40,70,.13);
+}
+:root[data-theme="light"] body{
+  background:
+    radial-gradient(1200px 600px at 85% -10%,#dde8fa 0%,transparent 60%),
+    radial-gradient(900px 500px at 0% 0%,#e6eefb 0%,transparent 55%),
+    var(--bg);
+}
+:root[data-theme="light"] .grid th,
+:root[data-theme="light"] .card header{background:#f4f7fc}
+:root[data-theme="light"] #gridBody tr:hover{background:#eef4fd}
+:root[data-theme="light"] canvas{filter:saturate(.94)}
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
@@ -31,6 +49,23 @@ body{
   font-size:13px;line-height:1.5;-webkit-font-smoothing:antialiased;
 }
 .num{font-family:var(--mono);font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate}
+.ready-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+@media(max-width:900px){.ready-grid{grid-template-columns:1fr}}
+.rpane{border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;background:var(--panel-2)}
+.rpane>h4{margin:0;padding:7px 10px;font-size:12px;display:flex;justify-content:space-between;align-items:center;
+  border-bottom:1px solid var(--border)}
+.rpane.ok>h4{background:var(--green-dim);color:var(--green)}
+.rpane.near>h4{background:var(--amber-dim);color:var(--amber)}
+.rpane table{width:100%;border-collapse:collapse;font-size:11.5px}
+.rpane th{text-align:right;padding:5px 8px;color:var(--muted);font-weight:600;font-size:10px;
+  border-bottom:1px solid var(--border);white-space:nowrap}
+.rpane td{padding:5px 8px;border-bottom:1px solid var(--border);white-space:nowrap}
+.rpane tr.clk{cursor:pointer}
+.rpane tr.clk:hover{background:var(--panel-3)}
+.rpane .miss{white-space:normal;color:var(--muted);font-size:10.5px;line-height:1.45}
+.rpane .empty{padding:10px;color:var(--dim);font-size:11.5px}
+.pbar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;min-width:44px}
+.pbar>i{display:block;height:100%;background:var(--amber)}
 button,input,select{font-family:inherit;font-size:inherit;color:inherit}
 button{cursor:pointer;border:0;background:none}
 a{color:var(--cyan)}
@@ -271,6 +306,7 @@ canvas.pane{display:block;width:100%;height:96px;border-top:1px solid var(--bord
   <span class="pill" id="livePill"><i class="dot idle"></i> <span id="liveText">جارٍ الاتصال…</span></span>
   <span class="pill" title="توقيت نيويورك">🕒 <b class="num" id="etClock">--:--:--</b> <span id="etPhase">—</span></span>
   <span class="pill" title="المسح القادم">⏱ المسح بعد <b class="num" id="nextScan">--</b></span>
+  <button class="btn" id="themeBtn" title="تبديل السمة الداكنة/الفاتحة">◐ فاتح</button>
   <button class="btn" id="autoBtn" title="تحديث تلقائي كل 60 ثانية">⟳ تلقائي</button>
   <button class="btn primary" id="refreshBtn">تحديث الآن</button>
 </header>
@@ -294,6 +330,12 @@ canvas.pane{display:block;width:100%;height:96px;border-top:1px solid var(--bord
       <header><h2>قمع المسح — من الكون إلى الإشارة</h2>
         <span class="hint" id="funnelHint">—</span></header>
       <div class="body"><div class="funnel" id="funnel"></div></div>
+    </div>
+
+    <div class="card" style="margin-bottom:11px">
+      <header><h2>الجاهزية — مكتملة وشبه جاهزة</h2>
+        <span class="hint">الشبه جاهزة حققت الهبوط والرجل الأولى لكن شروطها لم تكتمل بعد</span></header>
+      <div class="body"><div id="readiness" class="ready-grid"></div></div>
     </div>
 
     <div class="filters">
@@ -433,10 +475,11 @@ function timeAgo(iso) {
   if (s < 86400) return Math.round(s / 3600) + " س";
   return Math.round(s / 86400) + " ي";
 }
-/* كل الأوقات بتوقيت نيويورك — لتطابق ساعة الطرفية أعلى الشاشة */
-const TZ_NY = { timeZone: "America/New_York" };
-const hhmm = (iso) => { try { return new Date(iso).toLocaleTimeString("en-GB", { ...TZ_NY, hour: "2-digit", minute: "2-digit" }); } catch (e) { return "—"; } };
-const hhmmss = (iso) => { try { return new Date(iso).toLocaleTimeString("en-GB", { ...TZ_NY }); } catch (e) { return "—"; } };
+// كل التوقيتات في اللوحة بتوقيت نيويورك — مثل ساعة etClock تمامًا
+const ET = { timeZone: "America/New_York" };
+const hhmm = (iso) => { try { return new Date(iso).toLocaleTimeString("en-GB", Object.assign({ hour: "2-digit", minute: "2-digit" }, ET)); } catch (e) { return "—"; } };
+const hhmmss = (iso) => { try { return new Date(iso).toLocaleTimeString("en-GB", ET); } catch (e) { return "—"; } };
+const localHHMMSS = (iso) => { try { return new Date(iso).toLocaleTimeString("en-GB"); } catch (e) { return "—"; } };
 /* رقم + وحدة، تُحذف الوحدة عند غياب القيمة (بدل —× و—%) */
 const nn = (x, d = 2, unit = "") => (x == null || Number.isNaN(+x) ? "—" : n(x, d) + unit);
 const sm = (x, d, unit) => (x == null || Number.isNaN(+x) ? "—" : n(x, d) + `<small>${unit}</small>`);
@@ -472,12 +515,19 @@ async function load(manual) {
 function setLive(ok, at) {
   const dot = $("livePill").querySelector(".dot");
   dot.className = "dot" + (ok ? "" : " off");
-  $("liveText").textContent = ok ? ("آخر مسح " + timeAgo(at)) : "تعذّر تحميل البيانات";
+  if (ok) {
+    $("liveText").innerHTML =
+      `آخر مسح <b class="num">${hhmmss(at)}</b> <span class="dim">(${timeAgo(at)})</span>`;
+    $("livePill").title = "آخر مسح · بتوقيت نيويورك " + hhmmss(at) + " · بتوقيت جهازك " + localHHMMSS(at);
+  } else {
+    $("liveText").textContent = "تعذّر تحميل البيانات";
+    $("livePill").title = "";
+  }
 }
 
 /* ── العرض الكامل ──────────────────────────────── */
 function renderAll() {
-  renderBanner(); renderKpis(); renderTape(); renderFunnel();
+  renderBanner(); renderKpis(); renderTape(); renderFunnel(); renderReadiness();
   renderStateChips(); renderGrid(); renderStats(); renderRules(); renderOps();
   $("cntRadar").textContent = (D.summary || {}).monitored ?? 0;
   if (sel) { const fresh = (D.items || []).find((x) => x.ticker === sel); if (fresh) openDrawer(fresh, true); }
@@ -492,7 +542,7 @@ function renderKpis() {
     ["الكون المرصود", i0(s.universe), "سهم منخفض الفلوت", "var(--cyan)"],
     ["تحت الرادار", i0(s.monitored), "هبوط ≥ 30% من القمة", "var(--violet)"],
     ["إشارة مكتملة", i0(s.complete), "الشروط الأربعة معًا", "var(--green)"],
-    ["يبني قاعدة", i0(s.building), "ثبات قائم، شروط ناقصة", "var(--amber)"],
+    ["شبه جاهزة", i0(readinessNearCount()), "حققت الهبوط، الشروط ناقصة", "var(--amber)"],
     ["مشطوب اليوم", i0(s.purged), "كسر قاع الثبات", "var(--red)"],
     ["تغطية البيانات", s.coverage_pct == null ? "—" : n(s.coverage_pct, 0) + "%",
       i0(((D.diagnostics || {}).funnel || {}).frames || 0) + " رمز بحزمة 5m", "var(--cyan)"],
@@ -501,6 +551,63 @@ function renderKpis() {
   ];
   $("kpis").innerHTML = cards.map(([k, v, m, c]) =>
     `<div class="kpi" style="--accent:${c}"><div class="k">${k}</div><div class="v">${v}</div><div class="m">${esc(m)}</div></div>`).join("");
+}
+/* ── الجاهزية: مكتملة مقابل شبه جاهزة ── */
+function readinessNearCount() {
+  return ((D || {}).items || []).filter((x) => !x.complete && !["PURGED", "DEAD"].includes(x.state)
+    && x.still_valid !== false
+    && ["base", "rsi", "obv", "macd"].some((k) => (x.checks || {})[k])).length;
+}
+function coreMissing(x) {
+  return (x.missing_conditions || []).filter((m) => !/تأكيد إضافي/.test(m));
+}
+function checksPassed(x) {
+  const c = x.checks || {};
+  return ["base", "rsi", "obv", "macd"].filter((k) => c[k]).length;
+}
+function readinessRows(list, kind) {
+  if (!list.length) {
+    return `<div class="empty">${kind === "ok" ? "لا إشارة مكتملة الآن — الشروط الأربعة لم تجتمع بعد."
+      : "لا سهم قريب من الجاهزية حاليًا."}</div>`;
+  }
+  const head = kind === "ok"
+    ? ["الرمز", "السعر", "الهبوط", "الثبات", "الدرجة", "الحالة"]
+    : ["الرمز", "السعر", "الهبوط", "الشروط", "الناقص", "الدرجة"];
+  const rows = list.map((x) => {
+    const b = (x.levels || {}).base || {};
+    if (kind === "ok") {
+      return `<tr class="clk" data-t="${esc(x.ticker)}">
+        <td class="tick">${esc(x.ticker)}</td><td class="num">${money(x.price)}</td>
+        <td class="num neg">${pct(x.drop_pct, 1)}</td>
+        <td class="num">${i0(x.hold_min)} د</td>
+        <td><span class="grade g-${esc(String(x.grade || "D").replace("+", "p"))}">${esc(x.grade || "—")}</span></td>
+        <td><span class="badge ${stateClass(x.state)}">${esc(x.state_label || x.state)}</span></td></tr>`;
+    }
+    const got = checksPassed(x), miss = coreMissing(x);
+    const holdPct = b.hold_needed ? Math.min(100, Math.round((x.hold_min || 0) / b.hold_needed * 100)) : 100;
+    return `<tr class="clk" data-t="${esc(x.ticker)}">
+      <td class="tick">${esc(x.ticker)}</td><td class="num">${money(x.price)}</td>
+      <td class="num neg">${pct(x.drop_pct, 1)}</td>
+      <td><div class="num" style="font-size:10.5px">${got}/4</div>
+        <div class="pbar" style="margin-top:2px"><i style="width:${got / 4 * 100}%"></i></div></td>
+      <td class="miss">${miss.length ? esc(miss.join(" · ")) : "—"}${holdPct < 100
+        ? ` <span class="dim">· الثبات ${i0(x.hold_min)}/${i0(b.hold_needed)} د</span>` : ""}</td>
+      <td><span class="grade g-${esc(String(x.grade || "D").replace("+", "p"))}">${esc(x.grade || "—")}</span></td></tr>`;
+  }).join("");
+  return `<table><thead><tr>${head.map((h) => `<th>${h}</th>`).join("")}</tr></thead><tbody>${rows}</tbody></table>`;
+}
+function renderReadiness() {
+  const items = D.items || [];
+  const alive = items.filter((x) => !["PURGED", "DEAD"].includes(x.state));
+  const ready = alive.filter((x) => x.complete);
+  // المُبطَلة (خرجت من نطاق الهبوط/الصعود) ليست «شبه جاهزة» — لم تعد تشكيلة أصلًا
+  const near = alive.filter((x) => !x.complete && x.still_valid !== false && checksPassed(x) >= 1)
+    .sort((a, b) => (checksPassed(b) - checksPassed(a)) || ((b.score || 0) - (a.score || 0)));
+  $("readiness").innerHTML =
+    `<div class="rpane ok"><h4><span>✅ جاهزة — الشروط مكتملة</span><b class="num">${ready.length}</b></h4>
+       ${readinessRows(ready, "ok")}</div>
+     <div class="rpane near"><h4><span>🟡 شبه جاهزة — حققت الهبوط والشروط ناقصة</span><b class="num">${near.length}</b></h4>
+       ${readinessRows(near, "near")}</div>`;
 }
 function renderTape() {
   const items = D.items || [];
@@ -901,7 +1008,7 @@ function drawPrice(x, bars) {
   const X = (k) => padL + step * (k + 0.5);
 
   // شبكة
-  ctx.strokeStyle = "#141d2c"; ctx.lineWidth = 1; ctx.font = "10px ui-monospace,monospace";
+  ctx.strokeStyle = CT.grid; ctx.lineWidth = 1; ctx.font = "10px ui-monospace,monospace";
   ctx.fillStyle = "#5d6b83"; ctx.textAlign = "left";
   for (let g = 0; g <= 4; g++) {
     const p = lo + (hi - lo) * g / 4, y = Y(p);
@@ -967,7 +1074,7 @@ function drawPrice(x, bars) {
   bars.forEach((r, k) => { if (k % every === 0) ctx.fillText(hhmm(r.time), X(k), h - 5); });
   // مؤشر التمرير
   if (hoverBar != null && bars[hoverBar]) {
-    ctx.strokeStyle = "#3d5474"; ctx.setLineDash([3, 3]);
+    ctx.strokeStyle = CT.dash; ctx.setLineDash([3, 3]);
     ctx.beginPath(); ctx.moveTo(X(hoverBar), padT); ctx.lineTo(X(hoverBar), h - padB); ctx.stroke();
     ctx.setLineDash([]);
   }
@@ -994,7 +1101,7 @@ function drawSubPane(x, bars) {
   let lo = Math.min(...vals), hi = Math.max(...vals);
   if (pane === "rsi") { lo = 0; hi = 100; } else { const pad = (hi - lo) * 0.12 || 1; lo -= pad; hi += pad; }
   const Y = (v) => padT + (hi - v) / (hi - lo || 1) * (h - padT - padB);
-  ctx.strokeStyle = "#141d2c";
+  ctx.strokeStyle = CT.grid;
   [0.25, 0.5, 0.75].forEach(f => { const y = padT + f * (h - padT - padB); ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(w - padR, y); ctx.stroke(); });
   const labels = pane === "rsi" ? [[70, "#3a4a63"], [30, "#f0b90b"], [25, "#16c784"]] : [[0, "#3a4a63"]];
   labels.forEach(([v, c]) => {
@@ -1025,7 +1132,7 @@ function drawSubPane(x, bars) {
     bars.forEach((r, k) => { const v = r[key]; if (v == null) return; started ? ctx.lineTo(X(k), Y(v)) : (ctx.moveTo(X(k), Y(v)), started = true); });
     ctx.stroke();
   }
-  ctx.fillStyle = "#8392ab"; ctx.textAlign = "right";
+  ctx.fillStyle = CT.text; ctx.textAlign = "right";
   ctx.fillText(pane.toUpperCase(), w - padR - 4, padT + 9);
 }
 function drawSparkCanvas(x) {
@@ -1039,7 +1146,7 @@ function drawSparkCanvas(x) {
   const lo = Math.min(...vals, 0), hi = Math.max(...vals, 100);
   const Y = v => padT + (hi - v) / (hi - lo || 1) * (h - padT - padB);
   const X = k => padL + k * (w - padL - 8) / (vals.length - 1);
-  ctx.strokeStyle = "#141d2c"; ctx.font = "9px ui-monospace,monospace"; ctx.fillStyle = "#5d6b83"; ctx.textAlign = "left";
+  ctx.strokeStyle = CT.grid; ctx.font = "9px ui-monospace,monospace"; ctx.fillStyle = CT.dim; ctx.textAlign = "left";
   [0, 50, 100].forEach(v => { ctx.beginPath(); ctx.moveTo(padL, Y(v)); ctx.lineTo(w - 8, Y(v)); ctx.stroke(); ctx.fillText(String(v), 6, Y(v) + 3); });
   const grad = ctx.createLinearGradient(0, padT, 0, h - padB);
   grad.addColorStop(0, "rgba(43,179,255,.28)"); grad.addColorStop(1, "rgba(43,179,255,0)");
@@ -1186,7 +1293,7 @@ function renderOps() {
     ["متوسط مدة المسح", up.avg_duration_s == null ? "—" : n(up.avg_duration_s, 0) + " ث", "var(--violet)"],
     ["بلا بيانات", i0(f.no_data), "var(--red)"],
     ["متقادمة", i0(f.stale), "var(--amber)"],
-    ["آخر مسح", hhmmss(D.updated_at), "var(--cyan)"],
+    ["آخر مسح", hhmmss(D.updated_at) + " NY", "var(--cyan)"],
   ].map(([k, v, c]) => `<div class="kpi" style="--accent:${c}"><div class="k">${k}</div><div class="v" style="font-size:19px">${v}</div></div>`).join("");
   $("opsHint").textContent = `بُني الكون في ${D.master_built_on || "—"} · ${i0(D.master_count)} رمز`;
   $("scanLog").innerHTML = log.length ? log.map(r => `<div class="log-row">
@@ -1234,6 +1341,42 @@ $("minScore").oninput = (e) => { minScore = +e.target.value; $("minScoreVal").te
 $("onlyComplete").onclick = (e) => { onlyComplete = !onlyComplete; e.target.classList.toggle("on", onlyComplete); renderGrid(); };
 $("onlyRS").onclick = (e) => { onlyRS = !onlyRS; e.target.classList.toggle("on", onlyRS); renderGrid(); };
 $("csvBtn").onclick = exportCSV;
+/* ── السمة الداكنة/الفاتحة ── */
+const THEMES = {
+  dark:  { grid: "#141d2c", dash: "#3d5474", text: "#8392ab", dim: "#5d6b83", meta: "#0a0e17" },
+  light: { grid: "#dbe2ee", dash: "#9fb0c8", text: "#546580", dim: "#7f8ea6", meta: "#f2f5fa" },
+};
+let CT = THEMES.dark;
+function applyTheme(mode, redraw = true) {
+  const next = mode === "light" ? "light" : "dark";
+  CT = THEMES[next];
+  document.documentElement.dataset.theme = next;
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.setAttribute("content", CT.meta);
+  const btn = $("themeBtn");
+  if (btn) btn.textContent = next === "dark" ? "◐ فاتح" : "◑ داكن";
+  try { localStorage.setItem("panic-theme", next); } catch (e) {}
+  if (redraw && sel && D) {                                  // أعد رسم الدرج المفتوح بالسمة الجديدة
+    const fresh = (D.items || []).find((x) => x.ticker === sel);
+    if (fresh) openDrawer(fresh, true);
+  }
+}
+function initTheme() {
+  let saved = null;
+  try { saved = localStorage.getItem("panic-theme"); } catch (e) {}
+  if (!saved) saved = (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches)
+    ? "light" : "dark";
+  applyTheme(saved, false);
+}
+$("readiness").addEventListener("click", (ev) => {
+  const row = ev.target.closest("tr.clk");
+  if (!row) return;
+  const item = (D.items || []).find((x) => x.ticker === row.dataset.t);
+  if (item) openDrawer(item);
+});
+$("themeBtn").onclick = () => applyTheme(document.documentElement.dataset.theme === "light" ? "dark" : "light");
+initTheme();
+
 $("refreshBtn").onclick = () => load(true);
 $("scrim").onclick = closeDrawer;
 $("autoBtn").onclick = () => { auto = !auto; setAuto(); };

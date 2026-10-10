@@ -37,6 +37,16 @@ def mark_data_missing(item: dict, now: datetime) -> dict:
 
 
 
+REJECT_LABELS = {
+    "no_data": "لا بيانات كافية",
+    "stale": "بيانات متقادمة",
+    "low_runup": "خرج من نطاق الصعود المطلوب",
+    "weak_runup_volume": "حجم الصعود ضعيف",
+    "no_drop": "الهبوط أقل من 30%",
+    "too_deep": "الهبوط أعمق من 50%",
+}
+
+
 def merge(universe: dict, prev: dict, frames: dict, now: datetime) -> dict:
     """
     الدمج + التنظيف الآلي. أي هابط ≤ -30% يظهر؛ والشطب لمن ثبت فعلًا ثم كسر
@@ -89,6 +99,10 @@ def merge(universe: dict, prev: dict, frames: dict, now: datetime) -> dict:
                 if items[ticker].get("had_base"):
                     items[ticker]["still_valid"] = False
                     items[ticker]["complete"] = False
+                    # لا يجوز إبقاء checks القديمة: وإلّا ظهرت «4/4» مع «غير مكتملة»
+                    items[ticker]["checks_stale"] = True
+                    items[ticker]["invalidated_reason"] = why
+                    items[ticker]["invalidated_label"] = REJECT_LABELS.get(why, why)
                     items[ticker]["price"] = round(px, 4)
                     items[ticker]["state"] = C.STATE_WEAKENED
                     items[ticker]["last_bar"] = now.isoformat()
@@ -119,6 +133,9 @@ def merge(universe: dict, prev: dict, frames: dict, now: datetime) -> dict:
 
         res["data_misses"] = 0
         res["data_missing"] = False
+        res["checks_stale"] = False
+        res["invalidated_reason"] = None
+        res["invalidated_label"] = None
         res["last_seen"] = now.isoformat()
         res.update(
             ticker=ticker,

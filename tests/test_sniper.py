@@ -751,6 +751,32 @@ def test_run_once_never_builds_a_real_universe_in_tests():
         uni_mod.cli = original
 
 
+def test_invalidated_item_marks_checks_stale():
+    """
+    سهم خرج من نطاق الهبوط بعد أن كان مكتملًا: يجب وسم conditions بالقِدم.
+
+    بلا هذا الوسم تظهر «4/4» مع «غير مكتملة» — تناقض يُضلّل نافذة شبه الجاهزة.
+    """
+    good, now = synthetic.make()
+    stats = {"items": {}}
+    out = runtime.merge(synthetic.universe_stub(("AAA",)), stats, {"AAA": good}, now)
+    item = out["items"][0]
+    assert item["complete"] is True and item["checks_stale"] is False
+
+    # ارتد فوق نطاق الهبوط (‏-10%) — يخرج من البوابة دون أن يكسر قاع الثبات فيُشطب
+    recovered, _ = synthetic.make(crash_to=0.90)
+    out2 = runtime.merge(synthetic.universe_stub(("AAA",)), out, {"AAA": recovered},
+                         now + timedelta(minutes=15))
+    assert out2["items"], "يجب أن يبقى السهم على الرادار مُضعَفًا لا مشطوبًا"
+    weakened = out2["items"][0]
+    assert weakened["state"] == C.STATE_WEAKENED, weakened["state"]
+    assert weakened["still_valid"] is False
+    assert weakened["complete"] is False
+    assert weakened["checks_stale"] is True, "الشروط القديمة يجب أن تُوسم بالقِدم"
+    assert weakened["invalidated_reason"] == "no_drop", weakened["invalidated_reason"]
+    assert weakened["invalidated_label"] == "الهبوط أقل من 30%"
+
+
 TESTS = [value for key, value in sorted(globals().items()) if key.startswith("test_") and callable(value)]
 
 if __name__ == "__main__":

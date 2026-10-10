@@ -186,12 +186,17 @@ check("لا أخطاء بعد تبديل اللوحات", errors.length === 0, e
   check("هدف T2 في الجدول يطابق plan",
     row.cells[14].textContent.trim() === moneyOf(first.risk.target_2 ?? first.risk.target),
     row.cells[14].textContent + " ≠ " + moneyOf(first.risk.target_2 ?? first.risk.target));
-  // الوقف = قاع الثبات − max(5% ، ATR×1) — قد يكون ATR أوسع فيعمّق الوقف دون أن يكسر القاعدة
-  const expectStop = first.base_low - Math.max(0.05 * first.base_low, first.risk.atr || 0);
-  check("الوقف = قاع الثبات − max(5%، ATR) في الجدول",
+  // الوقف = قاع الثبات − max(5%, ATR)؛ فالنسبة تُقرأ من stop_method لا تُفترض 5%
+  const stopPct = (() => {
+    const m = /[−-]\s*([\d.]+)\s*%/.exec(first.risk.stop_method || "");
+    return m ? parseFloat(m[1]) / 100 : 0.05;
+  })();
+  check("الوقف = قاع الثبات − النسبة المعلنة (" + (stopPct * 100).toFixed(1) + "%)",
     row.cells[15].textContent.trim() === moneyOf(first.risk.stop)
-    && Math.abs(first.risk.stop - expectStop) < 1e-2,
-    row.cells[15].textContent + " ≠ " + moneyOf(first.risk.stop) + " (المتوقع " + expectStop.toFixed(4) + ")");
+    && first.risk.stop < first.base_low
+    && Math.abs(first.risk.stop / first.base_low - (1 - stopPct)) < 1e-3,
+    row.cells[15].textContent + " · " + (first.risk.stop_method || "?")
+    + " · base_low=" + first.base_low);
   check("عدد الشموع في البطاقة ≤ حد الرسم",
     (first.chart || []).length <= 96, String((first.chart || []).length));
   check("كل شمعة تحمل قيم المؤشرات",
@@ -221,7 +226,75 @@ check("جدول الأرقام التشغيلية", $$("#thresholds .lvl").lengt
 check("سجل المسوحات معروض", $$("#scanLog .log-row").length > 0);
 check("بطاقات التشغيل 8", $$("#opsKpis .kpi").length === 8);
 
+/* ── «آخر مسح» يعرض ساعة كاملة بالثواني ─────── */
+check("آخر مسح يعرض الساعة:الدقيقة:الثانية",
+  /آخر مسح\s*\d{2}:\d{2}:\d{2}/.test($("#liveText").textContent.replace(/\u00a0/g, " ")),
+  JSON.stringify($("#liveText").textContent));
+check("آخر مسح يحتفظ بالزمن النسبي", /\(قبل|\(\d/.test($("#liveText").textContent),
+  $("#liveText").textContent);
+check("تلميح اللوحة يجمع توقيت نيويورك والمحلي",
+  /نيويورك \d{2}:\d{2}:\d{2}.*جهازك \d{2}:\d{2}:\d{2}/.test($("#livePill").title || ""),
+  $("#livePill").title);
+check("توقيتات اللوحة موحّدة على نيويورك",
+  /America\/New_York/.test(read("index.html"))
+  && read("index.html").includes('const ET = { timeZone: "America/New_York" };'));
+
+/* ── نافذتا الجاهزية ─────────────────────────── */
 $("#tabs .tab[data-tab='radar']").click();
+const alive = (state().items || []).filter((x) => !["PURGED", "DEAD"].includes(x.state));
+const readyData = alive.filter((x) => x.complete);
+const nearData = alive.filter((x) => !x.complete && x.still_valid !== false
+  && ["base", "rsi", "obv", "macd"].some((k) => (x.checks || {})[k]));
+check("نافذتا الجاهزية مرسومتان", $$("#readiness .rpane").length === 2,
+  String($$("#readiness .rpane").length));
+check("نافذة «جاهزة» تعدّ المكتملة صحيحًا",
+  $$("#readiness .rpane.ok tbody tr").length === readyData.length,
+  $$("#readiness .rpane.ok tbody tr").length + " ≠ " + readyData.length);
+check("نافذة «شبه جاهزة» تعدّ الناقصة صحيحًا",
+  $$("#readiness .rpane.near tbody tr").length === nearData.length,
+  $$("#readiness .rpane.near tbody tr").length + " ≠ " + nearData.length);
+check("الشبه جاهزة كلها غير مكتملة فعلًا",
+  $$("#readiness .rpane.near tbody tr").every((tr) => {
+    const it = (state().items || []).find((x) => x.ticker === tr.dataset.t);
+    return it && !it.complete;
+  }));
+check("لا مُبطَلة داخل شبه الجاهزة",
+  $$("#readiness .rpane.near tbody tr").every((tr) => {
+    const it = (state().items || []).find((x) => x.ticker === tr.dataset.t);
+    return it && it.still_valid !== false && !it.checks_stale;
+  }), "سهم مُبطَل ظهر كأنه شبه جاهز");
+check("بطاقة «شبه جاهزة» في KPI مطابقة",
+  $$("#kpis .kpi").some((k) => k.textContent.includes("شبه جاهزة")
+    && k.querySelector(".v").textContent === String(nearData.length)),
+  String(nearData.length));
+if (nearData.length) {
+  $("#drawer").classList.remove("on");            // أغلقه أولًا حتى لا ينجح الفحص صدفة
+  const firstRow = $("#readiness .rpane.near tbody tr");
+  firstRow.click();
+  check("النقر على شبه جاهزة يفتح الدرج", $("#drawer").classList.contains("on")
+    && $("#dhead").textContent.includes(firstRow.dataset.t),
+    $("#dhead").textContent.slice(0, 24));
+}
+
+/* ── تبديل السمة الداكنة/الفاتحة ─────────────── */
+const root = doc.documentElement;
+const startTheme = root.dataset.theme || "dark";
+$("#themeBtn").click();
+const flipped = root.dataset.theme;
+check("الزر يبدّل السمة", flipped !== startTheme && ["light", "dark"].includes(flipped),
+  startTheme + " → " + String(flipped));
+check("لون المتصفح يتبدّل مع السمة",
+  doc.querySelector('meta[name="theme-color"]').getAttribute("content")
+    === (flipped === "light" ? "#f2f5fa" : "#0a0e17"),
+  doc.querySelector('meta[name="theme-color"]').getAttribute("content"));
+check("نص الزر يعكس السمة", /فاتح|داكن/.test($("#themeBtn").textContent),
+  $("#themeBtn").textContent);
+check("ألوان الرسم تتبع السمة", win.eval("CT.grid") !== "#141d2c" || flipped === "dark",
+  "CT.grid=" + win.eval("CT.grid"));
+$("#themeBtn").click();
+check("التبديل يعود إلى السمة الأصلية", root.dataset.theme === startTheme,
+  String(root.dataset.theme));
+
 win.close();
 
 console.log(failed ? `\n${failed} فشل` : "\nكل الفحوص نجحت ✔");
