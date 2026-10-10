@@ -183,13 +183,15 @@ check("لا أخطاء بعد تبديل اللوحات", errors.length === 0, e
   check("الصعود السابق في الجدول يطابق البيانات",
     row.cells[5].textContent.includes("+" + Math.round(first.runup.runup_pct) + "%"),
     row.cells[5].textContent + " ≠ " + first.runup.runup_pct);
-  check("هدف T1 (+20%) في الجدول يطابق plan",
-    row.cells[14].textContent.trim() === moneyOf(first.risk.target),
-    row.cells[14].textContent + " ≠ " + moneyOf(first.risk.target));
-  check("الوقف = قاع الثبات − 5% في الجدول",
+  check("هدف T2 في الجدول يطابق plan",
+    row.cells[14].textContent.trim() === moneyOf(first.risk.target_2 ?? first.risk.target),
+    row.cells[14].textContent + " ≠ " + moneyOf(first.risk.target_2 ?? first.risk.target));
+  // الوقف = قاع الثبات − max(5% ، ATR×1) — قد يكون ATR أوسع فيعمّق الوقف دون أن يكسر القاعدة
+  const expectStop = first.base_low - Math.max(0.05 * first.base_low, first.risk.atr || 0);
+  check("الوقف = قاع الثبات − max(5%، ATR) في الجدول",
     row.cells[15].textContent.trim() === moneyOf(first.risk.stop)
-    && Math.abs(first.risk.stop / first.base_low - 0.95) < 1e-3,   // السعر مُقرّب لأربعة أرقام
-    row.cells[15].textContent + " ≠ " + moneyOf(first.risk.stop));
+    && Math.abs(first.risk.stop - expectStop) < 1e-2,
+    row.cells[15].textContent + " ≠ " + moneyOf(first.risk.stop) + " (المتوقع " + expectStop.toFixed(4) + ")");
   check("عدد الشموع في البطاقة ≤ حد الرسم",
     (first.chart || []).length <= 96, String((first.chart || []).length));
   check("كل شمعة تحمل قيم المؤشرات",
