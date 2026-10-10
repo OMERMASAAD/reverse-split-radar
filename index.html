@@ -369,7 +369,7 @@ canvas.pane{display:block;width:100%;height:96px;border-top:1px solid var(--bord
       <header><h2>سجل المسوحات (كل 15 دقيقة)</h2><span class="hint" id="opsHint">—</span></header>
       <div class="body">
         <div class="log-row" style="color:var(--dim);border:0;padding-bottom:4px">
-          <span>الوقت</span><span>الحالة</span><span>التغطية / الرموز</span><span>المرصود</span><span>المدة</span>
+          <span>الوقت (نيويورك)</span><span>الحالة</span><span>التغطية / الرموز</span><span>المرصود</span><span>المدة</span>
         </div>
         <div id="scanLog"></div>
       </div>
@@ -433,8 +433,14 @@ function timeAgo(iso) {
   if (s < 86400) return Math.round(s / 3600) + " س";
   return Math.round(s / 86400) + " ي";
 }
-const hhmm = (iso) => { try { return new Date(iso).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }); } catch (e) { return "—"; } };
-const hhmmss = (iso) => { try { return new Date(iso).toLocaleTimeString("en-GB"); } catch (e) { return "—"; } };
+/* كل الأوقات بتوقيت نيويورك — لتطابق ساعة الطرفية أعلى الشاشة */
+const TZ_NY = { timeZone: "America/New_York" };
+const hhmm = (iso) => { try { return new Date(iso).toLocaleTimeString("en-GB", { ...TZ_NY, hour: "2-digit", minute: "2-digit" }); } catch (e) { return "—"; } };
+const hhmmss = (iso) => { try { return new Date(iso).toLocaleTimeString("en-GB", { ...TZ_NY }); } catch (e) { return "—"; } };
+/* رقم + وحدة، تُحذف الوحدة عند غياب القيمة (بدل —× و—%) */
+const nn = (x, d = 2, unit = "") => (x == null || Number.isNaN(+x) ? "—" : n(x, d) + unit);
+const sm = (x, d, unit) => (x == null || Number.isNaN(+x) ? "—" : n(x, d) + `<small>${unit}</small>`);
+const dropBand = (x) => ((x.drop_band || []).map((v) => Math.abs(+v)).filter((v) => isFinite(v)).sort((a, b) => a - b));
 function toast(msg) {
   const t = $("toast"); t.textContent = msg; t.classList.add("on");
   clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("on"), 2600);
@@ -488,7 +494,8 @@ function renderKpis() {
     ["إشارة مكتملة", i0(s.complete), "الشروط الأربعة معًا", "var(--green)"],
     ["يبني قاعدة", i0(s.building), "ثبات قائم، شروط ناقصة", "var(--amber)"],
     ["مشطوب اليوم", i0(s.purged), "كسر قاع الثبات", "var(--red)"],
-    ["تغطية البيانات", n(s.coverage_pct, 0) + "%", i0((D.diagnostics || {}).frames || 0) + " رمز بحزمة 5m", "var(--cyan)"],
+    ["تغطية البيانات", s.coverage_pct == null ? "—" : n(s.coverage_pct, 0) + "%",
+      i0(((D.diagnostics || {}).funnel || {}).frames || 0) + " رمز بحزمة 5m", "var(--cyan)"],
     ["متوسط الدرجة", s.avg_score == null ? "—" : i0(s.avg_score), "من 100", "var(--green)"],
     ["مسوحات اليوم", i0(up.runs || 0), (up.ok_rate_pct == null ? "—" : n(up.ok_rate_pct, 0) + "% نجاح"), "var(--violet)"],
   ];
@@ -561,8 +568,8 @@ function filtered() {
     return true;
   });
   const g = (x, path) => path.split(".").reduce((a, k) => (a == null ? a : a[k]), x);
-  const keys = { price: "price", drop_pct: "drop_pct", runup: "runup.runup_pct", hold: "hold_min", score: "score",
-    rsi: "rsi", rvol: "rvol", rv: "relative_volume", turn: "float_turnover_pct",
+  const keys = { price: "price", drop_pct: "drop_pct", drop: "drop_pct", runup: "runup.runup_pct", hold: "hold_min", score: "score",
+    rsi: "rsi", rvol: "rvol", rv: "relative_volume", turn: "float_turnover_pct", turnover: "float_turnover_pct",
     float: "float", rr: "risk.rr_t2", last_bar: "last_bar", ticker: "ticker" };
   if (keys[sortKey]) {
     const p = keys[sortKey];
@@ -602,8 +609,8 @@ function renderGrid() {
       <td class="num" style="font-weight:700">${money(x.price)}</td>
       <td class="num ${cls(chg)}">${pct(chg, 2)}</td>
       <td class="num neg" style="font-weight:700">${pct(x.drop_pct, 1)}</td>
-      <td><div class="num pos">+${n((x.runup || {}).runup_pct, 0)}%</div>
-        <div class="dim" style="font-size:9.5px">حجم ${n((x.runup || {}).runup_volume_ratio, 1)}×</div></td>
+      <td><div class="num pos">${pct((x.runup || {}).runup_pct, 0)}</div>
+        <div class="dim" style="font-size:9.5px">حجم ${nn((x.runup || {}).runup_volume_ratio, 1, "×")}</div></td>
       <td><div class="num">${i0(x.hold_min)}<span class="dim">/${i0(x.hold_needed)}د</span></div>
         <div class="meter"><i style="width:${holdPct}%;background:${holdPct >= 100 ? "var(--green)" : "var(--amber)"}"></i></div></td>
       <td><div style="display:flex;align-items:center;gap:6px">
@@ -616,9 +623,9 @@ function renderGrid() {
       <td class="num">${n(x.rsi, 1)}</td>
       <td class="num ${x.rvol >= 2 ? "pos" : x.rvol >= 1 ? "" : "dim"}">${n(x.rvol, 2)}</td>
       <td class="num">${n(rel.relative_volume ?? x.relative_volume, 2)}</td>
-      <td class="num">${n(x.float_turnover_pct, 1)}%</td>
+      <td class="num">${nn(x.float_turnover_pct, 1, "%")}</td>
       <td class="num dim">${compact(x.float)}</td>
-      <td class="num pos">${money(risk.target)}</td>
+      <td class="num pos">${money(risk.target_2 ?? risk.target)}</td>
       <td class="num neg">${money(risk.stop)}</td>
       <td class="num">${n(risk.rr_t2, 1)}</td>
       <td>${sparkline((x.history || []).map(h => h.score))}</td>
@@ -649,6 +656,7 @@ function openDrawer(x, keep) {
   sel = x.ticker;
   if (!keep) pane = "rsi";
   const lv = x.levels || {}, b = lv.base || {}, risk = x.risk || {}, vol = x.volume || {}, ind = x.indicators_now || {};
+  const band = dropBand(x);
   $("dhead").innerHTML = `
     <div style="flex:1;min-width:0">
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
@@ -685,11 +693,11 @@ function openDrawer(x, keep) {
       <div class="metric"><div class="k">قاع الثبات</div><div class="v">${money(x.base_low)}</div></div>
       <div class="metric"><div class="k">قمة الثبات</div><div class="v">${money(b.base_high)}</div></div>
       <div class="metric"><div class="k">مدة الثبات</div><div class="v">${i0(x.hold_min)}<small> / ${i0(x.hold_needed)} د</small></div></div>
-      <div class="metric"><div class="k">البعد عن القاع</div><div class="v">${n(x.dist_from_low_pct, 1)}<small>%</small></div></div>
+      <div class="metric"><div class="k">البعد عن القاع</div><div class="v">${sm(x.dist_from_low_pct, 1, "%")}</div></div>
       <div class="metric"><div class="k">RSI(14)</div><div class="v">${n(x.rsi, 1)} <small>أدنى ${n(x.rsi_min, 1)}</small></div></div>
-      <div class="metric"><div class="k">RVOL</div><div class="v">${n(x.rvol, 2)}<small>×</small></div></div>
-      <div class="metric"><div class="k">حجم نسبي للوقت</div><div class="v">${n((vol.relative || {}).relative_volume, 2)}<small>×</small></div></div>
-      <div class="metric"><div class="k">دوران الفلوت</div><div class="v">${n(x.float_turnover_pct, 1)}<small>%</small></div></div>
+      <div class="metric"><div class="k">RVOL</div><div class="v">${sm(x.rvol, 2, "×")}</div></div>
+      <div class="metric"><div class="k">حجم نسبي للوقت</div><div class="v">${sm((vol.relative || {}).relative_volume, 2, "×")}</div></div>
+      <div class="metric"><div class="k">دوران الفلوت</div><div class="v">${sm(x.float_turnover_pct, 1, "%")}</div></div>
     </div>
 
     <div class="sect"><h3>الرسم البياني — شموع 5 دقائق</h3>
@@ -706,16 +714,16 @@ function openDrawer(x, keep) {
       <div class="grid3">
         ${[["قاع الانطلاق", money((x.runup || {}).launch_low)],
            ["قمة اليوم", money((x.runup || {}).day_high)],
-           ["نسبة الصعود", "+" + n((x.runup || {}).runup_pct, 0) + "%"],
-           ["المطلوب", "≥ " + n((x.runup || {}).runup_needed_pct, 0) + "%"],
-           ["مدة الصعود", i0((x.runup || {}).runup_min) + " د"],
-           ["حجم الصعود", n((x.runup || {}).runup_volume_ratio, 2) + "×"],
+           ["نسبة الصعود", pct((x.runup || {}).runup_pct, 0)],
+           ["المطلوب", (x.runup || {}).runup_needed_pct == null ? "—" : "≥ " + n((x.runup || {}).runup_needed_pct, 0) + "%"],
+           ["مدة الصعود", (x.runup || {}).runup_min == null ? "—" : i0((x.runup || {}).runup_min) + " د"],
+           ["حجم الصعود", nn((x.runup || {}).runup_volume_ratio, 2, "×")],
            ["متوسط حجم الصعود", compact((x.runup || {}).runup_avg_volume)],
            ["خط أساس الحجم", compact((x.runup || {}).baseline_avg_volume)]]
           .map(([k, v]) => `<div class="metric"><div class="k">${k}</div><div class="v" style="font-size:12.5px">${esc(String(v))}</div></div>`).join("")}
       </div>
       <div class="lvl" style="margin-top:7px"><span>نطاق الهبوط المستهدف</span>
-        <b>${n(Math.abs((x.drop_band || [0, 0])[0]), 0)}% – ${n(Math.abs((x.drop_band || [0, 0])[1]), 0)}% · الحالي ${n(Math.abs(x.drop_pct), 1)}% ${x.drop_in_band ? "✓ داخل النطاق" : "✗ خارجه"}</b></div>
+        <b>${band.length >= 2 ? n(band[0], 0) + "% – " + n(band[1], 0) + "%" : "—"} · الحالي ${n(Math.abs(x.drop_pct), 1)}% ${x.drop_in_band ? "✓ داخل النطاق" : "✗ خارجه"}</b></div>
       <div class="lvl"><span>قاع ما بعد القمة (مرجع القرب والوقف)</span><b>${money((lv.base || {}).post_peak_low)}</b></div>
     </div>
 
@@ -733,7 +741,7 @@ function openDrawer(x, keep) {
         <b>${money(t.price)} · ${n(t.rr, 1)}:1</b></div>`).join("")}
       <div class="lvl"><span>مستوى الانطلاق فوق القاعدة</span><b>${money(risk.breakout_trigger)}</b></div>
       <div class="lvl ${risk.vwap_is_ceiling ? "tgt" : ""}"><span>VWAP — ${esc(risk.vwap_role || "")}</span>
-        <b>${money(risk.vwap)} · ${risk.targets_below_vwap}/${(risk.targets || []).length} قبله${risk.dist_to_vwap_pct != null ? " · " + (risk.dist_to_vwap_pct >= 0 ? "+" : "") + n(risk.dist_to_vwap_pct, 1) + "%" : ""}</b></div>
+        <b>${risk.vwap == null ? "—" : `${money(risk.vwap)} · ${risk.targets_below_vwap}/${(risk.targets || []).length} قبله${risk.dist_to_vwap_pct != null ? " · " + (risk.dist_to_vwap_pct >= 0 ? "+" : "") + n(risk.dist_to_vwap_pct, 1) + "%" : ""}`}</b></div>
       <div class="note" style="margin-bottom:7px">${esc(risk.vwap_note || "")}</div>
       ${(risk.targets || []).filter((t) => t.capped).map((t) => `<div class="lvl warn">
         <span>${esc(t.label)} مُقيَّد قبل السقف</span>
@@ -773,9 +781,9 @@ function openDrawer(x, keep) {
     <div class="sect"><h3>جودة القاعدة</h3>
       <div class="grid3">
         ${[["لمسات القاع", i0(b.base_touches)], ["قيعان صاعدة", b.base_higher_lows ? "نعم" : "لا"],
-           ["ضيق القاعدة", n(b.base_tightness_pct, 2) + "%"], ["ميل القاعدة", pct(b.base_slope_pct, 3)],
-           ["نطاق القاعدة", n(b.base_range_pct, 2) + "%"], ["شموع القاعدة", i0(b.base_bars)],
-           ["بداية الثبات", hhmm(b.base_start)], ["قاع اليوم من القاعدة", n(b.day_low_gap_pct, 2) + "%"]]
+           ["ضيق القاعدة", nn(b.base_tightness_pct, 2, "%")], ["ميل القاعدة", pct(b.base_slope_pct, 3)],
+           ["نطاق القاعدة", nn(b.base_range_pct, 2, "%")], ["شموع القاعدة", i0(b.base_bars)],
+           ["بداية الثبات", hhmm(b.base_start)], ["قاع اليوم من القاعدة", nn(b.day_low_gap_pct, 2, "%")]]
           .map(([k, v]) => `<div class="metric"><div class="k">${k}</div><div class="v" style="font-size:12.5px">${esc(String(v))}</div></div>`).join("")}
       </div>
     </div>
@@ -790,9 +798,9 @@ function openDrawer(x, keep) {
           .map(([k, v]) => `<div class="metric"><div class="k">${k}</div><div class="v" style="font-size:12.5px">${esc(String(v))}</div></div>`).join("")}
       </div>
       <div class="lvl" style="margin-top:7px"><span>جفاف الحجم داخل القاعدة (قاعدة ÷ هبوط)</span>
-        <b>${n((vol.dry_up || {}).base_vs_drop_ratio, 2)}× ${((vol.dry_up || {}).dried_up) ? "· جفاف ✓" : ""}</b></div>
+        <b>${nn((vol.dry_up || {}).base_vs_drop_ratio, 2, "×")} ${((vol.dry_up || {}).base_vs_drop_ratio != null && (vol.dry_up || {}).dried_up) ? "· جفاف ✓" : ""}</b></div>
       <div class="lvl"><span>الفلوت المتداول اليوم</span>
-        <b>${n(x.float_turnover_pct, 1)}% · ${n(((vol.float_turnover || {}).float_rotations), 2)} دورة</b></div>
+        <b>${nn(x.float_turnover_pct, 1, "%")} · ${nn(((vol.float_turnover || {}).float_rotations), 2, " دورة")}</b></div>
       <div class="lvl"><span>الفلوت (${esc(x.float_status || "")} · ${esc(x.float_source || "")})</span><b>${compact(x.float)}</b></div>
     </div>
 
@@ -830,7 +838,10 @@ function coreHint(c, x) {
   if (c.key === "base") return `ثبات ${i0(x.hold_min)} دقيقة (المطلوب ${i0(x.hold_needed)}) · قرب القاع ${x.near_low ? "نعم" : "لا"}`;
   if (c.key === "rsi") return `${esc(x.rsi_mode || "")} · الآن ${n(x.rsi, 1)} · الأدنى ${n(x.rsi_min, 1)} · القمة ${n(x.rsi_peak, 1)} · التراجع ${n(x.rsi_pullback, 0)} نقطة`;
   if (c.key === "runup") return `${esc((x.runup || {}).note || "")} · قاع الانطلاق ${money((x.runup || {}).launch_low)}`;
-  if (c.key === "drop") return `الهبوط الحالي ${n(Math.abs(x.drop_pct), 1)}% والنطاق المستهدف ${n(Math.abs((x.drop_band || [0, 0])[0]), 0)}–${n(Math.abs((x.drop_band || [0, 0])[1]), 0)}%`;
+  if (c.key === "drop") {
+    const bd = dropBand(x);
+    return `الهبوط الحالي ${n(Math.abs(x.drop_pct), 1)}% والنطاق المستهدف ${bd.length >= 2 ? n(bd[0], 0) + "–" + n(bd[1], 0) + "%" : "—"}`;
+  }
   if (c.key === "obv") return "OBV: " + esc(x.obv || "—");
   if (c.key === "macd") return "MACD: " + esc(x.macd || "—");
   return c.hint;
@@ -1050,6 +1061,9 @@ function drawSparkCanvas(x) {
 /* ── الإحصاءات ─────────────────────────────────── */
 function renderStats() {
   const s = (S || {}).summary || {}, open = (S || {}).open || [], os = (S || {}).open_summary || {};
+  // «أقصى خسارة» = أسوأ غوص تحت الدخول (≤ صفر) — لا تُعرض القيم الموجبة كخسارة
+  const maeVals = ((S || {}).closed || []).map((t) => t.mae_pct).filter((v) => v != null).map((v) => Math.min(0, +v));
+  const avgMae = maeVals.length ? maeVals.reduce((a, b) => a + b, 0) / maeVals.length : null;
   const cards = [
     ["إشارات مُقيَّمة", i0(s.trades), "var(--cyan)"],
     ["نسبة النجاح", s.win_rate_pct == null ? "—" : n(s.win_rate_pct, 0) + "%", "var(--green)"],
@@ -1057,7 +1071,7 @@ function renderStats() {
     ["Profit Factor", s.profit_factor == null ? "—" : n(s.profit_factor, 2), "var(--violet)"],
     ["التوقع لكل إشارة", s.expectancy_pct == null ? "—" : pct(s.expectancy_pct, 2), "var(--amber)"],
     ["متوسط أقصى ربح", s.avg_mfe_pct == null ? "—" : pct(s.avg_mfe_pct, 1), "var(--green)"],
-    ["متوسط أقصى خسارة", s.avg_mae_pct == null ? "—" : pct(s.avg_mae_pct, 1), "var(--red)"],
+    ["متوسط أقصى خسارة", avgMae == null ? "—" : pct(avgMae, 1), "var(--red)"],
     ["متوسط مدة الرصد", s.avg_hold_min == null ? "—" : i0(s.avg_hold_min) + " د", "var(--cyan)"],
     ["مرصودة الآن", i0(os.count || 0), "var(--violet)"],
   ];
@@ -1073,9 +1087,20 @@ function renderStats() {
       <span class="track"><i style="width:${Math.max(2, Math.min(100, val || 0))}%"></i></span>
       <span class="val">${fmtVal(v)}</span></div>`;
   }).join("");
-  $("targetBars").innerHTML = bars(s.targets || {}, v => `${n(v.rate_pct, 0)}% <span class="dim">(${i0(v.hits)})</span>`)
+  // إخفاء أهداف خارج القواعد الحالية (T3 فما فوق) وترتيب الدرجات A+…D
+  const nTargets = ((D.rules || {}).targets_pct || []).length || 2;
+  const tgtObj = {};
+  Object.entries(s.targets || {}).forEach(([k, v]) => {
+    const m = /^T(\d+)$/.exec(k);
+    if (!m || +m[1] <= nTargets) tgtObj[k] = v;
+  });
+  const gradeOrder = ["A+", "A", "B", "C", "D"];
+  const gradeObj = {};
+  gradeOrder.forEach((g) => { if (s.by_grade && s.by_grade[g]) gradeObj[g] = s.by_grade[g]; });
+  Object.keys(s.by_grade || {}).forEach((g) => { if (!(g in gradeObj)) gradeObj[g] = s.by_grade[g]; });
+  $("targetBars").innerHTML = bars(tgtObj, v => `${n(v.rate_pct, 0)}% <span class="dim">(${i0(v.hits)})</span>`)
     || '<div class="dim">—</div>';
-  $("gradeBars").innerHTML = bars(s.by_grade || {}, v => `${n(v.win_rate_pct, 0)}% <span class="dim">(${i0(v.trades)})</span>`)
+  $("gradeBars").innerHTML = bars(gradeObj, v => `${n(v.win_rate_pct, 0)}% <span class="dim">(${i0(v.trades)})</span>`)
     || '<div class="dim">—</div>';
   $("dropBars").innerHTML = bars(s.by_drop || {}, v => `${n(v.win_rate_pct, 0)}% <span class="dim">(${i0(v.trades)})</span>`)
     || '<div class="dim">—</div>';
@@ -1096,7 +1121,7 @@ function renderStats() {
       <td class="num">${pending ? "<span class='dim'>معلّق @ </span>" + money(t.trigger) : money(t.entry)}</td>
       <td class="num">${money(t.last_price)}</td>
       <td class="num ${cls(t.unrealized_pct)}">${pending ? "—" : pct(t.unrealized_pct, 2)}</td>
-      <td class="num pos">${pct(t.mfe_pct, 1)}</td><td class="num neg">${pct(t.mae_pct, 1)}</td>
+      <td class="num pos">${pct(t.mfe_pct, 1)}</td><td class="num neg">${pct(t.mae_pct == null ? null : Math.min(0, +t.mae_pct), 1)}</td>
       <td class="num">${pending ? "—" : n((t.unrealized_pct || 0) / riskPct, 2)}</td>
       <td class="num">${money(t.current_stop || t.stop)}${t.stop_at_break_even ? " <span class='pos' title='نُقل إلى التعادل بعد T1'>⟲</span>" : ""}</td>
       <td class="num">${pending ? "—" : i0(t.hold_min) + " د"}</td>
@@ -1186,7 +1211,7 @@ function exportCSV() {
     x.hold_min, x.score, x.grade, x.strength_score, x.confirm_score,
     (x.checks || {}).base, (x.checks || {}).rsi, (x.checks || {}).obv, (x.checks || {}).macd, x.complete,
     x.rsi, x.rsi_min, x.rvol, x.relative_volume, x.float, x.float_turnover_pct, x.base_low,
-    (x.risk || {}).stop, (x.risk || {}).target, (x.risk || {}).rr_t2, x.atr, x.vwap, x.last_bar];
+    (x.risk || {}).stop, (x.risk || {}).target_2 ?? (x.risk || {}).target, (x.risk || {}).rr_t2, x.atr, x.vwap, x.last_bar];
   const csv = [head.join(",")].concat(rows.map(r => get(r).map(v => {
     const s = v == null ? "" : String(v); return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
   }).join(","))).join("\n");
