@@ -1769,11 +1769,11 @@
  },
  "BDAI": {
   "ticker": "BDAI",
-  "value": null,
-  "status": "missing",
-  "source": "none",
-  "as_of": "2026-10-09",
-  "expires": "2026-10-10T02:01:29.538470+00:00"
+  "value": 726315,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:16.662838+00:00"
  },
  "SCNX": {
   "ticker": "SCNX",
@@ -5598,5 +5598,269 @@
   "source": "yahoo_float",
   "as_of": "2026-10-09",
   "expires": "2026-10-30T20:01:43.443457+00:00"
+ },
+ "GRMLW": {
+  "ticker": "GRMLW",
+  "value": 3075412,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:16.287681+00:00"
+ },
+ "DFLI": {
+  "ticker": "DFLI",
+  "value": 1832357,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:16.295538+00:00"
+ },
+ "ZBAO": {
+  "ticker": "ZBAO",
+  "value": 4235944,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:16.286745+00:00"
+ },
+ "OLB": {
+  "ticker": "OLB",
+  "value": 17187014,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:16.297528+00:00"
+ },
+ "NHTC": {
+  "ticker": "NHTC",
+  "value": 6927642,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:16.679094+00:00"
+ },
+ "GIXI": {
+  "ticker": "GIXI",
+  "value": 631799,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:16.618836+00:00"
+ },
+ "RZAI": {
+  "ticker": "RZAI",
+  "value": 39658713,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:16.288486+00:00"
+ },
+ "LNKS": {
+  "ticker": "LNKS",
+  "value": 1498032,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:16.629745+00:00"
+ },
+ "POAS": {
+  "ticker": "POAS",
+  "value": 767705,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:16.867451+00:00"
+ },
+ "RGTIW": {
+  "ticker": "RGTIW",
+  "value": 327964508,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:16.300370+00:00"
+ },
+ "NXGL": {
+  "ticker": "NXGL",
+  "value": 383887,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:16.289903+00:00"
+ },
+ "CTNM": {
+  "ticker": "CTNM",
+  "value": 27703073,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:16.824425+00:00"
+ },
+ "MDCX": {
+  "ticker": "MDCX",
+  "value": 1052197,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:16.296034+00:00"
+ },
+ "ABSI": {
+  "ticker": "ABSI",
+  "value": 163793560,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:16.895138+00:00"
+ },
+ "KRRO": {
+  "ticker": "KRRO",
+  "value": 10512197,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:16.959882+00:00"
+ },
+ "GLXG": {
+  "ticker": "GLXG",
+  "value": 2014446,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:16.917217+00:00"
+ },
+ "YHC": {
+  "ticker": "YHC",
+  "value": 1277897,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:17.029649+00:00"
+ },
+ "QUCY": {
+  "ticker": "QUCY",
+  "value": 24344467,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:17.034016+00:00"
+ },
+ "ENVX": {
+  "ticker": "ENVX",
+  "value": 189630848,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:17.037338+00:00"
+ },
+ "CRVO": {
+  "ticker": "CRVO",
+  "value": 9604406,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:17.063630+00:00"
+ },
+ "IMSR": {
+  "ticker": "IMSR",
+  "value": 51333046,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:17.126843+00:00"
+ },
+ "ZENA": {
+  "ticker": "ZENA",
+  "value": 81197287,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:17.048741+00:00"
+ },
+ "BIOA": {
+  "ticker": "BIOA",
+  "value": 39189535,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:17.109825+00:00"
+ },
+ "PSNY": {
+  "ticker": "PSNY",
+  "value": 65314494,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:17.172922+00:00"
+ },
+ "LWLG": {
+  "ticker": "LWLG",
+  "value": 152431332,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:17.157811+00:00"
+ },
+ "ANGI": {
+  "ticker": "ANGI",
+  "value": 29131150,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:17.262867+00:00"
+ },
+ "XPOF": {
+  "ticker": "XPOF",
+  "value": 21889707,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:17.227397+00:00"
+ },
+ "SKYD": {
+  "ticker": "SKYD",
+  "value": 514726284,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:17.206532+00:00"
+ },
+ "ANGX": {
+  "ticker": "ANGX",
+  "value": 105780647,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:17.266444+00:00"
+ },
+ "MX": {
+  "ticker": "MX",
+  "value": 31044912,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:17.270675+00:00"
+ },
+ "SORA": {
+  "ticker": "SORA",
+  "value": 4863896,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:17.351363+00:00"
+ },
+ "RBBN": {
+  "ticker": "RBBN",
+  "value": 92510685,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:17.300665+00:00"
+ },
+ "TRDA": {
+  "ticker": "TRDA",
+  "value": 22668665,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-12",
+  "expires": "2026-11-02T21:24:17.362937+00:00"
  }
 }
