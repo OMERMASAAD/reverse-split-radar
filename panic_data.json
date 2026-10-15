@@ -1,6 +1,6 @@
 {
- "updated_at": "2026-10-15T00:07:53.150199+00:00",
- "session_date": "2026-10-14",
+ "updated_at": "2026-10-15T13:04:54.435501+00:00",
+ "session_date": "2026-10-15",
  "master_count": 346,
  "master_built_on": "2026-10-14",
  "universe_rules": {
@@ -18,12 +18,12 @@
   "funnel": {
    "universe": 346,
    "frames": 346,
-   "no_data": 2,
-   "stale": 178,
+   "no_data": 94,
+   "stale": 170,
    "no_runup": 0,
-   "weak_runup_volume": 2,
+   "weak_runup_volume": 0,
    "no_drop": 0,
-   "too_deep": 2,
+   "too_deep": 0,
    "monitored": 0,
    "near_low": 0,
    "base_ok": 0,
@@ -33,9 +33,9 @@
    "complete": 0,
    "purged_new": 0,
    "weakened": 0,
-   "dropped_no_base": 1,
-   "low_runup": 162,
-   "runup_ok": 164
+   "dropped_no_base": 0,
+   "low_runup": 82,
+   "runup_ok": 82
   },
   "coverage_pct": 100.0
  },
@@ -422,17 +422,27 @@
    "items": 0,
    "complete": 0,
    "duration_s": 21.5
+  },
+  {
+   "at": "2026-10-15T13:04:54.435501+00:00",
+   "ok": true,
+   "coverage_pct": 100.0,
+   "frames": 346,
+   "master": 346,
+   "items": 0,
+   "complete": 0,
+   "duration_s": 20.3
   }
  ],
  "last_scan": {
-  "at": "2026-10-15T00:07:53.150199+00:00",
+  "at": "2026-10-15T13:04:54.435501+00:00",
   "ok": true,
   "coverage_pct": 100.0,
   "frames": 346,
   "master": 346,
   "items": 0,
   "complete": 0,
-  "duration_s": 21.5
+  "duration_s": 20.3
  },
  "summary": {
   "universe": 346,
@@ -463,12 +473,12 @@
   "funnel": {
    "universe": 346,
    "frames": 346,
-   "no_data": 2,
-   "stale": 178,
+   "no_data": 94,
+   "stale": 170,
    "no_runup": 0,
-   "weak_runup_volume": 2,
+   "weak_runup_volume": 0,
    "no_drop": 0,
-   "too_deep": 2,
+   "too_deep": 0,
    "monitored": 0,
    "near_low": 0,
    "base_ok": 0,
@@ -478,32 +488,32 @@
    "complete": 0,
    "purged_new": 0,
    "weakened": 0,
-   "dropped_no_base": 1,
-   "low_runup": 162,
-   "runup_ok": 164
+   "dropped_no_base": 0,
+   "low_runup": 82,
+   "runup_ok": 82
   },
   "coverage_pct": 100.0
  },
  "clock": {
-  "et_time": "20:07:53",
-  "et_date": "2026-10-14",
-  "phase": "after_hours",
-  "phase_label": "ما بعد الإغلاق",
+  "et_time": "09:04:54",
+  "et_date": "2026-10-15",
+  "phase": "premarket",
+  "phase_label": "ما قبل الافتتاح",
   "is_trading_day": true,
   "minutes_to_close": null,
   "session_progress_pct": null,
-  "next_scan_at": "2026-10-14T20:15:00-04:00",
-  "seconds_to_next_scan": 426
+  "next_scan_at": "2026-10-15T09:15:00-04:00",
+  "seconds_to_next_scan": 605
  },
  "uptime": {
-  "runs": 14,
-  "ok_runs": 14,
+  "runs": 15,
+  "ok_runs": 15,
   "skipped": 0,
   "failed": 0,
   "ok_rate_pct": 100.0,
-  "avg_duration_s": 17.8,
+  "avg_duration_s": 17.9,
   "first_at": "2026-10-06T13:30:00+00:00",
-  "last_at": "2026-10-15T00:07:53.150199+00:00"
+  "last_at": "2026-10-15T13:04:54.435501+00:00"
  },
  "rules": {
   "drop_max_pct": -30.0,
