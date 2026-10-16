@@ -1,6 +1,6 @@
 {
- "updated_at": "2026-10-15T23:35:45.171679+00:00",
- "session_date": "2026-10-15",
+ "updated_at": "2026-10-16T13:01:31.279737+00:00",
+ "session_date": "2026-10-16",
  "master_count": 348,
  "master_built_on": "2026-10-15",
  "universe_rules": {
@@ -18,10 +18,10 @@
   "funnel": {
    "universe": 348,
    "frames": 348,
-   "no_data": 1,
-   "stale": 248,
+   "no_data": 88,
+   "stale": 192,
    "no_runup": 0,
-   "weak_runup_volume": 3,
+   "weak_runup_volume": 0,
    "no_drop": 0,
    "too_deep": 0,
    "monitored": 0,
@@ -34,8 +34,8 @@
    "purged_new": 0,
    "weakened": 0,
    "dropped_no_base": 0,
-   "low_runup": 96,
-   "runup_ok": 96
+   "low_runup": 68,
+   "runup_ok": 68
   },
   "coverage_pct": 100.0
  },
@@ -462,17 +462,27 @@
    "items": 0,
    "complete": 0,
    "duration_s": 26.8
+  },
+  {
+   "at": "2026-10-16T13:01:31.279737+00:00",
+   "ok": true,
+   "coverage_pct": 100.0,
+   "frames": 348,
+   "master": 348,
+   "items": 0,
+   "complete": 0,
+   "duration_s": 27.4
   }
  ],
  "last_scan": {
-  "at": "2026-10-15T23:35:45.171679+00:00",
+  "at": "2026-10-16T13:01:31.279737+00:00",
   "ok": true,
   "coverage_pct": 100.0,
   "frames": 348,
   "master": 348,
   "items": 0,
   "complete": 0,
-  "duration_s": 26.8
+  "duration_s": 27.4
  },
  "summary": {
   "universe": 348,
@@ -503,10 +513,10 @@
   "funnel": {
    "universe": 348,
    "frames": 348,
-   "no_data": 1,
-   "stale": 248,
+   "no_data": 88,
+   "stale": 192,
    "no_runup": 0,
-   "weak_runup_volume": 3,
+   "weak_runup_volume": 0,
    "no_drop": 0,
    "too_deep": 0,
    "monitored": 0,
@@ -519,31 +529,31 @@
    "purged_new": 0,
    "weakened": 0,
    "dropped_no_base": 0,
-   "low_runup": 96,
-   "runup_ok": 96
+   "low_runup": 68,
+   "runup_ok": 68
   },
   "coverage_pct": 100.0
  },
  "clock": {
-  "et_time": "19:35:45",
-  "et_date": "2026-10-15",
-  "phase": "after_hours",
-  "phase_label": "ما بعد الإغلاق",
+  "et_time": "09:01:31",
+  "et_date": "2026-10-16",
+  "phase": "premarket",
+  "phase_label": "ما قبل الافتتاح",
   "is_trading_day": true,
   "minutes_to_close": null,
   "session_progress_pct": null,
-  "next_scan_at": "2026-10-15T19:45:00-04:00",
-  "seconds_to_next_scan": 554
+  "next_scan_at": "2026-10-16T09:15:00-04:00",
+  "seconds_to_next_scan": 808
  },
  "uptime": {
-  "runs": 18,
-  "ok_runs": 18,
+  "runs": 19,
+  "ok_runs": 19,
   "skipped": 0,
   "failed": 0,
   "ok_rate_pct": 100.0,
-  "avg_duration_s": 18.9,
+  "avg_duration_s": 19.4,
   "first_at": "2026-10-06T13:30:00+00:00",
-  "last_at": "2026-10-15T23:35:45.171679+00:00"
+  "last_at": "2026-10-16T13:01:31.279737+00:00"
  },
  "rules": {
   "drop_max_pct": -30.0,
