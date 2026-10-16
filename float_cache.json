@@ -6361,11 +6361,11 @@
  },
  "BMMX": {
   "ticker": "BMMX",
-  "value": null,
-  "status": "missing",
-  "source": "none",
-  "as_of": "2026-10-15",
-  "expires": "2026-10-15T23:11:46.316063+00:00"
+  "value": 54013371,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-16",
+  "expires": "2026-11-06T16:50:14.451270+00:00"
  },
  "EROC": {
   "ticker": "EROC",
@@ -6454,5 +6454,173 @@
   "source": "yahoo_float",
   "as_of": "2026-10-15",
   "expires": "2026-11-05T17:11:46.983691+00:00"
+ },
+ "XHLD": {
+  "ticker": "XHLD",
+  "value": 11979943,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-16",
+  "expires": "2026-11-06T16:50:14.389027+00:00"
+ },
+ "SEED": {
+  "ticker": "SEED",
+  "value": 12128540,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-16",
+  "expires": "2026-11-06T16:50:14.452749+00:00"
+ },
+ "MRKR": {
+  "ticker": "MRKR",
+  "value": 16673127,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-16",
+  "expires": "2026-11-06T16:50:14.469760+00:00"
+ },
+ "ATLX": {
+  "ticker": "ATLX",
+  "value": 30099805,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-16",
+  "expires": "2026-11-06T16:50:14.470259+00:00"
+ },
+ "FRVO": {
+  "ticker": "FRVO",
+  "value": 294763199,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-16",
+  "expires": "2026-11-06T16:50:14.468728+00:00"
+ },
+ "SECZ": {
+  "ticker": "SECZ",
+  "value": 163265685,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-16",
+  "expires": "2026-11-06T16:50:14.453735+00:00"
+ },
+ "HUIZ": {
+  "ticker": "HUIZ",
+  "value": 10106076,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-16",
+  "expires": "2026-11-06T16:50:14.470912+00:00"
+ },
+ "AREC": {
+  "ticker": "AREC",
+  "value": 106971272,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-16",
+  "expires": "2026-11-06T16:50:14.831654+00:00"
+ },
+ "MNTS": {
+  "ticker": "MNTS",
+  "value": 21963401,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-16",
+  "expires": "2026-11-06T16:50:14.871524+00:00"
+ },
+ "SLS": {
+  "ticker": "SLS",
+  "value": 196632574,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-16",
+  "expires": "2026-11-06T16:50:14.879494+00:00"
+ },
+ "DUOT": {
+  "ticker": "DUOT",
+  "value": 31472499,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-16",
+  "expires": "2026-11-06T16:50:14.834707+00:00"
+ },
+ "AGNT": {
+  "ticker": "AGNT",
+  "value": 167117937,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-16",
+  "expires": "2026-11-06T16:50:14.899116+00:00"
+ },
+ "CGTX": {
+  "ticker": "CGTX",
+  "value": 95093746,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-16",
+  "expires": "2026-11-06T16:50:14.925775+00:00"
+ },
+ "CLYM": {
+  "ticker": "CLYM",
+  "value": 57436255,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-16",
+  "expires": "2026-11-06T16:50:15.293852+00:00"
+ },
+ "GOGO": {
+  "ticker": "GOGO",
+  "value": 135507862,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-16",
+  "expires": "2026-11-06T16:50:15.371624+00:00"
+ },
+ "GANX": {
+  "ticker": "GANX",
+  "value": 43643619,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-16",
+  "expires": "2026-11-06T16:50:15.203232+00:00"
+ },
+ "GAME": {
+  "ticker": "GAME",
+  "value": 13177666,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-16",
+  "expires": "2026-11-06T16:50:15.340696+00:00"
+ },
+ "LYEL": {
+  "ticker": "LYEL",
+  "value": 24505141,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-16",
+  "expires": "2026-11-06T16:50:15.421026+00:00"
+ },
+ "IE": {
+  "ticker": "IE",
+  "value": 159590259,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-16",
+  "expires": "2026-11-06T16:50:15.385517+00:00"
+ },
+ "DERM": {
+  "ticker": "DERM",
+  "value": 28224395,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-16",
+  "expires": "2026-11-06T16:50:14.928357+00:00"
+ },
+ "MGNX": {
+  "ticker": "MGNX",
+  "value": 63700187,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-16",
+  "expires": "2026-11-06T16:50:15.521226+00:00"
  }
 }
