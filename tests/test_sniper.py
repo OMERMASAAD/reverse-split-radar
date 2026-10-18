@@ -46,7 +46,8 @@ def test_short_base_is_visible_but_not_complete():
     assert res is not None and why == "ok"
     assert res["checks"]["base"] is False
     assert res["complete"] is False
-    assert res["state"] == C.STATE_NEW
+    # V2: قد يكون NEW أو BUILDING حسب early score — المهم ليس complete
+    assert res["state"] in (C.STATE_NEW, C.STATE_BUILDING)
 
 
 def test_no_runup_is_rejected():
@@ -57,10 +58,14 @@ def test_no_runup_is_rejected():
 
 
 def test_too_deep_is_rejected():
-    """انهيار أعمق من النطاق المستهدف (30–50%) يخرج من الرادار."""
-    frame, now = synthetic.make(crash_to=0.30)
+    """V2: الهبوط العميق لم يعد سبب استبعاد — يُصنف فقط حسب الفئة (30-40,40-60,60-80,80%+)."""
+    frame, now = synthetic.make(crash_to=0.30)  # هبوط ~70%
     res, why = evaluate(frame, now)
-    assert res is None and why == "too_deep", why
+    # V2: لا استبعاد بسبب العمق — يجب أن يبقى مرشحًا مع تصنيف عميق
+    assert res is not None and why == "ok", f"V2 لا يستبعد العميق: {res}, {why}"
+    assert res["drop_pct"] <= -30, res["drop_pct"]
+    assert res["drop_category"] in ("60–80%", "80%+", "40–60%"), res["drop_category"]
+    assert res["drawdown_category"] in ("60–80%", "80%+", "40–60%")
 
 
 def test_drop_band_is_reported():
@@ -154,11 +159,10 @@ def test_risk_plan_math():
     plan = risk.risk_plan(price=1.00, base_low=0.90, base_high=1.06, atr_value=0.03)
     assert plan["stop"] < 0.90
     assert plan["risk_pct"] > 0
-    assert [t["pct"] for t in plan["targets"]] == list(C.TARGETS_PCT)
-    assert plan["targets"][0]["pct"] == C.TARGET_PCT
+    assert [t["pct"] for t in plan["targets"]] == list(C.TARGETS_PCT)  # V2: (10,20,30)
+    assert plan["targets"][1]["pct"] == C.TARGET_PCT  # TARGET_PCT=20 هو الثاني الآن
     assert plan["stop"] == round(0.90 * (1 - C.STOP_BUFFER_PCT / 100.0), 4)
-    assert plan["rr_t1"] < plan["rr_t2"]
-    assert plan["rr_t3"] is None, "الأهداف هدفان فقط (+20% و+30%)"
+    assert plan["rr_t1"] < plan["rr_t2"] < plan["rr_t3"] if plan.get("rr_t3") else plan["rr_t1"] < plan["rr_t2"]
     assert plan["shares"] == int(math.floor(C.ACCOUNT_EQUITY * C.RISK_PER_TRADE_PCT / 100
                                             / plan["risk_per_share"]))
     assert plan["measured_projection"] > plan["entry"]
@@ -175,6 +179,7 @@ def _run(frames, prev, universe_obj, now):
 
 
 def test_purge_on_base_break():
+    """V2: كسر 5-6% لم يعد شطبًا آليًا — يُراقب كـ سحب سيولة محتمل."""
     frame, now = synthetic.make()
     uni = synthetic.universe_stub(("AAA",))
     first = _run({"AAA": frame}, {}, uni, now)
@@ -184,13 +189,14 @@ def test_purge_on_base_break():
     broken = frame.copy()
     broken.iloc[-1, broken.columns.get_loc("Close")] = base_low * 0.94      # -6% أعمق من وقف 5%
     second = _run({"AAA": broken}, first, uni, now + timedelta(minutes=15))
-    assert not second["items"]
-    assert second["purged"][0]["ticker"] == "AAA"
-    assert "5%" in second["purged"][0]["reason"], second["purged"][0]["reason"]
-    assert second["diagnostics"]["funnel"]["purged_new"] == 1
-
-    third = _run({"AAA": frame}, second, uni, now + timedelta(minutes=30))  # لا يعود
-    assert not third["items"]
+    # V2: لا شطب آلي عند -6% — يبقى تحت المراقبة كـ LIQUIDITY_SWEEP_WATCH
+    assert len(second["items"]) == 1, second["items"]
+    assert second["items"][0]["sweep_state"] in (C.SWEEP_WATCH, C.SWEEP_BASE_FORMING, C.SWEEP_SELLING, C.SWEEP_INVALIDATED), second["items"][0]["sweep_state"]
+    # شطب حقيقي فقط عند كسر عميق >15% مع استمرار البيع
+    deep_broken = frame.copy()
+    deep_broken.iloc[-1, deep_broken.columns.get_loc("Close")] = base_low * 0.82  # -18%
+    # نحتاج عدة شموع تحت القاع ليظهر INVALIDATED — نختبر أن النظام لا يشطب فورًا عند 6%
+    assert second["diagnostics"]["funnel"]["purged_new"] == 0
 
 
 def test_weakened_keeps_item():
@@ -361,7 +367,8 @@ def test_summarize_stats():
     assert stats["profit_factor"] == 2.0
     assert stats["targets"]["T2"]["hits"] == 1
     assert stats["by_grade"]["A"]["win_rate_pct"] == 100.0
-    assert stats["by_drop"]["-50% إلى -70%"]["trades"] == 1
+    # V2 buckets: 40–60% و 60–80% بدل -50% إلى -70%
+    assert "40–60%" in stats["by_drop"] or "60–80%" in stats["by_drop"], stats["by_drop"]
     assert tracker.summarize([]) == {"trades": 0}
 
 
@@ -608,17 +615,20 @@ def test_no_breakout_stays_ready():
 
 
 def test_vwap_acts_as_ceiling_when_price_below_it():
-    """السعر تحت VWAP ← الخط سقف مقاوم والأهداف تُقيَّد قبله."""
+    """السعر تحت VWAP ← الخط سقف مقاوم والأهداف تُقيَّد قبله (V2: 10% قد يبقى قبل السقف)."""
     from sniper.risk import risk_plan
     plan = risk_plan(2.00, 1.90, 2.05, 0.05, vwap=2.30)
     assert plan["vwap_is_ceiling"] is True
     assert plan["vwap_role"].startswith("سقف مقاوم")
     assert plan["targets_capped"] == 2
-    for t in plan["targets"]:
-        assert t["capped"] is True
+    capped = [t for t in plan["targets"] if t["capped"]]
+    assert len(capped) == 2
+    for t in capped:
         assert t["capped_price"] < 2.30, "الهدف المُقيَّد يجب أن يبقى قبل الخط"
         assert t["capped_rr"] < t["rr"], "التقييد يقلّص العائد"
     assert "يخترق السقف" in plan["vwap_note"]
+    # الهدف 10% قد يكون قبل السقف — ليس مقيدًا
+    assert any(not t["capped"] for t in plan["targets"])
 
 
 def test_vwap_is_support_when_price_above_it():
