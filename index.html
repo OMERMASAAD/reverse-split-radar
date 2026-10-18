@@ -395,12 +395,17 @@ canvas.pane{display:block;width:100%;height:96px;border-top:1px solid var(--bord
       <button class="chip" id="onlyRS">تجزئة عكسية فقط</button>
       <select class="sel" id="sortBy">
         <option value="default">الترتيب الافتراضي</option>
-        <option value="score">الأعلى درجة</option>
+        <option value="score">الأعلى درجة مركبة</option>
+        <option value="early">الأعلى بوادر ارتداد</option>
+        <option value="liquidity">الأعلى سيولة</option>
         <option value="drop">الأعمق هبوطًا</option>
         <option value="hold">الأطول ثباتًا</option>
         <option value="rvol">الأعلى RVOL</option>
+        <option value="dollar">الأعلى قيمة تداول</option>
+        <option value="resistance">الأبعد عن المقاومة</option>
         <option value="rr">الأفضل عائد/مخاطرة</option>
         <option value="turnover">الأعلى دوران فلوت</option>
+        <option value="vwap">قرب VWAP</option>
       </select>
       <div class="spacer"></div>
       <button class="btn" id="csvBtn">⬇ تصدير CSV</button>
@@ -590,11 +595,13 @@ function renderKpis() {
     ["الكون المرصود", i0(s.universe), "سهم منخفض الفلوت", "var(--cyan)"],
     ["تحت الرادار", i0(s.monitored), "هبوط ≥ 30% من القمة", "var(--violet)"],
     ["إشارة مكتملة", i0(s.complete), "الشروط الأربعة معًا", "var(--green)"],
-    ["شبه جاهزة", i0(readinessNearCount()), "حققت الهبوط، الشروط ناقصة", "var(--amber)"],
-    ["مشطوب اليوم", i0(s.purged), "كسر قاع الثبات", "var(--red)"],
+    ["بوادر ارتداد", i0(s.early || 0), "إشارة مبكرة ≥55/100", "var(--amber)"],
+    ["استعادة قاع ✓", i0(s.reclaim || 0), "كسر كاذب ثم عودة", "var(--cyan)"],
+    ["كسر تحت المراقبة", i0(s.sweep_watch || 0), "سحب سيولة محتمل", "var(--red)"],
+    ["مشطوب/ملغى", i0(s.purged), "كسر عميق موضوعي", "var(--red)"],
     ["تغطية البيانات", s.coverage_pct == null ? "—" : n(s.coverage_pct, 0) + "%",
       i0(((D.diagnostics || {}).funnel || {}).frames || 0) + " رمز بحزمة 5m", "var(--cyan)"],
-    ["متوسط الدرجة", s.avg_score == null ? "—" : i0(s.avg_score), "من 100", "var(--green)"],
+    ["متوسط المركبة", s.avg_score == null ? "—" : i0(s.avg_score), `مركبة ${s.avg_early_score != null ? "· مبكرة " + i0(s.avg_early_score) : ""}`, "var(--green)"],
     ["مسوحات اليوم", i0(up.runs || 0), (up.ok_rate_pct == null ? "—" : n(up.ok_rate_pct, 0) + "% نجاح"), "var(--violet)"],
   ];
   $("kpis").innerHTML = cards.map(([k, v, m, c]) =>
@@ -693,11 +700,10 @@ function renderFunnel() {
 
 /* ── الجدول ────────────────────────────────────── */
 const COLS = [
-  ["ticker", "الرمز"], ["state", "الحالة"], ["price", "السعر"], ["change", "التغيّر"],
-  ["drop_pct", "الهبوط من القمة"], ["runup", "الصعود السابق"], ["hold", "الثبات"], ["score", "الدرجة"],
-  ["checks", "الشروط"], ["rsi", "RSI"], ["rvol", "RVOL"], ["rv", "حجم نسبي"],
-  ["turn", "دوران الفلوت"], ["float", "الفلوت"], ["target", "الهدف T2"],
-  ["stop", "الوقف"], ["rr", "R:R"], ["spark", "المسار"], ["last_bar", "آخر شمعة"],
+  ["ticker", "الرمز"], ["state", "الحالة"], ["early", "بوادر ارتداد"], ["sweep", "حالة القاع"], ["price", "السعر"], ["change", "التغيّر"],
+  ["drop_pct", "الهبوط"], ["drop_cat", "فئة الهبوط"], ["peak", "القمة المرجعية"], ["low", "القاع بعد القمة"], ["runup", "الصعود السابق"], ["hold", "الثبات"], ["score", "الدرجة المركبة"],
+  ["checks", "الشروط"], ["rsi", "RSI"], ["rvol", "RVOL"], ["dollar", "قيمة التداول"], ["liquidity", "سيولة"], ["rv", "حجم نسبي"],
+  ["turn", "دوران الفلوت"], ["float", "الفلوت ومصدره"], ["vwap", "VWAP"], ["resistance", "مقاومة"], ["target", "هدف T2/T3"], ["stop", "الوقف"], ["rr", "R:R"], ["spark", "المسار"], ["updated", "آخر تحديث"],
 ];
 function renderGridHead() {
   $("gridHead").innerHTML = COLS.map(([k, label]) =>
@@ -709,8 +715,15 @@ function renderGridHead() {
   });
 }
 function stateClass(st) {
-  return ({ READY: "b-ready", TRIGGERED: "b-triggered", BUILDING: "b-building", NEW: "b-new",
-    WEAKENED: "b-weakened", PURGED: "b-purged", DEAD: "b-dead" })[st] || "b-new";
+  const m = { READY: "b-ready", TRIGGERED: "b-triggered", BUILDING: "b-building", NEW: "b-new",
+    WEAKENED: "b-weakened", PURGED: "b-purged", DEAD: "b-dead",
+    BASE_FORMING: "b-building", LIQUIDITY_SWEEP_WATCH: "b-weakened", RECLAIM_PENDING: "b-building", RECLAIM_CONFIRMED: "b-ready",
+    EARLY_REVERSAL: "b-ready", REVERSAL_CONFIRMED: "b-triggered", SELLING_CONTINUES: "b-purged", INVALIDATED: "b-purged" };
+  return m[st] || "b-new";
+}
+function sweepClass(st) {
+  return ({ BASE_FORMING: "b-building", LIQUIDITY_SWEEP_WATCH: "b-purged", RECLAIM_PENDING: "b-building", RECLAIM_CONFIRMED: "b-ready",
+    EARLY_REVERSAL: "b-ready", REVERSAL_CONFIRMED: "b-triggered", SELLING_CONTINUES: "b-purged", INVALIDATED: "b-purged" })[st] || "b-new";
 }
 function filtered() {
   const q = $("q").value.trim().toLowerCase();
@@ -723,9 +736,9 @@ function filtered() {
     return true;
   });
   const g = (x, path) => path.split(".").reduce((a, k) => (a == null ? a : a[k]), x);
-  const keys = { price: "price", drop_pct: "drop_pct", drop: "drop_pct", runup: "runup.runup_pct", hold: "hold_min", score: "score",
-    rsi: "rsi", rvol: "rvol", rv: "relative_volume", turn: "float_turnover_pct", turnover: "float_turnover_pct",
-    float: "float", rr: "risk.rr_t2", last_bar: "last_bar", ticker: "ticker" };
+  const keys = { price: "price", drop_pct: "drop_pct", drop: "drop_pct", runup: "runup.runup_pct", hold: "hold_min", score: "composite_score", early: "early_score", liquidity: "liquidity_score",
+    rsi: "rsi", rvol: "rvol", rv: "relative_volume", turn: "float_turnover_pct", turnover: "float_turnover_pct", dollar: "dollar_volume_day",
+    float: "float", rr: "risk.rr_t2", vwap: "vwap_distance_pct", resistance: "resistance_distance_pct", last_bar: "last_bar", updated: "last_update", ticker: "ticker" };
   if (keys[sortKey]) {
     const p = keys[sortKey];
     rows = rows.slice().sort((a, b) => {
@@ -755,36 +768,45 @@ function renderGrid() {
     const b = (x.levels || {}).base || {}, risk = x.risk || {}, rel = (x.volume || {}).relative || {};
     const holdPct = Math.min(100, Math.round(((x.hold_min || 0) / Math.max(1, x.hold_needed || 60)) * 100));
     const chg = (x.levels || {}).change_pct;
+    const early = x.early || {}; const sweep = x.sweep || {}; const liq = x.liquidity || {};
+    const vwapDist = x.vwap_distance_pct;
+    const resDist = x.resistance_distance_pct;
+    const earlyLbl = x.early_label || early.label || "—";
+    const sweepLbl = x.sweep_label || sweep.state_label || sweep.state || "—";
+    const liqLbl = x.liquidity_label || liq.label || "—";
     return `<tr data-t="${esc(x.ticker)}" class="${sel === x.ticker ? "sel" : ""}">
       <td><div class="ticker-cell"><span class="tick">${esc(x.ticker)}</span>
         ${x.reverse_split ? '<span class="rs-tag">تجزئة عكسية</span>' : ""}
         ${x.data_missing ? '<span class="rs-tag warn">بيانات منقطعة</span>' : ""}
+        ${x.incomplete_data ? '<span class="rs-tag warn">بيانات ناقصة</span>' : ""}
         </div><div class="co">${esc(x.company || "")}</div></td>
-      <td><span class="badge ${stateClass(x.state)}">${esc(x.state_label || x.state)}</span></td>
-      <td class="num" style="font-weight:700">${money(x.price)}</td>
+      <td><span class="badge ${stateClass(x.state)}">${esc(x.state_label || x.state)}</span><div class="dim" style="font-size:9px">${esc(x.opportunity||"")}</div></td>
+      <td><div class="num" style="font-weight:700;color:${x.early_is_strong? 'var(--green)' : x.early_is_early ? 'var(--amber)' : 'var(--muted)'}">${i0(x.early_score)}</div><div class="dim" style="font-size:9px">${esc(earlyLbl)}</div></td>
+      <td><span class="badge ${sweepClass(x.sweep_state || sweep.state)}">${esc(sweepLbl)}</span><div class="dim" style="font-size:9px;max-width:110px;white-space:normal;line-height:1.2">${esc((sweep.note||"").slice(0,42))}</div></td>
+      <td class="num" style="font-weight:700">${money(x.price)}<div class="dim" style="font-size:9px">${hhmm(x.last_bar)}</div></td>
       <td class="num ${cls(chg)}">${pct(chg, 2)}</td>
-      <td class="num neg" style="font-weight:700">${pct(x.drop_pct, 1)}</td>
-      <td><div class="num pos">${pct((x.runup || {}).runup_pct, 0)}</div>
-        <div class="dim" style="font-size:9.5px">حجم ${nn((x.runup || {}).runup_volume_ratio, 1, "×")}</div></td>
-      <td><div class="num">${i0(x.hold_min)}<span class="dim">/${i0(x.hold_needed)}د</span></div>
-        <div class="meter"><i style="width:${holdPct}%;background:${holdPct >= 100 ? "var(--green)" : "var(--amber)"}"></i></div></td>
-      <td><div style="display:flex;align-items:center;gap:6px">
-        <span class="grade g-${esc(x.grade)}">${esc(x.grade || "?")}</span>
-        <span class="num" style="font-weight:700">${i0(x.score)}</span></div>
-        <div class="dim" style="font-size:9.5px">تأكيد ${i0(x.confirm_score)}/100</div></td>
-      <td><div class="checks-mini" title="${esc(Object.keys(x.checks || {}).filter(k => x.checks[k]).join(", "))}">
-        ${["base", "rsi", "obv", "macd"].map(k => `<span class="cdot ${(x.checks || {})[k] ? "on" : ""}" title="${k}"></span>`).join("")}
-        </div></td>
-      <td class="num">${n(x.rsi, 1)}</td>
+      <td class="num neg" style="font-weight:700">${pct(x.drop_pct, 1)}<div class="dim" style="font-size:9px">${esc(x.drop_category||"")}</div></td>
+      <td class="num dim">${esc(x.drop_category||"")}<div class="dim" style="font-size:9px">قاع ${money(x.current_low||x.base_low)}</div></td>
+      <td class="num dim">${money(x.peak_price||x.day_high)}</td>
+      <td class="num dim">${money(x.current_low||x.base_low)}</td>
+      <td><div class="num pos">${pct((x.runup || {}).runup_pct, 0)}</div><div class="dim" style="font-size:9.5px">حجم ${nn((x.runup || {}).runup_volume_ratio, 1, "×")} · $${compact(x.runup?.runup_dollar_volume)}<br><span style="font-size:8.5px">${esc((x.runup||{}).session_span||"")}</span></div></td>
+      <td><div class="num">${i0(x.hold_min)}<span class="dim">/${i0(x.hold_needed)}د</span></div><div class="meter"><i style="width:${holdPct}%;background:${holdPct >= 100 ? "var(--green)" : "var(--amber)"}"></i></div></td>
+      <td><div style="display:flex;align-items:center;gap:6px"><span class="grade g-${esc(x.grade)}">${esc(x.grade || "?")}</span><span class="num" style="font-weight:700">${i0(x.composite_score ?? x.score)}</span></div><div class="dim" style="font-size:9.5px">مركبة · مكتملة ${i0(x.score)}/100</div></td>
+      <td><div class="checks-mini" title="${esc(Object.keys(x.checks || {}).filter(k => x.checks[k]).join(", "))}">${["base", "rsi", "obv", "macd"].map(k => `<span class="cdot ${(x.checks || {})[k] ? "on" : ""}" title="${k}"></span>`).join("")}</div><div class="dim" style="font-size:8px">${esc((x.risk_warnings||[]).slice(0,1).join(""))}</div></td>
+      <td class="num">${n(x.rsi, 1)}<div class="dim" style="font-size:9px">${esc(x.rsi_mode||"")}</div></td>
       <td class="num ${x.rvol >= 2 ? "pos" : x.rvol >= 1 ? "" : "dim"}">${n(x.rvol, 2)}</td>
+      <td class="num">${money(x.dollar_volume_day || x.dollar_volume)}<div class="dim" style="font-size:9px">آخر ${money(x.dollar_volume)}</div></td>
+      <td><div class="num" style="font-weight:600">${i0(x.liquidity_score)}<span class="dim" style="font-size:9px">/100</span></div><div class="dim" style="font-size:9px">${esc(liqLbl)}</div></td>
       <td class="num">${n(rel.relative_volume ?? x.relative_volume, 2)}</td>
       <td class="num">${nn(x.float_turnover_pct, 1, "%")}</td>
-      <td class="num dim">${compact(x.float)}</td>
-      <td class="num pos">${money(risk.target_2 ?? risk.target)}</td>
-      <td class="num neg">${money(risk.stop)}</td>
-      <td class="num">${n(risk.rr_t2, 1)}</td>
-      <td>${sparkline((x.history || []).map(h => h.score))}</td>
-      <td class="num dim">${hhmm(x.last_bar)}</td></tr>`;
+      <td class="num dim">${compact(x.float)}<div class="dim" style="font-size:9px">${esc(x.float_source||"")}${x.float_status ? " · "+esc(x.float_status) : ""}</div></td>
+      <td class="num ${vwapDist != null && Math.abs(vwapDist) < 5 ? "pos" : "dim"}">${pct(vwapDist,1)}<div class="dim" style="font-size:9px">${money(x.vwap)}</div></td>
+      <td class="num">${pct(resDist,1)}<div class="dim" style="font-size:9px">${money(x.nearest_resistance||x.closest_resistance)}</div></td>
+      <td class="num pos">${money(risk.target_2 ?? risk.target)}<div class="dim" style="font-size:9px">T1 ${money(risk.target)} · T3 ${money(risk.targets?.[2]?.price)}</div></td>
+      <td class="num neg">${money(risk.stop)}<div class="dim" style="font-size:9px">${n(risk.risk_pct,1)}%</div></td>
+      <td class="num">${n(risk.rr_t2, 1)}<div class="dim" style="font-size:9px">${risk.vwap_is_ceiling ? "سقف VWAP" : "حر"}</div></td>
+      <td>${sparkline((x.history || []).map(h => h.composite_score || h.score))}</td>
+      <td class="num dim">${hhmm(x.last_update||x.last_bar)}<div class="dim" style="font-size:9px">${timeAgo(x.last_update||x.last_bar)}</div>${x.incomplete_reason ? `<div class="dim" style="font-size:8px;color:var(--amber)">${esc(x.incomplete_reason)}</div>` : ""}</td></tr>`;
   }).join("");
   $("gridBody").querySelectorAll("tr").forEach((tr) => {
     tr.onclick = () => {
@@ -853,7 +875,17 @@ function openDrawer(x, keep) {
       <div class="metric"><div class="k">RVOL</div><div class="v">${sm(x.rvol, 2, "×")}</div></div>
       <div class="metric"><div class="k">حجم نسبي للوقت</div><div class="v">${sm((vol.relative || {}).relative_volume, 2, "×")}</div></div>
       <div class="metric"><div class="k">دوران الفلوت</div><div class="v">${sm(x.float_turnover_pct, 1, "%")}</div></div>
+      <div class="metric"><div class="k">القمة المرجعية</div><div class="v">${money(x.peak_price||x.day_high)}<small> · هبوط ${pct(x.drop_pct,1)}</small></div></div>
+      <div class="metric"><div class="k">تصنيف الهبوط</div><div class="v">${esc(x.drop_category||"—")}<small> · قاع ${money(x.current_low)}</small></div></div>
+      <div class="metric"><div class="k">بوادر ارتداد</div><div class="v">${i0(x.early_score)}/100 <small>${esc(x.early_label||"")}</small></div></div>
+      <div class="metric"><div class="k">سيولة حقيقية</div><div class="v">${i0(x.liquidity_score)}/100 <small>${esc(x.liquidity_label||"")}</small></div></div>
+      <div class="metric"><div class="k">حالة القاع/الكسر</div><div class="v" style="font-size:11px">${esc(x.sweep_label||x.sweep_state||"—")}</div></div>
+      <div class="metric"><div class="k">VWAP</div><div class="v">${money(x.vwap)}<small> ${pct(x.vwap_distance_pct,1)}</small></div></div>
+      <div class="metric"><div class="k">أقرب مقاومة</div><div class="v">${money(x.nearest_resistance||x.closest_resistance)}<small> ${pct(x.resistance_distance_pct,1)}</small></div></div>
+      <div class="metric"><div class="k">درجة مركبة</div><div class="v" style="font-weight:800">${i0(x.composite_score)}/100 <small>${esc(x.composite_label||"")}</small></div></div>
     </div>
+    ${x.risk_warnings && x.risk_warnings.length ? `<div class="sect" style="border:1px solid var(--danger-bd);background:var(--danger-bg);border-radius:8px;padding:10px;margin-top:10px"><h3 style="color:var(--danger-fg)">⚠️ تنبيهات المخاطر</h3><div style="font-size:12px;line-height:1.6">${x.risk_warnings.map(w=>`• ${esc(w)}`).join("<br>")}</div></div>` : ""}
+    ${x.incomplete_data ? `<div class="note" style="background:var(--warn-bg);border:1px solid var(--warn-bd)">بيانات غير مكتملة: ${esc(x.incomplete_reason||"قد تكون القمة/القاع غير دقيقة")}</div>` : ""}
 
     <div class="sect"><h3>الرسم البياني — شموع 5 دقائق</h3>
       <div class="pane-tabs" id="paneTabs"></div>
@@ -957,6 +989,52 @@ function openDrawer(x, keep) {
       <div class="lvl"><span>الفلوت المتداول اليوم</span>
         <b>${nn(x.float_turnover_pct, 1, "%")} · ${nn(((vol.float_turnover || {}).float_rotations), 2, " دورة")}</b></div>
       <div class="lvl"><span>الفلوت (${esc(x.float_status || "")} · ${esc(x.float_source || "")})</span><b>${compact(x.float)}</b></div>
+      <div class="lvl"><span>مصدر الفلوت وتاريخه</span><b>${esc(x.float_source||"غير متاح")} <small class="dim">${esc(x.float_source_updated||"")}</small></b></div>
+      <div class="lvl"><span>قيمة التداول اليوم</span><b>${money(x.dollar_volume_day)} <small class="dim">آخر ${money(x.dollar_volume)}</small></b></div>
+      <div class="lvl"><span>مستوى الخطر</span><b style="color:var(--red)">${(x.risk_warnings||[]).length ? (x.risk_warnings||[]).join(" · ").slice(0,80) : "—"}</b></div>
+      <div class="lvl"><span>أسباب التصنيف</span><b style="font-size:11px">${esc((x.early?.reasons||[]).join(" · ") || x.opportunity || "—")}</b></div>
+      <div class="lvl"><span>آخر تحديث</span><b>${hhmmss(x.last_update||x.last_bar)} <small class="dim">${timeAgo(x.last_update||x.last_bar)}</small></b></div>
+      <div class="lvl"><span>سبب بيانات ناقصة</span><b>${esc(x.incomplete_reason||"—")}</b></div>
+    </div>
+
+    <div class="sect"><h3>إشارة مبكرة — EARLY REVERSAL DETECTION</h3>
+      <div style="display:flex;gap:10px;align-items:center;margin-bottom:8px">
+        <div class="grade g-${x.early_is_strong ? 'Ap' : x.early_is_early ? 'A' : 'C'}" style="width:36px;height:36px">${i0(x.early_score)}</div>
+        <div><div style="font-weight:700">${esc(x.early_label||"—")} ${x.early_is_early ? "✓ بوادر" : ""} ${x.early_is_strong ? "★ قوية" : ""}</div><div class="dim" style="font-size:11px">${esc(x.sweep_label||"")}</div></div>
+      </div>
+      <div class="note" style="font-size:11px">لا تشترط كل العوامل معًا — الدرجة تراكمية مع عقوبات. العبارات: «امتصاص محتمل للبيع» و«تحسن تدفق السيولة» تقديرية بلا Order Flow حقيقي.</div>
+      ${(Object.entries(x.early?.factors||{}).map(([k,f])=> `<div class="lvl"><span>${esc(k)} · ${esc(f.desc||"")}</span><b class="${(f.pts||0)>0 ? 'pos' : f.pts<0 ? 'neg' : 'dim'}">${f.pts!=null ? (f.pts>0?'+':'' )+f.pts : '—'} نقاط</b></div>`).join(""))}
+      <div class="lvl"><span>مجمل العقوبات</span><b class="neg">${x.early?.penalties||0} نقاط</b></div>
+      ${(x.early?.warnings||[]).length ? `<div class="lvl warn"><span>تحذيرات مبكرة</span><b>${esc((x.early.warnings||[]).join(" · "))}</b></div>` : ""}
+    </div>
+
+    <div class="sect"><h3>كسر القاع وسحب السيولة</h3>
+      <div class="grid2">
+        ${[["المرجع قبل الكسر", money((x.sweep||{}).reference_low)], ["أدنى بعد الكسر", money((x.sweep||{}).break_low)], ["عمق الكسر", pct((x.sweep||{}).break_depth_pct,1)], ["المدة تحته", i0((x.sweep||{}).break_duration_min)+" د"], ["مستوى الاستعادة", money((x.sweep||{}).reclaim_level)], ["رفض سعري", (x.sweep||{}).rejection ? "نعم" : "لا"]].map(([k,v])=> `<div class="metric"><div class="k">${k}</div><div class="v" style="font-size:12.5px">${esc(String(v))}</div></div>`).join("")}
+      </div>
+      <div class="lvl" style="margin-top:7px"><span>حالة السحب</span><b>${esc((x.sweep||{}).state_label||x.sweep_state||"—")}</b></div>
+      <div class="lvl"><span>الملاحظة</span><b style="font-size:11px">${esc((x.sweep||{}).note||"")}</b></div>
+      <div class="lvl"><span>المسافة للمقاومة</span><b>${pct(x.resistance_distance_pct,1)} · ${money(x.nearest_resistance)}</b></div>
+      <div class="note">الكسر وحده لا يستبعد — التقييم يعتمد على شموع مكتملة بلا استخدام بيانات مستقبلية.</div>
+    </div>
+
+    <div class="sect"><h3>درجة السيولة الحقيقية</h3>
+      <div style="display:flex;gap:8px;align-items:center"><div class="grade g-${(x.liquidity_score||0)>=70?'Ap':(x.liquidity_score||0)>=50?'A':'C'}" style="width:32px;height:32px">${i0(x.liquidity_score)}</div><div class="dim" style="font-size:11px">${esc(x.liquidity_label||"")}<br>${esc((x.liquidity||{}).note||"")}</div></div>
+      ${(Object.entries(x.liquidity?.factors||{}).map(([k,f])=> `<div class="lvl"><span>${esc(k)} · ${esc(f.desc||"")}</span><b class="${(f.pts||0)>0?'pos':f.pts<0?'neg':'dim'}">${f.pts!=null ? (f.pts>0?'+':'')+f.pts : '—'}</b></div>`).join(""))}
+      ${(x.liquidity?.warnings||[]).length ? `<div class="lvl warn"><span>مخاطر سيولة</span><b>${esc((x.liquidity.warnings||[]).join(" · "))}</b></div>` : ""}
+      <div class="note" style="margin-top:6px">ارتفاع درجة السيولة لا يلغي تحذير خطر ناتج عن استمرار الهبوط. CMF/OBV تقريبيان بلا تدفق أوامر فعلي.</div>
+    </div>
+
+    <div class="sect"><h3>أهداف الارتداد والمخاطر (ورقي)</h3>
+      <div class="grid2">
+        <div class="metric"><div class="k">هدف +10%</div><div class="v">${money(x.risk?.targets?.[0]?.price)}<small> ${pct(10,0)}</small></div></div>
+        <div class="metric"><div class="k">هدف +20%</div><div class="v">${money(x.risk?.target)}<small> ${pct(20,0)}</small></div></div>
+        <div class="metric"><div class="k">هدف +30%</div><div class="v">${money(x.risk?.target_2)}<small> ${pct(30,0)}</small></div></div>
+        <div class="metric"><div class="k">المسافة للمقاومة</div><div class="v">${pct(x.resistance_distance_pct,1)}</div></div>
+        <div class="metric"><div class="k">MFE بعد الإشارة</div><div class="v">${pct(x.mfe_pct,1) || "—"}</div></div>
+        <div class="metric"><div class="k">MAE بعد الإشارة</div><div class="v">${pct(x.mae_pct,1) || "—"}</div></div>
+      </div>
+      <div class="note">MFE وMAE تُحسب من سعر الإشارة الفعلي P: (Highest-P)/P و (Lowest-P)/P. إن لامس السعر الهدف والوقف في نفس الشمعة تُسجل كحالة ملتبسة.</div>
     </div>
 
     <div class="sect"><h3>تأكيد الفريم الأعلى</h3>

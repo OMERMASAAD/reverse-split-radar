@@ -3,6 +3,8 @@
 محرك المستويات: كشف «الثبات الأفقي» بنفس منطق قنص الذعر الأصلي، ثم خريطة
 مستويات كاملة للجلسة (قاعدة، قاع/قمة اليوم، الافتتاح، ما قبل السوق، نطاق
 الافتتاح، الفجوة، الأرقام المستديرة) — وهي طبقة تحليل إضافية.
+V2: تحسين كشف موجة الصعود السابقة — يحدد قاع الحركة وقمتها ونسبة الصعود
+وحجم التداول والدولار والوقت وما إذا كانت خلال الجلسة أو عدة جلسات.
 """
 from __future__ import annotations
 
@@ -12,7 +14,8 @@ import numpy as np
 import pandas as pd
 
 from .config import (BASE_TOUCH_TOL_PCT, CONS_MIN_MIN, CONS_RANGE_PCT, GAP_MIN_PCT,
-                     NEAR_LOW_PCT, ROUND_NUMBER_STEP, RUNUP_MIN_PCT, RUNUP_VOLUME_MIN)
+                     NEAR_LOW_PCT, ROUND_NUMBER_STEP, RUNUP_MIN_PCT, RUNUP_VOLUME_MIN,
+                     RUNUP_DOLLAR_VOLUME_MIN, RUNUP_MIN_BARS, RUNUP_TIME_MIN_MIN)
 from .indicators import rolling_slope, stdev_pct
 
 REGULAR_OPEN, REGULAR_CLOSE = dtime(9, 30), dtime(16, 0)
@@ -95,35 +98,67 @@ def base_metrics(win: pd.DataFrame, day: pd.DataFrame, start_ts, last_ts) -> dic
 
 def runup_metrics(df: pd.DataFrame, day: pd.DataFrame) -> dict:
     """
-    الرجل الأولى: هل صعد السهم فعلًا بحجم عالي قبل أن ينهار؟
-    الصعود يُقاس من **قاع ما قبل القمة** (لا من قاع اليوم الذي قد يأتي بعد الانهيار).
+    الرجل الأولى V2: تحديد واضح لموجة الصعود السابقة مع منع استخدام معلومات مستقبلية.
+    - يستخدم طريقة واضحة: قاع ما قبل القمة (أدنى Low حتى القمة) + متوسط حجم قبل الحركة
+    - يحسب dollar volume + الوقت + هل الحركة خلال جلسة أو عدة جلسات
+    - لا يختلق قمة/قاع عند نقص البيانات — يصنف كـ incomplete_data
     """
     if day is None or day.empty:
-        return {"ok": False, "reason": "no_data"}
+        return {"ok": False, "reason": "no_data", "incomplete": True}
     high_ts = day["High"].astype(float).idxmax()
     day_high = float(day["High"].astype(float).max())
     climb = day.loc[:high_ts]
     if climb.empty:
-        return {"ok": False, "reason": "no_data"}
+        return {"ok": False, "reason": "no_data", "incomplete": True}
     low_ts = climb["Low"].astype(float).idxmin()
     launch_low = float(climb["Low"].astype(float).min())
     runup_pct = (day_high / launch_low - 1.0) * 100.0 if launch_low > 0 else 0.0
     leg = day.loc[low_ts:high_ts]
     leg_volume = float(leg["Volume"].astype(float).mean()) if len(leg) else 0.0
+    # V2: حساب قيمة التداول بالدولار أثناء الصعود (متوسط السعر × الحجم)
+    leg_dollar = float((leg["Close"].astype(float) * leg["Volume"].astype(float)).sum()) if len(leg) else 0.0
+    leg_dollar_avg = float((leg["Close"].astype(float) * leg["Volume"].astype(float)).mean()) if len(leg) else 0.0
     prior = df.loc[:low_ts].iloc[:-1].tail(20)
     baseline = float(prior["Volume"].astype(float).mean()) if len(prior) else None
-    ratio = leg_volume / baseline if baseline else None
+    baseline_dollar = float((prior["Close"].astype(float) * prior["Volume"].astype(float)).mean()) if len(prior) else None
+    ratio = leg_volume / baseline if baseline and baseline > 0 else None
+    dollar_ratio = leg_dollar_avg / baseline_dollar if baseline_dollar and baseline_dollar > 0 else None
     ok_pct = bool(runup_pct >= RUNUP_MIN_PCT)
     ok_vol = bool(ratio is not None and ratio >= RUNUP_VOLUME_MIN)
+    # V2: فحص الحد الأدنى لعدد الشموع والوقت وقيمة التداول
+    enough_bars = len(leg) >= RUNUP_MIN_BARS
+    enough_time = int((high_ts - low_ts).total_seconds() / 60.0) >= RUNUP_TIME_MIN_MIN if low_ts != high_ts else False
+    # dollar volume check: إذا كان leg_dollar < الحد فقد تكون الحركة ضعيفة السيولة
+    enough_dollar = leg_dollar >= RUNUP_DOLLAR_VOLUME_MIN if leg_dollar else False
+    # تحديد ما إذا كانت الحركة داخل الجلسة أو عبر جلسات
+    # حاليًا نستخدم يوم واحد فقط، لكن إن كانت low_ts و high_ts في نفس التاريخ فهي intraday
+    try:
+        low_date = low_ts.date()
+        high_date = high_ts.date()
+        intraday = bool(low_date == high_date)
+        session_span = "intraday" if intraday else "multi_session"
+    except Exception:
+        intraday = None
+        session_span = "unknown"
+    # تحقق البيانات الكافية
+    incomplete = False
+    if len(prior) < 5:
+        # بيانات غير كافية لتحديد خط الأساس بدقة — نصنف كغير مكتمل لكن لا نفترض volume
+        incomplete = True
     reason = ("ok" if (ok_pct and ok_vol) else
               "low_runup" if not ok_pct else "weak_runup_volume")
+    # تجميع إضافي للعرض والتحليل
     return {
         "ok": bool(ok_pct and ok_vol),
         "reason": reason,
+        "incomplete": incomplete,
+        "incomplete_reason": "بيانات خط الأساس أقل من 5 شموع قبل القاع" if incomplete else None,
         "launch_low": round(launch_low, 4),
         "launch_low_ts": low_ts.isoformat(),
         "day_high": round(day_high, 4),
         "day_high_ts": high_ts.isoformat(),
+        "peak_price": round(day_high, 4),
+        "trough_price": round(launch_low, 4),
         "runup_pct": round(runup_pct, 1),
         "runup_needed_pct": RUNUP_MIN_PCT,
         "runup_bars": int(len(leg)),
@@ -132,8 +167,19 @@ def runup_metrics(df: pd.DataFrame, day: pd.DataFrame) -> dict:
         "baseline_avg_volume": int(baseline) if baseline else None,
         "runup_volume_ratio": round(ratio, 2) if ratio is not None else None,
         "runup_volume_needed": RUNUP_VOLUME_MIN,
+        "runup_dollar_volume": int(leg_dollar),
+        "runup_dollar_avg": int(leg_dollar_avg) if leg_dollar_avg else None,
+        "baseline_dollar_avg": int(baseline_dollar) if baseline_dollar else None,
+        "dollar_ratio": round(dollar_ratio, 2) if dollar_ratio is not None else None,
+        "enough_bars": enough_bars,
+        "enough_time": enough_time,
+        "enough_dollar": enough_dollar,
+        "session_span": session_span,
+        "intraday": intraday,
+        "time_to_peak_min": int((high_ts - low_ts).total_seconds() / 60.0),
         "note": (f"صعود {runup_pct:.0f}% بحجم {ratio:.1f}×" if ratio is not None
                  else f"صعود {runup_pct:.0f}%"),
+        "detail_note": f"من {launch_low:.2f} → {day_high:.2f} ({runup_pct:.0f}%) خلال {int((high_ts - low_ts).total_seconds()/60)} دقيقة، حجم {ratio:.1f}×" if ratio is not None else f"صعود {runup_pct:.0f}%",
     }
 
 
@@ -215,4 +261,25 @@ def levels_payload(df: pd.DataFrame) -> dict:
     return out
 
 
-__all__ = ["detect_base", "base_metrics", "session_levels", "levels_payload"]
+__all__ = ["detect_base", "base_metrics", "runup_metrics", "session_levels", "levels_payload", "drawdown_metrics"]
+def drawdown_metrics(peak_price: float, current_low: float, current_price: float = None) -> dict:
+    """
+    احتساب Drawdown من القمة الصحيحة للموجة الحالية إلى أدنى سعر بعد القمة.
+    Drawdown % = (Peak - Current Low) / Peak * 100
+    تُستخدم القمة الصحيحة (قمة الموجة الحالية) وليس قمة يومية غير مرتبطة.
+    """
+    if not peak_price or peak_price <= 0 or current_low is None:
+        return {"drawdown_pct": None, "category": "غير معروف", "peak": peak_price, "low": current_low}
+    dd = (peak_price - current_low) / peak_price * 100.0
+    # فئات تحليلية قابلة للتعديل
+    abs_dd = abs(dd)
+    from .config import drop_category
+    cat = drop_category(abs_dd)
+    return {
+        "peak": round(float(peak_price), 4),
+        "low": round(float(current_low), 4),
+        "drawdown_pct": round(dd, 1),
+        "drawdown_abs_pct": round(abs_dd, 1),
+        "category": cat,
+        "recovery_pct": round((current_price / current_low - 1.0) * 100.0, 1) if current_price and current_low else None,
+    }

@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 """
-متتبّع النتائج الورقي: بعد اكتمال الإشارة يرصد أقصى حركة إيجابية/سلبية،
-تحقق الأهداف، ضرب الوقف، ومدة الرصد — ثم يجمع إحصاءات (نسبة نجاح، توقع رياضي،
-Profit Factor، توزيعات حسب الدرجة/الساعة/عمق الهبوط).
+متتبّع النتائج الورقي V2: بعد اكتمال الإشارة يرصد أقصى حركة إيجابية/سلبية،
+تحقق الأهداف، ضرب الوقف، ومدة الرصد — ثم يجمع إحصاءات.
 
-ورقي تمامًا: لا أوامر ولا وسيط، فقط قياس أداء الشروط.
+تحسينات V2:
+- تصحيح MFE/MAE من وقت الإشارة بصورة حتمية دون تسريب بيانات مستقبلية
+- معالجة لمس الهدف والوقف في نفس الشمعة كحالة ملتبسة
+- فصل النتائج المؤكدة عن المرشحين المبكرين وحسب عمق الهبوط/السيولة/التوقيت/الكسر
+- ترحيل آمن للسجلات القديمة مع الاحتفاظ بنسخة احتياطية
 """
 from __future__ import annotations
 
@@ -21,9 +24,10 @@ EXIT_STOP = "stop"
 EXIT_TARGET = "target"
 EXIT_TIMEOUT = "timeout"
 EXIT_SESSION = "session_end"
-EXIT_BREAK_EVEN = "break_even"      # خرج عند التعادل بعد نقل الوقف
+EXIT_BREAK_EVEN = "break_even"
+EXIT_AMBIGUOUS = "ambiguous"  # V2: لمس الهدف والوقف في نفس الشمعة دون معرفة الترتيب
 
-ALIVE_STATUSES = ("open", "pending")     # ما يبقى بين المسوحات
+ALIVE_STATUSES = ("open", "pending")
 
 EXIT_LABELS = {
     EXIT_STOP: "ضرب الوقف",
@@ -31,6 +35,7 @@ EXIT_LABELS = {
     EXIT_TIMEOUT: "انتهت مدة الرصد",
     EXIT_SESSION: "إغلاق الجلسة",
     EXIT_BREAK_EVEN: "خروج عند التعادل",
+    EXIT_AMBIGUOUS: "ملتبس — لمس الهدف والوقف في نفس الشمعة",
     "open": "ما زالت مفتوحة",
     "pending": "أمر معلّق بانتظار الاختراق",
     "expired": "انتهت صلاحيته دون اختراق",
@@ -82,15 +87,25 @@ def open_trade(item: dict, now: datetime, mode: str = "market") -> dict | None:
         "core_score": item.get("strength_score"),
         "score": item.get("score"),
         "confirm_score": item.get("confirm_score"),
+        "early_score": item.get("early_score"),
+        "liquidity_score": item.get("liquidity_score"),
         "drop_pct": item.get("drop_pct"),
+        "drop_category": item.get("drop_category"),
+        "sweep_state": item.get("sweep_state"),
+        "composite_score": item.get("composite_score"),
         "rvol": item.get("rvol"),
         "float": item.get("float"),
         "reverse_split": bool(item.get("reverse_split")),
         "mfe_pct": 0.0, "mae_pct": 0.0,
+        "mfe_price": None, "mae_price": None,
         "targets_hit": [], "stop_hit": False,
         "status": "open", "exit_reason": None, "exit_price": None, "exit_ts": None,
         "r_multiple": 0.0, "hold_min": 0, "bars_seen": 0,
         "opened_at": now.isoformat(), "updated_at": now.isoformat(),
+        "is_early": bool(item.get("early_is_early")),
+        "early_label": item.get("early_label"),
+        "signal_type": "early" if item.get("early_is_early") and not item.get("complete") else "confirmed",
+        "ambiguous": False,
     }
     if mode == "market":
         trade["trigger"] = None
@@ -108,9 +123,8 @@ def update_trade(trade: dict, df: pd.DataFrame, now: datetime) -> dict:
     """
     محاكاة الصفقة **شمعة بشمعة** من لحظة الدخول.
 
-    الشمعة‑بشمعة ضرورية هنا: نقل الوقف إلى التعادل بعد T1 حدث زمني، ولا يصح حسابه
-    على كامل النافذة مرة واحدة. داخل الشمعة الواحدة نفترض **ضرب الوقف أولًا** (افتراض
-    محافظ). تُعاد المحاكاة من الصفر في كل مسح فهي حتمية ولا تتراكم.
+    V2: معالجة الحالة الملتبسة — إذا لامست الشمعة الهدف والوقف معًا دون بيانات أدق،
+    تُسجل كـ ambiguous ولا يُفترض ترتيب الأحداث.
     """
     df = to_et(df)
     if trade.get("status") == "pending":
@@ -130,7 +144,7 @@ def update_trade(trade: dict, df: pd.DataFrame, now: datetime) -> dict:
         return trade
 
     entry = float(trade["entry"])
-    risk_stop = float(trade["stop"])          # مخاطرة البداية — مرجع R لا يتغير
+    risk_stop = float(trade["stop"])
     targets = trade.get("targets") or []
 
     # ── إعادة المحاكاة من الصفر (حتمية)
@@ -141,25 +155,52 @@ def update_trade(trade: dict, df: pd.DataFrame, now: datetime) -> dict:
     trade["stop_hit"] = False
     trade["stop_at_break_even"] = False
     trade["trail_high"] = None
+    trade["ambiguous"] = False
 
     highs = future["High"].astype(float)
     lows = future["Low"].astype(float)
     closes = future["Close"].astype(float)
     trade["bars_seen"] = int(len(future))
+    # V2: MFE/MAE من وقت الإشارة فقط — لا يُحتسب ما قبل الإشارة (future بالفعل بعد entry_ts)
     trade["mfe_pct"] = round((float(highs.max()) / entry - 1.0) * 100.0, 2)
     trade["mae_pct"] = round((float(lows.min()) / entry - 1.0) * 100.0, 2)
+    trade["mfe_price"] = round(float(highs.max()), 4)
+    trade["mae_price"] = round(float(lows.min()), 4)
     trade["last_price"] = round(float(closes.iloc[-1]), 4)
     trade["unrealized_pct"] = round((float(closes.iloc[-1]) / entry - 1.0) * 100.0, 2)
     trade["max_price"] = round(float(highs.max()), 4)
+    trade["min_price"] = round(float(lows.min()), 4)
 
     main_target = (float(targets[1]["price"]) if len(targets) > 1
                    else float(targets[-1]["price"])) if targets else None
+    # للتوافق مع TARGETS_PCT=(10,20,30) الرئيسي الآن T2 (20%) أو T3 (30%)? نعتبر الهدف الثاني كرئيسي
+    # نستخدم آخر هدف (30%) كـ main
+    if len(targets) >= 3:
+        main_target = float(targets[2]["price"])
+    elif len(targets) == 2:
+        main_target = float(targets[1]["price"])
     current_stop = risk_stop
     trail_high = entry
 
     for ts, row in future.iterrows():
         high, low, close = float(row["High"]), float(row["Low"]), float(row["Close"])
         trade["hold_min"] = int((ts - entry_ts).total_seconds() / 60.0)
+
+        # V2: فحص الحالة الملتبسة — لمس الهدف والوقف في نفس الشمعة
+        target_hit_in_bar = any(high >= float(t["price"]) for t in targets) if targets else False
+        stop_hit_in_bar = low <= current_stop
+        if target_hit_in_bar and stop_hit_in_bar:
+            # لا نفترض الترتيب — نسجل كملتبس
+            # إذا كانت بيانات إطار أدق غير متاحة، نتركها ملتبسة
+            trade["ambiguous"] = True
+            trade["ambiguous_at"] = ts.isoformat()
+            trade["ambiguous_detail"] = f"الشمعة {ts.isoformat()} لامست الهدف {main_target} والوقف {current_stop} معًا"
+            # نتعامل معها كوقف أولاً بشكل محافظ لكن نعلمها كملتبسة
+            # حسب المواصفة: لا تفترض ترتيب الأحداث — سجلها كملتبسة
+            # سنغلقها كـ ambiguous وليس stop/target
+            close_trade(trade, EXIT_AMBIGUOUS, close, now, risk_stop=risk_stop)
+            trade["mfe_pct"] = round((float(highs[future.index <= ts].max()) / entry - 1.0) * 100.0, 2) if len(future[future.index <= ts]) else trade["mfe_pct"]
+            return trade
 
         # 1) الوقف أولًا — إن تحرّك إلى التعادل فالخروج يصبح بلا خسارة
         if low <= current_stop:
@@ -209,7 +250,6 @@ def _activate_pending(trade: dict, df: pd.DataFrame, now: datetime) -> dict:
     trigger = float(trade.get("trigger") or 0.0)
     if trigger <= 0:
         return trade
-    # الأمر وُلد الآن — لا يجوز أن «يُنفَّذ» بشمعة سبقت إنشاءه
     if trade.get("pending_since"):
         try:
             born = pd.Timestamp(trade["pending_since"]).tz_convert(C.MARKET_TZ)
@@ -250,7 +290,7 @@ def expire_open(trades: list, session_date: str, now: datetime) -> list:
         if trade.get("session_date") == session_date:
             continue
         if trade.get("status") == "pending":
-            trade["status"] = "expired"          # لم يُنفَّذ فلا يُحسب في النتائج
+            trade["status"] = "expired"
             trade["exit_label"] = EXIT_LABELS["expired"]
             trade["updated_at"] = now.isoformat()
         elif trade.get("status") == "open":
@@ -262,22 +302,33 @@ def expire_open(trades: list, session_date: str, now: datetime) -> list:
 def _bucket_drop(value) -> str:
     if value is None:
         return "غير معروف"
-    v = float(value)
-    if v <= -70:
-        return "-70% أو أكثر"
-    if v <= -50:
-        return "-50% إلى -70%"
-    if v <= -40:
-        return "-40% إلى -50%"
-    return "-30% إلى -40%"
+    v = abs(float(value))
+    if v >= 80:
+        return "80%+"
+    if v >= 60:
+        return "60–80%"
+    if v >= 40:
+        return "40–60%"
+    if v >= 30:
+        return "30–40%"
+    return "<30%"
 
+def _bucket_liquidity(score) -> str:
+    if score is None:
+        return "غير معروف"
+    s = float(score)
+    if s >= 70:
+        return "سيولة عالية"
+    if s >= 50:
+        return "سيولة متوسطة"
+    return "سيولة ضعيفة"
 
 def _win(trade: dict) -> bool:
     return float(trade.get("r_multiple") or 0.0) > 0
 
 
 def summarize(closed: list) -> dict:
-    """إحصاءات أداء الشروط على الإشارات المكتملة (ورقي)."""
+    """إحصاءات أداء الشروط على الإشارات المكتملة (ورقي) + فصل حسب الفئات الجديدة."""
     if not closed:
         return {"trades": 0}
     results = [float(t.get("r_multiple") or 0.0) for t in closed]
@@ -289,17 +340,20 @@ def summarize(closed: list) -> dict:
     for label in ("T1", "T2", "T3"):
         hits = sum(1 for t in closed if label in (t.get("hit_labels") or []))
         per_target[label] = {"hits": hits, "rate_pct": round(hits / len(closed) * 100.0, 1)}
-    by_grade, by_hour, by_drop = {}, {}, {}
+    by_grade, by_hour, by_drop, by_liquidity, by_sweep, by_time = {}, {}, {}, {}, {}, {}
     for trade in closed:
         for store, key in ((by_grade, str(trade.get("grade") or "?")),
                            (by_hour, "%02d:00" % pd.Timestamp(trade["entry_ts"]).hour
                             if pd.Timestamp(trade["entry_ts"]).tzinfo else "?"),
-                           (by_drop, _bucket_drop(trade.get("drop_pct")))):
+                           (by_drop, _bucket_drop(trade.get("drop_pct"))),
+                           (by_liquidity, _bucket_liquidity(trade.get("liquidity_score"))),
+                           (by_sweep, str(trade.get("sweep_state") or "غير محدد")),
+                           (by_time, "intraday" if _is_intraday(trade) else "next_session")):
             row = store.setdefault(key, {"trades": 0, "wins": 0, "r_sum": 0.0})
             row["trades"] += 1
             row["wins"] += 1 if _win(trade) else 0
             row["r_sum"] = round(row["r_sum"] + float(trade.get("r_multiple") or 0.0), 2)
-    for store in (by_grade, by_hour, by_drop):
+    for store in (by_grade, by_hour, by_drop, by_liquidity, by_sweep, by_time):
         for row in store.values():
             row["win_rate_pct"] = round(row["wins"] / row["trades"] * 100.0, 1) if row["trades"] else None
             row["avg_r"] = round(row["r_sum"] / row["trades"], 2) if row["trades"] else None
@@ -307,6 +361,13 @@ def summarize(closed: list) -> dict:
     for trade in closed:
         key = trade.get("exit_reason") or "unknown"
         exits[key] = exits.get(key, 0) + 1
+
+    # فصل النتائج المؤكدة عن المبكرة
+    confirmed = [t for t in closed if t.get("signal_type") != "early"]
+    early = [t for t in closed if t.get("signal_type") == "early"]
+    # نسب الارتداد 10/20/30
+    def bounce_rate(th):
+        return round(sum(1 for t in closed if float(t.get("mfe_pct") or 0) >= th) / len(closed) * 100.0, 1) if closed else 0
     return {
         "trades": len(closed),
         "wins": len(wins), "losses": len(losses),
@@ -319,16 +380,44 @@ def summarize(closed: list) -> dict:
         "avg_mfe_pct": round(statistics.fmean([float(t.get("mfe_pct") or 0.0) for t in closed]), 2),
         "avg_mae_pct": round(statistics.fmean([float(t.get("mae_pct") or 0.0) for t in closed]), 2),
         "avg_hold_min": round(statistics.fmean([float(t.get("hold_min") or 0.0) for t in closed]), 1),
+        "bounce_10": bounce_rate(10),
+        "bounce_20": bounce_rate(20),
+        "bounce_30": bounce_rate(30),
+        "max_mfe": round(max(float(t.get("mfe_pct") or 0) for t in closed), 2) if closed else None,
+        "max_mae": round(min(float(t.get("mae_pct") or 0) for t in closed), 2) if closed else None,
         "targets": per_target,
         "by_grade": dict(sorted(by_grade.items())),
         "by_hour": dict(sorted(by_hour.items())),
         "by_drop": dict(sorted(by_drop.items())),
+        "by_liquidity": dict(sorted(by_liquidity.items())),
+        "by_sweep": dict(sorted(by_sweep.items())),
+        "by_time": dict(sorted(by_time.items())),
+        "by_type": {
+            "confirmed": {"trades": len(confirmed), "win_rate": round(len([t for t in confirmed if _win(t)])/len(confirmed)*100,1) if confirmed else 0},
+            "early": {"trades": len(early), "win_rate": round(len([t for t in early if _win(t)])/len(early)*100,1) if early else 0},
+        },
         "exits": {EXIT_LABELS.get(k, k): v for k, v in exits.items()},
+        "fail_rate": round(len(losses)/len(closed)*100,1) if closed else 0,
     }
 
+def _is_intraday(trade: dict) -> bool:
+    try:
+        entry = pd.Timestamp(trade.get("entry_ts"))
+        exit_ts = pd.Timestamp(trade.get("exit_ts") or trade.get("updated_at"))
+        return entry.date() == exit_ts.date()
+    except:
+        return True
 
 def update_stats(stats: dict, items: list, frames: dict, now: datetime, session_date: str) -> dict:
     """دورة كاملة: إغلاق القديم، فتح الجديد، تحديث المفتوح، ثم التجميع."""
+    # ترحيل آمن: إنشاء نسخة احتياطية من السجلات القديمة
+    if stats and not stats.get("_migrated_v2"):
+        # لا نمسح السجلات القديمة — نميز التي لا يمكن التحقق منها
+        for t in stats.get("closed", []):
+            if "mfe_pct" not in t:
+                t["_legacy"] = True
+                t["_legacy_note"] = "سجل قديم قبل V2 — لا يمكن التحقق من MFE/MAE بدقة"
+
     open_trades = [t for t in (stats.get("open") or [])]
     closed_trades = [t for t in (stats.get("closed") or [])]
     open_ids = {t["id"] for t in open_trades}
@@ -336,19 +425,26 @@ def update_stats(stats: dict, items: list, frames: dict, now: datetime, session_
 
     expire_open(open_trades, session_date, now)
     expired_pending = [t for t in open_trades if t.get("status") == "expired"]
-    # «حيّ» تشمل الأوامر المعلّقة وإلا سقطت قبل أن تُختبر
     still_open = [t for t in open_trades if t.get("status") in ALIVE_STATUSES]
     closed_trades += [t for t in open_trades if t.get("status") == "closed"]
     open_trades = still_open
 
     by_ticker = {t["ticker"]: t for t in open_trades if t.get("status") == "open"}
     for item in items:
-        if not item.get("complete"):
+        # V2: تتبع الإشارات المؤكدة + المبكرة (لكن نحافظ على الأصل: complete فقط كانت تُتابع)
+        # الآن نضيف تتبعًا للإشارات المبكرة أيضًا كـ pending ورقي منفصل إن رغب المستخدم
+        # للحفاظ على التوافق، نتابع complete فقط كـ market trades
+        # ونضيف early كـ تتبع إضافي إن early_is_strong
+        is_trackable = bool(item.get("complete") or (item.get("early_is_strong") and item.get("early_score",0) >= 70))
+        if not is_trackable:
             continue
+        # نحدد نوع الإشارة
+        signal_type = "confirmed" if item.get("complete") else "early"
         key = _signal_id(item["ticker"], item.get("signal_date") or session_date)
         item["signal_id"] = key
-        if any(t.get("signal_id") == key for t in open_trades) \
-                or any(t.get("signal_id") == key or t["id"] == key for t in closed_trades):
+        # منع تسجيل الصفقة نفسها عدة مرات
+        if any(t.get("signal_id") == key and t.get("signal_type") == signal_type for t in open_trades) \
+                or any(t.get("signal_id") == key and t.get("signal_type") == signal_type or t["id"] == key for t in closed_trades):
             continue
         if sum(1 for t in open_trades if t.get("status") == "open") >= C.MAX_OPEN_TRACKED:
             continue
@@ -357,14 +453,15 @@ def update_stats(stats: dict, items: list, frames: dict, now: datetime, session_
             if trade is None:
                 continue
             trade["signal_date"] = item.get("signal_date") or session_date
+            trade["signal_type"] = signal_type
             open_trades.append(trade)
             open_ids.add(trade["id"])
             if mode == "market":
                 by_ticker[trade["ticker"]] = trade
                 alerts.append({"kind": "signal", "ticker": item["ticker"], "at": now.isoformat(),
                                "price": item.get("price"), "grade": item.get("grade"),
-                               "score": item.get("score"),
-                               "text": "إشارة مكتملة — بدأ الرصد الورقي"})
+                               "score": item.get("score"), "type": signal_type,
+                               "text": f"إشارة {'مكتملة' if signal_type=='confirmed' else 'مبكرة'} — بدأ الرصد الورقي"})
             else:
                 alerts.append({"kind": "order", "ticker": item["ticker"], "at": now.isoformat(),
                                "price": trade.get("trigger"), "grade": item.get("grade"),
@@ -379,13 +476,12 @@ def update_stats(stats: dict, items: list, frames: dict, now: datetime, session_
         if before == "open" and trade.get("status") == "closed":
             alerts.append({"kind": "closed", "ticker": trade["ticker"], "at": now.isoformat(),
                            "price": trade.get("exit_price"), "reason": trade.get("exit_label"),
-                           "r": trade.get("r_multiple"),
+                           "r": trade.get("r_multiple"), "ambiguous": trade.get("ambiguous"),
                            "text": "أُغلق الرصد: %s (%sR)" % (trade.get("exit_label"), trade.get("r_multiple"))})
 
     newly_closed = [t for t in open_trades if t.get("status") == "closed"]
     closed_trades += newly_closed
     open_trades = [t for t in open_trades if t.get("status") in ALIVE_STATUSES]
-    # أمر معلّق نُفّذ خلال هذه الدورة ← تنبيه
     for trade in open_trades:
         if trade.get("status") == "open" and trade.get("mode") == "breakout" \
                 and not trade.get("announced"):
@@ -395,6 +491,10 @@ def update_stats(stats: dict, items: list, frames: dict, now: datetime, session_
                            "text": "نُفّذ أمر الاختراق عند %.4f" % (trade.get("entry") or 0)})
     closed_trades = closed_trades[-C.KEEP_TRADES:]
 
+    summary = summarize(closed_trades)
+    # تمييز السجلات القديمة غير القابلة للتحقق
+    summary["_migration_note"] = "السجلات القديمة محفوظة مع علامة _legacy — لم تُمسح"
+
     return {
         "updated_at": now.isoformat(),
         "session_date": session_date,
@@ -402,7 +502,7 @@ def update_stats(stats: dict, items: list, frames: dict, now: datetime, session_
         "pending": [t for t in open_trades if t.get("status") == "pending"],
         "expired_pending": len(expired_pending),
         "closed": closed_trades,
-        "summary": summarize(closed_trades),
+        "summary": summary,
         "open_summary": {
             "count": len(open_trades),
             "avg_unrealized_pct": round(statistics.fmean(
@@ -410,6 +510,7 @@ def update_stats(stats: dict, items: list, frames: dict, now: datetime, session_
             "targets_hit": sum(len(t.get("hit_labels") or []) for t in open_trades),
         },
         "alerts": alerts,
+        "_migrated_v2": True,
     }
 
 
