@@ -6854,5 +6854,69 @@
   "source": "yahoo_shares_full",
   "as_of": "2026-10-19",
   "expires": "2026-11-09T15:24:46.723678+00:00"
+ },
+ "EVH": {
+  "ticker": "EVH",
+  "value": 113059335,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-19",
+  "expires": "2026-11-09T18:52:44.623726+00:00"
+ },
+ "AEVA": {
+  "ticker": "AEVA",
+  "value": 69705758,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-19",
+  "expires": "2026-11-09T18:52:44.623313+00:00"
+ },
+ "OBAI": {
+  "ticker": "OBAI",
+  "value": 1498776,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-19",
+  "expires": "2026-11-09T18:52:44.619147+00:00"
+ },
+ "SBMT": {
+  "ticker": "SBMT",
+  "value": 29528500,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-19",
+  "expires": "2026-11-09T18:52:44.625022+00:00"
+ },
+ "VYGR": {
+  "ticker": "VYGR",
+  "value": 61617948,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-19",
+  "expires": "2026-11-09T18:52:44.625986+00:00"
+ },
+ "CAPS": {
+  "ticker": "CAPS",
+  "value": 879471,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-19",
+  "expires": "2026-11-09T18:52:44.617983+00:00"
+ },
+ "RMCF": {
+  "ticker": "RMCF",
+  "value": 9439587,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-19",
+  "expires": "2026-11-09T18:52:44.620884+00:00"
+ },
+ "AIRJW": {
+  "ticker": "AIRJW",
+  "value": 73347394,
+  "status": "bound",
+  "source": "sec_edgar",
+  "as_of": "2026-10-19",
+  "expires": "2026-11-09T18:52:44.621739+00:00"
  }
 }
