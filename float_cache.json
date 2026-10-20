@@ -6673,11 +6673,11 @@
  },
  "SRTM": {
   "ticker": "SRTM",
-  "value": null,
-  "status": "missing",
-  "source": "none",
-  "as_of": "2026-10-19",
-  "expires": "2026-10-19T21:24:44.161293+00:00"
+  "value": 569639,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-20",
+  "expires": "2026-11-10T17:17:20.882992+00:00"
  },
  "ATNM": {
   "ticker": "ATNM",
@@ -6918,5 +6918,125 @@
   "source": "sec_edgar",
   "as_of": "2026-10-19",
   "expires": "2026-11-09T18:52:44.621739+00:00"
+ },
+ "FRTT": {
+  "ticker": "FRTT",
+  "value": 15042582,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-20",
+  "expires": "2026-11-10T17:17:20.887146+00:00"
+ },
+ "PRSO": {
+  "ticker": "PRSO",
+  "value": 15120462,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-20",
+  "expires": "2026-11-10T17:17:20.891496+00:00"
+ },
+ "CJMB": {
+  "ticker": "CJMB",
+  "value": 6658368,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-20",
+  "expires": "2026-11-10T17:17:20.884112+00:00"
+ },
+ "CRBU": {
+  "ticker": "CRBU",
+  "value": 107207513,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-20",
+  "expires": "2026-11-10T17:17:20.888671+00:00"
+ },
+ "HUDI": {
+  "ticker": "HUDI",
+  "value": 14319182,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-20",
+  "expires": "2026-11-10T17:17:20.885434+00:00"
+ },
+ "GCTS": {
+  "ticker": "GCTS",
+  "value": 91969726,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-20",
+  "expires": "2026-11-10T17:17:20.894121+00:00"
+ },
+ "BW": {
+  "ticker": "BW",
+  "value": 148965066,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-20",
+  "expires": "2026-11-10T17:17:21.190251+00:00"
+ },
+ "OVID": {
+  "ticker": "OVID",
+  "value": 195297857,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-20",
+  "expires": "2026-11-10T17:17:21.184130+00:00"
+ },
+ "IHRT": {
+  "ticker": "IHRT",
+  "value": 154789168,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-20",
+  "expires": "2026-11-10T17:17:21.171215+00:00"
+ },
+ "ANNX": {
+  "ticker": "ANNX",
+  "value": 189579134,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-20",
+  "expires": "2026-11-10T17:17:21.187401+00:00"
+ },
+ "NUCLW": {
+  "ticker": "NUCLW",
+  "value": 29683966,
+  "status": "bound",
+  "source": "sec_edgar",
+  "as_of": "2026-10-20",
+  "expires": "2026-11-10T17:17:20.876696+00:00"
+ },
+ "TSHA": {
+  "ticker": "TSHA",
+  "value": 325833545,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-20",
+  "expires": "2026-11-10T17:17:21.185727+00:00"
+ },
+ "CHGG": {
+  "ticker": "CHGG",
+  "value": 111027482,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-20",
+  "expires": "2026-11-10T17:17:21.191560+00:00"
+ },
+ "TTEC": {
+  "ticker": "TTEC",
+  "value": 49295940,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-20",
+  "expires": "2026-11-10T17:17:21.214790+00:00"
+ },
+ "ABR": {
+  "ticker": "ABR",
+  "value": 186558043,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-20",
+  "expires": "2026-11-10T17:17:21.470011+00:00"
  }
 }
