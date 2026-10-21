@@ -7038,5 +7038,189 @@
   "source": "yahoo_shares_full",
   "as_of": "2026-10-20",
   "expires": "2026-11-10T17:17:21.470011+00:00"
+ },
+ "MBRX": {
+  "ticker": "MBRX",
+  "value": 1019289,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-21",
+  "expires": "2026-11-11T17:25:08.895718+00:00"
+ },
+ "POM": {
+  "ticker": "POM",
+  "value": 9267655,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-21",
+  "expires": "2026-11-11T17:25:08.889150+00:00"
+ },
+ "ATGL": {
+  "ticker": "ATGL",
+  "value": 16462500,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-21",
+  "expires": "2026-11-11T17:25:08.894659+00:00"
+ },
+ "DTI": {
+  "ticker": "DTI",
+  "value": 35282224,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-21",
+  "expires": "2026-11-11T17:25:08.901203+00:00"
+ },
+ "ESLA": {
+  "ticker": "ESLA",
+  "value": 43497864,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-21",
+  "expires": "2026-11-11T17:25:08.893654+00:00"
+ },
+ "EVAX": {
+  "ticker": "EVAX",
+  "value": 9021483,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-21",
+  "expires": "2026-11-11T17:25:08.900077+00:00"
+ },
+ "DXLG": {
+  "ticker": "DXLG",
+  "value": 55453550,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-21",
+  "expires": "2026-11-11T17:25:08.897085+00:00"
+ },
+ "IMSRW": {
+  "ticker": "IMSRW",
+  "value": 105935254,
+  "status": "bound",
+  "source": "sec_edgar",
+  "as_of": "2026-10-21",
+  "expires": "2026-11-11T17:25:08.898333+00:00"
+ },
+ "CDXS": {
+  "ticker": "CDXS",
+  "value": 109505765,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-21",
+  "expires": "2026-11-11T17:25:09.622502+00:00"
+ },
+ "TKNO": {
+  "ticker": "TKNO",
+  "value": 53688246,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-21",
+  "expires": "2026-11-11T17:25:09.624513+00:00"
+ },
+ "AMST": {
+  "ticker": "AMST",
+  "value": 6549851,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-21",
+  "expires": "2026-11-11T17:25:09.703487+00:00"
+ },
+ "BZUN": {
+  "ticker": "BZUN",
+  "value": 58046058,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-21",
+  "expires": "2026-11-11T17:25:09.616221+00:00"
+ },
+ "AHT": {
+  "ticker": "AHT",
+  "value": 6469814,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-21",
+  "expires": "2026-11-11T17:25:09.690072+00:00"
+ },
+ "BHR": {
+  "ticker": "BHR",
+  "value": 68679318,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-21",
+  "expires": "2026-11-11T17:25:09.719400+00:00"
+ },
+ "EMPD": {
+  "ticker": "EMPD",
+  "value": 29800000,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-21",
+  "expires": "2026-11-11T17:25:09.777354+00:00"
+ },
+ "FRMM": {
+  "ticker": "FRMM",
+  "value": 13198948,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-21",
+  "expires": "2026-11-11T17:25:09.904712+00:00"
+ },
+ "URG": {
+  "ticker": "URG",
+  "value": 397863720,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-21",
+  "expires": "2026-11-11T17:25:10.269791+00:00"
+ },
+ "BATL": {
+  "ticker": "BATL",
+  "value": 57282155,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-21",
+  "expires": "2026-11-11T17:25:10.485741+00:00"
+ },
+ "AKBA": {
+  "ticker": "AKBA",
+  "value": 277106245,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-21",
+  "expires": "2026-11-11T17:25:10.476569+00:00"
+ },
+ "USGO": {
+  "ticker": "USGO",
+  "value": 14035736,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-21",
+  "expires": "2026-11-11T17:25:10.352688+00:00"
+ },
+ "ALOY": {
+  "ticker": "ALOY",
+  "value": 69418931,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-21",
+  "expires": "2026-11-11T17:25:10.481604+00:00"
+ },
+ "FMC": {
+  "ticker": "FMC",
+  "value": 155546005,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-21",
+  "expires": "2026-11-11T17:25:10.565065+00:00"
+ },
+ "EVEX": {
+  "ticker": "EVEX",
+  "value": 348486333,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-21",
+  "expires": "2026-11-11T17:25:10.555524+00:00"
  }
 }
