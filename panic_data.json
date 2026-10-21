@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-20T21:37:20.474910+00:00",
+ "updated_at": "2026-10-21T00:08:46.086016+00:00",
  "session_date": "2026-10-20",
  "master_count": 330,
  "master_built_on": "2026-10-20",
@@ -18,8 +18,8 @@
   "funnel": {
    "universe": 330,
    "frames": 330,
-   "no_data": 1,
-   "stale": 182,
+   "no_data": 2,
+   "stale": 203,
    "no_runup": 0,
    "weak_runup_volume": 0,
    "no_drop": 0,
@@ -38,8 +38,8 @@
    "sweep_watch": 0,
    "reclaim": 0,
    "liquidity_ok": 0,
-   "low_runup": 147,
-   "runup_ok": 147
+   "low_runup": 125,
+   "runup_ok": 125
   },
   "coverage_pct": 100.0
  },
@@ -455,17 +455,27 @@
    "items": 0,
    "complete": 0,
    "duration_s": 22.3
+  },
+  {
+   "at": "2026-10-21T00:08:46.086016+00:00",
+   "ok": true,
+   "coverage_pct": 100.0,
+   "frames": 330,
+   "master": 330,
+   "items": 0,
+   "complete": 0,
+   "duration_s": 14.5
   }
  ],
  "last_scan": {
-  "at": "2026-10-20T21:37:20.474910+00:00",
+  "at": "2026-10-21T00:08:46.086016+00:00",
   "ok": true,
   "coverage_pct": 100.0,
   "frames": 330,
   "master": 330,
   "items": 0,
   "complete": 0,
-  "duration_s": 22.3
+  "duration_s": 14.5
  },
  "summary": {
   "universe": 330,
@@ -512,8 +522,8 @@
   "funnel": {
    "universe": 330,
    "frames": 330,
-   "no_data": 1,
-   "stale": 182,
+   "no_data": 2,
+   "stale": 203,
    "no_runup": 0,
    "weak_runup_volume": 0,
    "no_drop": 0,
@@ -532,31 +542,31 @@
    "sweep_watch": 0,
    "reclaim": 0,
    "liquidity_ok": 0,
-   "low_runup": 147,
-   "runup_ok": 147
+   "low_runup": 125,
+   "runup_ok": 125
   },
   "coverage_pct": 100.0
  },
  "clock": {
-  "et_time": "17:37:20",
+  "et_time": "20:08:46",
   "et_date": "2026-10-20",
   "phase": "after_hours",
   "phase_label": "ما بعد الإغلاق",
   "is_trading_day": true,
   "minutes_to_close": null,
   "session_progress_pct": null,
-  "next_scan_at": "2026-10-20T17:45:00-04:00",
-  "seconds_to_next_scan": 459
+  "next_scan_at": "2026-10-20T20:15:00-04:00",
+  "seconds_to_next_scan": 373
  },
  "uptime": {
-  "runs": 10,
-  "ok_runs": 10,
+  "runs": 11,
+  "ok_runs": 11,
   "skipped": 0,
   "failed": 0,
   "ok_rate_pct": 100.0,
-  "avg_duration_s": 53.7,
+  "avg_duration_s": 50.1,
   "first_at": "2026-10-06T13:30:00+00:00",
-  "last_at": "2026-10-20T21:37:20.474910+00:00"
+  "last_at": "2026-10-21T00:08:46.086016+00:00"
  },
  "rules": {
   "drop_max_pct": -30.0,
