@@ -7222,5 +7222,181 @@
   "source": "yahoo_shares_full",
   "as_of": "2026-10-21",
   "expires": "2026-11-11T17:25:10.555524+00:00"
+ },
+ "HTCO": {
+  "ticker": "HTCO",
+  "value": 8963024,
+  "status": "bound",
+  "source": "yahoo_outstanding",
+  "as_of": "2026-10-22",
+  "expires": "2026-11-12T17:23:39.515268+00:00"
+ },
+ "USDE": {
+  "ticker": "USDE",
+  "value": 24029375,
+  "status": "bound",
+  "source": "yahoo_outstanding",
+  "as_of": "2026-10-22",
+  "expires": "2026-11-12T17:23:39.516987+00:00"
+ },
+ "DKI": {
+  "ticker": "DKI",
+  "value": 51333,
+  "status": "bound",
+  "source": "yahoo_outstanding",
+  "as_of": "2026-10-22",
+  "expires": "2026-11-12T17:23:39.509927+00:00"
+ },
+ "NVAX": {
+  "ticker": "NVAX",
+  "value": 164945726,
+  "status": "bound",
+  "source": "yahoo_outstanding",
+  "as_of": "2026-10-22",
+  "expires": "2026-11-12T17:23:39.517875+00:00"
+ },
+ "DNA": {
+  "ticker": "DNA",
+  "value": 55383808,
+  "status": "bound",
+  "source": "yahoo_outstanding",
+  "as_of": "2026-10-22",
+  "expires": "2026-11-12T17:23:39.515888+00:00"
+ },
+ "DWSN": {
+  "ticker": "DWSN",
+  "value": 6130068,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-22",
+  "expires": "2026-11-12T17:23:40.394911+00:00"
+ },
+ "AVTX": {
+  "ticker": "AVTX",
+  "value": 40110405,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-22",
+  "expires": "2026-11-12T17:23:40.428957+00:00"
+ },
+ "SUJA": {
+  "ticker": "SUJA",
+  "value": 5597005,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-22",
+  "expires": "2026-11-12T17:23:40.462471+00:00"
+ },
+ "CRMLW": {
+  "ticker": "CRMLW",
+  "value": 82816280,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-22",
+  "expires": "2026-11-12T17:23:40.445103+00:00"
+ },
+ "HURA": {
+  "ticker": "HURA",
+  "value": 39701045,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-22",
+  "expires": "2026-11-12T17:23:40.491951+00:00"
+ },
+ "NANOW": {
+  "ticker": "NANOW",
+  "value": null,
+  "status": "missing",
+  "source": "none",
+  "as_of": "2026-10-22",
+  "expires": "2026-10-22T23:23:39.508962+00:00"
+ },
+ "MRVI": {
+  "ticker": "MRVI",
+  "value": 106403863,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-22",
+  "expires": "2026-11-12T17:23:40.722862+00:00"
+ },
+ "LCID": {
+  "ticker": "LCID",
+  "value": 156638954,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-22",
+  "expires": "2026-11-12T17:23:40.719279+00:00"
+ },
+ "NPWR": {
+  "ticker": "NPWR",
+  "value": 46780621,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-22",
+  "expires": "2026-11-12T17:23:40.755108+00:00"
+ },
+ "AADX": {
+  "ticker": "AADX",
+  "value": 45539472,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-22",
+  "expires": "2026-11-12T17:23:40.846020+00:00"
+ },
+ "TRON": {
+  "ticker": "TRON",
+  "value": 46849973,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-22",
+  "expires": "2026-11-12T17:23:40.823050+00:00"
+ },
+ "INSG": {
+  "ticker": "INSG",
+  "value": 12160926,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-22",
+  "expires": "2026-11-12T17:23:41.011271+00:00"
+ },
+ "HIVE": {
+  "ticker": "HIVE",
+  "value": 271230117,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-22",
+  "expires": "2026-11-12T17:23:40.986063+00:00"
+ },
+ "RZLV": {
+  "ticker": "RZLV",
+  "value": 260363805,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-22",
+  "expires": "2026-11-12T17:23:41.037799+00:00"
+ },
+ "TENX": {
+  "ticker": "TENX",
+  "value": 30779316,
+  "status": "exact",
+  "source": "yahoo_float",
+  "as_of": "2026-10-22",
+  "expires": "2026-11-12T17:23:41.122684+00:00"
+ },
+ "NANO": {
+  "ticker": "NANO",
+  "value": 100,
+  "status": "bound",
+  "source": "sec_edgar",
+  "as_of": "2026-10-22",
+  "expires": "2026-11-12T17:23:39.518629+00:00"
+ },
+ "CCXIW": {
+  "ticker": "CCXIW",
+  "value": null,
+  "status": "missing",
+  "source": "none",
+  "as_of": "2026-10-22",
+  "expires": "2026-10-22T23:23:39.514658+00:00"
  }
 }
