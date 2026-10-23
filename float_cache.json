@@ -7305,11 +7305,11 @@
  },
  "NANOW": {
   "ticker": "NANOW",
-  "value": null,
-  "status": "missing",
-  "source": "none",
-  "as_of": "2026-10-22",
-  "expires": "2026-10-22T23:23:39.508962+00:00"
+  "value": 100,
+  "status": "bound",
+  "source": "sec_edgar",
+  "as_of": "2026-10-23",
+  "expires": "2026-11-13T17:22:37.416080+00:00"
  },
  "MRVI": {
   "ticker": "MRVI",
@@ -7398,5 +7398,165 @@
   "source": "none",
   "as_of": "2026-10-22",
   "expires": "2026-10-22T23:23:39.514658+00:00"
+ },
+ "HELP": {
+  "ticker": "HELP",
+  "value": 73069668,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-23",
+  "expires": "2026-11-13T17:22:37.510717+00:00"
+ },
+ "BOLT": {
+  "ticker": "BOLT",
+  "value": 1926345,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-23",
+  "expires": "2026-11-13T17:22:37.506525+00:00"
+ },
+ "HCAI": {
+  "ticker": "HCAI",
+  "value": 545663,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-23",
+  "expires": "2026-11-13T17:22:37.500688+00:00"
+ },
+ "DAVI": {
+  "ticker": "DAVI",
+  "value": 25000000,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-23",
+  "expires": "2026-11-13T17:22:37.414047+00:00"
+ },
+ "STRO": {
+  "ticker": "STRO",
+  "value": 16570439,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-23",
+  "expires": "2026-11-13T17:22:37.508312+00:00"
+ },
+ "NIVF": {
+  "ticker": "NIVF",
+  "value": 6824911,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-23",
+  "expires": "2026-11-13T17:22:37.417253+00:00"
+ },
+ "APXC": {
+  "ticker": "APXC",
+  "value": 96455541,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-23",
+  "expires": "2026-11-13T17:22:37.412819+00:00"
+ },
+ "AAME": {
+  "ticker": "AAME",
+  "value": 20397228,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-23",
+  "expires": "2026-11-13T17:22:38.281245+00:00"
+ },
+ "GNLX": {
+  "ticker": "GNLX",
+  "value": 45245335,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-23",
+  "expires": "2026-11-13T17:22:38.268503+00:00"
+ },
+ "CNVS": {
+  "ticker": "CNVS",
+  "value": 23771387,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-23",
+  "expires": "2026-11-13T17:22:38.337655+00:00"
+ },
+ "PHAT": {
+  "ticker": "PHAT",
+  "value": 80900934,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-23",
+  "expires": "2026-11-13T17:22:38.272510+00:00"
+ },
+ "LIDR": {
+  "ticker": "LIDR",
+  "value": 46672169,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-23",
+  "expires": "2026-11-13T17:22:38.331908+00:00"
+ },
+ "SERV": {
+  "ticker": "SERV",
+  "value": 86707507,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-23",
+  "expires": "2026-11-13T17:22:38.577511+00:00"
+ },
+ "ZKH": {
+  "ticker": "ZKH",
+  "value": 157770136,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-23",
+  "expires": "2026-11-13T17:22:38.836537+00:00"
+ },
+ "ATOM": {
+  "ticker": "ATOM",
+  "value": 39024042,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-23",
+  "expires": "2026-11-13T17:22:38.924477+00:00"
+ },
+ "MGX": {
+  "ticker": "MGX",
+  "value": 37777105,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-23",
+  "expires": "2026-11-13T17:22:39.002598+00:00"
+ },
+ "XFOR": {
+  "ticker": "XFOR",
+  "value": 99146743,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-23",
+  "expires": "2026-11-13T17:22:38.790885+00:00"
+ },
+ "XGN": {
+  "ticker": "XGN",
+  "value": 24225339,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-23",
+  "expires": "2026-11-13T17:22:39.074579+00:00"
+ },
+ "ABAT": {
+  "ticker": "ABAT",
+  "value": 142577758,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-23",
+  "expires": "2026-11-13T17:22:39.131818+00:00"
+ },
+ "GALT": {
+  "ticker": "GALT",
+  "value": 100849644,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-23",
+  "expires": "2026-11-13T17:22:39.138984+00:00"
  }
 }
