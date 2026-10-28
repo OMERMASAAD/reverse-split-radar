@@ -7926,5 +7926,141 @@
   "source": "yahoo_shares_full",
   "as_of": "2026-10-27",
   "expires": "2026-11-17T18:12:16.669430+00:00"
+ },
+ "BCAX": {
+  "ticker": "BCAX",
+  "value": 65703866,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-28",
+  "expires": "2026-11-18T18:31:50.443327+00:00"
+ },
+ "CPIX": {
+  "ticker": "CPIX",
+  "value": 14983107,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-28",
+  "expires": "2026-11-18T18:31:50.441210+00:00"
+ },
+ "SCAG": {
+  "ticker": "SCAG",
+  "value": 4840644,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-28",
+  "expires": "2026-11-18T18:31:50.445062+00:00"
+ },
+ "PODC": {
+  "ticker": "PODC",
+  "value": 30252696,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-28",
+  "expires": "2026-11-18T18:31:50.440064+00:00"
+ },
+ "UPC": {
+  "ticker": "UPC",
+  "value": 5024390,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-28",
+  "expires": "2026-11-18T18:31:50.439020+00:00"
+ },
+ "CTXR": {
+  "ticker": "CTXR",
+  "value": 27452570,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-28",
+  "expires": "2026-11-18T18:31:50.456875+00:00"
+ },
+ "BEAT": {
+  "ticker": "BEAT",
+  "value": 56349171,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-28",
+  "expires": "2026-11-18T18:31:50.442332+00:00"
+ },
+ "FFTT": {
+  "ticker": "FFTT",
+  "value": null,
+  "status": "missing",
+  "source": "none",
+  "as_of": "2026-10-28",
+  "expires": "2026-10-29T00:31:50.438310+00:00"
+ },
+ "LUNG": {
+  "ticker": "LUNG",
+  "value": 42948269,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-28",
+  "expires": "2026-11-18T18:31:51.167848+00:00"
+ },
+ "MXCT": {
+  "ticker": "MXCT",
+  "value": 103206206,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-28",
+  "expires": "2026-11-18T18:31:51.110381+00:00"
+ },
+ "DMAC": {
+  "ticker": "DMAC",
+  "value": 53925697,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-28",
+  "expires": "2026-11-18T18:31:51.162946+00:00"
+ },
+ "GRO": {
+  "ticker": "GRO",
+  "value": 61946215,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-28",
+  "expires": "2026-11-18T18:31:51.166312+00:00"
+ },
+ "ULCC": {
+  "ticker": "ULCC",
+  "value": 230215771,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-28",
+  "expires": "2026-11-18T18:31:51.104787+00:00"
+ },
+ "OSS": {
+  "ticker": "OSS",
+  "value": 24940130,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-28",
+  "expires": "2026-11-18T18:31:51.107872+00:00"
+ },
+ "TSQ": {
+  "ticker": "TSQ",
+  "value": 18231639,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-28",
+  "expires": "2026-11-18T18:31:51.147531+00:00"
+ },
+ "OLMA": {
+  "ticker": "OLMA",
+  "value": 87497607,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-28",
+  "expires": "2026-11-18T18:31:51.343791+00:00"
+ },
+ "SKYX": {
+  "ticker": "SKYX",
+  "value": 160430994,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-28",
+  "expires": "2026-11-18T18:31:51.736881+00:00"
  }
 }
