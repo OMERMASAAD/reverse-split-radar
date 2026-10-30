@@ -1,6 +1,6 @@
 {
- "updated_at": "2026-10-29T23:56:51.607550+00:00",
- "session_date": "2026-10-29",
+ "updated_at": "2026-10-30T14:50:23.005163+00:00",
+ "session_date": "2026-10-30",
  "master_count": 300,
  "master_built_on": "2026-10-29",
  "universe_rules": {
@@ -17,12 +17,12 @@
  "diagnostics": {
   "funnel": {
    "universe": 300,
-   "frames": 300,
-   "no_data": 3,
-   "stale": 171,
+   "frames": 299,
+   "no_data": 114,
+   "stale": 8,
    "no_runup": 0,
    "weak_runup_volume": 0,
-   "no_drop": 0,
+   "no_drop": 1,
    "too_deep": 0,
    "monitored": 0,
    "near_low": 0,
@@ -38,10 +38,10 @@
    "sweep_watch": 0,
    "reclaim": 0,
    "liquidity_ok": 0,
-   "low_runup": 126,
-   "runup_ok": 126
+   "low_runup": 177,
+   "runup_ok": 177
   },
-  "coverage_pct": 100.0
+  "coverage_pct": 99.7
  },
  "alerts": [
   {
@@ -760,17 +760,27 @@
    "items": 0,
    "complete": 0,
    "duration_s": 14.9
+  },
+  {
+   "at": "2026-10-30T14:50:23.005163+00:00",
+   "ok": true,
+   "coverage_pct": 99.7,
+   "frames": 299,
+   "master": 300,
+   "items": 0,
+   "complete": 0,
+   "duration_s": 27.1
   }
  ],
  "last_scan": {
-  "at": "2026-10-29T23:56:51.607550+00:00",
+  "at": "2026-10-30T14:50:23.005163+00:00",
   "ok": true,
-  "coverage_pct": 100.0,
-  "frames": 300,
+  "coverage_pct": 99.7,
+  "frames": 299,
   "master": 300,
   "items": 0,
   "complete": 0,
-  "duration_s": 14.9
+  "duration_s": 27.1
  },
  "summary": {
   "universe": 300,
@@ -816,12 +826,12 @@
   },
   "funnel": {
    "universe": 300,
-   "frames": 300,
-   "no_data": 3,
-   "stale": 171,
+   "frames": 299,
+   "no_data": 114,
+   "stale": 8,
    "no_runup": 0,
    "weak_runup_volume": 0,
-   "no_drop": 0,
+   "no_drop": 1,
    "too_deep": 0,
    "monitored": 0,
    "near_low": 0,
@@ -837,31 +847,31 @@
    "sweep_watch": 0,
    "reclaim": 0,
    "liquidity_ok": 0,
-   "low_runup": 126,
-   "runup_ok": 126
+   "low_runup": 177,
+   "runup_ok": 177
   },
-  "coverage_pct": 100.0
+  "coverage_pct": 99.7
  },
  "clock": {
-  "et_time": "19:56:51",
-  "et_date": "2026-10-29",
-  "phase": "after_hours",
-  "phase_label": "ما بعد الإغلاق",
+  "et_time": "10:50:23",
+  "et_date": "2026-10-30",
+  "phase": "regular",
+  "phase_label": "الجلسة الرسمية",
   "is_trading_day": true,
-  "minutes_to_close": null,
-  "session_progress_pct": null,
-  "next_scan_at": "2026-10-29T20:00:00-04:00",
-  "seconds_to_next_scan": 188
+  "minutes_to_close": 310,
+  "session_progress_pct": 20.5,
+  "next_scan_at": "2026-10-30T11:00:00-04:00",
+  "seconds_to_next_scan": 576
  },
  "uptime": {
-  "runs": 35,
-  "ok_runs": 35,
+  "runs": 36,
+  "ok_runs": 36,
   "skipped": 0,
   "failed": 0,
   "ok_rate_pct": 100.0,
-  "avg_duration_s": 30.2,
+  "avg_duration_s": 30.1,
   "first_at": "2026-10-06T13:30:00+00:00",
-  "last_at": "2026-10-29T23:56:51.607550+00:00"
+  "last_at": "2026-10-30T14:50:23.005163+00:00"
  },
  "rules": {
   "drop_max_pct": -30.0,
