@@ -8230,5 +8230,109 @@
   "source": "yahoo_shares_full",
   "as_of": "2026-10-29",
   "expires": "2026-11-19T18:37:40.667714+00:00"
+ },
+ "PCLA": {
+  "ticker": "PCLA",
+  "value": 9613805,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-30",
+  "expires": "2026-11-20T18:10:15.175878+00:00"
+ },
+ "NRXP": {
+  "ticker": "NRXP",
+  "value": 43295767,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-30",
+  "expires": "2026-11-20T18:10:15.176474+00:00"
+ },
+ "GYRE": {
+  "ticker": "GYRE",
+  "value": 106033763,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-30",
+  "expires": "2026-11-20T18:10:15.177329+00:00"
+ },
+ "ONEG": {
+  "ticker": "ONEG",
+  "value": 16000000,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-30",
+  "expires": "2026-11-20T18:10:15.172871+00:00"
+ },
+ "CNTY": {
+  "ticker": "CNTY",
+  "value": 28137692,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-30",
+  "expires": "2026-11-20T18:10:15.173250+00:00"
+ },
+ "ZJYL": {
+  "ticker": "ZJYL",
+  "value": 73663428,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-30",
+  "expires": "2026-11-20T18:10:15.174764+00:00"
+ },
+ "ANL": {
+  "ticker": "ANL",
+  "value": 64397937,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-30",
+  "expires": "2026-11-20T18:10:15.173729+00:00"
+ },
+ "RUBI": {
+  "ticker": "RUBI",
+  "value": 12587957,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-30",
+  "expires": "2026-11-20T18:10:15.168447+00:00"
+ },
+ "BORR": {
+  "ticker": "BORR",
+  "value": 309262741,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-30",
+  "expires": "2026-11-20T18:10:16.038525+00:00"
+ },
+ "LODE": {
+  "ticker": "LODE",
+  "value": 75993047,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-30",
+  "expires": "2026-11-20T18:10:15.983910+00:00"
+ },
+ "TLS": {
+  "ticker": "TLS",
+  "value": 74736789,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-30",
+  "expires": "2026-11-20T18:10:16.035302+00:00"
+ },
+ "SENS": {
+  "ticker": "SENS",
+  "value": 52874053,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-30",
+  "expires": "2026-11-20T18:10:16.028555+00:00"
+ },
+ "COYA": {
+  "ticker": "COYA",
+  "value": 23457849,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-10-30",
+  "expires": "2026-11-20T18:10:16.046016+00:00"
  }
 }
