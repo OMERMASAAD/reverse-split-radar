@@ -561,11 +561,11 @@
  },
  "GIFT": {
   "ticker": "GIFT",
-  "value": 23730263,
-  "status": "exact",
-  "source": "yahoo_float",
-  "as_of": "2026-10-09",
-  "expires": "2026-10-30T20:01:25.438394+00:00"
+  "value": 35425176,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:17.448873+00:00"
  },
  "OPTT": {
   "ticker": "OPTT",
@@ -737,11 +737,11 @@
  },
  "BFRG": {
   "ticker": "BFRG",
-  "value": 15971037,
-  "status": "exact",
-  "source": "yahoo_float",
-  "as_of": "2026-10-09",
-  "expires": "2026-10-30T20:01:26.010607+00:00"
+  "value": 18541651,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:18.310345+00:00"
  },
  "REED": {
   "ticker": "REED",
@@ -1953,11 +1953,11 @@
  },
  "TGE": {
   "ticker": "TGE",
-  "value": 7450890,
-  "status": "exact",
-  "source": "yahoo_float",
-  "as_of": "2026-10-09",
-  "expires": "2026-10-30T20:01:30.518616+00:00"
+  "value": 48461070,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:17.454259+00:00"
  },
  "PFAI": {
   "ticker": "PFAI",
@@ -2017,11 +2017,11 @@
  },
  "EZGO": {
   "ticker": "EZGO",
-  "value": 139232,
-  "status": "exact",
-  "source": "yahoo_float",
-  "as_of": "2026-10-09",
-  "expires": "2026-10-30T20:01:30.710635+00:00"
+  "value": 2305899,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:17.949184+00:00"
  },
  "TVRD": {
   "ticker": "TVRD",
@@ -2497,11 +2497,11 @@
  },
  "CNSY": {
   "ticker": "CNSY",
-  "value": 7499308,
-  "status": "exact",
-  "source": "yahoo_float",
-  "as_of": "2026-10-09",
-  "expires": "2026-10-30T20:01:32.500979+00:00"
+  "value": 7589625,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:17.448686+00:00"
  },
  "AIFF": {
   "ticker": "AIFF",
@@ -2737,11 +2737,11 @@
  },
  "TRT": {
   "ticker": "TRT",
-  "value": 6926282,
-  "status": "exact",
-  "source": "yahoo_float",
-  "as_of": "2026-10-09",
-  "expires": "2026-10-30T20:01:33.334226+00:00"
+  "value": 10338265,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:19.999163+00:00"
  },
  "ALDX": {
   "ticker": "ALDX",
@@ -3633,11 +3633,11 @@
  },
  "PSQL": {
   "ticker": "PSQL",
-  "value": null,
-  "status": "missing",
-  "source": "none",
-  "as_of": "2026-11-02",
-  "expires": "2026-11-03T03:52:31.585552+00:00"
+  "value": 212293691,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:19.429187+00:00"
  },
  "QNTM": {
   "ticker": "QNTM",
@@ -3689,11 +3689,11 @@
  },
  "APRE": {
   "ticker": "APRE",
-  "value": 7903330,
-  "status": "exact",
-  "source": "yahoo_float",
-  "as_of": "2026-10-09",
-  "expires": "2026-10-30T20:01:36.885298+00:00"
+  "value": 12591136,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:17.924318+00:00"
  },
  "ALLR": {
   "ticker": "ALLR",
@@ -3777,11 +3777,11 @@
  },
  "ZCMD": {
   "ticker": "ZCMD",
-  "value": 7278,
-  "status": "exact",
-  "source": "yahoo_float",
-  "as_of": "2026-10-09",
-  "expires": "2026-10-30T20:01:37.148682+00:00"
+  "value": 4436738,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:18.360062+00:00"
  },
  "NCTY": {
   "ticker": "NCTY",
@@ -4065,19 +4065,19 @@
  },
  "BTGO": {
   "ticker": "BTGO",
-  "value": null,
-  "status": "missing",
-  "source": "none",
-  "as_of": "2026-11-02",
-  "expires": "2026-11-03T03:52:35.442553+00:00"
+  "value": 115959409,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:19.361535+00:00"
  },
  "BTCS": {
   "ticker": "BTCS",
-  "value": 42892139,
-  "status": "exact",
-  "source": "yahoo_float",
-  "as_of": "2026-10-09",
-  "expires": "2026-10-30T20:01:38.103433+00:00"
+  "value": 53110329,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:20.473593+00:00"
  },
  "FTEK": {
   "ticker": "FTEK",
@@ -4249,11 +4249,11 @@
  },
  "SEV": {
   "ticker": "SEV",
-  "value": 28949488,
+  "value": 40932498,
   "status": "bound",
-  "source": "yahoo_outstanding",
-  "as_of": "2026-10-09",
-  "expires": "2026-10-30T20:01:38.690042+00:00"
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:19.576716+00:00"
  },
  "EOSE": {
   "ticker": "EOSE",
@@ -4329,11 +4329,11 @@
  },
  "RDZN": {
   "ticker": "RDZN",
-  "value": 26950484,
-  "status": "exact",
-  "source": "yahoo_float",
-  "as_of": "2026-10-09",
-  "expires": "2026-10-30T20:01:39.029006+00:00"
+  "value": 85165063,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:19.503936+00:00"
  },
  "UPXI": {
   "ticker": "UPXI",
@@ -4401,11 +4401,11 @@
  },
  "PRZO": {
   "ticker": "PRZO",
-  "value": 28987792,
-  "status": "exact",
-  "source": "yahoo_float",
-  "as_of": "2026-10-09",
-  "expires": "2026-10-30T20:01:39.199270+00:00"
+  "value": 29162475,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:18.353715+00:00"
  },
  "BYRN": {
   "ticker": "BYRN",
@@ -4545,11 +4545,11 @@
  },
  "DAVA": {
   "ticker": "DAVA",
-  "value": 35243517,
-  "status": "exact",
-  "source": "yahoo_float",
-  "as_of": "2026-10-09",
-  "expires": "2026-10-30T20:01:39.849653+00:00"
+  "value": 52842717,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:20.046967+00:00"
  },
  "CODX": {
   "ticker": "CODX",
@@ -4609,11 +4609,11 @@
  },
  "FLYX": {
   "ticker": "FLYX",
-  "value": 17291955,
-  "status": "exact",
-  "source": "yahoo_float",
-  "as_of": "2026-10-09",
-  "expires": "2026-10-30T20:01:39.946552+00:00"
+  "value": 52151748,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:19.722029+00:00"
  },
  "EVCM": {
   "ticker": "EVCM",
@@ -4633,11 +4633,11 @@
  },
  "FAC": {
   "ticker": "FAC",
-  "value": 46623606,
-  "status": "exact",
-  "source": "yahoo_float",
-  "as_of": "2026-10-09",
-  "expires": "2026-10-30T20:01:40.165893+00:00"
+  "value": 107023245,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:20.086880+00:00"
  },
  "EDIT": {
   "ticker": "EDIT",
@@ -4729,11 +4729,11 @@
  },
  "BYND": {
   "ticker": "BYND",
-  "value": 15580297,
-  "status": "exact",
-  "source": "yahoo_float",
-  "as_of": "2026-10-09",
-  "expires": "2026-10-30T20:01:40.508926+00:00"
+  "value": 17193965,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:20.477028+00:00"
  },
  "TELO": {
   "ticker": "TELO",
@@ -5025,11 +5025,11 @@
  },
  "BMM": {
   "ticker": "BMM",
-  "value": 82582759,
-  "status": "exact",
-  "source": "yahoo_float",
-  "as_of": "2026-10-09",
-  "expires": "2026-10-30T20:01:41.527453+00:00"
+  "value": 108363001,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:19.268835+00:00"
  },
  "ASTI": {
   "ticker": "ASTI",
@@ -5169,11 +5169,11 @@
  },
  "RANI": {
   "ticker": "RANI",
-  "value": 82316464,
-  "status": "exact",
-  "source": "yahoo_float",
-  "as_of": "2026-10-09",
-  "expires": "2026-10-30T20:01:41.844657+00:00"
+  "value": 115424960,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:20.384236+00:00"
  },
  "ZNTL": {
   "ticker": "ZNTL",
@@ -5297,11 +5297,11 @@
  },
  "CWH": {
   "ticker": "CWH",
-  "value": 53976108,
-  "status": "exact",
-  "source": "yahoo_float",
-  "as_of": "2026-10-09",
-  "expires": "2026-10-30T20:01:42.366149+00:00"
+  "value": 63827952,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:20.042746+00:00"
  },
  "DTCX": {
   "ticker": "DTCX",
@@ -5401,11 +5401,11 @@
  },
  "SJT": {
   "ticker": "SJT",
-  "value": null,
-  "status": "missing",
-  "source": "none",
-  "as_of": "2026-11-02",
-  "expires": "2026-11-03T03:52:31.846061+00:00"
+  "value": 46608797,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:19.154589+00:00"
  },
  "BTQ": {
   "ticker": "BTQ",
@@ -5809,11 +5809,11 @@
  },
  "XPOF": {
   "ticker": "XPOF",
-  "value": 21889707,
-  "status": "exact",
-  "source": "yahoo_float",
-  "as_of": "2026-10-12",
-  "expires": "2026-11-02T21:24:17.227397+00:00"
+  "value": 42219000,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:20.398177+00:00"
  },
  "SKYD": {
   "ticker": "SKYD",
@@ -5865,43 +5865,43 @@
  },
  "FMFC": {
   "ticker": "FMFC",
-  "value": 19694940,
+  "value": 492374,
   "status": "bound",
   "source": "yahoo_shares_full",
-  "as_of": "2026-10-13",
-  "expires": "2026-11-03T19:28:13.087294+00:00"
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:17.450780+00:00"
  },
  "ICG": {
   "ticker": "ICG",
   "value": 61190794,
   "status": "bound",
   "source": "yahoo_shares_full",
-  "as_of": "2026-10-13",
-  "expires": "2026-11-03T19:28:13.086498+00:00"
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:17.926501+00:00"
  },
  "WFF": {
   "ticker": "WFF",
-  "value": 41919934,
+  "value": 2514797,
   "status": "bound",
   "source": "yahoo_shares_full",
-  "as_of": "2026-10-13",
-  "expires": "2026-11-03T19:28:13.078875+00:00"
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:17.439720+00:00"
  },
  "AGPU": {
   "ticker": "AGPU",
   "value": 11591124,
   "status": "bound",
   "source": "yahoo_shares_full",
-  "as_of": "2026-10-13",
-  "expires": "2026-11-03T19:28:13.087961+00:00"
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:18.332257+00:00"
  },
  "JBDI": {
   "ticker": "JBDI",
   "value": 9514544,
   "status": "bound",
   "source": "yahoo_shares_full",
-  "as_of": "2026-10-13",
-  "expires": "2026-11-03T19:28:13.084767+00:00"
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:17.442213+00:00"
  },
  "AXNX": {
   "ticker": "AXNX",
@@ -5932,48 +5932,48 @@
   "value": 9452108,
   "status": "bound",
   "source": "yahoo_shares_full",
-  "as_of": "2026-10-13",
-  "expires": "2026-11-03T19:28:13.626704+00:00"
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:17.997354+00:00"
  },
  "YJ": {
   "ticker": "YJ",
   "value": 4925540,
   "status": "bound",
   "source": "yahoo_shares_full",
-  "as_of": "2026-10-13",
-  "expires": "2026-11-03T19:28:13.599170+00:00"
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:17.943040+00:00"
  },
  "HTZWW": {
   "ticker": "HTZWW",
   "value": 315764523,
   "status": "bound",
   "source": "sec_edgar",
-  "as_of": "2026-10-13",
-  "expires": "2026-11-03T19:28:13.575718+00:00"
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:17.450081+00:00"
  },
  "IBRX": {
   "ticker": "IBRX",
   "value": 1059836273,
   "status": "bound",
   "source": "yahoo_shares_full",
-  "as_of": "2026-10-13",
-  "expires": "2026-11-03T19:28:13.693651+00:00"
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:18.973984+00:00"
  },
  "ALMU": {
   "ticker": "ALMU",
   "value": 19314923,
   "status": "bound",
   "source": "yahoo_shares_full",
-  "as_of": "2026-10-13",
-  "expires": "2026-11-03T19:28:13.840826+00:00"
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:18.825967+00:00"
  },
  "UPB": {
   "ticker": "UPB",
   "value": 54771041,
   "status": "bound",
   "source": "yahoo_shares_full",
-  "as_of": "2026-10-13",
-  "expires": "2026-11-03T19:28:14.138920+00:00"
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:17.965670+00:00"
  },
  "SHIM": {
   "ticker": "SHIM",
@@ -5988,32 +5988,32 @@
   "value": 103882937,
   "status": "bound",
   "source": "yahoo_shares_full",
-  "as_of": "2026-10-13",
-  "expires": "2026-11-03T19:28:13.900901+00:00"
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:18.595717+00:00"
  },
  "WATT": {
   "ticker": "WATT",
   "value": 5527071,
   "status": "bound",
   "source": "yahoo_shares_full",
-  "as_of": "2026-10-13",
-  "expires": "2026-11-03T19:28:14.409443+00:00"
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:18.907492+00:00"
  },
  "TNXP": {
   "ticker": "TNXP",
   "value": 17151024,
   "status": "bound",
-  "source": "yahoo_outstanding",
-  "as_of": "2026-10-13",
-  "expires": "2026-11-03T19:28:14.548908+00:00"
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:19.125846+00:00"
  },
  "BBOT": {
   "ticker": "BBOT",
-  "value": 80174267,
+  "value": 80107104,
   "status": "bound",
-  "source": "yahoo_outstanding",
-  "as_of": "2026-10-13",
-  "expires": "2026-11-03T19:28:14.552831+00:00"
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:18.935751+00:00"
  },
  "NGEN": {
   "ticker": "NGEN",
@@ -6025,11 +6025,11 @@
  },
  "VSTM": {
   "ticker": "VSTM",
-  "value": 90563441,
+  "value": 121500941,
   "status": "bound",
-  "source": "yahoo_outstanding",
-  "as_of": "2026-10-13",
-  "expires": "2026-11-03T19:28:14.678468+00:00"
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:18.735081+00:00"
  },
  "BB": {
   "ticker": "BB",
@@ -6041,11 +6041,11 @@
  },
  "WRAP": {
   "ticker": "WRAP",
-  "value": 40393184,
-  "status": "exact",
-  "source": "yahoo_float",
-  "as_of": "2026-10-13",
-  "expires": "2026-11-03T19:28:14.756886+00:00"
+  "value": 61776482,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:18.312986+00:00"
  },
  "CLPT": {
   "ticker": "CLPT",
@@ -8438,5 +8438,117 @@
   "source": "sec_edgar",
   "as_of": "2026-11-02",
   "expires": "2026-11-23T21:52:37.855637+00:00"
+ },
+ "NMRA": {
+  "ticker": "NMRA",
+  "value": 187895912,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:17.451737+00:00"
+ },
+ "ATHE": {
+  "ticker": "ATHE",
+  "value": 19091737,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:17.920088+00:00"
+ },
+ "WYHG": {
+  "ticker": "WYHG",
+  "value": 35581166,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:18.294798+00:00"
+ },
+ "SRTS": {
+  "ticker": "SRTS",
+  "value": 16462059,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:18.843301+00:00"
+ },
+ "DTST": {
+  "ticker": "DTST",
+  "value": 2337738,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:18.933127+00:00"
+ },
+ "GRCE": {
+  "ticker": "GRCE",
+  "value": 21035930,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:19.206533+00:00"
+ },
+ "HPP": {
+  "ticker": "HPP",
+  "value": 54268741,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:19.425322+00:00"
+ },
+ "BWEN": {
+  "ticker": "BWEN",
+  "value": 23404116,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:19.623233+00:00"
+ },
+ "CLVT": {
+  "ticker": "CLVT",
+  "value": 639664003,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:19.690295+00:00"
+ },
+ "USAR": {
+  "ticker": "USAR",
+  "value": 375076567,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:20.009559+00:00"
+ },
+ "IMXI": {
+  "ticker": "IMXI",
+  "value": 30211627,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:19.896549+00:00"
+ },
+ "MPT": {
+  "ticker": "MPT",
+  "value": 597157000,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:20.111532+00:00"
+ },
+ "NBP": {
+  "ticker": "NBP",
+  "value": 115999215,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:20.157314+00:00"
+ },
+ "CMRC": {
+  "ticker": "CMRC",
+  "value": 82858991,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-03",
+  "expires": "2026-11-24T19:37:20.477818+00:00"
  }
 }
