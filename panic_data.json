@@ -1,6 +1,6 @@
 {
- "updated_at": "2026-11-10T21:48:11.745027+00:00",
- "session_date": "2026-11-10",
+ "updated_at": "2026-11-11T15:52:09.352711+00:00",
+ "session_date": "2026-11-11",
  "master_count": 232,
  "master_built_on": "2026-11-10",
  "universe_rules": {
@@ -18,10 +18,10 @@
   "funnel": {
    "universe": 232,
    "frames": 232,
-   "no_data": 10,
-   "stale": 0,
+   "no_data": 84,
+   "stale": 8,
    "no_runup": 0,
-   "weak_runup_volume": 4,
+   "weak_runup_volume": 0,
    "no_drop": 0,
    "too_deep": 0,
    "monitored": 0,
@@ -38,8 +38,8 @@
    "sweep_watch": 0,
    "reclaim": 0,
    "liquidity_ok": 0,
-   "low_runup": 218,
-   "runup_ok": 218
+   "low_runup": 140,
+   "runup_ok": 140
   },
   "coverage_pct": 100.0
  },
@@ -1021,17 +1021,27 @@
    "items": 0,
    "complete": 0,
    "duration_s": 10.8
+  },
+  {
+   "at": "2026-11-11T15:52:09.352711+00:00",
+   "ok": true,
+   "coverage_pct": 100.0,
+   "frames": 232,
+   "master": 232,
+   "items": 0,
+   "complete": 0,
+   "duration_s": 16.1
   }
  ],
  "last_scan": {
-  "at": "2026-11-10T21:48:11.745027+00:00",
+  "at": "2026-11-11T15:52:09.352711+00:00",
   "ok": true,
   "coverage_pct": 100.0,
   "frames": 232,
   "master": 232,
   "items": 0,
   "complete": 0,
-  "duration_s": 10.8
+  "duration_s": 16.1
  },
  "summary": {
   "universe": 232,
@@ -1078,10 +1088,10 @@
   "funnel": {
    "universe": 232,
    "frames": 232,
-   "no_data": 10,
-   "stale": 0,
+   "no_data": 84,
+   "stale": 8,
    "no_runup": 0,
-   "weak_runup_volume": 4,
+   "weak_runup_volume": 0,
    "no_drop": 0,
    "too_deep": 0,
    "monitored": 0,
@@ -1098,31 +1108,31 @@
    "sweep_watch": 0,
    "reclaim": 0,
    "liquidity_ok": 0,
-   "low_runup": 218,
-   "runup_ok": 218
+   "low_runup": 140,
+   "runup_ok": 140
   },
   "coverage_pct": 100.0
  },
  "clock": {
-  "et_time": "16:48:11",
-  "et_date": "2026-11-10",
-  "phase": "after_hours",
-  "phase_label": "ما بعد الإغلاق",
+  "et_time": "10:52:09",
+  "et_date": "2026-11-11",
+  "phase": "regular",
+  "phase_label": "الجلسة الرسمية",
   "is_trading_day": true,
-  "minutes_to_close": null,
-  "session_progress_pct": null,
-  "next_scan_at": "2026-11-10T17:00:00-05:00",
-  "seconds_to_next_scan": 708
+  "minutes_to_close": 308,
+  "session_progress_pct": 21.0,
+  "next_scan_at": "2026-11-11T11:00:00-05:00",
+  "seconds_to_next_scan": 470
  },
  "uptime": {
-  "runs": 51,
-  "ok_runs": 51,
+  "runs": 52,
+  "ok_runs": 52,
   "skipped": 0,
   "failed": 0,
   "ok_rate_pct": 100.0,
-  "avg_duration_s": 25.1,
+  "avg_duration_s": 24.9,
   "first_at": "2026-10-06T13:30:00+00:00",
-  "last_at": "2026-11-10T21:48:11.745027+00:00"
+  "last_at": "2026-11-11T15:52:09.352711+00:00"
  },
  "rules": {
   "drop_max_pct": -30.0,
