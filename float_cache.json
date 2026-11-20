@@ -1097,11 +1097,11 @@
  },
  "NXAT": {
   "ticker": "NXAT",
-  "value": 1353790,
-  "status": "exact",
-  "source": "yahoo_float",
-  "as_of": "2026-10-09",
-  "expires": "2026-10-30T20:01:27.301227+00:00"
+  "value": 3236567,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:24.581208+00:00"
  },
  "KXIN": {
   "ticker": "KXIN",
@@ -2177,11 +2177,11 @@
  },
  "MSS": {
   "ticker": "MSS",
-  "value": 389834,
-  "status": "exact",
-  "source": "yahoo_float",
-  "as_of": "2026-10-09",
-  "expires": "2026-10-30T20:01:31.224551+00:00"
+  "value": 870539,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:24.583164+00:00"
  },
  "ORKT": {
   "ticker": "ORKT",
@@ -2665,11 +2665,11 @@
  },
  "SKYA": {
   "ticker": "SKYA",
-  "value": 33429644,
-  "status": "exact",
-  "source": "yahoo_float",
-  "as_of": "2026-10-09",
-  "expires": "2026-10-30T20:01:32.969417+00:00"
+  "value": 3587441,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:24.860790+00:00"
  },
  "KUST": {
   "ticker": "KUST",
@@ -3273,11 +3273,11 @@
  },
  "CLNN": {
   "ticker": "CLNN",
-  "value": 9701655,
-  "status": "exact",
-  "source": "yahoo_float",
-  "as_of": "2026-10-09",
-  "expires": "2026-10-30T20:01:35.341962+00:00"
+  "value": 14400175,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:25.154459+00:00"
  },
  "MVIS": {
   "ticker": "MVIS",
@@ -4361,11 +4361,11 @@
  },
  "NTCL": {
   "ticker": "NTCL",
-  "value": 1039146,
-  "status": "exact",
-  "source": "yahoo_float",
-  "as_of": "2026-10-09",
-  "expires": "2026-10-30T20:01:39.187222+00:00"
+  "value": 9585579,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:24.576117+00:00"
  },
  "RCKT": {
   "ticker": "RCKT",
@@ -8236,32 +8236,32 @@
   "value": 9613805,
   "status": "bound",
   "source": "yahoo_shares_full",
-  "as_of": "2026-10-30",
-  "expires": "2026-11-20T18:10:15.175878+00:00"
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:25.365530+00:00"
  },
  "NRXP": {
   "ticker": "NRXP",
-  "value": 43295767,
+  "value": 44327982,
   "status": "bound",
   "source": "yahoo_shares_full",
-  "as_of": "2026-10-30",
-  "expires": "2026-11-20T18:10:15.176474+00:00"
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:25.139092+00:00"
  },
  "GYRE": {
   "ticker": "GYRE",
-  "value": 106033763,
+  "value": 109451571,
   "status": "bound",
   "source": "yahoo_shares_full",
-  "as_of": "2026-10-30",
-  "expires": "2026-11-20T18:10:15.177329+00:00"
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:25.099803+00:00"
  },
  "ONEG": {
   "ticker": "ONEG",
   "value": 16000000,
   "status": "bound",
   "source": "yahoo_shares_full",
-  "as_of": "2026-10-30",
-  "expires": "2026-11-20T18:10:15.172871+00:00"
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:24.863909+00:00"
  },
  "CNTY": {
   "ticker": "CNTY",
@@ -8273,27 +8273,27 @@
  },
  "ZJYL": {
   "ticker": "ZJYL",
-  "value": 73663428,
+  "value": 154425476,
   "status": "bound",
   "source": "yahoo_shares_full",
-  "as_of": "2026-10-30",
-  "expires": "2026-11-20T18:10:15.174764+00:00"
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:24.883462+00:00"
  },
  "ANL": {
   "ticker": "ANL",
   "value": 64397937,
   "status": "bound",
   "source": "yahoo_shares_full",
-  "as_of": "2026-10-30",
-  "expires": "2026-11-20T18:10:15.173729+00:00"
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:25.372589+00:00"
  },
  "RUBI": {
   "ticker": "RUBI",
-  "value": 12587957,
+  "value": 540694,
   "status": "bound",
   "source": "yahoo_shares_full",
-  "as_of": "2026-10-30",
-  "expires": "2026-11-20T18:10:15.168447+00:00"
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:24.885911+00:00"
  },
  "BORR": {
   "ticker": "BORR",
@@ -8305,11 +8305,11 @@
  },
  "LODE": {
   "ticker": "LODE",
-  "value": 75993047,
+  "value": 76056705,
   "status": "bound",
   "source": "yahoo_shares_full",
-  "as_of": "2026-10-30",
-  "expires": "2026-11-20T18:10:15.983910+00:00"
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:25.188940+00:00"
  },
  "TLS": {
   "ticker": "TLS",
@@ -8321,19 +8321,19 @@
  },
  "SENS": {
   "ticker": "SENS",
-  "value": 52874053,
+  "value": 54780508,
   "status": "bound",
   "source": "yahoo_shares_full",
-  "as_of": "2026-10-30",
-  "expires": "2026-11-20T18:10:16.028555+00:00"
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:24.911573+00:00"
  },
  "COYA": {
   "ticker": "COYA",
   "value": 23457849,
   "status": "bound",
   "source": "yahoo_shares_full",
-  "as_of": "2026-10-30",
-  "expires": "2026-11-20T18:10:16.046016+00:00"
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:25.330549+00:00"
  },
  "PMN": {
   "ticker": "PMN",
@@ -10014,5 +10014,157 @@
   "source": "yahoo_shares_full",
   "as_of": "2026-11-19",
   "expires": "2026-12-10T20:46:53.560440+00:00"
+ },
+ "NIXX": {
+  "ticker": "NIXX",
+  "value": 29378339,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:24.582220+00:00"
+ },
+ "ZJK": {
+  "ticker": "ZJK",
+  "value": 64322249,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:24.581870+00:00"
+ },
+ "SNTI": {
+  "ticker": "SNTI",
+  "value": 2597159,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:24.583679+00:00"
+ },
+ "LICN": {
+  "ticker": "LICN",
+  "value": 447168,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:24.581529+00:00"
+ },
+ "RTSN": {
+  "ticker": "RTSN",
+  "value": 8331599,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:24.884765+00:00"
+ },
+ "SOS": {
+  "ticker": "SOS",
+  "value": 19355551,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:24.903566+00:00"
+ },
+ "BKHAR": {
+  "ticker": "BKHAR",
+  "value": 4153577,
+  "status": "bound",
+  "source": "sec_edgar",
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:24.577004+00:00"
+ },
+ "PRE": {
+  "ticker": "PRE",
+  "value": 19514244,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:25.098066+00:00"
+ },
+ "YSG": {
+  "ticker": "YSG",
+  "value": 93800549,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:25.154001+00:00"
+ },
+ "WULF": {
+  "ticker": "WULF",
+  "value": 501521605,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:25.131840+00:00"
+ },
+ "CSIQ": {
+  "ticker": "CSIQ",
+  "value": 67896749,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:25.396096+00:00"
+ },
+ "PZG": {
+  "ticker": "PZG",
+  "value": 86546696,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:25.432950+00:00"
+ },
+ "IQ": {
+  "ticker": "IQ",
+  "value": 965024735,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:25.458698+00:00"
+ },
+ "SMMT": {
+  "ticker": "SMMT",
+  "value": 799763918,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:25.456584+00:00"
+ },
+ "ONEW": {
+  "ticker": "ONEW",
+  "value": 16665619,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:25.431269+00:00"
+ },
+ "NNE": {
+  "ticker": "NNE",
+  "value": 53698146,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:25.645623+00:00"
+ },
+ "TSSI": {
+  "ticker": "TSSI",
+  "value": 28220220,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:25.646629+00:00"
+ },
+ "CCLD": {
+  "ticker": "CCLD",
+  "value": 42548859,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:25.658319+00:00"
+ },
+ "DDD": {
+  "ticker": "DDD",
+  "value": 181286861,
+  "status": "bound",
+  "source": "yahoo_shares_full",
+  "as_of": "2026-11-20",
+  "expires": "2026-12-11T20:29:25.686091+00:00"
  }
 }
