@@ -1,6 +1,6 @@
 {
- "built_on": "2026-11-25",
- "built_at": "2026-11-25T21:44:56.355114+00:00",
+ "built_on": "2026-11-26",
+ "built_at": "2026-11-26T21:37:40.861832+00:00",
  "count": 234,
  "confirmed": 114,
  "unverified": 120,
@@ -17,8 +17,8 @@
  "tickers": [
   {
    "price": 1.042,
-   "avg_vol": 5867104,
-   "range_pct": 35.0,
+   "avg_vol": 5867205,
+   "range_pct": 35.2,
    "rally_pct": 1257.1,
    "last_close_date": "2026-11-25",
    "ticker": "YMT",
@@ -33,7 +33,7 @@
   },
   {
    "price": 6.95,
-   "avg_vol": 5916512,
+   "avg_vol": 5916550,
    "range_pct": 33.8,
    "rally_pct": 3049.6,
    "last_close_date": "2026-11-25",
@@ -49,7 +49,7 @@
   },
   {
    "price": 2.06,
-   "avg_vol": 3234249,
+   "avg_vol": 3236355,
    "range_pct": 33.8,
    "rally_pct": 1091.1,
    "last_close_date": "2026-11-25",
@@ -65,8 +65,8 @@
   },
   {
    "price": 2.57,
-   "avg_vol": 7193486,
-   "range_pct": 31.0,
+   "avg_vol": 7197210,
+   "range_pct": 31.1,
    "rally_pct": 962.6,
    "last_close_date": "2026-11-25",
    "ticker": "POAS",
@@ -77,7 +77,7 @@
   },
   {
    "price": 0.655,
-   "avg_vol": 13885090,
+   "avg_vol": 14018060,
    "range_pct": 31.0,
    "rally_pct": 468.2,
    "last_close_date": "2026-11-25",
@@ -93,7 +93,7 @@
   },
   {
    "price": 1.02,
-   "avg_vol": 2974574,
+   "avg_vol": 2974582,
    "range_pct": 29.2,
    "rally_pct": 266.5,
    "last_close_date": "2026-11-25",
@@ -109,7 +109,7 @@
   },
   {
    "price": 1.4,
-   "avg_vol": 3469315,
+   "avg_vol": 3469330,
    "range_pct": 28.5,
    "rally_pct": 2233.3,
    "last_close_date": "2026-11-25",
@@ -121,8 +121,8 @@
   },
   {
    "price": 1.91,
-   "avg_vol": 14763075,
-   "range_pct": 27.4,
+   "avg_vol": 14763220,
+   "range_pct": 27.5,
    "rally_pct": 726.8,
    "last_close_date": "2026-11-25",
    "ticker": "GP",
@@ -133,7 +133,7 @@
   },
   {
    "price": 0.7,
-   "avg_vol": 6704802,
+   "avg_vol": 6711790,
    "range_pct": 27.3,
    "rally_pct": 418.2,
    "last_close_date": "2026-11-25",
@@ -149,7 +149,7 @@
   },
   {
    "price": 4.82,
-   "avg_vol": 23704944,
+   "avg_vol": 23720455,
    "range_pct": 27.1,
    "rally_pct": 952.9,
    "last_close_date": "2026-11-25",
@@ -165,7 +165,7 @@
   },
   {
    "price": 0.743,
-   "avg_vol": 4054582,
+   "avg_vol": 4054900,
    "range_pct": 26.7,
    "rally_pct": 356.1,
    "last_close_date": "2026-11-25",
@@ -180,8 +180,8 @@
    "company": "Sports Entertainment Gaming Global Corp"
   },
   {
-   "price": 0.914,
-   "avg_vol": 3607734,
+   "price": 0.91,
+   "avg_vol": 3608410,
    "range_pct": 25.8,
    "rally_pct": 190.2,
    "last_close_date": "2026-11-25",
@@ -193,9 +193,9 @@
   },
   {
    "price": 0.645,
-   "avg_vol": 24551526,
+   "avg_vol": 25354120,
    "range_pct": 25.8,
-   "rally_pct": 306.6,
+   "rally_pct": 306.7,
    "last_close_date": "2026-11-25",
    "ticker": "NXAT",
    "float": 3236567,
@@ -209,7 +209,7 @@
   },
   {
    "price": 1.05,
-   "avg_vol": 2309559,
+   "avg_vol": 2309741,
    "range_pct": 24.9,
    "rally_pct": 263.8,
    "last_close_date": "2026-11-25",
@@ -225,7 +225,7 @@
   },
   {
    "price": 1.47,
-   "avg_vol": 10674670,
+   "avg_vol": 10694645,
    "range_pct": 24.8,
    "rally_pct": 318.4,
    "last_close_date": "2026-11-25",
@@ -248,21 +248,9 @@
    "reverse_split": false
   },
   {
-   "price": 1.03,
-   "avg_vol": 228424,
-   "range_pct": 24.3,
-   "rally_pct": 279.4,
-   "last_close_date": "2026-11-25",
-   "ticker": "AMCI",
-   "float": 3670299,
-   "float_status": "exact",
-   "float_source": "yahoo_float",
-   "reverse_split": false
-  },
-  {
    "price": 0.984,
-   "avg_vol": 154782,
-   "range_pct": 24.3,
+   "avg_vol": 154860,
+   "range_pct": 24.5,
    "rally_pct": 220.2,
    "last_close_date": "2026-11-25",
    "ticker": "SKYE",
@@ -276,9 +264,21 @@
    "company": "Skye Bioscience Inc"
   },
   {
+   "price": 1.03,
+   "avg_vol": 228890,
+   "range_pct": 24.3,
+   "rally_pct": 279.4,
+   "last_close_date": "2026-11-25",
+   "ticker": "AMCI",
+   "float": 3670299,
+   "float_status": "exact",
+   "float_source": "yahoo_float",
+   "reverse_split": false
+  },
+  {
    "price": 0.952,
-   "avg_vol": 3564242,
-   "range_pct": 24.2,
+   "avg_vol": 3564805,
+   "range_pct": 24.3,
    "rally_pct": 352.1,
    "last_close_date": "2026-11-25",
    "ticker": "LGHL",
@@ -293,9 +293,9 @@
   },
   {
    "price": 0.625,
-   "avg_vol": 3672915,
+   "avg_vol": 3673095,
    "range_pct": 23.4,
-   "rally_pct": 590.4,
+   "rally_pct": 590.6,
    "last_close_date": "2026-11-25",
    "ticker": "ELPW",
    "float": 2740753,
@@ -309,7 +309,7 @@
   },
   {
    "price": 2.81,
-   "avg_vol": 1789351,
+   "avg_vol": 1789365,
    "range_pct": 23.1,
    "rally_pct": 5634.6,
    "last_close_date": "2026-11-25",
@@ -325,7 +325,7 @@
   },
   {
    "price": 1.95,
-   "avg_vol": 3922451,
+   "avg_vol": 3922605,
    "range_pct": 22.9,
    "rally_pct": 5325.6,
    "last_close_date": "2026-11-25",
@@ -337,7 +337,7 @@
   },
   {
    "price": 1.14,
-   "avg_vol": 1106787,
+   "avg_vol": 1107150,
    "range_pct": 22.4,
    "rally_pct": 272.8,
    "last_close_date": "2026-11-25",
@@ -349,7 +349,7 @@
   },
   {
    "price": 2.38,
-   "avg_vol": 8487071,
+   "avg_vol": 8487085,
    "range_pct": 22.3,
    "rally_pct": 821.7,
    "last_close_date": "2026-11-25",
@@ -365,8 +365,8 @@
   },
   {
    "price": 0.56,
-   "avg_vol": 172873,
-   "range_pct": 21.7,
+   "avg_vol": 172875,
+   "range_pct": 22.0,
    "rally_pct": 135.7,
    "last_close_date": "2026-11-25",
    "ticker": "CABR",
@@ -377,7 +377,7 @@
   },
   {
    "price": 3.82,
-   "avg_vol": 522551,
+   "avg_vol": 522560,
    "range_pct": 21.7,
    "rally_pct": 1809.1,
    "last_close_date": "2026-11-25",
@@ -409,9 +409,9 @@
   },
   {
    "price": 2.64,
-   "avg_vol": 279130,
+   "avg_vol": 279431,
    "range_pct": 21.2,
-   "rally_pct": 435.6,
+   "rally_pct": 435.5,
    "last_close_date": "2026-11-25",
    "ticker": "CODX",
    "float": 521779,
@@ -421,7 +421,7 @@
   },
   {
    "price": 2.36,
-   "avg_vol": 565125,
+   "avg_vol": 565138,
    "range_pct": 21.1,
    "rally_pct": 460.8,
    "last_close_date": "2026-11-25",
@@ -433,9 +433,9 @@
   },
   {
    "price": 2.27,
-   "avg_vol": 1116245,
+   "avg_vol": 1118428,
    "range_pct": 21.1,
-   "rally_pct": 1027.9,
+   "rally_pct": 1028.0,
    "last_close_date": "2026-11-25",
    "ticker": "RBNE",
    "float": 1000000,
@@ -449,7 +449,7 @@
   },
   {
    "price": 1.76,
-   "avg_vol": 4140704,
+   "avg_vol": 4189085,
    "range_pct": 21.0,
    "rally_pct": 174.3,
    "last_close_date": "2026-11-25",
@@ -465,7 +465,7 @@
   },
   {
    "price": 4.2,
-   "avg_vol": 4992048,
+   "avg_vol": 4992365,
    "range_pct": 20.9,
    "rally_pct": 172.0,
    "last_close_date": "2026-11-25",
@@ -477,7 +477,7 @@
   },
   {
    "price": 2.47,
-   "avg_vol": 1091641,
+   "avg_vol": 1091660,
    "range_pct": 20.9,
    "rally_pct": 252.9,
    "last_close_date": "2026-11-25",
@@ -493,7 +493,7 @@
   },
   {
    "price": 0.814,
-   "avg_vol": 2887627,
+   "avg_vol": 2887705,
    "range_pct": 20.6,
    "rally_pct": 191.0,
    "last_close_date": "2026-11-25",
@@ -509,7 +509,7 @@
   },
   {
    "price": 1.05,
-   "avg_vol": 564545,
+   "avg_vol": 565243,
    "range_pct": 20.3,
    "rally_pct": 9948.8,
    "last_close_date": "2026-11-25",
@@ -521,8 +521,8 @@
   },
   {
    "price": 1.01,
-   "avg_vol": 4873696,
-   "range_pct": 20.2,
+   "avg_vol": 4873980,
+   "range_pct": 20.3,
    "rally_pct": 150.7,
    "last_close_date": "2026-11-25",
    "ticker": "MSS",
@@ -537,7 +537,7 @@
   },
   {
    "price": 1.69,
-   "avg_vol": 468091,
+   "avg_vol": 472580,
    "range_pct": 20.1,
    "rally_pct": 188.8,
    "last_close_date": "2026-11-25",
@@ -549,7 +549,7 @@
   },
   {
    "price": 0.849,
-   "avg_vol": 2330368,
+   "avg_vol": 2330710,
    "range_pct": 19.6,
    "rally_pct": 169.4,
    "last_close_date": "2026-11-25",
@@ -561,7 +561,7 @@
   },
   {
    "price": 3.23,
-   "avg_vol": 3807652,
+   "avg_vol": 3807655,
    "range_pct": 18.8,
    "rally_pct": 276.5,
    "last_close_date": "2026-11-25",
@@ -572,8 +572,8 @@
    "reverse_split": false
   },
   {
-   "price": 0.749,
-   "avg_vol": 309131,
+   "price": 0.75,
+   "avg_vol": 309130,
    "range_pct": 18.7,
    "rally_pct": 286.5,
    "last_close_date": "2026-11-25",
@@ -589,7 +589,7 @@
   },
   {
    "price": 1.68,
-   "avg_vol": 1737254,
+   "avg_vol": 1737335,
    "range_pct": 18.6,
    "rally_pct": 245.7,
    "last_close_date": "2026-11-25",
@@ -601,7 +601,7 @@
   },
   {
    "price": 3.1,
-   "avg_vol": 194186,
+   "avg_vol": 195598,
    "range_pct": 18.5,
    "rally_pct": 183.3,
    "last_close_date": "2026-11-25",
@@ -619,7 +619,7 @@
    "price": 1.25,
    "avg_vol": 119471,
    "range_pct": 18.4,
-   "rally_pct": 182.6,
+   "rally_pct": 182.8,
    "last_close_date": "2026-11-25",
    "ticker": "ADGM",
    "float": 281036,
@@ -629,7 +629,7 @@
   },
   {
    "price": 0.84,
-   "avg_vol": 332586,
+   "avg_vol": 332685,
    "range_pct": 18.1,
    "rally_pct": 722.1,
    "last_close_date": "2026-11-25",
@@ -641,7 +641,7 @@
   },
   {
    "price": 5.03,
-   "avg_vol": 684422,
+   "avg_vol": 684440,
    "range_pct": 18.0,
    "rally_pct": 349.2,
    "last_close_date": "2026-11-25",
@@ -653,7 +653,7 @@
   },
   {
    "price": 2.06,
-   "avg_vol": 6677218,
+   "avg_vol": 6679960,
    "range_pct": 18.0,
    "rally_pct": 169.0,
    "last_close_date": "2026-11-25",
@@ -665,7 +665,7 @@
   },
   {
    "price": 0.924,
-   "avg_vol": 758740,
+   "avg_vol": 758915,
    "range_pct": 17.7,
    "rally_pct": 230.0,
    "last_close_date": "2026-11-25",
@@ -681,7 +681,7 @@
   },
   {
    "price": 0.559,
-   "avg_vol": 2088157,
+   "avg_vol": 2088335,
    "range_pct": 17.7,
    "rally_pct": 400.0,
    "last_close_date": "2026-11-25",
@@ -693,7 +693,7 @@
   },
   {
    "price": 1.29,
-   "avg_vol": 756871,
+   "avg_vol": 756898,
    "range_pct": 17.6,
    "rally_pct": 157.7,
    "last_close_date": "2026-11-25",
@@ -709,7 +709,7 @@
   },
   {
    "price": 0.836,
-   "avg_vol": 747670,
+   "avg_vol": 748135,
    "range_pct": 17.6,
    "rally_pct": 179.4,
    "last_close_date": "2026-11-25",
@@ -725,7 +725,7 @@
   },
   {
    "price": 1.28,
-   "avg_vol": 4191803,
+   "avg_vol": 4208585,
    "range_pct": 17.4,
    "rally_pct": 206.6,
    "last_close_date": "2026-11-25",
@@ -740,10 +740,10 @@
    "company": "Darkiris Inc"
   },
   {
-   "price": 0.725,
-   "avg_vol": 125323,
-   "range_pct": 17.3,
-   "rally_pct": 270.7,
+   "price": 0.73,
+   "avg_vol": 125355,
+   "range_pct": 17.4,
+   "rally_pct": 275.8,
    "last_close_date": "2026-11-25",
    "ticker": "OBAI",
    "float": 1730192,
@@ -753,8 +753,8 @@
   },
   {
    "price": 2.5,
-   "avg_vol": 963264,
-   "range_pct": 17.1,
+   "avg_vol": 963270,
+   "range_pct": 17.2,
    "rally_pct": 132.2,
    "last_close_date": "2026-11-25",
    "ticker": "PAVS",
@@ -769,9 +769,9 @@
   },
   {
    "price": 8.82,
-   "avg_vol": 1403080,
+   "avg_vol": 1403445,
    "range_pct": 16.9,
-   "rally_pct": 283.4,
+   "rally_pct": 283.8,
    "last_close_date": "2026-11-25",
    "ticker": "AIOK",
    "float": 4319916,
@@ -781,7 +781,7 @@
   },
   {
    "price": 0.93,
-   "avg_vol": 3823082,
+   "avg_vol": 3823130,
    "range_pct": 16.9,
    "rally_pct": 275.4,
    "last_close_date": "2026-11-25",
@@ -797,7 +797,7 @@
   },
   {
    "price": 5.65,
-   "avg_vol": 6639676,
+   "avg_vol": 6646790,
    "range_pct": 16.7,
    "rally_pct": 208.1,
    "last_close_date": "2026-11-25",
@@ -813,8 +813,8 @@
   },
   {
    "price": 0.54,
-   "avg_vol": 445060,
-   "range_pct": 16.7,
+   "avg_vol": 445140,
+   "range_pct": 16.6,
    "rally_pct": 173.8,
    "last_close_date": "2026-11-25",
    "ticker": "FRGT",
@@ -829,7 +829,7 @@
   },
   {
    "price": 1.34,
-   "avg_vol": 145360,
+   "avg_vol": 145413,
    "range_pct": 16.4,
    "rally_pct": 338.7,
    "last_close_date": "2026-11-25",
@@ -841,7 +841,7 @@
   },
   {
    "price": 0.82,
-   "avg_vol": 1150619,
+   "avg_vol": 1150655,
    "range_pct": 16.2,
    "rally_pct": 225.9,
    "last_close_date": "2026-11-25",
@@ -853,7 +853,7 @@
   },
   {
    "price": 0.588,
-   "avg_vol": 1301503,
+   "avg_vol": 1330680,
    "range_pct": 16.2,
    "rally_pct": 142.8,
    "last_close_date": "2026-11-25",
@@ -869,7 +869,7 @@
   },
   {
    "price": 4.77,
-   "avg_vol": 112939,
+   "avg_vol": 112940,
    "range_pct": 15.8,
    "rally_pct": 116.3,
    "last_close_date": "2026-11-25",
@@ -881,8 +881,8 @@
   },
   {
    "price": 0.978,
-   "avg_vol": 205779,
-   "range_pct": 15.5,
+   "avg_vol": 205795,
+   "range_pct": 15.6,
    "rally_pct": 77.8,
    "last_close_date": "2026-11-25",
    "ticker": "XRTX",
@@ -893,7 +893,7 @@
   },
   {
    "price": 1.06,
-   "avg_vol": 3801005,
+   "avg_vol": 3802715,
    "range_pct": 15.2,
    "rally_pct": 114.8,
    "last_close_date": "2026-11-25",
@@ -905,7 +905,7 @@
   },
   {
    "price": 1.86,
-   "avg_vol": 109023,
+   "avg_vol": 109300,
    "range_pct": 14.8,
    "rally_pct": 289.6,
    "last_close_date": "2026-11-25",
@@ -916,10 +916,22 @@
    "reverse_split": false
   },
   {
+   "price": 1.255,
+   "avg_vol": 129895,
+   "range_pct": 14.7,
+   "rally_pct": 264.0,
+   "last_close_date": "2026-11-25",
+   "ticker": "FMFC",
+   "float": 492374,
+   "float_status": "bound",
+   "float_source": "yahoo_shares_full",
+   "reverse_split": false
+  },
+  {
    "price": 0.741,
-   "avg_vol": 168661,
+   "avg_vol": 168730,
    "range_pct": 14.6,
-   "rally_pct": 128.0,
+   "rally_pct": 128.1,
    "last_close_date": "2026-11-25",
    "ticker": "GDC",
    "float": 4162500,
@@ -933,7 +945,7 @@
   },
   {
    "price": 0.625,
-   "avg_vol": 127954,
+   "avg_vol": 127955,
    "range_pct": 14.6,
    "rally_pct": 85.5,
    "last_close_date": "2026-11-25",
@@ -944,8 +956,36 @@
    "reverse_split": false
   },
   {
+   "price": 0.904,
+   "avg_vol": 317425,
+   "range_pct": 14.6,
+   "rally_pct": 116.1,
+   "last_close_date": "2026-11-25",
+   "ticker": "PRFX",
+   "float": 3499144,
+   "float_status": "bound",
+   "float_source": "yahoo_shares_full",
+   "reverse_split": false
+  },
+  {
+   "price": 0.536,
+   "avg_vol": 1089075,
+   "range_pct": 14.5,
+   "rally_pct": 623.0,
+   "last_close_date": "2026-11-25",
+   "ticker": "RUBI",
+   "float": 540694,
+   "float_status": "bound",
+   "float_source": "yahoo_shares_full",
+   "reverse_split": true,
+   "split_date": "2026-06-26",
+   "split_ratio": "25:1 Reverse split",
+   "days_since_split": 105,
+   "company": "Rubico Inc"
+  },
+  {
    "price": 1.21,
-   "avg_vol": 847789,
+   "avg_vol": 848190,
    "range_pct": 14.4,
    "rally_pct": 264.3,
    "last_close_date": "2026-11-25",
@@ -960,52 +1000,8 @@
    "company": "T3 Defense Inc"
   },
   {
-   "price": 0.904,
-   "avg_vol": 316888,
-   "range_pct": 14.4,
-   "rally_pct": 110.2,
-   "last_close_date": "2026-11-25",
-   "ticker": "PRFX",
-   "float": 3499144,
-   "float_status": "bound",
-   "float_source": "yahoo_shares_full",
-   "reverse_split": false
-  },
-  {
-   "price": 0.536,
-   "avg_vol": 1086405,
-   "range_pct": 14.4,
-   "rally_pct": 602.4,
-   "last_close_date": "2026-11-25",
-   "ticker": "RUBI",
-   "float": 540694,
-   "float_status": "bound",
-   "float_source": "yahoo_shares_full",
-   "reverse_split": true,
-   "split_date": "2026-06-26",
-   "split_ratio": "25:1 Reverse split",
-   "days_since_split": 105,
-   "company": "Rubico Inc"
-  },
-  {
-   "price": 1.69,
-   "avg_vol": 145261,
-   "range_pct": 14.2,
-   "rally_pct": 99.3,
-   "last_close_date": "2026-11-25",
-   "ticker": "SCNI",
-   "float": 2630422,
-   "float_status": "bound",
-   "float_source": "yahoo_shares_full",
-   "reverse_split": true,
-   "split_date": "2026-08-21",
-   "split_ratio": "10:1 Reverse split",
-   "days_since_split": 49,
-   "company": "Scinai Immunotherapeutics Ltd."
-  },
-  {
    "price": 1.14,
-   "avg_vol": 2665926,
+   "avg_vol": 2666035,
    "range_pct": 14.1,
    "rally_pct": 139.3,
    "last_close_date": "2026-11-25",
@@ -1020,8 +1016,20 @@
    "company": "Tianci International Inc"
   },
   {
+   "price": 1.51,
+   "avg_vol": 121865,
+   "range_pct": 14.1,
+   "rally_pct": 84.8,
+   "last_close_date": "2026-11-25",
+   "ticker": "UPC",
+   "float": 62773,
+   "float_status": "exact",
+   "float_source": "yahoo_float",
+   "reverse_split": false
+  },
+  {
    "price": 0.638,
-   "avg_vol": 376780,
+   "avg_vol": 376800,
    "range_pct": 14.0,
    "rally_pct": 138.5,
    "last_close_date": "2026-11-25",
@@ -1037,7 +1045,7 @@
   },
   {
    "price": 7.99,
-   "avg_vol": 307836,
+   "avg_vol": 307840,
    "range_pct": 13.9,
    "rally_pct": 245.9,
    "last_close_date": "2026-11-25",
@@ -1049,7 +1057,7 @@
   },
   {
    "price": 1.16,
-   "avg_vol": 800312,
+   "avg_vol": 800315,
    "range_pct": 13.7,
    "rally_pct": 150.0,
    "last_close_date": "2026-11-25",
@@ -1065,7 +1073,7 @@
   },
   {
    "price": 1.23,
-   "avg_vol": 221892,
+   "avg_vol": 223220,
    "range_pct": 13.7,
    "rally_pct": 130.4,
    "last_close_date": "2026-11-25",
@@ -1080,33 +1088,9 @@
    "company": "Ipower Inc"
   },
   {
-   "price": 1.51,
-   "avg_vol": 121862,
-   "range_pct": 13.7,
-   "rally_pct": 84.8,
-   "last_close_date": "2026-11-25",
-   "ticker": "UPC",
-   "float": 62773,
-   "float_status": "exact",
-   "float_source": "yahoo_float",
-   "reverse_split": false
-  },
-  {
-   "price": 5.28,
-   "avg_vol": 220418,
-   "range_pct": 13.6,
-   "rally_pct": 2007.1,
-   "last_close_date": "2026-11-25",
-   "ticker": "FNUC",
-   "float": 2408779,
-   "float_status": "bound",
-   "float_source": "yahoo_shares_full",
-   "reverse_split": false
-  },
-  {
    "price": 1.47,
    "avg_vol": 137295,
-   "range_pct": 13.5,
+   "range_pct": 13.6,
    "rally_pct": 108.0,
    "last_close_date": "2026-11-25",
    "ticker": "CVKD",
@@ -1117,7 +1101,7 @@
   },
   {
    "price": 1.83,
-   "avg_vol": 309996,
+   "avg_vol": 310105,
    "range_pct": 13.5,
    "rally_pct": 166.7,
    "last_close_date": "2026-11-25",
@@ -1129,7 +1113,7 @@
   },
   {
    "price": 0.753,
-   "avg_vol": 172448,
+   "avg_vol": 172685,
    "range_pct": 13.5,
    "rally_pct": 126.7,
    "last_close_date": "2026-11-25",
@@ -1145,7 +1129,7 @@
   },
   {
    "price": 1.23,
-   "avg_vol": 117398,
+   "avg_vol": 117438,
    "range_pct": 13.5,
    "rally_pct": 125.2,
    "last_close_date": "2026-11-25",
@@ -1160,8 +1144,24 @@
    "company": "Nexera Technologies Ltd."
   },
   {
+   "price": 1.402,
+   "avg_vol": 127003,
+   "range_pct": 13.4,
+   "rally_pct": 126.9,
+   "last_close_date": "2026-11-18",
+   "ticker": "SCNI",
+   "float": 2630422,
+   "float_status": "bound",
+   "float_source": "yahoo_shares_full",
+   "reverse_split": true,
+   "split_date": "2026-08-21",
+   "split_ratio": "10:1 Reverse split",
+   "days_since_split": 49,
+   "company": "Scinai Immunotherapeutics Ltd."
+  },
+  {
    "price": 2.3,
-   "avg_vol": 3148492,
+   "avg_vol": 3148495,
    "range_pct": 13.4,
    "rally_pct": 147.5,
    "last_close_date": "2026-11-25",
@@ -1177,7 +1177,7 @@
   },
   {
    "price": 2.76,
-   "avg_vol": 2280527,
+   "avg_vol": 2288905,
    "range_pct": 13.3,
    "rally_pct": 128.7,
    "last_close_date": "2026-11-25",
@@ -1193,7 +1193,7 @@
   },
   {
    "price": 0.505,
-   "avg_vol": 549975,
+   "avg_vol": 706390,
    "range_pct": 13.2,
    "rally_pct": 110.0,
    "last_close_date": "2026-11-25",
@@ -1209,7 +1209,7 @@
   },
   {
    "price": 0.726,
-   "avg_vol": 117187,
+   "avg_vol": 117195,
    "range_pct": 13.2,
    "rally_pct": 76.2,
    "last_close_date": "2026-11-25",
@@ -1221,7 +1221,7 @@
   },
   {
    "price": 9.66,
-   "avg_vol": 202272,
+   "avg_vol": 202270,
    "range_pct": 12.8,
    "rally_pct": 121.9,
    "last_close_date": "2026-11-25",
@@ -1233,7 +1233,7 @@
   },
   {
    "price": 1.565,
-   "avg_vol": 236958,
+   "avg_vol": 237001,
    "range_pct": 12.7,
    "rally_pct": 91.7,
    "last_close_date": "2026-11-25",
@@ -1245,7 +1245,7 @@
   },
   {
    "price": 1.26,
-   "avg_vol": 2657070,
+   "avg_vol": 2776175,
    "range_pct": 12.6,
    "rally_pct": 181.0,
    "last_close_date": "2026-11-25",
@@ -1256,10 +1256,22 @@
    "reverse_split": false
   },
   {
+   "price": 2.45,
+   "avg_vol": 233135,
+   "range_pct": 12.5,
+   "rally_pct": 1340.7,
+   "last_close_date": "2026-11-25",
+   "ticker": "TOPS",
+   "float": 424208,
+   "float_status": "exact",
+   "float_source": "yahoo_float",
+   "reverse_split": false
+  },
+  {
    "price": 1.5,
-   "avg_vol": 114609,
+   "avg_vol": 114610,
    "range_pct": 12.4,
-   "rally_pct": 96.4,
+   "rally_pct": 96.3,
    "last_close_date": "2026-11-25",
    "ticker": "CYCU",
    "float": 3795622,
@@ -1272,20 +1284,20 @@
    "company": "Cycurion Inc"
   },
   {
-   "price": 2.45,
-   "avg_vol": 233108,
+   "price": 1.39,
+   "avg_vol": 8699950,
    "range_pct": 12.4,
-   "rally_pct": 1340.7,
+   "rally_pct": 158.1,
    "last_close_date": "2026-11-25",
-   "ticker": "TOPS",
-   "float": 424208,
-   "float_status": "exact",
-   "float_source": "yahoo_float",
+   "ticker": "HIHO",
+   "float": 4626676,
+   "float_status": "bound",
+   "float_source": "yahoo_shares_full",
    "reverse_split": false
   },
   {
    "price": 4.92,
-   "avg_vol": 164090,
+   "avg_vol": 164140,
    "range_pct": 12.4,
    "rally_pct": 55.7,
    "last_close_date": "2026-11-25",
@@ -1300,45 +1312,9 @@
    "company": "Veea Inc"
   },
   {
-   "price": 1.39,
-   "avg_vol": 8699476,
-   "range_pct": 12.3,
-   "rally_pct": 158.1,
-   "last_close_date": "2026-11-25",
-   "ticker": "HIHO",
-   "float": 4626676,
-   "float_status": "bound",
-   "float_source": "yahoo_shares_full",
-   "reverse_split": false
-  },
-  {
-   "price": 2.7,
-   "avg_vol": 734840,
-   "range_pct": 12.2,
-   "rally_pct": 3007.1,
-   "last_close_date": "2026-11-25",
-   "ticker": "TGL",
-   "float": 528029,
-   "float_status": "bound",
-   "float_source": "yahoo_shares_full",
-   "reverse_split": false
-  },
-  {
-   "price": 2.01,
-   "avg_vol": 109121,
-   "range_pct": 12.1,
-   "rally_pct": 65.4,
-   "last_close_date": "2026-11-25",
-   "ticker": "ATXG",
-   "float": 2163715,
-   "float_status": "bound",
-   "float_source": "yahoo_shares_full",
-   "reverse_split": false
-  },
-  {
    "price": 1.19,
-   "avg_vol": 107258,
-   "range_pct": 12.1,
+   "avg_vol": 107285,
+   "range_pct": 12.2,
    "rally_pct": 60.8,
    "last_close_date": "2026-11-25",
    "ticker": "CXAI",
@@ -1352,8 +1328,32 @@
    "company": "Cxapp Inc"
   },
   {
+   "price": 2.7,
+   "avg_vol": 734925,
+   "range_pct": 12.2,
+   "rally_pct": 3007.1,
+   "last_close_date": "2026-11-25",
+   "ticker": "TGL",
+   "float": 528029,
+   "float_status": "bound",
+   "float_source": "yahoo_shares_full",
+   "reverse_split": false
+  },
+  {
+   "price": 2.01,
+   "avg_vol": 109120,
+   "range_pct": 12.1,
+   "rally_pct": 65.4,
+   "last_close_date": "2026-11-25",
+   "ticker": "ATXG",
+   "float": 2163715,
+   "float_status": "bound",
+   "float_source": "yahoo_shares_full",
+   "reverse_split": false
+  },
+  {
    "price": 1.67,
-   "avg_vol": 1713027,
+   "avg_vol": 1713265,
    "range_pct": 12.1,
    "rally_pct": 143.7,
    "last_close_date": "2026-11-25",
@@ -1369,7 +1369,7 @@
   },
   {
    "price": 1.7,
-   "avg_vol": 1448757,
+   "avg_vol": 1448760,
    "range_pct": 12.0,
    "rally_pct": 99.3,
    "last_close_date": "2026-11-25",
@@ -1397,7 +1397,7 @@
   },
   {
    "price": 3.83,
-   "avg_vol": 800889,
+   "avg_vol": 800905,
    "range_pct": 11.7,
    "rally_pct": 127.0,
    "last_close_date": "2026-11-25",
@@ -1413,7 +1413,7 @@
   },
   {
    "price": 1.46,
-   "avg_vol": 226552,
+   "avg_vol": 226710,
    "range_pct": 11.4,
    "rally_pct": 119.4,
    "last_close_date": "2026-11-25",
@@ -1429,7 +1429,7 @@
   },
   {
    "price": 1.33,
-   "avg_vol": 1210691,
+   "avg_vol": 1210700,
    "range_pct": 11.4,
    "rally_pct": 144.8,
    "last_close_date": "2026-11-25",
@@ -1445,7 +1445,7 @@
   },
   {
    "price": 1.06,
-   "avg_vol": 110171,
+   "avg_vol": 110265,
    "range_pct": 11.1,
    "rally_pct": 64.8,
    "last_close_date": "2026-11-25",
@@ -1461,9 +1461,9 @@
   },
   {
    "price": 0.62,
-   "avg_vol": 222309,
+   "avg_vol": 222375,
    "range_pct": 11.1,
-   "rally_pct": 71.5,
+   "rally_pct": 71.8,
    "last_close_date": "2026-11-25",
    "ticker": "YYAI",
    "float": 4581917,
@@ -1476,8 +1476,8 @@
    "company": "Airwa Inc"
   },
   {
-   "price": 2.789,
-   "avg_vol": 160225,
+   "price": 2.79,
+   "avg_vol": 160310,
    "range_pct": 11.0,
    "rally_pct": 2718.2,
    "last_close_date": "2026-11-25",
@@ -1493,7 +1493,7 @@
   },
   {
    "price": 3.66,
-   "avg_vol": 1179530,
+   "avg_vol": 1179545,
    "range_pct": 10.9,
    "rally_pct": 142.5,
    "last_close_date": "2026-11-25",
@@ -1505,7 +1505,7 @@
   },
   {
    "price": 1.35,
-   "avg_vol": 176074,
+   "avg_vol": 176100,
    "range_pct": 10.8,
    "rally_pct": 92.5,
    "last_close_date": "2026-11-25",
@@ -1521,7 +1521,7 @@
   },
   {
    "price": 2.79,
-   "avg_vol": 121355,
+   "avg_vol": 121390,
    "range_pct": 10.6,
    "rally_pct": 97.3,
    "last_close_date": "2026-11-25",
@@ -1533,7 +1533,7 @@
   },
   {
    "price": 2.33,
-   "avg_vol": 195283,
+   "avg_vol": 195300,
    "range_pct": 10.5,
    "rally_pct": 120.0,
    "last_close_date": "2026-11-25",
@@ -1545,8 +1545,8 @@
   },
   {
    "price": 0.722,
-   "avg_vol": 112413,
-   "range_pct": 10.3,
+   "avg_vol": 112420,
+   "range_pct": 10.5,
    "rally_pct": 68.8,
    "last_close_date": "2026-11-25",
    "ticker": "MYSZ",
@@ -1561,8 +1561,8 @@
   },
   {
    "price": 1.43,
-   "avg_vol": 107169,
-   "range_pct": 10.2,
+   "avg_vol": 107175,
+   "range_pct": 10.3,
    "rally_pct": 60.5,
    "last_close_date": "2026-11-25",
    "ticker": "LBGJ",
@@ -1577,7 +1577,7 @@
   },
   {
    "price": 1.48,
-   "avg_vol": 115733,
+   "avg_vol": 115780,
    "range_pct": 10.0,
    "rally_pct": 66.4,
    "last_close_date": "2026-11-25",
@@ -1593,7 +1593,7 @@
   },
   {
    "price": 1.12,
-   "avg_vol": 325276,
+   "avg_vol": 325415,
    "range_pct": 9.9,
    "rally_pct": 76.9,
    "last_close_date": "2026-11-25",
@@ -1604,8 +1604,8 @@
    "reverse_split": false
   },
   {
-   "price": 0.957,
-   "avg_vol": 132419,
+   "price": 0.96,
+   "avg_vol": 132430,
    "range_pct": 9.8,
    "rally_pct": 66.7,
    "last_close_date": "2026-11-25",
@@ -1617,7 +1617,7 @@
   },
   {
    "price": 1.86,
-   "avg_vol": 147934,
+   "avg_vol": 147945,
    "range_pct": 9.3,
    "rally_pct": 39.1,
    "last_close_date": "2026-11-25",
@@ -1629,7 +1629,7 @@
   },
   {
    "price": 8.42,
-   "avg_vol": 1791961,
+   "avg_vol": 1792325,
    "range_pct": 38.3,
    "rally_pct": 694.7,
    "last_close_date": "2026-11-25",
@@ -1645,7 +1645,7 @@
   },
   {
    "price": 0.74,
-   "avg_vol": 425310,
+   "avg_vol": 442770,
    "range_pct": 36.0,
    "rally_pct": null,
    "last_close_date": "2026-11-25",
@@ -1656,11 +1656,23 @@
    "reverse_split": false
   },
   {
-   "price": 1.82,
-   "avg_vol": 1242353,
-   "range_pct": 35.1,
-   "rally_pct": 712.9,
+   "price": 0.962,
+   "avg_vol": 583997,
+   "range_pct": 34.8,
+   "rally_pct": null,
    "last_close_date": "2026-11-25",
+   "ticker": "EVRL",
+   "float": 28286836,
+   "float_status": "unverified",
+   "float_source": "yahoo_shares_full",
+   "reverse_split": false
+  },
+  {
+   "price": 1.76,
+   "avg_vol": 1225042,
+   "range_pct": 33.9,
+   "rally_pct": 687.5,
+   "last_close_date": "2026-11-19",
    "ticker": "NTCL",
    "float": 9585579,
    "float_status": "unverified",
@@ -1672,22 +1684,10 @@
    "company": "Netclass Technology Inc"
   },
   {
-   "price": 0.962,
-   "avg_vol": 573240,
-   "range_pct": 34.8,
-   "rally_pct": null,
-   "last_close_date": "2026-11-25",
-   "ticker": "EVRL",
-   "float": 28286836,
-   "float_status": "unverified",
-   "float_source": "yahoo_shares_full",
-   "reverse_split": false
-  },
-  {
-   "price": 0.518,
-   "avg_vol": 286746,
+   "price": 0.519,
+   "avg_vol": 287115,
    "range_pct": 33.9,
-   "rally_pct": 489.5,
+   "rally_pct": 490.0,
    "last_close_date": "2026-11-25",
    "ticker": "PDC",
    "float": 8114138,
@@ -1697,7 +1697,7 @@
   },
   {
    "price": 2.74,
-   "avg_vol": 5353361,
+   "avg_vol": 5416225,
    "range_pct": 33.7,
    "rally_pct": 400.4,
    "last_close_date": "2026-11-25",
@@ -1708,8 +1708,8 @@
    "reverse_split": false
   },
   {
-   "price": 0.875,
-   "avg_vol": 2339273,
+   "price": 0.88,
+   "avg_vol": 2339280,
    "range_pct": 33.5,
    "rally_pct": 888.4,
    "last_close_date": "2026-11-25",
@@ -1721,8 +1721,8 @@
   },
   {
    "price": 3.17,
-   "avg_vol": 442019,
-   "range_pct": 32.1,
+   "avg_vol": 442144,
+   "range_pct": 32.3,
    "rally_pct": 303.2,
    "last_close_date": "2026-11-25",
    "ticker": "MDRN",
@@ -1733,7 +1733,7 @@
   },
   {
    "price": 0.98,
-   "avg_vol": 5619844,
+   "avg_vol": 5619940,
    "range_pct": 26.8,
    "rally_pct": 360.8,
    "last_close_date": "2026-11-25",
@@ -1745,8 +1745,8 @@
   },
   {
    "price": 0.852,
-   "avg_vol": 129916,
-   "range_pct": 26.3,
+   "avg_vol": 129920,
+   "range_pct": 26.6,
    "rally_pct": 180.0,
    "last_close_date": "2026-11-25",
    "ticker": "PLUT",
@@ -1757,7 +1757,7 @@
   },
   {
    "price": 0.532,
-   "avg_vol": 21566097,
+   "avg_vol": 21583695,
    "range_pct": 25.8,
    "rally_pct": 570.9,
    "last_close_date": "2026-11-25",
@@ -1773,7 +1773,7 @@
   },
   {
    "price": 1.28,
-   "avg_vol": 1843468,
+   "avg_vol": 1843480,
    "range_pct": 25.2,
    "rally_pct": 138.2,
    "last_close_date": "2026-11-25",
@@ -1785,7 +1785,7 @@
   },
   {
    "price": 1.64,
-   "avg_vol": 11110553,
+   "avg_vol": 11126200,
    "range_pct": 25.1,
    "rally_pct": 352.3,
    "last_close_date": "2026-11-25",
@@ -1801,8 +1801,8 @@
   },
   {
    "price": 1.79,
-   "avg_vol": 3190401,
-   "range_pct": 24.8,
+   "avg_vol": 3190451,
+   "range_pct": 24.9,
    "rally_pct": 375.4,
    "last_close_date": "2026-11-25",
    "ticker": "NWGL",
@@ -1813,7 +1813,7 @@
   },
   {
    "price": 3.59,
-   "avg_vol": 473975,
+   "avg_vol": 473985,
    "range_pct": 24.7,
    "rally_pct": 241.8,
    "last_close_date": "2026-11-25",
@@ -1825,7 +1825,7 @@
   },
   {
    "price": 0.546,
-   "avg_vol": 328824,
+   "avg_vol": 328840,
    "range_pct": 22.9,
    "rally_pct": 201.7,
    "last_close_date": "2026-11-25",
@@ -1837,7 +1837,7 @@
   },
   {
    "price": 1.87,
-   "avg_vol": 7137967,
+   "avg_vol": 7154630,
    "range_pct": 21.8,
    "rally_pct": 246.0,
    "last_close_date": "2026-11-25",
@@ -1849,7 +1849,7 @@
   },
   {
    "price": 2.53,
-   "avg_vol": 142761,
+   "avg_vol": 142805,
    "range_pct": 21.5,
    "rally_pct": 217.0,
    "last_close_date": "2026-11-25",
@@ -1861,7 +1861,7 @@
   },
   {
    "price": 2.26,
-   "avg_vol": 1718148,
+   "avg_vol": 1737235,
    "range_pct": 21.3,
    "rally_pct": 363.4,
    "last_close_date": "2026-11-25",
@@ -1873,7 +1873,7 @@
   },
   {
    "price": 3.2,
-   "avg_vol": 460060,
+   "avg_vol": 460065,
    "range_pct": 21.3,
    "rally_pct": 309.4,
    "last_close_date": "2026-11-25",
@@ -1885,7 +1885,7 @@
   },
   {
    "price": 1.16,
-   "avg_vol": 391292,
+   "avg_vol": 394380,
    "range_pct": 21.0,
    "rally_pct": 366.6,
    "last_close_date": "2026-11-25",
@@ -1900,8 +1900,8 @@
    "company": "Park Ha Biological Technology Co Ltd."
   },
   {
-   "price": 0.577,
-   "avg_vol": 494098,
+   "price": 0.58,
+   "avg_vol": 497955,
    "range_pct": 20.7,
    "rally_pct": 481.8,
    "last_close_date": "2026-11-25",
@@ -1913,7 +1913,7 @@
   },
   {
    "price": 1.6,
-   "avg_vol": 140458,
+   "avg_vol": 140460,
    "range_pct": 19.6,
    "rally_pct": 329.9,
    "last_close_date": "2026-11-25",
@@ -1925,7 +1925,7 @@
   },
   {
    "price": 2.23,
-   "avg_vol": 632359,
+   "avg_vol": 632575,
    "range_pct": 19.5,
    "rally_pct": 334.0,
    "last_close_date": "2026-11-25",
@@ -1936,8 +1936,8 @@
    "reverse_split": false
   },
   {
-   "price": 0.717,
-   "avg_vol": 147537,
+   "price": 0.72,
+   "avg_vol": 147560,
    "range_pct": 19.4,
    "rally_pct": 180.6,
    "last_close_date": "2026-11-25",
@@ -1949,7 +1949,7 @@
   },
   {
    "price": 1.76,
-   "avg_vol": 664270,
+   "avg_vol": 664274,
    "range_pct": 19.4,
    "rally_pct": 242.9,
    "last_close_date": "2026-11-25",
@@ -1961,7 +1961,7 @@
   },
   {
    "price": 3.09,
-   "avg_vol": 167397,
+   "avg_vol": 167400,
    "range_pct": 19.2,
    "rally_pct": 154.0,
    "last_close_date": "2026-11-25",
@@ -1973,8 +1973,8 @@
   },
   {
    "price": 3.75,
-   "avg_vol": 319261,
-   "range_pct": 18.6,
+   "avg_vol": 319260,
+   "range_pct": 18.7,
    "rally_pct": 135.3,
    "last_close_date": "2026-11-25",
    "ticker": "ZONE",
@@ -1985,19 +1985,19 @@
   },
   {
    "price": 6.34,
-   "avg_vol": 109636,
-   "range_pct": 18.2,
-   "rally_pct": 156.2,
+   "avg_vol": 109635,
+   "range_pct": 18.3,
+   "rally_pct": 157.6,
    "last_close_date": "2026-11-25",
    "ticker": "ENHA",
-   "float": 13681637,
+   "float": 13807527,
    "float_status": "unverified",
    "float_source": "yahoo_shares_full",
    "reverse_split": false
   },
   {
    "price": 0.515,
-   "avg_vol": 2099123,
+   "avg_vol": 2099135,
    "range_pct": 18.2,
    "rally_pct": 263.1,
    "last_close_date": "2026-11-25",
@@ -2009,7 +2009,7 @@
   },
   {
    "price": 0.58,
-   "avg_vol": 6737327,
+   "avg_vol": 6737335,
    "range_pct": 18.2,
    "rally_pct": 154.3,
    "last_close_date": "2026-11-25",
@@ -2021,9 +2021,9 @@
   },
   {
    "price": 1.4,
-   "avg_vol": 702711,
+   "avg_vol": 705145,
    "range_pct": 18.1,
-   "rally_pct": 186.2,
+   "rally_pct": 186.3,
    "last_close_date": "2026-11-25",
    "ticker": "GLXG",
    "float": 6721515,
@@ -2033,9 +2033,9 @@
   },
   {
    "price": 0.58,
-   "avg_vol": 484292,
+   "avg_vol": 484300,
    "range_pct": 18.1,
-   "rally_pct": 532.1,
+   "rally_pct": 532.3,
    "last_close_date": "2026-11-25",
    "ticker": "STEM",
    "float": 9718819,
@@ -2045,9 +2045,9 @@
   },
   {
    "price": 8.15,
-   "avg_vol": 4216658,
+   "avg_vol": 4231560,
    "range_pct": 17.9,
-   "rally_pct": 266.1,
+   "rally_pct": 266.5,
    "last_close_date": "2026-11-25",
    "ticker": "BNAI",
    "float": 7626834,
@@ -2057,9 +2057,9 @@
   },
   {
    "price": 0.565,
-   "avg_vol": 6768778,
+   "avg_vol": 7042134,
    "range_pct": 17.9,
-   "rally_pct": 245.8,
+   "rally_pct": 246.8,
    "last_close_date": "2026-11-25",
    "ticker": "TOPP",
    "float": 24700000,
@@ -2069,7 +2069,7 @@
   },
   {
    "price": 1.8,
-   "avg_vol": 447076,
+   "avg_vol": 447075,
    "range_pct": 17.2,
    "rally_pct": 300.0,
    "last_close_date": "2026-11-25",
@@ -2081,9 +2081,9 @@
   },
   {
    "price": 3.21,
-   "avg_vol": 244733,
+   "avg_vol": 244735,
    "range_pct": 17.1,
-   "rally_pct": 159.0,
+   "rally_pct": 159.9,
    "last_close_date": "2026-11-25",
    "ticker": "MOVE",
    "float": 15978760,
@@ -2093,7 +2093,7 @@
   },
   {
    "price": 3.04,
-   "avg_vol": 255049,
+   "avg_vol": 255060,
    "range_pct": 17.0,
    "rally_pct": 81.2,
    "last_close_date": "2026-11-25",
@@ -2109,7 +2109,7 @@
   },
   {
    "price": 1.68,
-   "avg_vol": 101046,
+   "avg_vol": 101045,
    "range_pct": 17.0,
    "rally_pct": 84.1,
    "last_close_date": "2026-11-25",
@@ -2121,7 +2121,7 @@
   },
   {
    "price": 2.51,
-   "avg_vol": 338519,
+   "avg_vol": 338540,
    "range_pct": 16.9,
    "rally_pct": 87.3,
    "last_close_date": "2026-11-25",
@@ -2133,7 +2133,7 @@
   },
   {
    "price": 7.14,
-   "avg_vol": 1618441,
+   "avg_vol": 1618480,
    "range_pct": 16.6,
    "rally_pct": 214.3,
    "last_close_date": "2026-11-25",
@@ -2149,7 +2149,7 @@
   },
   {
    "price": 0.676,
-   "avg_vol": 735014,
+   "avg_vol": 735070,
    "range_pct": 16.6,
    "rally_pct": 295.0,
    "last_close_date": "2026-11-25",
@@ -2161,7 +2161,7 @@
   },
   {
    "price": 2.54,
-   "avg_vol": 1176419,
+   "avg_vol": 1176565,
    "range_pct": 16.5,
    "rally_pct": 101.6,
    "last_close_date": "2026-11-25",
@@ -2184,8 +2184,20 @@
    "reverse_split": false
   },
   {
+   "price": 5.26,
+   "avg_vol": 174675,
+   "range_pct": 16.3,
+   "rally_pct": 277.4,
+   "last_close_date": "2026-11-25",
+   "ticker": "BGIN",
+   "float": 43350299,
+   "float_status": "unverified",
+   "float_source": "yahoo_float",
+   "reverse_split": false
+  },
+  {
    "price": 2.775,
-   "avg_vol": 1522983,
+   "avg_vol": 1523015,
    "range_pct": 16.3,
    "rally_pct": 1643.3,
    "last_close_date": "2026-11-25",
@@ -2197,7 +2209,7 @@
   },
   {
    "price": 0.8,
-   "avg_vol": 152335,
+   "avg_vol": 152340,
    "range_pct": 16.3,
    "rally_pct": 79.7,
    "last_close_date": "2026-11-25",
@@ -2209,7 +2221,7 @@
   },
   {
    "price": 0.919,
-   "avg_vol": 873737,
+   "avg_vol": 892451,
    "range_pct": 16.3,
    "rally_pct": null,
    "last_close_date": "2026-11-25",
@@ -2224,21 +2236,9 @@
    "company": "Yyforce Inc"
   },
   {
-   "price": 5.26,
-   "avg_vol": 174662,
-   "range_pct": 16.2,
-   "rally_pct": 277.4,
-   "last_close_date": "2026-11-25",
-   "ticker": "BGIN",
-   "float": 43350299,
-   "float_status": "unverified",
-   "float_source": "yahoo_float",
-   "reverse_split": false
-  },
-  {
    "price": 5.08,
-   "avg_vol": 524143,
-   "range_pct": 16.1,
+   "avg_vol": 524160,
+   "range_pct": 16.2,
    "rally_pct": 84.6,
    "last_close_date": "2026-11-25",
    "ticker": "NFE",
@@ -2253,9 +2253,9 @@
   },
   {
    "price": 0.81,
-   "avg_vol": 260162,
+   "avg_vol": 276225,
    "range_pct": 16.1,
-   "rally_pct": 164.3,
+   "rally_pct": 164.5,
    "last_close_date": "2026-11-25",
    "ticker": "RADX",
    "float": 15702943,
@@ -2264,20 +2264,8 @@
    "reverse_split": false
   },
   {
-   "price": 0.859,
-   "avg_vol": 246582,
-   "range_pct": 15.8,
-   "rally_pct": 196.8,
-   "last_close_date": "2026-11-25",
-   "ticker": "DOMH",
-   "float": 11186018,
-   "float_status": "unverified",
-   "float_source": "yahoo_float",
-   "reverse_split": false
-  },
-  {
    "price": 0.63,
-   "avg_vol": 3935483,
+   "avg_vol": 3935495,
    "range_pct": 15.8,
    "rally_pct": 110.0,
    "last_close_date": "2026-11-25",
@@ -2288,10 +2276,22 @@
    "reverse_split": false
   },
   {
-   "price": 0.642,
-   "avg_vol": 5560137,
+   "price": 0.86,
+   "avg_vol": 246585,
    "range_pct": 15.7,
-   "rally_pct": 298.1,
+   "rally_pct": 196.8,
+   "last_close_date": "2026-11-25",
+   "ticker": "DOMH",
+   "float": 11186018,
+   "float_status": "unverified",
+   "float_source": "yahoo_float",
+   "reverse_split": false
+  },
+  {
+   "price": 0.642,
+   "avg_vol": 5560140,
+   "range_pct": 15.7,
+   "rally_pct": 298.2,
    "last_close_date": "2026-11-25",
    "ticker": "FTCI",
    "float": 17217526,
@@ -2301,7 +2301,7 @@
   },
   {
    "price": 2.71,
-   "avg_vol": 134812,
+   "avg_vol": 136520,
    "range_pct": 15.7,
    "rally_pct": 233.3,
    "last_close_date": "2026-11-25",
@@ -2313,7 +2313,7 @@
   },
   {
    "price": 2.36,
-   "avg_vol": 101344,
+   "avg_vol": 101365,
    "range_pct": 15.5,
    "rally_pct": 109.8,
    "last_close_date": "2026-11-25",
@@ -2325,7 +2325,7 @@
   },
   {
    "price": 4.0,
-   "avg_vol": 110544,
+   "avg_vol": 110601,
    "range_pct": 15.5,
    "rally_pct": 98.9,
    "last_close_date": "2026-11-25",
@@ -2337,19 +2337,19 @@
   },
   {
    "price": 0.65,
-   "avg_vol": 101471,
+   "avg_vol": 101485,
    "range_pct": 15.5,
    "rally_pct": 113.1,
    "last_close_date": "2026-11-25",
    "ticker": "SNES",
-   "float": 5423542,
+   "float": 6823881,
    "float_status": "unverified",
    "float_source": "yahoo_shares_full",
    "reverse_split": false
   },
   {
    "price": 0.9,
-   "avg_vol": 19851640,
+   "avg_vol": 19878270,
    "range_pct": 15.4,
    "rally_pct": 175.0,
    "last_close_date": "2026-11-25",
@@ -2361,7 +2361,7 @@
   },
   {
    "price": 0.755,
-   "avg_vol": 842863,
+   "avg_vol": 842865,
    "range_pct": 15.3,
    "rally_pct": 221.9,
    "last_close_date": "2026-11-25",
@@ -2373,7 +2373,7 @@
   },
   {
    "price": 0.96,
-   "avg_vol": 372406,
+   "avg_vol": 372410,
    "range_pct": 15.2,
    "rally_pct": 99.5,
    "last_close_date": "2026-11-25",
@@ -2385,7 +2385,7 @@
   },
   {
    "price": 1.44,
-   "avg_vol": 2499528,
+   "avg_vol": 2503260,
    "range_pct": 15.2,
    "rally_pct": 162.8,
    "last_close_date": "2026-11-25",
@@ -2408,8 +2408,20 @@
    "reverse_split": false
   },
   {
+   "price": 1.15,
+   "avg_vol": 149595,
+   "range_pct": 15.1,
+   "rally_pct": 94.1,
+   "last_close_date": "2026-11-25",
+   "ticker": "HTCO",
+   "float": 9063024,
+   "float_status": "unverified",
+   "float_source": "yahoo_shares_full",
+   "reverse_split": false
+  },
+  {
    "price": 1.12,
-   "avg_vol": 6083538,
+   "avg_vol": 6084210,
    "range_pct": 15.1,
    "rally_pct": 167.6,
    "last_close_date": "2026-11-25",
@@ -2420,21 +2432,9 @@
    "reverse_split": false
   },
   {
-   "price": 1.15,
-   "avg_vol": 149479,
-   "range_pct": 15.0,
-   "rally_pct": 94.1,
-   "last_close_date": "2026-11-25",
-   "ticker": "HTCO",
-   "float": 9063024,
-   "float_status": "unverified",
-   "float_source": "yahoo_shares_full",
-   "reverse_split": false
-  },
-  {
    "price": 2.27,
-   "avg_vol": 4559684,
-   "range_pct": 14.9,
+   "avg_vol": 4559720,
+   "range_pct": 15.0,
    "rally_pct": 127.2,
    "last_close_date": "2026-11-25",
    "ticker": "EDSA",
@@ -2445,7 +2445,7 @@
   },
   {
    "price": 1.9,
-   "avg_vol": 116324,
+   "avg_vol": 116490,
    "range_pct": 14.9,
    "rally_pct": 123.8,
    "last_close_date": "2026-11-25",
@@ -2457,7 +2457,7 @@
   },
   {
    "price": 1.32,
-   "avg_vol": 282869,
+   "avg_vol": 282870,
    "range_pct": 14.8,
    "rally_pct": 219.4,
    "last_close_date": "2026-11-25",
@@ -2468,8 +2468,32 @@
    "reverse_split": false
   },
   {
+   "price": 0.902,
+   "avg_vol": 923665,
+   "range_pct": 14.7,
+   "rally_pct": 253.7,
+   "last_close_date": "2026-11-25",
+   "ticker": "BIVI",
+   "float": 10724724,
+   "float_status": "unverified",
+   "float_source": "yahoo_shares_full",
+   "reverse_split": false
+  },
+  {
+   "price": 0.87,
+   "avg_vol": 190905,
+   "range_pct": 14.7,
+   "rally_pct": 119.3,
+   "last_close_date": "2026-11-25",
+   "ticker": "MTVA",
+   "float": 6742889,
+   "float_status": "unverified",
+   "float_source": "yahoo_shares_full",
+   "reverse_split": false
+  },
+  {
    "price": 2.08,
-   "avg_vol": 609842,
+   "avg_vol": 609840,
    "range_pct": 14.7,
    "rally_pct": 169.2,
    "last_close_date": "2026-11-25",
@@ -2481,7 +2505,7 @@
   },
   {
    "price": 1.1,
-   "avg_vol": 27985538,
+   "avg_vol": 27995145,
    "range_pct": 14.7,
    "rally_pct": 247.9,
    "last_close_date": "2026-11-25",
@@ -2493,7 +2517,7 @@
   },
   {
    "price": 2.25,
-   "avg_vol": 318796,
+   "avg_vol": 318830,
    "range_pct": 14.6,
    "rally_pct": 121.2,
    "last_close_date": "2026-11-25",
@@ -2504,20 +2528,8 @@
    "reverse_split": false
   },
   {
-   "price": 0.902,
-   "avg_vol": 923663,
-   "range_pct": 14.6,
-   "rally_pct": 253.7,
-   "last_close_date": "2026-11-25",
-   "ticker": "BIVI",
-   "float": 10724724,
-   "float_status": "unverified",
-   "float_source": "yahoo_shares_full",
-   "reverse_split": false
-  },
-  {
    "price": 1.57,
-   "avg_vol": 350896,
+   "avg_vol": 350905,
    "range_pct": 14.5,
    "rally_pct": 86.1,
    "last_close_date": "2026-11-25",
@@ -2529,7 +2541,7 @@
   },
   {
    "price": 2.02,
-   "avg_vol": 996489,
+   "avg_vol": 997620,
    "range_pct": 14.5,
    "rally_pct": 47.4,
    "last_close_date": "2026-11-25",
@@ -2540,20 +2552,8 @@
    "reverse_split": false
   },
   {
-   "price": 0.87,
-   "avg_vol": 190770,
-   "range_pct": 14.5,
-   "rally_pct": 112.0,
-   "last_close_date": "2026-11-25",
-   "ticker": "MTVA",
-   "float": 6588101,
-   "float_status": "unverified",
-   "float_source": "yahoo_shares_full",
-   "reverse_split": false
-  },
-  {
    "price": 1.53,
-   "avg_vol": 123364,
+   "avg_vol": 123840,
    "range_pct": 14.5,
    "rally_pct": 88.6,
    "last_close_date": "2026-11-25",
@@ -2565,7 +2565,7 @@
   },
   {
    "price": 2.85,
-   "avg_vol": 138538,
+   "avg_vol": 138540,
    "range_pct": 14.3,
    "rally_pct": 115.4,
    "last_close_date": "2026-11-25",
@@ -2581,7 +2581,7 @@
   },
   {
    "price": 2.92,
-   "avg_vol": 1179595,
+   "avg_vol": 1179600,
    "range_pct": 14.3,
    "rally_pct": 115.9,
    "last_close_date": "2026-11-25",
@@ -2593,9 +2593,9 @@
   },
   {
    "price": 7.99,
-   "avg_vol": 228351,
+   "avg_vol": 228625,
    "range_pct": 14.1,
-   "rally_pct": 100.0,
+   "rally_pct": 100.5,
    "last_close_date": "2026-11-25",
    "ticker": "CPIX",
    "float": 8751904,
@@ -2605,7 +2605,7 @@
   },
   {
    "price": 1.34,
-   "avg_vol": 109838,
+   "avg_vol": 109840,
    "range_pct": 14.1,
    "rally_pct": 155.8,
    "last_close_date": "2026-11-25",
@@ -2617,7 +2617,7 @@
   },
   {
    "price": 3.245,
-   "avg_vol": 210414,
+   "avg_vol": 210415,
    "range_pct": 14.1,
    "rally_pct": 86.9,
    "last_close_date": "2026-11-25",
@@ -2629,7 +2629,7 @@
   },
   {
    "price": 0.826,
-   "avg_vol": 173985,
+   "avg_vol": 174010,
    "range_pct": 14.0,
    "rally_pct": 122.2,
    "last_close_date": "2026-11-25",
@@ -2641,7 +2641,7 @@
   },
   {
    "price": 0.865,
-   "avg_vol": 310857,
+   "avg_vol": 310865,
    "range_pct": 14.0,
    "rally_pct": 226.5,
    "last_close_date": "2026-11-25",
@@ -2653,7 +2653,7 @@
   },
   {
    "price": 0.781,
-   "avg_vol": 256545,
+   "avg_vol": 256550,
    "range_pct": 13.9,
    "rally_pct": 73.8,
    "last_close_date": "2026-11-25",
@@ -2669,7 +2669,7 @@
   },
   {
    "price": 6.6,
-   "avg_vol": 547479,
+   "avg_vol": 547525,
    "range_pct": 13.9,
    "rally_pct": 93.2,
    "last_close_date": "2026-11-25",
@@ -2680,8 +2680,20 @@
    "reverse_split": false
   },
   {
+   "price": 2.76,
+   "avg_vol": 359600,
+   "range_pct": 13.8,
+   "rally_pct": 183.7,
+   "last_close_date": "2026-11-25",
+   "ticker": "SAIQ",
+   "float": 16818772,
+   "float_status": "unverified",
+   "float_source": "yahoo_shares_full",
+   "reverse_split": false
+  },
+  {
    "price": 0.559,
-   "avg_vol": 831554,
+   "avg_vol": 831555,
    "range_pct": 13.7,
    "rally_pct": 88.3,
    "last_close_date": "2026-11-25",
@@ -2692,20 +2704,8 @@
    "reverse_split": false
   },
   {
-   "price": 2.76,
-   "avg_vol": 359569,
-   "range_pct": 13.7,
-   "rally_pct": 183.7,
-   "last_close_date": "2026-11-25",
-   "ticker": "SAIQ",
-   "float": 16818772,
-   "float_status": "unverified",
-   "float_source": "yahoo_shares_full",
-   "reverse_split": false
-  },
-  {
    "price": 1.06,
-   "avg_vol": 364776,
+   "avg_vol": 364775,
    "range_pct": 13.7,
    "rally_pct": 108.3,
    "last_close_date": "2026-11-25",
@@ -2717,7 +2717,7 @@
   },
   {
    "price": 0.752,
-   "avg_vol": 282024,
+   "avg_vol": 282205,
    "range_pct": 13.6,
    "rally_pct": 192.1,
    "last_close_date": "2026-11-25",
@@ -2729,7 +2729,7 @@
   },
   {
    "price": 3.19,
-   "avg_vol": 5808249,
+   "avg_vol": 5808460,
    "range_pct": 13.6,
    "rally_pct": 137.0,
    "last_close_date": "2026-11-25",
@@ -2740,20 +2740,8 @@
    "reverse_split": false
   },
   {
-   "price": 1.23,
-   "avg_vol": 103664,
-   "range_pct": 13.5,
-   "rally_pct": 146.2,
-   "last_close_date": "2026-11-25",
-   "ticker": "FABC",
-   "float": 7003613,
-   "float_status": "unverified",
-   "float_source": "yahoo_shares_full",
-   "reverse_split": false
-  },
-  {
    "price": 8.8,
-   "avg_vol": 1310839,
+   "avg_vol": 1311005,
    "range_pct": 13.5,
    "rally_pct": 100.8,
    "last_close_date": "2026-11-25",
@@ -2776,10 +2764,22 @@
    "reverse_split": false
   },
   {
-   "price": 3.82,
-   "avg_vol": 1048031,
+   "price": 0.567,
+   "avg_vol": 130640,
    "range_pct": 13.5,
-   "rally_pct": 224.6,
+   "rally_pct": 302.9,
+   "last_close_date": "2026-11-25",
+   "ticker": "SST",
+   "float": 8708922,
+   "float_status": "unverified",
+   "float_source": "yahoo_shares_full",
+   "reverse_split": false
+  },
+  {
+   "price": 3.82,
+   "avg_vol": 1049020,
+   "range_pct": 13.5,
+   "rally_pct": 224.1,
    "last_close_date": "2026-11-25",
    "ticker": "USDE",
    "float": 24029375,
@@ -2788,8 +2788,20 @@
    "reverse_split": false
   },
   {
+   "price": 1.23,
+   "avg_vol": 103705,
+   "range_pct": 13.4,
+   "rally_pct": 146.2,
+   "last_close_date": "2026-11-25",
+   "ticker": "FABC",
+   "float": 7591447,
+   "float_status": "unverified",
+   "float_source": "yahoo_shares_full",
+   "reverse_split": false
+  },
+  {
    "price": 9.58,
-   "avg_vol": 789915,
+   "avg_vol": 789935,
    "range_pct": 13.4,
    "rally_pct": 183.8,
    "last_close_date": "2026-11-25",
@@ -2800,8 +2812,8 @@
    "reverse_split": false
   },
   {
-   "price": 0.947,
-   "avg_vol": 479107,
+   "price": 0.95,
+   "avg_vol": 479115,
    "range_pct": 13.3,
    "rally_pct": 74.4,
    "last_close_date": "2026-11-25",
@@ -2816,10 +2828,22 @@
    "company": "Recon Technology Ltd."
   },
   {
-   "price": 0.716,
-   "avg_vol": 516214,
+   "price": 1.0,
+   "avg_vol": 2058100,
    "range_pct": 13.2,
-   "rally_pct": 76.5,
+   "rally_pct": 107.4,
+   "last_close_date": "2026-11-25",
+   "ticker": "MRKR",
+   "float": 13743992,
+   "float_status": "unverified",
+   "float_source": "yahoo_float",
+   "reverse_split": false
+  },
+  {
+   "price": 0.716,
+   "avg_vol": 516375,
+   "range_pct": 13.2,
+   "rally_pct": 76.4,
    "last_close_date": "2026-11-25",
    "ticker": "SRXH",
    "float": 20184391,
@@ -2832,22 +2856,10 @@
    "company": "Srx Global Inc"
   },
   {
-   "price": 0.567,
-   "avg_vol": 130620,
-   "range_pct": 13.2,
-   "rally_pct": 280.8,
-   "last_close_date": "2026-11-25",
-   "ticker": "SST",
-   "float": 8708922,
-   "float_status": "unverified",
-   "float_source": "yahoo_shares_full",
-   "reverse_split": false
-  },
-  {
    "price": 0.687,
-   "avg_vol": 317971,
+   "avg_vol": 318040,
    "range_pct": 13.1,
-   "rally_pct": 95.2,
+   "rally_pct": 95.1,
    "last_close_date": "2026-11-25",
    "ticker": "GUTS",
    "float": 13264926,
@@ -2860,20 +2872,8 @@
    "company": "Fractyl Health Inc"
   },
   {
-   "price": 1.0,
-   "avg_vol": 2056982,
-   "range_pct": 13.1,
-   "rally_pct": 107.4,
-   "last_close_date": "2026-11-25",
-   "ticker": "MRKR",
-   "float": 13743992,
-   "float_status": "unverified",
-   "float_source": "yahoo_float",
-   "reverse_split": false
-  },
-  {
    "price": 0.743,
-   "avg_vol": 2819351,
+   "avg_vol": 2825090,
    "range_pct": 13.0,
    "rally_pct": 140.4,
    "last_close_date": "2026-11-25",
@@ -2885,7 +2885,7 @@
   },
   {
    "price": 0.604,
-   "avg_vol": 223944,
+   "avg_vol": 224025,
    "range_pct": 13.0,
    "rally_pct": 86.6,
    "last_close_date": "2026-11-25",
@@ -2897,7 +2897,7 @@
   },
   {
    "price": 1.07,
-   "avg_vol": 427497,
+   "avg_vol": 427510,
    "range_pct": 12.9,
    "rally_pct": 116.8,
    "last_close_date": "2026-11-25",
@@ -2909,7 +2909,7 @@
   },
   {
    "price": 5.27,
-   "avg_vol": 184774,
+   "avg_vol": 184775,
    "range_pct": 12.9,
    "rally_pct": 100.2,
    "last_close_date": "2026-11-25",
@@ -2921,7 +2921,7 @@
   },
   {
    "price": 1.87,
-   "avg_vol": 321099,
+   "avg_vol": 321190,
    "range_pct": 12.9,
    "rally_pct": 64.4,
    "last_close_date": "2026-11-25",
@@ -2937,7 +2937,7 @@
   },
   {
    "price": 1.1,
-   "avg_vol": 261496,
+   "avg_vol": 261515,
    "range_pct": 12.9,
    "rally_pct": 203.7,
    "last_close_date": "2026-11-25",
@@ -2949,7 +2949,7 @@
   },
   {
    "price": 0.586,
-   "avg_vol": 519661,
+   "avg_vol": 519690,
    "range_pct": 12.8,
    "rally_pct": 64.0,
    "last_close_date": "2026-11-25",
@@ -2961,7 +2961,7 @@
   },
   {
    "price": 2.35,
-   "avg_vol": 161643,
+   "avg_vol": 161645,
    "range_pct": 12.7,
    "rally_pct": 112.2,
    "last_close_date": "2026-11-25",
@@ -2973,7 +2973,7 @@
   },
   {
    "price": 1.74,
-   "avg_vol": 145321,
+   "avg_vol": 146045,
    "range_pct": 12.5,
    "rally_pct": 98.1,
    "last_close_date": "2026-11-25",
@@ -2985,7 +2985,7 @@
   },
   {
    "price": 6.29,
-   "avg_vol": 2878115,
+   "avg_vol": 2878225,
    "range_pct": 12.4,
    "rally_pct": 247.5,
    "last_close_date": "2026-11-25",
@@ -2997,7 +2997,7 @@
   },
   {
    "price": 0.507,
-   "avg_vol": 5033419,
+   "avg_vol": 5035310,
    "range_pct": 12.4,
    "rally_pct": 63.6,
    "last_close_date": "2026-11-25",
@@ -3009,7 +3009,7 @@
   },
   {
    "price": 1.37,
-   "avg_vol": 109599,
+   "avg_vol": 109605,
    "range_pct": 12.3,
    "rally_pct": 157.1,
    "last_close_date": "2026-11-25",
@@ -3021,7 +3021,7 @@
   },
   {
    "price": 1.26,
-   "avg_vol": 44518974,
+   "avg_vol": 44538690,
    "range_pct": 12.3,
    "rally_pct": 89.9,
    "last_close_date": "2026-11-25",
@@ -3033,7 +3033,7 @@
   },
   {
    "price": 1.88,
-   "avg_vol": 420697,
+   "avg_vol": 420695,
    "range_pct": 12.3,
    "rally_pct": 103.9,
    "last_close_date": "2026-11-25",
@@ -3057,7 +3057,7 @@
   },
   {
    "price": 7.84,
-   "avg_vol": 398106,
+   "avg_vol": 398255,
    "range_pct": 12.3,
    "rally_pct": 124.3,
    "last_close_date": "2026-11-25",
@@ -3069,7 +3069,7 @@
   },
   {
    "price": 6.5,
-   "avg_vol": 2137014,
+   "avg_vol": 2137205,
    "range_pct": 12.3,
    "rally_pct": 105.2,
    "last_close_date": "2026-11-25",
@@ -3080,8 +3080,20 @@
    "reverse_split": false
   },
   {
+   "price": 1.52,
+   "avg_vol": 116820,
+   "range_pct": 12.2,
+   "rally_pct": 89.7,
+   "last_close_date": "2026-11-25",
+   "ticker": "BDAI",
+   "float": 12991860,
+   "float_status": "unverified",
+   "float_source": "yahoo_shares_full",
+   "reverse_split": false
+  },
+  {
    "price": 2.19,
-   "avg_vol": 436391,
+   "avg_vol": 436440,
    "range_pct": 12.2,
    "rally_pct": 76.7,
    "last_close_date": "2026-11-25",
@@ -3093,7 +3105,7 @@
   },
   {
    "price": 4.95,
-   "avg_vol": 208991,
+   "avg_vol": 210455,
    "range_pct": 12.2,
    "rally_pct": 100.0,
    "last_close_date": "2026-11-25",
@@ -3105,7 +3117,7 @@
   },
   {
    "price": 0.817,
-   "avg_vol": 147960,
+   "avg_vol": 147980,
    "range_pct": 12.2,
    "rally_pct": 44.6,
    "last_close_date": "2026-11-25",
@@ -3113,18 +3125,6 @@
    "float": 12575122,
    "float_status": "unverified",
    "float_source": "yahoo_float",
-   "reverse_split": false
-  },
-  {
-   "price": 1.52,
-   "avg_vol": 116821,
-   "range_pct": 12.1,
-   "rally_pct": 89.7,
-   "last_close_date": "2026-11-25",
-   "ticker": "BDAI",
-   "float": 12991860,
-   "float_status": "unverified",
-   "float_source": "yahoo_shares_full",
    "reverse_split": false
   }
  ]
